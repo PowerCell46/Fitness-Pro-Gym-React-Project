@@ -1,0 +1,224 @@
+
+:root {
+    --deep-blue: #14539a;
+}
+
+html {
+    font-size: 20px;
+    background: url("./images/thirdRoom.jpg");
+    background-size:cover;
+} 
+
+
+header {
+    width: 100vw;
+    height: 12.5vh;
+
+    background-color: var(--deep-blue);
+
+    position: fixed;
+    top: 0; 
+    left: 0;
+    z-index: 2;
+
+    display: flex; /* Make header a flex container */
+    justify-content: space-around;
+}
+
+
+header li {
+    margin-top: 3.5vh;
+    list-style: none;
+    cursor: pointer;
+    font-family: 'Salsa', cursive;
+    text-shadow: 5px 0px 7px rgba(0,0,0,0.68);
+    letter-spacing: 0.1rem;
+    font-size: 1.5rem;
+    animation: float 6s ease-in-out infinite;
+    color: whitesmoke;
+    transform: translatey(0px);
+}
+
+header li:hover {
+    transition: 400ms ease-in-out;
+    color: black;
+    text-decoration: underline;
+}
+
+header li div img {
+    border-radius: 50%;
+    margin-top: -1.2vh;
+    height: 5vh;
+    width: calc(5vh * 1.02);
+}
+
+.profile-dropdown {
+    position: relative;
+    display: inline-block;
+    
+}
+
+.hidden-profile-view {
+    margin-left: -3vw; 
+    padding-right: 1.5vw;
+    display: block;
+    position: absolute;
+    text-align: left;
+    background-color: rgba(20, 83, 154, 0.5);
+    box-shadow: 0px 0px 25px 4px rgba(0, 0, 0, 0.75);
+    border-radius: 1.4rem;
+    opacity: 0;
+    transition: opacity 600ms ease-in-out;
+}
+
+.profile-dropdown:hover .hidden-profile-view {
+    opacity: 1;
+}
+
+.hidden-profile-view li {
+    margin-top: 2vh;
+    display: inline-block;
+}
+
+main {
+    width: 100vw;
+    height: 80vh;
+    margin: 12.5vh auto 0;
+    /* background-color: #0ee9a0; */
+    margin-left: -0.3vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5vh;
+}
+
+main h1 {
+    color: whitesmoke;
+    font-size: 7rem;
+    font-family: 'Permanent Marker', cursive;
+    text-shadow: 5px 0px 7px rgba(0,0,0,0.68);
+    letter-spacing: 0.8rem;
+    margin-top: 7vh;
+    margin-bottom: 2vh;
+}
+
+main input {
+    padding: 1.2rem 2rem 1.2rem 2.5rem;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    color: black;
+    border: none;
+}
+
+main input::placeholder {
+    font-size: 1.2rem;
+    color: black;
+}
+
+main button {
+    padding: 1.1rem 7.2rem;
+    background-color: var(--deep-blue);
+    color: #f5f5f5;
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.07rem;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 600ms ease-in-out;
+    margin-bottom: -2Vh;
+}
+
+main button:hover {
+    background-color: #2c64a4;
+    color: #dddddd
+}
+
+main p {
+    margin-top: -1vh;
+    font-family: 'Salsa', cursive;
+    text-decoration: none;
+    color: whitesmoke;
+    font-size: 1.4rem;
+}
+
+main p a {
+    text-decoration: none;
+    color: #4375ae;
+    font-weight: 900;
+    transition: 600ms ease-in-out;
+}
+
+main a:hover {
+    text-decoration: underline;
+    color: var(--deep-blue);
+}
+
+
+footer {
+    width: 100vw;
+    height: 31vh;
+    margin: 5vh auto 0;
+    margin-left: -0.5vw;
+    position: absolute;
+    z-index: -2;
+    /* background-color: var(--deep-blue); */
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+    font-family: 'Salsa', cursive;
+    color: whitesmoke;
+    text-shadow: 5px 0px 7px rgba(0,0,0,0.68);
+}
+
+footer h5 {
+    cursor: pointer;
+    font-size: 1.5rem;
+    margin-bottom: 2.2vh;
+    transition: 600ms ease-in-out;
+    animation: float 6s ease-in-out infinite;
+}
+
+footer li {
+    cursor: pointer;
+    list-style: none;
+    margin-bottom: 2.5vh;
+    transition: 600ms ease-in-out;
+    font-size: 1.2rem;
+    animation: float 6s ease-in-out infinite;
+}
+
+footer h5:hover, footer li:hover {
+    text-decoration: underline;
+    color: black;
+}
+
+
+@keyframes float {
+    0% {
+      transform: translatey(0px);
+    }
+    50% {
+      transform: translatey(-0.5rem);
+    }
+    100% {
+      transform: translatey(0px);
+    }
+  }
+
+  @keyframes glowingImage {
+    0% {
+        filter: drop-shadow(0 0 2px #d5d9de);
+    }
+
+    50% {
+        filter: drop-shadow(0 0 8px #d5d9de);
+    }
+
+    100% {
+        filter: drop-shadow(0 0 2px #d5d9de);
+    }
+}

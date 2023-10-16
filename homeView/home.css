@@ -7,7 +7,7 @@
 
 html {
     font-size: 20px;
-    background-color: #008F7A;
+    background-color: var(--deep-blue);
 } 
 
 
@@ -31,6 +31,7 @@ header li {
     list-style: none;
     cursor: pointer;
     font-family: 'Salsa', cursive;
+    text-shadow: 5px 0px 7px rgba(0,0,0,0.68);
     letter-spacing: 0.1rem;
     font-size: 1.5rem;
     animation: float 6s ease-in-out infinite;
@@ -38,9 +39,15 @@ header li {
     transform: translatey(0px);
 }
 
-header li:hover {
+header li a:hover {
     transition: 400ms ease-in-out;
     color: black;
+    text-decoration: underline;
+}
+
+header li a {
+    text-decoration: none;
+    color: whitesmoke;
 }
 
 header li div img {
@@ -57,11 +64,11 @@ header li div img {
 }
 
 .hidden-profile-view {
-    margin-left: -3vw;
+    margin-left: -3vw; 
     padding-right: 1.5vw;
     display: block;
     position: absolute;
-    text-align: center;
+    text-align: left;
     background-color: rgba(20, 83, 154, 0.5);
     box-shadow: 0px 0px 25px 4px rgba(0, 0, 0, 0.75);
     border-radius: 1.4rem;
@@ -75,6 +82,7 @@ header li div img {
 
 .hidden-profile-view li {
     margin-top: 2vh;
+    display: inline-block;
 }
 
 
@@ -88,7 +96,7 @@ section {
     left: 0;
     z-index: -1;
 
-    background-image: url('./main-room.jpg');
+    background-image: url('./images/main-room.jpg');
     background-size: cover;
     background-attachment: fixed;
 
@@ -106,9 +114,58 @@ h1 {
     color: whitesmoke;
     font-size: 7rem;
     font-family: 'Permanent Marker', cursive;
+    text-shadow: 5px 0px 7px rgba(0,0,0,0.68);
     text-align: center;
     letter-spacing: 0.5rem;
 }
+
+
+footer {
+    width: 98vw;
+    height: 20vh;
+    margin: 74vh auto 0;
+    position: absolute;
+    z-index: -2;
+    background-color: var(--deep-blue);
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+    font-family: 'Salsa', cursive;
+    color: whitesmoke;
+    text-shadow: 5px 0px 7px rgba(0,0,0,0.68);
+}
+
+footer h5 {
+    cursor: pointer;
+    font-size: 1.5rem;
+    margin-bottom: 2.2vh;
+    transition: 600ms ease-in-out;
+    animation: float 6s ease-in-out infinite;
+}
+
+footer li {
+    cursor: pointer;
+    list-style: none;
+    margin-bottom: 2.5vh;
+    transition: 600ms ease-in-out;
+    font-size: 1.2rem;
+    animation: float 6s ease-in-out infinite;
+}
+
+footer h5:hover, footer li:hover {
+    text-decoration: underline;
+    color: black;
+}
+
+main {
+    background-color: brown;
+}
+
+
+
+
 
 @keyframes showanim {
     0% {
