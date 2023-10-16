@@ -31,6 +31,7 @@ header li {
     list-style: none;
     cursor: pointer;
     font-family: 'Salsa', cursive;
+    text-shadow: 5px 0px 7px rgba(0,0,0,0.68);
     letter-spacing: 0.1rem;
     font-size: 1.5rem;
     animation: float 6s ease-in-out infinite;
@@ -41,6 +42,7 @@ header li {
 header li:hover {
     transition: 400ms ease-in-out;
     color: black;
+    text-decoration: underline;
 }
 
 header li div img {
@@ -57,11 +59,11 @@ header li div img {
 }
 
 .hidden-profile-view {
-    margin-left: -3vw;
+    margin-left: -3vw; 
     padding-right: 1.5vw;
     display: block;
     position: absolute;
-    text-align: center;
+    text-align: left;
     background-color: rgba(20, 83, 154, 0.5);
     box-shadow: 0px 0px 25px 4px rgba(0, 0, 0, 0.75);
     border-radius: 1.4rem;
@@ -75,6 +77,7 @@ header li div img {
 
 .hidden-profile-view li {
     margin-top: 2vh;
+    display: inline-block;
 }
 
 
@@ -106,6 +109,7 @@ h1 {
     color: whitesmoke;
     font-size: 7rem;
     font-family: 'Permanent Marker', cursive;
+    text-shadow: 5px 0px 7px rgba(0,0,0,0.68);
     text-align: center;
     letter-spacing: 0.5rem;
 }
@@ -139,3 +143,41 @@ h1 {
       transform: translatey(0px);
     }
   }
+
+
+footer {
+    width: 100vw;
+    height: 30vh;
+    margin: 74vh auto 0;
+    margin-left: -0.5vw;
+    position: absolute;
+    z-index: -2;
+    background-color: var(--deep-blue);
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+    font-family: 'Salsa', cursive;
+    color: whitesmoke;
+    text-shadow: 5px 0px 7px rgba(0,0,0,0.68);
+}
+
+footer h5 {
+    cursor: pointer;
+    font-size: 1.2rem;
+    margin-bottom: 2.2vh;
+    transition: 600ms ease-in-out;
+}
+
+footer li {
+    cursor: pointer;
+    list-style: none;
+    margin-bottom: 1.8vh;
+    transition: 600ms ease-in-out;
+}
+
+footer h5:hover, footer li:hover {
+    text-decoration: underline;
+    color: black;
+}
