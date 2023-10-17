@@ -7,7 +7,8 @@
 
 html {
     font-size: 20px;
-    background-color: var(--deep-blue);
+    background: url("https://t3.ftcdn.net/jpg/04/29/35/62/360_F_429356296_CVQ5LkC6Pl55kUNLqLisVKgTw9vjyif1.jpg");
+    background-size: cover;
 } 
 
 
@@ -86,47 +87,17 @@ header li div img {
 }
 
 
-section {
-    width: 100vw;
-    height: 60vh;
-    margin: 12.5vh auto 0;
-    
-    position: fixed; 
-    top: 0; 
-    left: 0;
-    z-index: -1;
-
-    background-image: url('./images/main-room.jpg');
-    background-size: cover;
-    background-attachment: fixed;
-
-    animation-name: showanim, bgPositionAnim;
-    animation-duration: 15s;
-    animation-timing-function: ease-in-out;
-    animation-direction: alternate;
-    animation-iteration-count: infinite;
-    
-}
 
 
-h1 {
-    margin-top: -2.5vh;
-    color: whitesmoke;
-    font-size: 7rem;
-    font-family: 'Permanent Marker', cursive;
-    text-shadow: 5px 0px 7px rgba(0,0,0,0.68);
-    text-align: center;
-    letter-spacing: 0.5rem;
-}
 
 
 footer {
     width: 98vw;
     height: 20vh;
-    margin: 74vh auto 0;
+    margin: 0vh auto 0;
     position: absolute;
     z-index: -2;
-    background-color: var(--deep-blue);
+    /* background-color: var(--deep-blue); */
     
     display: flex;
     flex-direction: row;
@@ -159,12 +130,25 @@ footer h5:hover, footer li:hover {
     color: black;
 }
 
+
 main {
-    background-color: brown;
+    width: 100vw;
+    height: 75vh;
+    margin: 12.5vh auto 0;
+    /* background-color: #0ee9a0; */
+    margin-left: -0.3vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 8vh;
 }
 
-
-
+aside {
+    height: 100%;
+    width: 50vw;
+    background-color: aqua;
+}
 
 
 @keyframes showanim {
