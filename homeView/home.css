@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Salsa&display=swap');
 
+
 :root {
     --deep-blue: rgb(20, 83, 154);
 }
@@ -10,6 +11,7 @@ html {
     background-color: var(--deep-blue);
 } 
 
+/* Header section */
 
 header {
     width: 100vw;
@@ -23,52 +25,54 @@ header {
 
     display: flex; /* Make header a flex container */
     justify-content: space-around;
+    align-items: center;
 }
 
 
 header li {
-    margin-top: 3.5vh;
     list-style: none;
     cursor: pointer;
     font-family: 'Salsa', cursive;
     text-shadow: 5px 0px 7px rgba(0,0,0,0.68);
-    letter-spacing: 0.1rem;
+    letter-spacing: 0.13rem;
     font-size: 1.5rem;
     animation: float 6s ease-in-out infinite;
     color: whitesmoke;
     transform: translatey(0px);
+    /* transition: all 0.3s ease-in-out; */
 }
 
-header li a:hover {
-    transition: 400ms ease-in-out;
-    color: black;
-    text-decoration: underline;
-}
 
 header li a {
     text-decoration: none;
     color: whitesmoke;
+    transition: 400ms ease-in-out;
+
 }
+
+header li a:hover {
+    text-decoration: underline;
+}
+
 
 header li div img {
     border-radius: 50%;
-    margin-top: -1.2vh;
     height: 5vh;
     width: calc(5vh * 1.02);
 }
 
+
 .profile-dropdown {
     position: relative;
     display: inline-block;
-    
 }
 
 .hidden-profile-view {
-    margin-left: -3vw; 
+    margin-left: -3.5vw; 
     padding-right: 1.5vw;
     display: block;
     position: absolute;
-    text-align: left;
+    text-align: center;
     background-color: rgba(20, 83, 154, 0.5);
     box-shadow: 0px 0px 25px 4px rgba(0, 0, 0, 0.75);
     border-radius: 1.4rem;
@@ -81,19 +85,18 @@ header li div img {
 }
 
 .hidden-profile-view li {
-    margin-top: 2vh;
+    margin-top: 1.7vh;
     display: inline-block;
 }
+/* End of Header */
 
 
 section {
     width: 100vw;
     height: 60vh;
-    margin: 12.5vh auto 0;
-    
-    position: fixed; 
-    top: 0; 
-    left: 0;
+    margin: 17vh auto 0;
+    margin-left: -0.7vh;
+    position: relative;
     z-index: -1;
 
     background-image: url('./images/main-room.jpg');
@@ -105,25 +108,23 @@ section {
     animation-timing-function: ease-in-out;
     animation-direction: alternate;
     animation-iteration-count: infinite;
-    
 }
 
 
 h1 {
-    margin-top: -2.5vh;
     color: whitesmoke;
     font-size: 7rem;
     font-family: 'Permanent Marker', cursive;
     text-shadow: 5px 0px 7px rgba(0,0,0,0.68);
     text-align: center;
-    letter-spacing: 0.5rem;
+    letter-spacing: 0.7rem;
 }
 
 
 footer {
     width: 98vw;
-    height: 20vh;
-    margin: 74vh auto 0;
+    height: 32vh;
+    /* margin: 74vh auto 0; */
     position: absolute;
     z-index: -2;
     background-color: var(--deep-blue);
@@ -156,13 +157,26 @@ footer li {
 
 footer h5:hover, footer li:hover {
     text-decoration: underline;
-    color: black;
 }
 
 main {
-    background-color: brown;
+    width: 100vw;
+    /* margin: 75.6vh auto 0; */
+    margin-left: -0.4vw;
+    height: 70vh;
+    background-color: rgb(165, 42, 42);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
+main h2 {
+    text-align: center;
+    width: 40vw;
+    color: whitesmoke;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 2rem;
+}
 
 
 
@@ -190,7 +204,7 @@ main {
       transform: translatey(0px);
     }
     50% {
-      transform: translatey(-0.5rem);
+      transform: translatey(-0.2rem);
     }
     100% {
       transform: translatey(0px);
