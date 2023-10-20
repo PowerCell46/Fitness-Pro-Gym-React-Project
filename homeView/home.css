@@ -22,12 +22,12 @@ header {
     position: fixed;
     top: 0; 
     left: 0;
+    z-index: 100;
 
-    display: flex; /* Make header a flex container */
+    display: flex;
     justify-content: space-around;
     align-items: center;
 }
-
 
 header li {
     list-style: none;
@@ -39,7 +39,6 @@ header li {
     animation: float 6s ease-in-out infinite;
     color: whitesmoke;
     transform: translatey(0px);
-    /* transition: all 0.3s ease-in-out; */
 }
 
 header li a {
@@ -103,6 +102,7 @@ header li div img {
     margin-top: 1.7vh;
     display: inline-block;
 }
+
 /* End of Header */
 
 
@@ -139,7 +139,6 @@ h1 {
 footer {
     width: 98vw;
     height: 32vh;
-    /* margin: 74vh auto 0; */
     position: absolute;
     z-index: -2;
     background-color: var(--deep-blue);
@@ -149,7 +148,7 @@ footer {
     justify-content: space-around;
 
     font-family: 'Salsa', cursive;
-    color: whitesmoke;
+    color: #f5f5f5;
     text-shadow: 5px 0px 7px rgba(0,0,0,0.68);
 }
 
@@ -172,11 +171,11 @@ footer li {
 
 footer h5:hover, footer li:hover {
     text-decoration: underline;
+    color: #dddddd;
 }
 
 main {
     width: 100vw;
-    /* margin: 75.6vh auto 0; */
     margin-left: -0.4vw;
     height: 70vh;
     background-image: linear-gradient(to right top, #14539a, #0074b3, #0092bc, #00afb6, #00c9a7);
@@ -193,7 +192,20 @@ main h2 {
     font-size: 2.2rem;
 }
 
+/* .image-wrapper {
+    width: 47vw;
+    border-radius: 20px;
+} */
 
+main img {
+    width: 47vw;
+    transition: 400ms ease-in-out;
+}
+
+main img:hover {
+    -webkit-filter: blur(5px);
+    filter: blur(5px);
+}
 
 
 @keyframes showanim {
