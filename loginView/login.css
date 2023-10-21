@@ -254,7 +254,7 @@ footer h5:hover, footer li:hover {
     }
   }
 
-  @keyframes hithere {
+@keyframes hithere {
     30% { transform: scale(1.15); }
     40%, 60% { transform: rotate(-10deg) scale(1.15); }
     50% { transform: rotate(10deg) scale(1.15); }

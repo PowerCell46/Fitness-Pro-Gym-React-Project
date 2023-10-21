@@ -1,6 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Salsa&display=swap');
 
 :root {
     --deep-blue: #14539a;
+    --dark-blue: #0e3a6c;
 }
 
 html {
@@ -9,6 +12,7 @@ html {
     background-size:cover;
 } 
 
+/* Header section */
 
 header {
     width: 100vw;
@@ -19,54 +23,74 @@ header {
     position: fixed;
     top: 0; 
     left: 0;
-    z-index: 2;
+    z-index: 100;
 
-    display: flex; /* Make header a flex container */
+    display: flex;
     justify-content: space-around;
+    align-items: center;
 }
 
-
 header li {
-    margin-top: 3.5vh;
     list-style: none;
     cursor: pointer;
     font-family: 'Salsa', cursive;
     text-shadow: 5px 0px 7px rgba(0,0,0,0.68);
-    letter-spacing: 0.1rem;
+    letter-spacing: 0.13rem;
     font-size: 1.5rem;
     animation: float 6s ease-in-out infinite;
     color: whitesmoke;
     transform: translatey(0px);
 }
 
-header li:hover {
-    transition: 400ms ease-in-out;
-    color: black;
+header li a {
+    text-decoration: none;
+    color: whitesmoke;
+    transition: all 0.3s ease-in-out;
+}
+
+header li a:before {
+    content: "";
+    width: 0;
+    height: 3px;
+    bottom: 5px;
+    left: 0;
+    bottom: -3px;
+    z-index: 0;
+    position: absolute;
+    background: #00c9a7;
+    transition: all 0.3s ease-in-out;
+}
+
+header li a:hover {
     text-decoration: underline;
+    background-position: 0%;
+}
+
+header li a:hover:before {
+    width: 100%;
 }
 
 header li div img {
     border-radius: 50%;
-    margin-top: -1.2vh;
     height: 5vh;
     width: calc(5vh * 1.02);
 }
 
+
 .profile-dropdown {
     position: relative;
     display: inline-block;
-    
 }
 
 .hidden-profile-view {
-    margin-left: -3vw; 
+    margin-left: -3.5vw; 
     padding-right: 1.5vw;
     display: block;
     position: absolute;
-    text-align: left;
+    text-align: center;
     background-color: rgba(20, 83, 154, 0.5);
     box-shadow: 0px 0px 25px 4px rgba(0, 0, 0, 0.75);
-    border-radius: 1.4rem;
+    border-radius: 0.3rem;
     opacity: 0;
     transition: opacity 600ms ease-in-out;
 }
@@ -76,15 +100,17 @@ header li div img {
 }
 
 .hidden-profile-view li {
-    margin-top: 2vh;
+    margin-top: 1.7vh;
     display: inline-block;
 }
+
+/* End of Header */
+
 
 main {
     width: 100vw;
     height: 80vh;
-    margin: 12.5vh auto 0;
-    /* background-color: #0ee9a0; */
+    margin: 10vh auto 0;
     margin-left: -0.3vw;
     display: flex;
     flex-direction: column;
@@ -99,71 +125,81 @@ main h1 {
     font-family: 'Permanent Marker', cursive;
     text-shadow: 5px 0px 7px rgba(0,0,0,0.68);
     letter-spacing: 0.8rem;
-    margin-top: 7vh;
-    margin-bottom: 2vh;
+    margin-bottom: -1vh;
 }
 
 main input {
-    padding: 1.2rem 2rem 1.2rem 2.5rem;
+    padding: 1.1rem 2rem 1.1rem 2rem;
     border-radius: 5px;
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: black;
     border: none;
 }
 
 main input::placeholder {
     font-size: 1.2rem;
-    color: black;
+    color: grey;
+    font-family: 'Salsa', cursive;
 }
 
 main button {
-    padding: 1.1rem 7.2rem;
+    padding: 1rem 3rem;
     background-color: var(--deep-blue);
     color: #f5f5f5;
     font-size: 1.2rem;
+    text-shadow: 5px 0px 7px rgba(0,0,0,0.68);
+    font-family: 'Salsa', cursive;
     font-weight: 600;
-    letter-spacing: 0.07rem;
+    letter-spacing: 0.15rem;
     border: none;
     border-radius: 20px;
     cursor: pointer;
     transition: 600ms ease-in-out;
     margin-bottom: -2Vh;
+    animation: hithere 10s ease-in-out infinite;
 }
 
 main button:hover {
-    background-color: #2c64a4;
-    color: #dddddd
+    background-color: var(--dark-blue);
+    transform: translateY(-0.2rem);
 }
 
 main p {
-    margin-top: -1vh;
     font-family: 'Salsa', cursive;
     text-decoration: none;
     color: whitesmoke;
+    letter-spacing: 0.1rem;
     font-size: 1.4rem;
 }
 
 main p a {
+    padding: 0.3rem 0.3rem;
+    border-radius: 10px;
     text-decoration: none;
-    color: #4375ae;
+    color: var(--deep-blue);
+    background-color: rgba(138, 169, 205, 0.72); /* Set the alpha value to 0.1 for almost invisible background */
     font-weight: 900;
     transition: 600ms ease-in-out;
 }
 
 main a:hover {
+    /* transform: translateY(-0.2rem); Does not work */
     text-decoration: underline;
-    color: var(--deep-blue);
+    color: var(--dark-blue);
+    background-color: rgba(138, 169, 205, 0.8);
 }
+
+/* End of the Main Part */
 
 
 footer {
     width: 100vw;
     height: 31vh;
-    margin: 5vh auto 0;
+    margin: 12vh auto 0;
     margin-left: -0.5vw;
     position: absolute;
     z-index: -2;
-    /* background-color: var(--deep-blue); */
+    background-color: var(--deep-blue);
     
     display: flex;
     flex-direction: row;
@@ -193,9 +229,8 @@ footer li {
 
 footer h5:hover, footer li:hover {
     text-decoration: underline;
-    color: black;
+    color: #dddddd;
 }
-
 
 @keyframes float {
     0% {
@@ -209,16 +244,10 @@ footer h5:hover, footer li:hover {
     }
   }
 
-  @keyframes glowingImage {
-    0% {
-        filter: drop-shadow(0 0 2px #d5d9de);
-    }
-
-    50% {
-        filter: drop-shadow(0 0 8px #d5d9de);
-    }
-
-    100% {
-        filter: drop-shadow(0 0 2px #d5d9de);
-    }
-}
+@keyframes hithere {
+    30% { transform: scale(1.15); }
+    40%, 60% { transform: rotate(-10deg) scale(1.15); }
+    50% { transform: rotate(10deg) scale(1.15); }
+    70% { transform: rotate(0deg) scale(1.15); }
+    100% { transform: scale(1); }
+  }
