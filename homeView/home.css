@@ -89,7 +89,7 @@ header li div img {
     text-align: center;
     background-color: rgba(20, 83, 154, 0.5);
     box-shadow: 0px 0px 25px 4px rgba(0, 0, 0, 0.75);
-    border-radius: 0.5rem;
+    border-radius: 0.3rem;
     opacity: 0;
     transition: opacity 600ms ease-in-out;
 }
@@ -204,7 +204,7 @@ main img {
 
 main img:hover {
     -webkit-filter: blur(5px);
-    filter: blur(5px);
+    filter: blur(3px);
 }
 
 
