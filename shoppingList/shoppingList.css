@@ -113,18 +113,18 @@ aside {
 
 main {
     width: 100vw;
-    height: 85vh;
+    height: 75vh;
     margin: 10vh auto 0;
     margin-left: -0.4vw;
     /* background-color: #00c9a7; */
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    padding: 3vh 3vw;
+    padding: 10vh 2vw;
 }
 
 .product-container {
     height: 40vh;
-    width: 15vw;
+    width: 20vw;
     background-color: var(--deep-blue);
     display: flex;
     align-items: center;
@@ -132,6 +132,8 @@ main {
     flex-direction: column;
     position: relative;
     transition: 600ms ease-in-out;
+    margin-bottom: 5vh;
+    border-radius: 0.8rem;
 }
 
 .product-container:hover .shown-info {
@@ -165,6 +167,7 @@ main {
     position: absolute;
     bottom: 0;
     left: 0;
+    border-radius: 0.8rem;
 }
 
 .shown-info h5 {
@@ -195,7 +198,7 @@ main {
 
 button {
     position: absolute;
-    top: 15%;
+    top: 10%;
     z-index: 10;
     padding: 0.5rem 1rem;
     background-color: var(--dark-blue);
@@ -216,7 +219,7 @@ button {
 }
 
 button:nth-child(2) {
-    top: 50%;
+    top: 40%;
 }
 
 .product-container:hover {
