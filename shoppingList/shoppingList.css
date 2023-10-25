@@ -106,10 +106,6 @@ header li div img {
 
 /* End of Header */
 
-aside {
-    width: 20vw;
-    background-color: aliceblue;
-}
 
 main {
     width: 100vw;
@@ -178,7 +174,6 @@ main {
 
 .show-info-inner-container {
     display: flex;
-
 }
 
 .shown-info p {

@@ -11,6 +11,7 @@ html {
     background-color: var(--deep-blue);
 } 
 
+
 /* Header section */
 
 header {
@@ -82,20 +83,21 @@ header li div img {
 }
 
 .hidden-profile-view {
-    margin-left: -3.5vw; 
+    width: 10vw;
+    margin-left: -4.5vw; 
     padding-right: 1.5vw;
     display: block;
     position: absolute;
     text-align: center;
     background-color: rgba(20, 83, 154, 0.5);
     box-shadow: 0px 0px 25px 4px rgba(0, 0, 0, 0.75);
-    border-radius: 0.3rem;
+    border-radius: 0.15rem;
     opacity: 0;
-    transition: opacity 600ms ease-in-out;
+    transition: 400ms ease-in-out;
 }
 
-.profile-dropdown:hover .hidden-profile-view {
-    opacity: 1;
+.hidden-profile-view:hover {
+    background-color: rgba(20, 83, 154, 0.75);
 }
 
 .hidden-profile-view li {
@@ -190,6 +192,8 @@ main h2 {
     color: whitesmoke;
     font-family: 'Permanent Marker', cursive;
     font-size: 2.2rem;
+    text-shadow: 5px 0px 7px rgba(0,0,0,0.68);
+    letter-spacing: 0.2rem;
     
     animation-name: bounceInLeft;
     animation-duration: 4s;
@@ -198,10 +202,31 @@ main h2 {
     animation-iteration-count: 1;
 }
 
-/* .image-wrapper {
-    width: 47vw;
-    border-radius: 20px;
-} */
+main div p {
+    color: whitesmoke;
+    width: 50vw;
+    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Salsa', cursive;
+    font-size: 1.2rem;
+    text-shadow: 5px 0px 7px rgba(0,0,0,0.68);
+    line-height: 2;
+    letter-spacing: 0.05rem;
+
+    animation-name: bounceInLeft;
+    animation-duration: 4s;
+    animation-timing-function: ease-in-out;
+    animation-direction: alternate;
+    animation-iteration-count: 1;
+}
+
+main div h5 {
+    text-align: center;
+    color: whitesmoke;
+    font-family: 'Permanent Marker', cursive;
+    text-shadow: 5px 0px 7px rgba(0,0,0,0.68);
+    font-size: 2rem;
+    margin-bottom: 2vh;
+}
 
 main img {
     width: 47vw;

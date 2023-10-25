@@ -118,6 +118,14 @@ main {
     gap: 8vh;
 }
 
+main img {
+    transition: 600ms ease-in-out;
+}
+
+main img:hover {
+    transform: scale(1.1);
+}
+
 aside {
     margin-top: 5vh;
     height: 100%;
@@ -132,6 +140,7 @@ aside {
 
 aside:hover {
     background-color: rgba(0, 0, 0, 0.55);
+    transform: scale(1.02);
 }
 
 aside h2 {
