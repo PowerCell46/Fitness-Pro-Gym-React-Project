@@ -91,13 +91,14 @@ header li div img {
     text-align: center;
     background-color: rgba(20, 83, 154, 0.5);
     box-shadow: 0px 0px 25px 4px rgba(0, 0, 0, 0.75);
-    border-radius: 0.15rem;
+    border-radius: 0.35rem;
     opacity: 0;
     transition: 400ms ease-in-out;
 }
 
 .hidden-profile-view:hover {
-    background-color: rgba(20, 83, 154, 0.75);
+    transition: 600ms ease-in-out;
+    background-color: rgba(20, 83, 154, 0.80);
 }
 
 .hidden-profile-view li {
@@ -120,8 +121,8 @@ section {
     background-size: cover;
     background-attachment: fixed;
 
-    animation-name: showanim, bgPositionAnim;
-    animation-duration: 15s;
+    animation-name: bgPositionAnim;
+    animation-duration: 10s;
     animation-timing-function: ease-in-out;
     animation-direction: alternate;
     animation-iteration-count: infinite;
@@ -244,18 +245,9 @@ main img:hover {
 }
 
 
-@keyframes showanim {
-    0% {
-        transform: scale(1.1);
-    }
-    100% {
-        transform: scale(1);
-    }
-}
-
 @keyframes bgPositionAnim {
     0% {
-        background-position: center calc(100% + 60px);
+        background-position: center calc(100%);
     }
     100% {
         background-position: center;

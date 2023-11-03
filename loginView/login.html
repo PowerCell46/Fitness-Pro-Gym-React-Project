@@ -7,8 +7,9 @@
     <link rel="icon" type="image/x-icon" href="./images/pro-gym-favicon.png">
     <link rel="stylesheet" href="login.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="./login.js"></script>
 </head>
-<body>
+<body onload="onLoadHtml()">
     <header>
         <li><a href="">About</a></li>
         <li><a href="../registerView/register.html">Register</a></li>
@@ -16,14 +17,14 @@
         <li><a href="">Logout</a></li>
         <li>
             <div class="profile-dropdown">
-                <img src="./images/profile_picture.jpg" alt="Profile picture">
+                <img id="profilePicture" src="./images/profile_picture.jpg" alt="Profile picture">
                 <div class="hidden-profile-view">
-                    <ul>
+                   <ul>
                     <li><a href="../createView/create.html">Create</a></li>
                     <li><a href="">My profile</a></li>
-                    <li><a href="">Shop</a></li>
+                    <li><a href="../shoppingList/shoppingList.html">Shop</a></li>
                     <li><a href="../descriptionView/description.html">Details</a></li>
-                    </ul>
+                   </ul>
                 </div>
             </div>
         </li>

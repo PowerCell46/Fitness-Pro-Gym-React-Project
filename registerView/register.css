@@ -121,11 +121,11 @@ main {
 
 main h1 {
     color: whitesmoke;
-    font-size: 7rem;
+    font-size: 7.5rem;
     font-family: 'Permanent Marker', cursive;
     text-shadow: 5px 0px 7px rgba(0,0,0,0.68);
     letter-spacing: 0.8rem;
-    margin-bottom: -1vh;
+    margin-bottom: -2vh;
 }
 
 main input {
@@ -173,11 +173,11 @@ main p {
 }
 
 main p a {
-    padding: 0.3rem 0.3rem;
+    padding: 0.4rem 0.4rem;
     border-radius: 10px;
     text-decoration: none;
     color: var(--deep-blue);
-    background-color: rgba(138, 169, 205, 0.72); /* Set the alpha value to 0.1 for almost invisible background */
+    background-color: rgba(138, 169, 205, 0.6); /* Set the alpha value to 0.1 for almost invisible background */
     font-weight: 900;
     transition: 600ms ease-in-out;
 }
@@ -186,7 +186,7 @@ main a:hover {
     /* transform: translateY(-0.2rem); Does not work */
     text-decoration: underline;
     color: var(--dark-blue);
-    background-color: rgba(138, 169, 205, 0.8);
+    background-color: rgba(138, 169, 205, 0.7);
 }
 
 /* End of the Main Part */
