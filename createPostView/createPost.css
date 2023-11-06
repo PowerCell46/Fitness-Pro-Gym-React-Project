@@ -148,15 +148,21 @@ main form input {
     padding-left: 1rem;
 }
 
-
-input#file-upload-button {
-    background-color: none;
+.file-upload-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2vw;
 }
 
-
-.file-upload:hover {
-    background-color: #0056b3;  
+.file-upload-div span {
+    font-size: 1.2rem;
+    font-family: 'Salsa', cursive;
+    color: whitesmoke;
+    padding: 0.5rem;
+    border-radius: 0.2rem;
 }
+
 
 main form button {
     align-self: center;
@@ -176,6 +182,18 @@ main form button {
     animation: hithere 5s ease-in-out infinite;
 }
 
+.file-upload-div button {
+    text-align: center;
+    width: 45%;
+    padding: 0.7rem 1.5rem;
+    background-color: #00866c;
+    animation: none;
+}
+
+.file-upload-div button:hover {
+    background-color: #009578;
+    transform: translateY(-0.2rem);
+}
 
 footer {
     width: 98.5vw;

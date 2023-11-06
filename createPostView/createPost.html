@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Post</title>
     <link rel="stylesheet" href="createPost.css">
+    <script src="./createPost.js"></script>
 </head>
-<body>
+<body onload="fileHandlerFunction()">
     <header>
         <li><a href="">About</a></li>
         <li><a href="../registerView/register.html">Register</a></li>
@@ -30,7 +31,11 @@
     <main>
         <h1>Post a Highlight</h1>
         <form method="POST">
-            <input type="file" class="file-upload">
+            <input type="file" class="file-upload" hidden="hidden">
+            <div class="file-upload-div">
+                <button>Choose a file</button>
+                <span>No file chosen</span>
+            </div>
             <input type="text" placeholder="Average Arm day pump">
             <button>Post</button>
         </form>
