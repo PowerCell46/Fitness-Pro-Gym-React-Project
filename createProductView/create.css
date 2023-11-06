@@ -121,10 +121,19 @@ main {
     align-items: center;
 }
 
+main h1 {
+    color: whitesmoke;
+    font-size: 6rem;
+    font-family: 'Permanent Marker', cursive;
+    text-shadow: 5px 0px 7px rgba(0,0,0,0.68);
+    letter-spacing: 0.8rem;
+    margin-bottom: 2vh;
+}
+
 main form {
     display: flex;
     flex-direction: column;
-    gap: 2.5rem;
+    gap: 2rem;
 }
 
 main form input {
@@ -183,7 +192,7 @@ main form button {
     border-radius: 10px;
     cursor: pointer;
     transition: 600ms ease-in-out;
-    animation: hithere 10s ease-in-out infinite;
+    animation: hithere 5s ease-in-out infinite;
 }
 
 main form button:hover {
@@ -267,8 +276,8 @@ footer h5:hover, footer li:hover {
 
 @keyframes hithere {
 30% { transform: scale(1.15); }
-40%, 60% { transform: rotate(-10deg) scale(1.15); }
-50% { transform: rotate(10deg) scale(1.15); }
+40%, 60% { transform: rotate(-5deg) scale(1.15); }
+50% { transform: rotate(5deg) scale(1.15); }
 70% { transform: rotate(0deg) scale(1.15); }
 100% { transform: scale(1); }
 }

@@ -127,9 +127,9 @@ main {
 }
 
 
-h1{
+h1 {
     font-family: 'Permanent Marker', cursive;
-    font-size: 4em;
+    font-size: 5rem;
     font-weight: bolder;
     color: whitesmoke;
     text-shadow: 5px 0px 7px rgba(0,0,0,0.68);
@@ -151,8 +151,8 @@ main .gallery-div .gallery-inner-box {
 
 main .gallery-div .gallery-inner-box img{
     width: 100%;
-    padding-bottom: 2rem;
-    border-radius: 10px;
+    margin-bottom: 2rem;
+    border-radius: 1rem;
     transition: 600ms ease-in-out;
 }
 

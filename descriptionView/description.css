@@ -109,7 +109,7 @@ header li div img {
 main {
     width: 100vw;
     height: 75vh;
-    margin: 12.5vh auto 0;
+    margin: 16vh auto 0;
     margin-left: -0.3vw;
     display: flex;
     flex-direction: row;
@@ -180,6 +180,12 @@ aside p {
     line-height: 2rem;
     transition: 600ms ease-in-out;
 }
+aside div {
+    align-self: center;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
 
 aside button {
     margin-top: 2vh;
@@ -196,7 +202,8 @@ aside button {
     cursor: pointer;
     transition: 600ms ease-in-out;
     margin-bottom: -2Vh;
-    animation: hithere 10s ease-in-out infinite;
+    animation: hithere 5s ease-in-out infinite;
+    /* margin-right: 3vw; */
 }
 
 aside button:hover {
@@ -260,8 +267,8 @@ footer h5:hover, footer li:hover {
 
 @keyframes hithere {
     30% { transform: scale(1.15); }
-    40%, 60% { transform: rotate(-10deg) scale(1.15); }
-    50% { transform: rotate(10deg) scale(1.15); }
+    40%, 60% { transform: rotate(-5deg) scale(1.15); }
+    50% { transform: rotate(5deg) scale(1.15); }
     70% { transform: rotate(0deg) scale(1.15); }
     100% { transform: scale(1); }
   }
