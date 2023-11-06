@@ -192,7 +192,7 @@ main h2 {
     width: 40vw;
     color: whitesmoke;
     font-family: 'Permanent Marker', cursive;
-    font-size: 2.2rem;
+    font-size: 2rem;
     text-shadow: 5px 0px 7px rgba(0,0,0,0.68);
     letter-spacing: 0.2rem;
     
@@ -208,7 +208,7 @@ main div p {
     width: 50vw;
     font-family: 'Courier New', Courier, monospace;
     font-family: 'Salsa', cursive;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     text-shadow: 5px 0px 7px rgba(0,0,0,0.68);
     line-height: 2;
     letter-spacing: 0.05rem;
@@ -220,16 +220,21 @@ main div p {
     animation-iteration-count: 1;
 }
 
+main div iframe {
+    border-radius: 0.3rem;
+}
+
 main div h5 {
     text-align: center;
     color: whitesmoke;
     font-family: 'Permanent Marker', cursive;
     text-shadow: 5px 0px 7px rgba(0,0,0,0.68);
     font-size: 2rem;
-    margin-bottom: 2vh;
+    margin-bottom: 4vh;
 }
 
 main img {
+    border-radius: 0.25rem;
     width: 47vw;
     transition: 400ms ease-in-out;
     animation-name: bounceInRight;
