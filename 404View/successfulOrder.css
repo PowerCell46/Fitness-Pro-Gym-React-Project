@@ -130,7 +130,7 @@ main h1 {
     text-shadow: 5px 0px 7px rgba(255, 255, 255, 0.5);
     font-size: 6rem;
     letter-spacing: 0.8rem;
-    /* animation: flash 4s ease infinite alternate; */
+    animation: flash 1s ease infinite alternate;
 }
 
 main h2 {
@@ -139,11 +139,11 @@ main h2 {
     font-family: 'Permanent Marker', cursive;
     text-shadow: 5px 0px 7px rgba(255, 255, 255, 0.5);
     font-size: 3rem;
+    animation: flash 1s ease infinite alternate;
 }
 
 main img {
     margin-top: 2vh;
-    /* animation: flash 4s ease infinite alternate; */
     height: 55vh;
     border-radius: 0.5rem;
 }
