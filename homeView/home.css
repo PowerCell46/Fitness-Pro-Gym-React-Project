@@ -139,52 +139,27 @@ h1 {
 }
 
 
-footer {
-    width: 98vw;
-    height: 32vh;
-    position: absolute;
-    z-index: -2;
-    background-color: var(--deep-blue);
-    
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-
-    font-family: 'Salsa', cursive;
-    color: #f5f5f5;
-    text-shadow: 5px 0px 7px rgba(0,0,0,0.68);
-}
-
-footer h5 {
-    cursor: pointer;
-    font-size: 1.5rem;
-    margin-bottom: 2.2vh;
-    transition: 600ms ease-in-out;
-    animation: float 6s ease-in-out infinite;
-}
-
-footer li {
-    cursor: pointer;
-    list-style: none;
-    margin-bottom: 2.5vh;
-    transition: 600ms ease-in-out;
-    font-size: 1.2rem;
-    animation: float 6s ease-in-out infinite;
-}
-
-footer h5:hover, footer li:hover {
-    text-decoration: underline;
-    color: #dddddd;
-}
 
 main {
     width: 100vw;
     margin-left: -0.4vw;
     height: 70vh;
-    background-image: linear-gradient(to right top, #14539a, #0074b3, #0092bc, #00afb6, #00c9a7);
+    
     display: flex;
     justify-content: space-around;
     align-items: center;
+}
+
+.first-main {
+    background-image: linear-gradient(to right top, #14539a, #0074b3, #0092bc, #00afb6, #00c9a7);
+}
+
+.second-main {
+    background-image: linear-gradient(to right top, #4375ae, #007ead, #0086a1, #008a8e, #008d75);
+}
+
+.third-main {
+    background-image: linear-gradient(to left top, #00c9a7, #00c0c0, #00b4ce, #4ca6ce, #7298c2);
 }
 
 main h2 {
@@ -247,6 +222,45 @@ main img {
 main img:hover {
     -webkit-filter: blur(5px);
     filter: blur(3px);
+}
+
+
+footer {
+    width: 98vw;
+    height: 32vh;
+    position: absolute;
+    z-index: -2;
+    background-color: var(--deep-blue);
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+    font-family: 'Salsa', cursive;
+    color: #f5f5f5;
+    text-shadow: 5px 0px 7px rgba(0,0,0,0.68);
+}
+
+footer h5 {
+    cursor: pointer;
+    font-size: 1.5rem;
+    margin-bottom: 2.2vh;
+    transition: 600ms ease-in-out;
+    animation: float 6s ease-in-out infinite;
+}
+
+footer li {
+    cursor: pointer;
+    list-style: none;
+    margin-bottom: 2.5vh;
+    transition: 600ms ease-in-out;
+    font-size: 1.2rem;
+    animation: float 6s ease-in-out infinite;
+}
+
+footer h5:hover, footer li:hover {
+    text-decoration: underline;
+    color: #dddddd;
 }
 
 
