@@ -121,7 +121,7 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 3vh;
+    gap: 2vh;
 }
 
 section {
@@ -138,6 +138,12 @@ section {
     width: 60vw;
     height: 17.5vh;
     gap: 3vw;
+    transition: 600ms ease-in-out;
+}
+
+section:hover {
+    transform: scale(1.1);
+    transform: translateY(-0.2rem);
 }
 
 .order-details-template {
@@ -148,15 +154,15 @@ section {
 
 section button {
     position: relative;
-    left: 35vw;
+    left: 34vw;
     padding: 0.7rem 0.7rem;
-    background-color: blueviolet;
+    background-color: #008F7A;
     color: #f5f5f5;
-    font-size: 0.7rem;
+    font-size: 1rem;
     text-shadow: 5px 0px 7px rgba(0,0,0,0.68);
     font-family: 'Salsa', cursive;
     font-weight: 600;
-    letter-spacing: 0.2rem;
+    letter-spacing: 0.15rem;
     border: none;
     border-radius: 0.3rem;
     cursor: pointer;
@@ -164,7 +170,13 @@ section button {
     margin-bottom: -2Vh;
     animation: hithere 5s ease-in-out infinite;
 }
-  
+
+section button:hover {
+        background-color: #00816e;
+        transform: translateY(-0.2rem);
+}
+
+
 footer {
     width: 100vw;
     height: 31vh;
