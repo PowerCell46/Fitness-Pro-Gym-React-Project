@@ -1,0 +1,226 @@
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Salsa&display=swap');
+
+:root {
+    --deep-blue: #14539a;
+    --dark-blue: #0e3a6c;
+}
+
+html {
+    font-size: 20px;
+    background: url("./images/secondRoom.jpg");
+    background-size:cover;
+    background-attachment: fixed;
+} 
+
+
+/* Header section */
+
+header {
+    width: 100vw;
+    height: 12.5vh;
+
+    background-color: var(--deep-blue);
+
+    position: fixed;
+    top: 0; 
+    left: 0;
+    z-index: 100;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+header li {
+    list-style: none;
+    cursor: pointer;
+    font-family: 'Salsa', cursive;
+    text-shadow: 5px 0px 7px rgba(0,0,0,0.68);
+    letter-spacing: 0.13rem;
+    font-size: 1.5rem;
+    animation: float 6s ease-in-out infinite;
+    color: whitesmoke;
+    transform: translatey(0px);
+}
+
+header li a {
+    text-decoration: none;
+    color: whitesmoke;
+    transition: all 0.3s ease-in-out;
+}
+
+header li a:before {
+    content: "";
+    width: 0;
+    height: 3px;
+    bottom: 5px;
+    left: 0;
+    bottom: -3px;
+    z-index: 0;
+    position: absolute;
+    background: #00c9a7;
+    transition: all 0.3s ease-in-out;
+}
+
+header li a:hover {
+    text-decoration: underline;
+    background-position: 0%;
+}
+
+header li a:hover:before {
+    width: 100%;
+}
+
+header li div img {
+    border-radius: 50%;
+    height: 5vh;
+    width: calc(5vh * 1.02);
+}
+
+
+.profile-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.hidden-profile-view {
+    width: 10vw;
+    margin-left: -4.5vw; 
+    padding-right: 1.5vw;
+    display: block;
+    position: absolute;
+    text-align: center;
+    background-color: rgba(20, 83, 154, 0.5);
+    box-shadow: 0px 0px 25px 4px rgba(0, 0, 0, 0.75);
+    border-radius: 0.35rem;
+    opacity: 0;
+    transition: 400ms ease-in-out;
+}
+
+.hidden-profile-view:hover {
+    transition: 600ms ease-in-out;
+    background-color: rgba(20, 83, 154, 0.80);
+}
+
+.hidden-profile-view li {
+    margin-top: 1.7vh;
+    display: inline-block;
+}
+
+/* End of Header */
+
+
+main {
+    margin-top: 12.5vh;
+    padding-top: 5vh;
+    height: 85vh;
+    width: 100vw;
+    margin-left: -0.4vw;
+    background-color: blueviolet;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3vh;
+}
+
+section {
+    border-radius: 0.3rem;
+    box-shadow: 7px 6px 13px 0px rgba(0,0,0,0.75);
+    padding-left: 3vw;
+    display: flex;
+    align-items: center;
+    font-family: 'Salsa', cursive;
+    color: whitesmoke;
+    text-shadow: 5px 0px 7px rgba(0,0,0,0.68);
+    letter-spacing: 0.05rem;
+    background-color: #14539a;
+    width: 60vw;
+    height: 17.5vh;
+    gap: 3vw;
+}
+
+.order-details-template {
+    font-weight: 600;
+    letter-spacing: 0.1rem;
+}
+
+
+section button {
+    position: relative;
+    left: 35vw;
+    padding: 0.7rem 0.7rem;
+    background-color: blueviolet;
+    color: #f5f5f5;
+    font-size: 0.7rem;
+    text-shadow: 5px 0px 7px rgba(0,0,0,0.68);
+    font-family: 'Salsa', cursive;
+    font-weight: 600;
+    letter-spacing: 0.2rem;
+    border: none;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    transition: 600ms ease-in-out;
+    margin-bottom: -2Vh;
+    animation: hithere 5s ease-in-out infinite;
+}
+  
+footer {
+    width: 100vw;
+    height: 31vh;
+    margin-left: -0.5vw;
+    position: absolute;
+    z-index: -2;
+    background-color: var(--deep-blue);
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+    font-family: 'Salsa', cursive;
+    color: whitesmoke;
+    text-shadow: 5px 0px 7px rgba(0,0,0,0.68);
+}
+
+footer h5 {
+    cursor: pointer;
+    font-size: 1.5rem;
+    margin-bottom: 2.2vh;
+    transition: 600ms ease-in-out;
+    animation: float 6s ease-in-out infinite;
+}
+
+footer li {
+    cursor: pointer;
+    list-style: none;
+    margin-bottom: 2.5vh;
+    transition: 600ms ease-in-out;
+    font-size: 1.2rem;
+    animation: float 6s ease-in-out infinite;
+}
+
+footer h5:hover, footer li:hover {
+    text-decoration: underline;
+    color: #dddddd;
+}
+
+
+@keyframes float {
+    0% {
+      transform: translatey(0px);
+    }
+    50% {
+      transform: translatey(-0.5rem);
+    }
+    100% {
+      transform: translatey(0px);
+    }
+  }
+
+@keyframes hithere {
+    30% { transform: scale(1.15); }
+    40%, 60% { transform: rotate(-5deg) scale(1.15); }
+    50% { transform: rotate(5deg) scale(1.15); }
+    70% { transform: rotate(0deg) scale(1.15); }
+    100% { transform: scale(1); }
+  }
