@@ -114,9 +114,10 @@ header li div img {
 main {
     margin-top: 12.5vh;
     padding-top: 5vh;
-    height: 100%;
+    height: 300vh;
     width: 100vw;
     margin-left: -0.4vw;
+    /* background-color: blueviolet; */
     background: url("https://images.unsplash.com/photo-1651647232601-fbea5b6cca0d?auto=format&fit=crop&q=80&w=1000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8M3xLcjFzS3VGbnp5Y3x8ZW58MHx8fHx8");
     background-size: cover;
     display: flex;
