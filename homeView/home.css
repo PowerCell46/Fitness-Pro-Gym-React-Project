@@ -68,7 +68,7 @@ header li a:hover:before {
 }
 
 header li div img {
-    border-radius: 50%;
+    border-radius: 10%;
     height: 5vh;
     width: calc(5vh * 1.02);
 }
@@ -137,7 +137,7 @@ h1 {
 
 
 
-main {
+main, .rooms-heading {
     width: 100vw;
     margin-left: -0.4vw;
     height: 60vh;
@@ -145,6 +145,18 @@ main {
     display: flex;
     justify-content: space-around;
     align-items: center;
+}
+
+.rooms-heading {
+    height: 20vw;
+    background-image: linear-gradient(to bottom, #845ec2, #5f75d1, #3988d5, #1f97d2, #32a3c9);
+}
+
+.rooms-heading h2 {
+    color: whitesmoke;
+    font-size: 5rem;
+    font-family: 'Permanent Marker';
+    letter-spacing: 0.5rem;
 }
 
 .first-main {
@@ -165,6 +177,7 @@ main h2 {
     color: whitesmoke;
     font-family: 'Permanent Marker', cursive;
     font-size: 2rem;
+    font-weight: 100;
     text-shadow: 5px 0px 7px rgba(0,0,0,0.68);
     letter-spacing: 0.2rem;
     
@@ -199,7 +212,8 @@ main div iframe {
 main div h5 {
     text-align: center;
     color: whitesmoke;
-    font-family: 'Permanent Marker', cursive;
+    font-family: 'Salsa', cursive;
+    letter-spacing: 0.1rem;
     text-shadow: 5px 0px 7px rgba(0,0,0,0.68);
     font-size: 2rem;
     margin-bottom: 4vh;
