@@ -195,9 +195,10 @@ main form button {
     animation: hithere 5s ease-in-out infinite;
 }
 
-main form button:hover {
-    background-color: var(--dark-blue);
-    transform: translateY(-0.2rem);
+main button:hover {
+    background-color: #124b8b;
+    color: #d6d6d6;;
+    /* transform: translateY(-0.2rem); */
 }
 
 /* End of the Main Part */

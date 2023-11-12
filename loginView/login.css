@@ -3,6 +3,7 @@
 
 :root {
     --deep-blue: #14539a;
+    --deep-blue-darker: #124b8b;
     --dark-blue: #0e3a6c;
 }
 
@@ -174,8 +175,9 @@ main button {
 }
 
 main button:hover {
-    background-color: var(--dark-blue);
-    transform: translateY(-0.2rem);
+    background-color: var(--deep-blue-darker);
+    color: #d6d6d6;;
+    /* transform: translateY(-0.2rem); */
 }
 
 main p {
@@ -198,7 +200,7 @@ main p a {
 
 main a:hover {
     text-decoration: underline;
-    color: var(--dark-blue);
+    color: var(--deep-blue-darker);
     background-color: rgba(138, 169, 205, 0.8);
 }
 

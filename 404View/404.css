@@ -8,7 +8,6 @@
 
 html {
     font-size: 20px;
-    background: url("./images/secondRoom.jpg");
     background-size:cover;
     background-attachment: fixed;
 } 
@@ -115,7 +114,8 @@ main {
     margin-left: -0.4vw;
     height: 90vh;
     width: 100vw;
-    background-image: linear-gradient(to bottom, #f5f5f5, #c2c2c2, #919191, #636363, #393939, #302d32, #2a2129, #25141e, #361e36, #402c54, #3d3e77, #14539a);
+    background-color: black;
+    /* background-image: linear-gradient(to bottom, #f5f5f5, #c2c2c2, #919191, #636363, #393939, #302d32, #2a2129, #25141e, #361e36, #402c54, #3d3e77, #14539a); */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -130,7 +130,7 @@ main h1 {
     text-shadow: 5px 0px 7px rgba(255, 255, 255, 0.5);
     font-size: 6rem;
     letter-spacing: 0.8rem;
-    animation: flash 1s ease infinite alternate;
+    animation: flash 1.5s ease infinite alternate;
 }
 
 main h2 {
@@ -139,13 +139,14 @@ main h2 {
     font-family: 'Permanent Marker', cursive;
     text-shadow: 5px 0px 7px rgba(255, 255, 255, 0.5);
     font-size: 3rem;
-    animation: flash 1s ease infinite alternate;
+    animation: flash 1.5s ease infinite alternate;
 }
 
 main img {
     margin-top: 2vh;
     height: 55vh;
     border-radius: 0.5rem;
+    border: 2px solid white;
 }
 
 /* End of the Main Part */

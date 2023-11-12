@@ -163,8 +163,9 @@ main button {
 }
 
 main button:hover {
-    background-color: var(--dark-blue);
-    transform: translateY(-0.2rem);
+    background-color: #124b8b;
+    color: #d6d6d6;;
+    /* transform: translateY(-0.2rem); */
 }
 
 main p {
@@ -179,7 +180,7 @@ main p a {
     padding: 0.4rem 0.4rem;
     border-radius: 10px;
     text-decoration: none;
-    color: var(--deep-blue);
+    color: #124b8b;
     background-color: rgba(138, 169, 205, 0.6); /* Set the alpha value to 0.1 for almost invisible background */
     font-weight: 900;
     transition: 600ms ease-in-out;
