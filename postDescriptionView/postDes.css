@@ -187,7 +187,6 @@ main button:hover {
 footer {
     width: 100vw;
     height: 31vh;
-    margin: 22vh auto 0;
     margin-left: -0.5vw;
     position: absolute;
     z-index: -2;
