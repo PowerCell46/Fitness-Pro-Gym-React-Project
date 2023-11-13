@@ -1,16 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Salsa&display=swap');
 
+
 :root {
     --deep-blue: #14539a;
-    --dark-blue: #0e3a6c;
 }
+
 
 html {
     font-size: 20px;
-    background: url("https://wallpapers.com/images/featured/black-metal-background-r9liulu984twkndf.jpg");
+    background-image: url("./images/fifthRoom.jpg");
     background-size:cover;
     background-attachment: fixed;
+    
 } 
 
 /* Header section */
@@ -77,26 +79,29 @@ header li div img {
     width: calc(5vh * 1.02);
 }
 
+
 .profile-dropdown {
     position: relative;
     display: inline-block;
 }
 
 .hidden-profile-view {
-    margin-left: -3.5vw; 
+    width: 10vw;
+    margin-left: -4.5vw; 
     padding-right: 1.5vw;
     display: block;
     position: absolute;
     text-align: center;
     background-color: rgba(20, 83, 154, 0.5);
     box-shadow: 0px 0px 25px 4px rgba(0, 0, 0, 0.75);
-    border-radius: 0.3rem;
+    border-radius: 0.35rem;
     opacity: 0;
-    transition: opacity 600ms ease-in-out;
+    transition: 400ms ease-in-out;
 }
 
-.profile-dropdown:hover .hidden-profile-view {
-    opacity: 1;
+.hidden-profile-view:hover {
+    transition: 600ms ease-in-out;
+    background-color: rgba(20, 83, 154, 0.80);
 }
 
 .hidden-profile-view li {
@@ -106,93 +111,62 @@ header li div img {
 
 /* End of Header */
 
-
 main {
-    width: 100vw;
-    height: 75vh;
-    margin: 16vh auto 0;
-    margin-left: -0.3vw;
+    margin-left: -0.4vw;
+    margin-top: 15vh;
+    height: 90vh;
     display: flex;
-    flex-direction: row;
+    align-items: center;
     justify-content: center;
-    align-items: center;
-    gap: 8vh;
-}
-
-main img {
-    transition: 600ms ease-in-out;
-    width: 35%;
-    height: auto;
-}
-
-main img:hover {
-    transform: scale(1.1);
-}
-
-aside {
-    margin-top: 5vh;
-    height: 100%;
-    width: 45vw;
-    background-color: rgba(0, 0, 0, 0.45);
-    display: flex;
     flex-direction: column;
-    align-items: center;
-    border-radius: 20px;
-    transition: 600ms ease-in-out;
 }
 
-aside:hover {
-    background-color: rgba(0, 0, 0, 0.55);
-    transform: scale(1.02);
-}
-
-aside h2 {
-    color: #c4c4c4;
-    font-size: 3.5rem;
-    text-align: center;
+main h1 {
+    margin-top: -12.5vh;
+    color: whitesmoke;
+    font-size: 6rem;
     font-family: 'Permanent Marker', cursive;
     text-shadow: 5px 0px 7px rgba(0,0,0,0.68);
     letter-spacing: 0.8rem;
-    margin-bottom: 0;
-    transition: 600ms ease-in-out;
+    margin-bottom: 3vh;
 }
 
-aside:hover h2, aside:hover h3, aside:hover p {
-    color: whitesmoke ;
-}
 
-aside h3 {
-    margin-top: 1vh;
-    color: #c4c4c4;
-    font-size: 2rem;
-    text-align: center;
-    font-family: 'Salsa', cursive;
-    text-shadow: 5px 0px 7px rgba(0,0,0,0.68);
-    letter-spacing: 0.1rem;
-    transition: 600ms ease-in-out;
-}
-
-aside p {
-    font-size: 1.1rem;
-    margin-top: -1vh;
-    width: 90%;
-    font-family: 'Salsa', cursive;
-    letter-spacing: 0.05rem;
-    color: #c4c4c4;
-    font-weight: 100;
-    line-height: 2rem;
-    transition: 600ms ease-in-out;
-}
-aside div {
-    align-self: center;
-    width: 100%;
+main form {
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
+    gap: 5vh;
+
 }
 
-aside button {
-    margin-top: 2vh;
-    padding: 1rem 1.5rem;
+main form input {
+    font-family: 'Salsa', cursive;
+    font-weight: 300;
+    font-size: 1.1rem;
+    height: 4rem;
+    padding-left: 1rem;
+}
+
+.file-upload-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2vw;
+}
+
+.file-upload-div span {
+    font-size: 1.2rem;
+    font-family: 'Salsa', cursive;
+    color: whitesmoke;
+    padding: 0.5rem;
+    border-radius: 0.2rem;
+}
+
+
+main form button {
+    align-self: center;
+    width: 50%;
+    padding: 1.2rem;
     background-color: var(--deep-blue);
     color: #f5f5f5;
     font-size: 1.2rem;
@@ -201,35 +175,36 @@ aside button {
     font-weight: 600;
     letter-spacing: 0.15rem;
     border: none;
-    border-radius: 20px;
+    border-radius: 10px;
     cursor: pointer;
     transition: 600ms ease-in-out;
-    margin-bottom: -2Vh;
     animation: hithere 5s ease-in-out infinite;
-    /* margin-right: 3vw; */
 }
 
-aside button:hover {
-    background-color: var(--dark-blue);
+.file-upload-div button {
+    text-align: center;
+    width: 45%;
+    padding: 0.7rem 1.5rem;
+    background-color: #00866c;
+    animation: none;
+}
+
+.file-upload-div button:hover {
+    background-color: #009578;
     transform: translateY(-0.2rem);
 }
 
-
 footer {
-    width: 100vw;
-    height: 31vh;
-    margin: 12vh auto 0;
-    margin-left: -0.5vw;
+    width: 98.5vw;
+    height: 32vh;
     position: absolute;
     z-index: -2;
     background-color: var(--deep-blue);
-    
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-
     font-family: 'Salsa', cursive;
-    color: whitesmoke;
+    color: #f5f5f5;
     text-shadow: 5px 0px 7px rgba(0,0,0,0.68);
 }
 
@@ -255,18 +230,17 @@ footer h5:hover, footer li:hover {
     color: #dddddd;
 }
 
-
 @keyframes float {
     0% {
       transform: translatey(0px);
     }
     50% {
-      transform: translatey(-0.5rem);
+      transform: translatey(-0.2rem);
     }
     100% {
       transform: translatey(0px);
     }
-  }
+}
 
 @keyframes hithere {
     30% { transform: scale(1.15); }
@@ -274,4 +248,5 @@ footer h5:hover, footer li:hover {
     50% { transform: rotate(5deg) scale(1.15); }
     70% { transform: rotate(0deg) scale(1.15); }
     100% { transform: scale(1); }
-  }
+}
+

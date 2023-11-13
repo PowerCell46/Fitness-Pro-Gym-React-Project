@@ -108,9 +108,11 @@ header li div img {
 
 main {
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     margin: 12.5vh auto 0;
     margin-left: -0.3vw;
+    padding-top: 5vh;
+    padding-bottom: 5vh;
     background-color: #00c9a7;
     display: flex;
     justify-content: center;
