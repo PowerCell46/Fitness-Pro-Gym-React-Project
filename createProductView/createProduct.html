@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create</title>
     <link rel="stylesheet" href="./createProduct.css">
+    <script src="./createProduct.js"></script>
 </head>
-<body>
+<body onload="fileHandlerFunction()">
     <header>
         <li><a href="">About</a></li>
         <li><a href="../registerView/register.html">Register</a></li>
@@ -41,7 +42,11 @@
                 </div>
             <input type="text" placeholder="Product Description" name="description">
             <input type="text" placeholder="Product Price" name="price">
-            <input type="text" placeholder="Product Image URL" name="imageUrl">
+            <input type="file" class="file-upload" hidden="hidden">
+            <div class="file-upload-div">
+                <button>Choose a file</button>
+                <span>No file chosen</span>
+            </div>
             <button>Create Product</button>
         </form>
     </main>

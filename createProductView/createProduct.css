@@ -127,6 +127,7 @@ main h1 {
     font-family: 'Permanent Marker', cursive;
     text-shadow: 5px 0px 7px rgba(0,0,0,0.68);
     letter-spacing: 0.8rem;
+    margin-top: 3vh;
     margin-bottom: 2vh;
 }
 
@@ -199,6 +200,34 @@ main button:hover {
     background-color: #124b8b;
     color: #d6d6d6;;
     /* transform: translateY(-0.2rem); */
+}
+
+.file-upload-div button {
+    text-align: center;
+    width: 45%;
+    padding: 0.7rem 1.5rem;
+    background-color: #00866c;
+    animation: none;
+}
+
+.file-upload-div button:hover {
+    background-color: #009578;
+    transform: translateY(-0.2rem);
+}
+.file-upload-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2vw;
+    margin-bottom: 2vh;
+}
+
+.file-upload-div span {
+    font-size: 1.2rem;
+    font-family: 'Salsa', cursive;
+    color: whitesmoke;
+    padding: 0.5rem;
+    border-radius: 0.2rem;
 }
 
 /* End of the Main Part */
