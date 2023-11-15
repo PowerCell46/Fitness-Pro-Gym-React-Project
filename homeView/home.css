@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Salsa&display=swap');
 
-
 :root {
     --deep-blue: #14539a;
 }
@@ -141,7 +140,6 @@ main, .rooms-heading {
     width: 100vw;
     margin-left: -0.4vw;
     height: 60vh;
-    
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -149,7 +147,7 @@ main, .rooms-heading {
 
 .rooms-heading {
     height: 20vw;
-    background-image: linear-gradient(to bottom, #845ec2, #5f75d1, #3988d5, #1f97d2, #32a3c9);
+    background-image: linear-gradient(to top, #f06f61, #db587f, #b05197, #7453a2, #14539a);
 }
 
 .rooms-heading h2 {
@@ -160,16 +158,8 @@ main, .rooms-heading {
     text-shadow: 5px 0px 7px rgba(0,0,0,0.68);
 }
 
-.first-main {
+main {
     background-image: linear-gradient(to right top, #14539a, #0074b3, #0092bc, #00afb6, #00c9a7);
-}
-
-.second-main {
-    background-image: linear-gradient(to right top, #4375ae, #007ead, #0086a1, #008a8e, #008d75);
-}
-
-.third-main {
-    background-image: linear-gradient(to left top, #00c9a7, #00c0c0, #00b4ce, #4ca6ce, #7298c2);
 }
 
 main h2 {
@@ -238,6 +228,7 @@ main img:hover {
 
 main h2 span {
     color: whitesmoke;
+    font-size: 3rem;
 }
 
 

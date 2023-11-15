@@ -105,46 +105,50 @@ header li div img {
 }
 
 /* End of Header */
-section {
+
+.aside-wrapper {
+    margin: 16vh auto 0;
     display: flex;
-    flex-direction: row;
-    margin: 10vh auto 0;
+    align-items: center;
+    justify-content: center;
 }
 
 aside {
     border-radius: 1rem;
-    margin: 10vh auto 0;
-    width: 15vw;
-    height: 100%;
+    width: 75%;
     background-color: var(--deep-blue);
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-left: 0.3vw;
+    flex-direction: row;
+    align-items:center;
+    justify-content: space-around;
+    box-shadow: 8px 8px 9px 2px rgba(0,0,0,0.65);
 }
 
 aside h1 {
     color: #fff;
     margin-top: 5vh;
     font-family: 'Salsa', cursive;
+    text-shadow: 5px 0px 7px rgba(0,0,0,0.68);
     font-weight: 300;
+    font-size: 2rem;
+    letter-spacing: 0.05rem;
 }
 
 main {
-    width: 85vw;
+    margin-top: -5vh;
+    width: 94vw;
     height: 100%;
-    margin-left: 1vw;
-    margin-right: -6vw;
-    /* background-color: #00c9a7; */
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1vw;
     padding: 10vh 2vw;
     padding-bottom: 0;
 }
 
 .product-container {
-    height: 40vh;
-    width: 15vw;
+    box-shadow: 8px 8px 9px 2px rgba(0,0,0,0.65);
+    text-shadow: 5px 0px 7px rgba(0,0,0,0.2);
+    height: 47vh;
     background-color: var(--deep-blue);
     display: flex;
     align-items: center;
@@ -191,9 +195,12 @@ main {
 }
 
 .shown-info h5 {
-    margin-top: 0.3vh;
-    font-size: 1.1rem;
-    font-family: 'Permanent Marker', cursive;
+    margin-top: 1vh;
+    font-size: 1.2rem;
+    text-align: center;
+    font-family: 'Salsa', cursive;
+    font-weight: 300;
+    letter-spacing: 0.03rem;
 }
 
 .show-info-inner-container {
@@ -201,18 +208,22 @@ main {
 }
 
 .shown-info p {
-    font-size: 0.8rem;
+    color: #ff5700;
+    text-align: center;
+    font-size: 1rem;
     width: 60%;
-    margin-top: -2vh;
+    margin-top: -3vh;
     font-family: 'Salsa', cursive;
     align-self: flex-start;
     margin-left: 1rem;
 }
 
 #price {
-    font-size: 1.5rem;
+    font-size: 2rem;
     align-self: center;
     font-weight: 600;
+    letter-spacing: 0.02rem;
+    margin-bottom: 0.8vh;
 }
 
 button {
@@ -220,18 +231,18 @@ button {
     top: 10%;
     z-index: 10;
     padding: 0.5rem 1rem;
-    background-color: var(--dark-blue);
+    background-color: #ff5700;
     color: #f5f5f5;
-    font-size: 1.2rem;
+    font-size: 1.8rem;
     text-shadow: 5px 0px 7px rgba(0,0,0,0.68);
     font-family: 'Salsa', cursive;
     font-weight: 600;
     letter-spacing: 0.15rem;
     border: none;
+    border-radius: 0.3rem;
     cursor: pointer;
     transition: 600ms ease-in-out;
     margin-bottom: -2Vh;
-    animation: hithere 10s ease-in-out infinite;
     opacity: 0;
     transition: opacity 0.6s ease-in-out;
     transition: 600ms ease-in-out;
@@ -249,6 +260,7 @@ button:nth-child(2) {
     opacity: 1;
 }
 
+
 .product-container:hover .image-container::before {
     content: "";
     position: absolute;
@@ -256,12 +268,12 @@ button:nth-child(2) {
     right: 0;
     bottom: 0;
     left: 0;
-    background-color: rgba(255, 255, 255, 0.13);
+    background-color: rgba(255, 255, 255, 0.20);
     z-index: 1;
 }
 
 button:hover {
-    background-color: var(--dark-blue);
+    background-color: #e64e00;
     transform: translateY(-0.2rem);
 }
 
@@ -269,7 +281,7 @@ button:hover {
 footer {
     width: 100vw;
     height: 31vh;
-    margin: 12vh auto 0;
+    margin: 5vh auto 0;
     margin-left: -0.5vw;
     position: absolute;
     z-index: -2;
