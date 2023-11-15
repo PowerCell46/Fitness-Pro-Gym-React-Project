@@ -104,14 +104,22 @@ header li div img {
 
 /* End of Header */
 
-
+main {
+    margin-top: 12.5vh;
+    margin-left: -0.4vw;
+    background-color: aqua;
+    width: 99.1vw;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
 
 
 
 
 footer {
-    margin-top: 12.5vh;
     width: 98vw;
     height: 30vh;
     position: absolute;
