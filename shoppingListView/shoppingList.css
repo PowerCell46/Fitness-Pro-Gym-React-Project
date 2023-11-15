@@ -132,6 +132,18 @@ aside h1 {
     font-weight: 300;
     font-size: 2rem;
     letter-spacing: 0.05rem;
+    transition: 300ms ease-in-out;
+}
+
+.selected-view {
+    text-decoration: underline;
+    color: #ff5700;
+}
+
+aside h1:hover {
+    color: #ff5700;
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 main {
@@ -182,7 +194,7 @@ main {
 .shown-info {
     width: 100%;
     height: 30%;
-    background-color: #fff;
+    background-color: whitesmoke;
     display: flex;
     justify-content:space-around;
     align-items: center;
@@ -260,6 +272,11 @@ button:nth-child(2) {
     opacity: 1;
 }
 
+.product-container:hover .shown-info {
+    background-color: rgb(137, 207, 235)
+
+}
+
 
 .product-container:hover .image-container::before {
     content: "";
@@ -268,8 +285,9 @@ button:nth-child(2) {
     right: 0;
     bottom: 0;
     left: 0;
-    background-color: rgba(255, 255, 255, 0.20);
+    background-color: rgba(137, 207, 235, 0.2);
     z-index: 1;
+    transition: 1000ms ease-in-out;
 }
 
 button:hover {
