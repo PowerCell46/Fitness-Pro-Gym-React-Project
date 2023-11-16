@@ -72,36 +72,6 @@ header li div img {
     width: calc(5vh * 1.02);
 }
 
-
-.profile-dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-.hidden-profile-view {
-    width: 10vw;
-    margin-left: -4.5vw; 
-    padding-right: 1.5vw;
-    display: block;
-    position: absolute;
-    text-align: center;
-    background-color: rgba(20, 83, 154, 0.5);
-    box-shadow: 0px 0px 25px 4px rgba(0, 0, 0, 0.75);
-    border-radius: 0.35rem;
-    opacity: 0;
-    transition: 100ms ease-in-out;
-}
-
-.hidden-profile-view:hover {
-    transition: 600ms ease-in-out;
-    background-color: rgba(20, 83, 154, 0.80);
-}
-
-.hidden-profile-view li {
-    margin-top: 1.7vh;
-    display: inline-block;
-}
-
 /* End of Header */
 
 
@@ -232,6 +202,8 @@ main h2 span {
 }
 
 
+/* Footer Section */
+
 footer {
     width: 98vw;
     height: 30vh;
@@ -258,14 +230,16 @@ footer li {
     cursor: pointer;
     list-style: none;
     margin-bottom: 2.5vh;
-    transition: 600ms ease-in-out;
+    transition: 300ms ease-in-out;
     font-size: 1.2rem;
     animation: float 6s ease-in-out infinite;
 }
+footer li:hover { 
+    color: whitesmoke;
+}
 
- footer li:hover {
+footer li:hover span {
     text-decoration: underline;
-    color: #ffff;
 }
 
 footer ul li i {
@@ -284,15 +258,15 @@ footer ul li i {
 
 @keyframes float {
     0% {
-      transform: translatey(0px);
+        transform: translatey(0px);
     }
     50% {
-      transform: translatey(-0.2rem);
+        transform: translatey(-0.2rem);
     }
     100% {
-      transform: translatey(0px);
+        transform: translatey(0px);
     }
-  }
+}
 
   @keyframes bounceInLeft {
     0%,60%,75%,90%,to {
