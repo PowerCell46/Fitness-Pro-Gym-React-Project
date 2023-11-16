@@ -133,9 +133,37 @@ main h1 {
 }
 
 main img {
+    margin-top: -5vh;
     animation: flash 1.5s ease infinite alternate;
     height: 55vh;
+    
 }
+
+main button {
+    margin-top: -7vh;
+    padding: 1rem 3rem;
+    background-color: var(--deep-blue);
+    color: #f5f5f5;
+    font-size: 1.3rem;
+    text-shadow: 5px 0px 7px rgba(0,0,0,0.68);
+    font-family: 'Salsa', cursive;
+    font-weight: 600;
+    letter-spacing: 0.2rem;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 600ms ease-in-out;
+    margin-bottom: -2Vh;
+    animation: flash 1.5s ease infinite alternate;
+}
+
+main button:hover {
+    background-color: #ff5700;
+    color: #d6d6d6;;
+    transform: translateY(-0.2rem);
+    
+}
+
 
 /* End of the Main Part */
 

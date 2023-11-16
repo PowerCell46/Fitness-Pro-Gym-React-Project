@@ -30,9 +30,10 @@
     
     <main>
         <h1>Create Product</h1>
-        <form action="" method="post">
-            <input type="text" placeholder="Product Name" name="name">
-                <div class="productTypeContainer">
+        <form method="post">
+            <p class="err-message">Product name must be at least 5 characters long!</p>
+            <input type="text" placeholder="Product Name" name="name">    
+            <div class="productTypeContainer">
                     <label for="productType">Product Type:</label>
                 <select name="productType">
                     <option value="foodSupplements">Food Supplement</option>
@@ -40,9 +41,12 @@
                     <option value="Merchandise">Merchandise</option>
                 </select>
                 </div>
+                <p class="err-message">Product Description must be at least 10 characters long!</p>
             <input type="text" placeholder="Product Description" name="description">
-            <input type="text" placeholder="Product Price" name="price">
+            <p class="err-message">Product price must be bigger than 0!</p>
+            <input type="number" placeholder="Product Price" name="price">
             <input type="file" class="file-upload" hidden="hidden">
+            <p class="err-message">The file can be either with JPG or PNG extension!</p>
             <div class="file-upload-div">
                 <button>Choose a file</button>
                 <span>No file chosen</span>
