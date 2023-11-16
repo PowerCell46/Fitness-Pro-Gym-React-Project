@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Post</title>
-    <link rel="stylesheet" href="createPost.css">
-    <script src="./createPost.js"></script>
+    <link rel="stylesheet" href="./createHighlight.css">
+    <script src="./createHighlight.js"></script>
 </head>
 <body onload="fileHandlerFunction()">
     <header>
@@ -31,6 +31,7 @@
     <main>
         <h1>Post a Highlight</h1>
         <form method="POST">
+            <p class="err-message">The file can be either with JPG or PNG extension!</p>
             <input type="file" class="file-upload" hidden="hidden">
             <div class="file-upload-div">
                 <button>Choose a file</button>
