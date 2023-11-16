@@ -72,6 +72,35 @@ header li div img {
     width: calc(5vh * 1.02);
 }
 
+.profile-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.hidden-profile-view {
+    width: 10vw;
+    margin-left: -4.5vw; 
+    padding-right: 1.5vw;
+    display: block;
+    position: absolute;
+    text-align: center;
+    background-color: rgba(20, 83, 154, 0.5);
+    box-shadow: 0px 0px 25px 4px rgba(0, 0, 0, 0.75);
+    border-radius: 0.35rem;
+    opacity: 0;
+    transition: 400ms ease-in-out;
+}
+
+.hidden-profile-view:hover {
+    transition: 600ms ease-in-out;
+    background-color: rgba(20, 83, 154, 0.80);
+}
+
+.hidden-profile-view li {
+    margin-top: 1.7vh;
+    display: inline-block;
+}
+
 /* End of Header */
 
 
@@ -117,7 +146,13 @@ main, .rooms-heading {
 
 .rooms-heading {
     height: 20vw;
-    background-image: linear-gradient(to top, #f06f61, #db587f, #b05197, #7453a2, #14539a);
+    background-image: url('https://www.wallart.com/media/catalog/product/cache/871f459736130e239a3f5e6472128962/w/0/w03193-small.jpg');
+    background-position: center;
+    animation-name: bgPositionAnim;
+    animation-duration: 10s;
+    animation-timing-function: ease-in-out;
+    animation-direction: alternate;
+    animation-iteration-count: infinite; 
 }
 
 .rooms-heading h2 {
@@ -234,6 +269,7 @@ footer li {
     font-size: 1.2rem;
     animation: float 6s ease-in-out infinite;
 }
+
 footer li:hover { 
     color: whitesmoke;
 }
