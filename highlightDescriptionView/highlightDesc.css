@@ -148,6 +148,7 @@ main img {
     border-radius: 10px;
     transition: 600ms ease-in-out;
     border: 1.5px solid white;
+    box-shadow: 0px 0px 25px 4px rgba(0, 0, 0, 0.75);
 }
 
 main img:hover {
@@ -166,7 +167,7 @@ main h5 {
 
 main button {
     padding: 0.5rem 1rem;
-    margin-right: 1.5rem;
+    margin-right: 3rem;
     background-color: var(--deep-blue);
     color: #f5f5f5;
     font-size: 1.3rem;
@@ -186,6 +187,21 @@ main button:hover {
     transform: translateY(-0.2rem);
 }
 
+i {
+    margin-right: 1rem;
+    font-weight: 900;
+    cursor: pointer;
+    transition: 600ms ease-in-out;
+}
+
+i:hover {
+    color: var(--deep-blue);
+}
+
+.already-liked {
+    color: #ff5700;
+    animation: none;
+}
 
 
 footer {
