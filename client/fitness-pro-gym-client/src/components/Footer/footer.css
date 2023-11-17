@@ -1,0 +1,43 @@
+
+footer {
+    width: 98vw;
+    height: 30vh;
+    position: absolute;
+    z-index: -2;
+    background-color: var(--deep-blue);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    font-family: 'Salsa', cursive;
+    color: #d6d6d6;
+    text-shadow: 5px 0px 7px rgba(0,0,0,0.68);
+    text-align: center;
+}
+
+footer h5 {
+    color: #ffff;
+    font-size: 1.5rem;
+    margin-bottom: 2.2vh;
+    animation: float 6s ease-in-out infinite;
+}
+
+footer li {
+    cursor: pointer;
+    list-style: none;
+    margin-bottom: 2.5vh;
+    transition: 300ms ease-in-out;
+    font-size: 1.2rem;
+    animation: float 6s ease-in-out infinite;
+}
+
+footer li:hover { 
+    color: whitesmoke;
+}
+
+footer li:hover span {
+    text-decoration: underline;
+}
+
+footer ul li i {
+    margin-right: 0.5rem;
+}

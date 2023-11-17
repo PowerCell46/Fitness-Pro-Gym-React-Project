@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Salsa&display=swap');
+
+html {
+  font-size: 20px;
+  background-color: var(--deep-blue);
+} 
+
+:root {
+  --deep-blue: #14539a;
+}
+
+
+@keyframes bgPositionAnim {
+  0% {
+      background-position: center calc(100%);
+  }
+  100% {
+      background-position: center;
+  }
+}
+
+@keyframes float {
+  0% {
+      transform: translatey(0px);
+  }
+  50% {
+      transform: translatey(-0.2rem);
+  }
+  100% {
+      transform: translatey(0px);
+  }
+}
+
+@keyframes bounceInLeft {
+  0%,60%,75%,90%,to {
+      -webkit-animation-timing-function: cubic-bezier(.215,.61,.355,1);
+      animation-timing-function: cubic-bezier(.215,.61,.355,1)
+  }
+
+  0% {
+      opacity: 0;
+      -webkit-transform: translate3d(-3000px,0,0);
+      transform: translate3d(-3000px,0,0)
+  }
+
+  60% {
+      opacity: 1;
+      -webkit-transform: translate3d(25px,0,0);
+      transform: translate3d(25px,0,0)
+  }
+
+  75% {
+      -webkit-transform: translate3d(-10px,0,0);
+      transform: translate3d(-10px,0,0)
+  }
+
+  90% {
+      -webkit-transform: translate3d(5px,0,0);
+      transform: translate3d(5px,0,0)
+  }
+
+  to {
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0)
+  }
+}
+
+@keyframes bounceInRight {
+  0%,60%,75%,90%,to {
+      -webkit-animation-timing-function: cubic-bezier(.215,.61,.355,1);
+      animation-timing-function: cubic-bezier(.215,.61,.355,1)
+  }
+
+  0% {
+      opacity: 0;
+      -webkit-transform: translate3d(3000px,0,0);
+      transform: translate3d(3000px,0,0)
+  }
+
+  60% {
+      opacity: 1;
+      -webkit-transform: translate3d(-25px,0,0);
+      transform: translate3d(-25px,0,0)
+  }
+
+  75% {
+      -webkit-transform: translate3d(10px,0,0);
+      transform: translate3d(10px,0,0)
+  }
+
+  90% {
+      -webkit-transform: translate3d(-5px,0,0);
+      transform: translate3d(-5px,0,0)
+  }
+
+  to {
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0)
+  }
+}

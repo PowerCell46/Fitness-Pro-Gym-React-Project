@@ -213,6 +213,7 @@ main {
     font-family: 'Salsa', cursive;
     font-weight: 300;
     letter-spacing: 0.03rem;
+    z-index: 2;
 }
 
 .show-info-inner-container {
@@ -266,6 +267,7 @@ button:nth-child(2) {
 
 .product-container:hover {
     transform: scale(1.1);
+    cursor: pointer;
 }
 
 .product-container:hover button {
@@ -273,7 +275,7 @@ button:nth-child(2) {
 }
 
 .product-container:hover .shown-info {
-    background-color: rgb(137, 207, 235)
+    background-color: #FBEAFF
 
 }
 
@@ -285,9 +287,10 @@ button:nth-child(2) {
     right: 0;
     bottom: 0;
     left: 0;
-    background-color: rgba(137, 207, 235, 0.2);
+    background-color: rgba(251, 235, 255, 0.25);
     z-index: 1;
     transition: 1000ms ease-in-out;
+    border-radius: 0.8rem;
 }
 
 button:hover {
