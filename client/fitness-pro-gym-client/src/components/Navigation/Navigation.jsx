@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import profilePicture from './images/profile_picture.jpg';
+import profilePicture from '../../../public/images/profile_picture.jpg';
 import './navigation.css';
 
 export function Navigation() {
