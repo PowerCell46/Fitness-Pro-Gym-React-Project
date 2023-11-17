@@ -61,6 +61,18 @@ main {
     background-image: linear-gradient(to right top, #14539a, #0074b3, #0092bc, #00afb6, #00c9a7);
 }
 
+.first-main {
+    background-image: linear-gradient(to right top, #14539a, #0074b3, #0092bc, #00afb6, #00c9a7);
+}
+
+.second-main {
+    background-image: linear-gradient(to right top, #4375ae, #007ead, #0086a1, #008a8e, #008d75);
+}
+
+.third-main {
+    background-image: linear-gradient(to left top, #00c9a7, #00c0c0, #00b4ce, #4ca6ce, #7298c2);
+}
+
 main h2 {
     text-align: center;
     width: 40vw;

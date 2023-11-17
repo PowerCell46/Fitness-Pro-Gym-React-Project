@@ -1,15 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Salsa&display=swap');
 
+
+:root {
+    --deep-blue: #14539a;
+    --dark-blue: #0e3a6c;
+    --carrot-orange: #ff5700;
+}
+
 html {
   font-size: 20px;
   background-color: var(--deep-blue);
 } 
-
-:root {
-  --deep-blue: #14539a;
-}
-
 
 @keyframes bgPositionAnim {
   0% {
