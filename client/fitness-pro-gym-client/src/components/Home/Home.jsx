@@ -13,7 +13,7 @@ export function Home() {
             <h1 className="main-h1">Fitness Pro Gym</h1>
         </section>
 
-        <main className="first-main">
+        <main className="home-main first-main">
             <div>
                 <p>Fitness Pro Gym, located at Gotse Delchev neighbourhood, Sofia 1404. We offer a rich choice of proffessional instructors, fitness machines and top level quality products.</p>
             </div>
@@ -27,15 +27,15 @@ export function Home() {
             <h2>Pro Gym Premises</h2>
         </div>
         
-        <Main roomTitle="Main room with:" roomDesc="Flat bench, Incline and Decline bench, Leg press, Dumbells, Cable machine and Much more!" background="second-main" img={mainRoom}/>   
+        <Main roomTitle="Main room with:" roomDesc="Flat bench, Incline and Decline bench, Leg press, Dumbells, Cable machine and Much more!" background="home-main second-main" img={mainRoom}/>   
        
-        <Main roomTitle="Second room with:" roomDesc="Leg extensions, Peck deck, Crunch machine, Calves machine and a Chest press." background="third-main" img={secondRoom} reverse={true}/>   
+        <Main roomTitle="Second room with:" roomDesc="Leg extensions, Peck deck, Crunch machine, Calves machine and a Chest press." background="home-main third-main" img={secondRoom} reverse={true}/>   
 
-        <Main roomTitle="Third room with:" roomDesc="Obliques machine, Hamstrings machine, Lower back extension machine and an Abductors machine." background="first-main" img={thirdRoom}/>   
+        <Main roomTitle="Third room with:" roomDesc="Obliques machine, Hamstrings machine, Lower back extension machine and an Abductors machine." background="home-main first-main" img={thirdRoom}/>   
     
-        <Main roomTitle="Fourth room with:" roomDesc="Space for stretching, Boxing bag, Yoga mats and an Yoga ball." background="second-main" img={fourthRoom} reverse={true}/>   
+        <Main roomTitle="Fourth room with:" roomDesc="Space for stretching, Boxing bag, Yoga mats and an Yoga ball." background="home-main second-main" img={fourthRoom} reverse={true}/>   
         
-        <Main roomTitle="Cardio room with:" roomDesc="Two Fitness treadmills, Gym stepper and an Exercise bike." background="third-main" img={fifthRoom}/>   
+        <Main roomTitle="Cardio room with:" roomDesc="Two Fitness treadmills, Gym stepper and an Exercise bike." background="home-main third-main" img={fifthRoom}/>   
         
     </>
     );

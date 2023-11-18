@@ -57,6 +57,8 @@
     transition: 600ms ease-in-out;
     margin-bottom: -2Vh;
     animation: hithere 5s ease-in-out infinite;
+    width: 70%;
+    align-self: center;
 }
 
 .register-main button:hover {
@@ -72,6 +74,12 @@
     letter-spacing: 0.1rem;
     font-size: 1rem;
     font-weight: 600;
+}
+
+.register-main form {
+    display: flex;
+    flex-direction: column;
+    gap: 5vh;
 }
 
 .register-main p a {

@@ -61,6 +61,8 @@
     transition: 600ms ease-in-out;
     margin-bottom: -2Vh;
     animation: hithere 5s ease-in-out infinite;
+    width: 65%;
+    align-self: center;
 }
 
 .login-button:hover {
@@ -92,6 +94,12 @@
     text-decoration: underline;
     color: var(--deep-blue-darker);
     background-color: rgba(138, 169, 205, 0.8);
+}
+
+.login-main form {
+    display: flex;
+    flex-direction: column;
+    gap: 5vh;
 }
 
 .err-input-field {

@@ -8,23 +8,23 @@ export function Navigation() {
 
     return (
         <header>
-        {/* <!-- <li><a href="../registerView/register.html">Register</a></li> --> */}
-        <li><a href="">Memberships</a></li>
-        <li><a href="../galleryView/gallery.html">Highlights</a></li>        
-        <li><a href="../shoppingListView/shoppingList.html">Products</a></li>
-        {/* <!-- <li><a href="../loginView/login.html">Login</a></li> --> */}
-        <li><a href="">Logout</a></li>
-        <li>
+        <li><Link to={'/register'}>Register</Link></li>
+        <li><Link to={'/memberships'}>Memberships</Link></li>
+        <li><Link to={'/highlights'}>Highlights</Link></li>        
+        <li><Link to={'/products'}>Products</Link></li>
+        <li><Link to={'/login'}>Login</Link></li>
+        {/* <li><Link to={'/logout'}>Logout</Link></li> */}
+        {/* <li>
             <div className="profile-dropdown">
                 <img id="profilePicture" src={profilePicture} alt="Profile picture" onClick={hiddenDropdownHandler}/>
                 <div className="hidden-profile-view">
                     <ul>
-                     <li><a href="../createView/create.html">Create Product</a></li>
-                     <li><a href="">Add Trainer</a></li>
+                     <li><Link to={'/create/product'}>Create Product</Link></li>
+                     <li><Link to={'/create/trainer'}>Create Trainer</Link></li>
                     </ul>
                  </div>
             </div>
-        </li>        
+        </li>         */}
     </header>
     );
     

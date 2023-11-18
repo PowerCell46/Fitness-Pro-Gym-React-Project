@@ -28,8 +28,7 @@
 }
 
 
-
-.rooms-heading, main {
+.rooms-heading, .home-main {
     width: 100vw;
     margin-left: -0.4vw;
     height: 60vh;
@@ -37,6 +36,7 @@
     justify-content: space-around;
     align-items: center;
 }
+
 
 .rooms-heading {
     height: 20vw;
@@ -57,7 +57,7 @@
     text-shadow: 5px 0px 7px rgba(0,0,0,0.68);
 }
 
-main {
+.home-main {
     background-image: linear-gradient(to right top, #14539a, #0074b3, #0092bc, #00afb6, #00c9a7);
 }
 
@@ -73,7 +73,7 @@ main {
     background-image: linear-gradient(to left top, #00c9a7, #00c0c0, #00b4ce, #4ca6ce, #7298c2);
 }
 
-main h2 {
+.home-main h2 {
     text-align: center;
     width: 40vw;
     color: #d6d6d6;
@@ -90,7 +90,7 @@ main h2 {
     animation-iteration-count: 1;
 }
 
-main div p {
+.home-main div p {
     color: whitesmoke;
     width: 50vw;
     font-family: 'Courier New', Courier, monospace;
@@ -107,11 +107,11 @@ main div p {
     animation-iteration-count: 1;
 }
 
-main div iframe {
+.home-main div iframe {
     border-radius: 0.3rem;
 }
 
-main div h5 {
+.home-main div h5 {
     text-align: center;
     color: whitesmoke;
     font-family: 'Salsa', cursive;
@@ -121,7 +121,7 @@ main div h5 {
     margin-bottom: 4vh;
 }
 
-main img {
+.home-main img {
     border-radius: 0.25rem;
     width: 40vw;
     transition: 400ms ease-in-out;
@@ -132,12 +132,12 @@ main img {
     animation-iteration-count: 1;
 }
 
-main img:hover {
+.home-main img:hover {
     -webkit-filter: blur(5px);
     filter: blur(3px);
 }
 
-main h2 span {
+.home-main h2 span {
     color: whitesmoke;
     font-size: 3rem;
 }

@@ -31,12 +31,18 @@ footer li {
     animation: float 6s ease-in-out infinite;
 }
 
-footer li:hover { 
+footer li a:hover, footer li:hover { 
     color: whitesmoke;
 }
 
-footer li:hover span {
+footer li a:hover span, footer li:hover span {
     text-decoration: underline;
+}
+
+footer ul li a {
+    text-decoration: none;
+    color: #d6d6d6;
+    transition: 300ms ease-in-out;
 }
 
 footer ul li i {
