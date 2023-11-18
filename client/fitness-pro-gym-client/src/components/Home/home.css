@@ -1,4 +1,4 @@
-section {
+.main-section {
     width: 100vw;
     height: 60vh;
     margin: 12.5vh auto 0;
@@ -18,7 +18,7 @@ section {
 }
 
 
-h1 {
+.main-h1 {
     color: whitesmoke;
     font-size: 7rem;
     font-family: 'Permanent Marker', cursive;
@@ -29,7 +29,7 @@ h1 {
 
 
 
-main, .rooms-heading {
+.rooms-heading, main {
     width: 100vw;
     margin-left: -0.4vw;
     height: 60vh;

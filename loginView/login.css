@@ -7,12 +7,7 @@
     --dark-blue: #0e3a6c;
 }
 
-html {
-    font-size: 20px;
-    background: url("./images/secondRoom.jpg");
-    background-size:cover;
-    background-attachment: fixed;
-} 
+ 
 
 
 /* Header section */

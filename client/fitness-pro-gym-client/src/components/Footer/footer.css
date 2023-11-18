@@ -1,6 +1,7 @@
 
 footer {
-    width: 98vw;
+    width: 99.2vw;
+    margin-left: -0.4rem;
     height: 30vh;
     position: absolute;
     z-index: -2;

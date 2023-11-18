@@ -1,0 +1,105 @@
+.register-main {
+    width: 100vw;
+    height: 100%;
+    margin: 10vh auto 0;
+    margin-left: -0.4vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5vh;
+    background: url("../../../public/images/proGymRooms/thirdRoom.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    padding-bottom: 8vh;
+}
+
+.register-main h1 {
+    margin-top: 2vh;
+    color: whitesmoke;
+    font-size: 6rem;
+    font-family: 'Permanent Marker', cursive;
+    text-shadow: 5px 0px 7px rgba(0,0,0,0.68);
+    letter-spacing: 0.8rem;
+    margin-bottom: -2vh;
+}
+
+.register-main input {
+    padding: 1.1rem 2rem 1.1rem 2rem;
+    border-radius: 5px;
+    font-size: 1rem;
+    color: black;
+    border: none;
+}
+
+.err-input-field {
+    border: 4px solid rgb(130, 3, 3);
+}
+
+.register-main input::placeholder {
+    font-size: 1.2rem;
+    color: grey;
+    font-family: 'Salsa', cursive;
+}
+
+.register-main button {
+    padding: 1rem 3rem;
+    background-color: var(--deep-blue);
+    color: #f5f5f5;
+    font-size: 1.2rem;
+    text-shadow: 5px 0px 7px rgba(0,0,0,0.68);
+    font-family: 'Salsa', cursive;
+    font-weight: 600;
+    letter-spacing: 0.15rem;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 600ms ease-in-out;
+    margin-bottom: -2Vh;
+    animation: hithere 5s ease-in-out infinite;
+}
+
+.register-main button:hover {
+    background-color: #124b8b;
+    color: #d6d6d6;;
+    /* transform: translateY(-0.2rem); */
+}
+
+.register-main p {
+    font-family: 'Salsa', cursive;
+    text-decoration: none;
+    color: whitesmoke;
+    letter-spacing: 0.1rem;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.register-main p a {
+    padding: 0.4rem 0.4rem;
+    border-radius: 10px;
+    text-decoration: none;
+    color: #124b8b;
+    background-color: rgba(138, 169, 205, 0.6); /* Set the alpha value to 0.1 for almost invisible background */
+    font-weight: 900;
+    transition: 600ms ease-in-out;
+}
+
+.register-main a:hover {
+    /* transform: translateY(-0.2rem); Does not work */
+    text-decoration: underline;
+    color: var(--dark-blue);
+    background-color: rgba(138, 169, 205, 0.7);
+}
+
+.err-message { /* In case of an error */
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.07rem;
+    color: rgb(130, 3, 3);
+    margin-bottom: -4.5vh;
+    margin-top: -2vh;
+    padding: 0.5rem 0.5rem;
+    border-radius: 10px;
+    background-color: rgba(138, 169, 205, 0.8); 
+    /* display: none;  */
+}

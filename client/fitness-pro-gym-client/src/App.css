@@ -6,12 +6,15 @@
     --deep-blue: #14539a;
     --dark-blue: #0e3a6c;
     --carrot-orange: #ff5700;
+    --blood-red: #820303;
 }
+
 
 html {
   font-size: 20px;
   background-color: var(--deep-blue);
 } 
+
 
 @keyframes bgPositionAnim {
   0% {
@@ -21,6 +24,7 @@ html {
       background-position: center;
   }
 }
+
 
 @keyframes float {
   0% {
@@ -33,6 +37,7 @@ html {
       transform: translatey(0px);
   }
 }
+
 
 @keyframes bounceInLeft {
   0%,60%,75%,90%,to {
@@ -68,6 +73,7 @@ html {
   }
 }
 
+
 @keyframes bounceInRight {
   0%,60%,75%,90%,to {
       -webkit-animation-timing-function: cubic-bezier(.215,.61,.355,1);
@@ -101,3 +107,12 @@ html {
       transform: translateZ(0)
   }
 }
+
+
+@keyframes hithere {
+    30% { transform: scale(1.15); }
+    40%, 60% { transform: rotate(-5deg) scale(1.15); }
+    50% { transform: rotate(5deg) scale(1.15); }
+    70% { transform: rotate(0deg) scale(1.15); }
+    100% { transform: scale(1); }
+  }

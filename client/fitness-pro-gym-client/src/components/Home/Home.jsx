@@ -9,8 +9,8 @@ import { Main } from "./Main";
 export function Home() {
     return (
     <>
-        <section>
-            <h1>Fitness Pro Gym</h1>
+        <section className="main-section">
+            <h1 className="main-h1">Fitness Pro Gym</h1>
         </section>
 
         <main className="first-main">
