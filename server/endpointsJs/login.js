@@ -1,7 +1,7 @@
 async function loginHandler(req, res) {
     const data = req.body;
 
-    res.json(req.body);
+    res.json("Success!");
     console.log(data);
 }
 

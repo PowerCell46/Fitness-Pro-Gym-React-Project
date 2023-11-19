@@ -5,6 +5,7 @@ const userSchema = new Schema({
     email: {
         type: String,
         required: true,
+        // unique: true
     },
     username: {
         type: String,
@@ -14,10 +15,16 @@ const userSchema = new Schema({
         type: String,
         required: true,
     },
-    profilePicture: {
-        type: Buffer,
-        required: true,
+    // profilePicture: {
+    //     type: Buffer,
+    //     required: true,
+    // },
+    isAdministrator: {
+        type: Boolean,
+        default: false,
+        required: true
     }
+
 });
 
 
