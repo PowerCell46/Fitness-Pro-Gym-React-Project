@@ -1,32 +1,60 @@
 const {hashPassword, createToken} = require("../createTokenHashPassVerifyPass");
 const User = require("../schemas/userSchema");
 
+
 async function registerHandler(req, res) {
     const {email, username, password} = req.body;
 
     const emailValidation = validateEmail(email);
     if (!emailValidation) {
-        return res.json('Email is not valid!');
+        return res.status(400).json({ error: 'Email does not match the validation criteria!' });
     }
 
     const usernameValidation = validateUsername(username);
     if (!usernameValidation) {
-        return res.json('Username is not valid');
+        return res.status(400).json({ error: 'Username does not match the validation criteria!' });
     }
     
     const passwordValidation = validatePassword(password);
     if (!passwordValidation) {
-        return res.json('Password is not valid');
+        return res.status(400).json({ error: 'Password does not match the validation criteria!' });
     }
 
-    const hashedPassword = await hashPassword(password);
+    try {
+        let previousUser = await User.find({email});
+        if (previousUser) {
+            return res.status(409).json({error: "Email already in use!"});
+        }
+        previousUser = await User.find({username});
+        if (previousUser) {
+            return res.status(409).json({error: "Username already in use!"});
+        }
+    } catch {
 
-    const user = new User({email, username, password: hashedPassword, isAdministrator: email === 'PowerCell46' ? true : false});
-    user.save();
+    }
 
 
-    const token = createToken(user._id, email, username);
+    try {
+        var hashedPassword = await hashPassword(password);
+    
+    } catch {
+        return res.status(400).json({ error: 'An Error occured while hashing the password!' });
+    }
 
+    try {
+        var user = new User({email, username, password: hashedPassword, isAdministrator: email === 'PowerCell46' ? true : false});
+        user.save();
+    
+    } catch {
+        return res.status(400).json({ error: 'An error occured while the data was being written on the Database!' });
+    } 
+
+    try {
+        var token = createToken(user._id, email, username, user.isAdministrator);
+    
+    } catch {
+        return res.status(400).json({ error: 'An error occured while the authentication token was being created!' });
+    }
 
     console.log(`User: ${user.username} with email: ${user.email} successfully registered!`);
     res.json(token);
@@ -59,5 +87,6 @@ function validateEmail(email) {
       }
       return true;
 }
+
 
 module.exports = registerHandler;

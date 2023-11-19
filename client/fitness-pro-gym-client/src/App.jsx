@@ -53,43 +53,87 @@ function App() {
         e.preventDefault();
 
         const {email, username, password, repeatPassword} = (Object.fromEntries(new FormData(e.target)));
-        console.log(email, username, password, repeatPassword);
         
         const emailValidation = validateEmail(email);
         if (!emailValidation) {
             document.querySelector("#register-email-err-p").style.display = 'inline';
             document.querySelector("#register-email").classList.add("err-input-field");
+        
+        } else {
+            document.querySelector("#register-email-err-p").style.display = 'none';
+            document.querySelector("#register-email").classList.remove("err-input-field");
         }
 
         const usernameValidation = validateUsername(username);
         if (!usernameValidation) {
             document.querySelector("#register-username-err-p").style.display = 'inline';
             document.querySelector("#register-username").classList.add("err-input-field");
+        
+        } else {
+            document.querySelector("#register-username-err-p").style.display = 'none';
+            document.querySelector("#register-username").classList.remove("err-input-field");
         }
         
         const passwordValidation = validatePassword(password);
         if (!passwordValidation) {
             document.querySelector("#register-password-err-p").style.display = 'inline';
             document.querySelector("#register-password").classList.add("err-input-field");
+        
+        } else {
+            document.querySelector("#register-password-err-p").style.display = 'none';
+            document.querySelector("#register-password").classList.remove("err-input-field");
         }
 
         if (password !== repeatPassword) {
             document.querySelector("#register-repeat-password-err-p").style.display = 'inline';
             document.querySelector("#register-repeat-password").classList.add("err-input-field");
+       
+        } else {
+            document.querySelector("#register-repeat-password-err-p").style.display = 'none';
+            document.querySelector("#register-repeat-password").classList.remove("err-input-field");
         }
 
         if (!emailValidation || !passwordValidation || !usernameValidation || password !== repeatPassword) {
             return
         }
+        // Valid data is being given to the server
 
-        const serverResponse = await fetch("http://localhost:5000/users/register", 
-        {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({email, username, password})});
-        const token = await serverResponse.json();
+        try {
+            const serverResponse = await fetch("http://localhost:5000/users/register", 
+            {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({email, username, password})});
+            
+            if (serverResponse.status === 409) { // Checking for the case where the Email or the Username has already been used
+                const errorData = await serverResponse.json();
+
+                if (errorData.error === 'Email already in use!') {
+                    document.querySelector("#register-email-err-p").textContent = 'Email already in use!';                    
+                    document.querySelector("#register-email-err-p").style.display = 'inline';
+                    document.querySelector("#register-email").classList.add("err-input-field");
+                    return;
+               
+                } else {
+                    document.querySelector("#register-username-err-p").textContent = 'Username already in use!';
+                    document.querySelector("#register-username").classList.add("err-input-field");
+                    return;
+                }
+
+            } else if (!serverResponse.ok) {
+                const errorData = await serverResponse.json();
+                throw new Error(errorData.error || 'An error occurred during the registration process!');
+            }
+
+            const token = await serverResponse.json();
+            
+            localStorage.setItem('authenticationToken', JSON.stringify(token)); // Setting the token to the local storage
+            setUser(token); // Setting the token to the useState hook of the user
+
+            navigate("/");
         
-        localStorage.setItem('authenticationToken', JSON.stringify(token));
-        setUser(token);
+        } catch(err) {
 
-        navigate("/");
+            console.log(err);
+            navigate('/404');
+        }
     }
 
     async function logoutSubmitHandler() {

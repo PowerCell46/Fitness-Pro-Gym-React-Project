@@ -8,8 +8,8 @@ async function hashPassword(password) {
 } 
 
 
-function createToken(_id, email, username) {
-    const token = jwt.sign({_id, email, username}, "PowerCell46", {expiresIn: "1d"});
+function createToken(_id, email, username, isAdministrator) {
+    const token = jwt.sign({_id, email, username, isAdministrator}, "PowerCell46" /*, {expiresIn: "1d"} */);
     return token;
 }
 
