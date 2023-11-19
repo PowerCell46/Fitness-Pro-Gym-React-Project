@@ -14,6 +14,7 @@ import { Logout } from './components/Logout/Logout';
 
 function App() {
     const [user, setUser] = useState(localStorage.getItem('authenticationToken'));
+    const [logoutComponentShown, setLogoutComponent] = useState(false);
     const navigate = useNavigate();
 
     async function loginSubmitHandler(e) {
@@ -94,19 +95,21 @@ function App() {
     async function logoutSubmitHandler() {
         localStorage.removeItem("authenticationToken");
         setUser(null);
+        setLogoutComponent(false);
         navigate("/");
     }
 
     return (
-        <AuthenticationContext.Provider value={{loginSubmitHandler, registerSubmitHandler, logoutSubmitHandler, user}}>
+        <AuthenticationContext.Provider value={{loginSubmitHandler, registerSubmitHandler, logoutSubmitHandler, user, setLogoutComponent}}>
         <>
             <Navigation/>
+
+            {logoutComponentShown ? <Logout/> : ""}
 
             <Routes>
                 <Route path='/' element={<Home/>}/>
                 <Route path='/login' element={<Login/>}/>
                 <Route path='/register' element={<Register/>}/>
-                <Route path='/logout' element={<Logout/>}/>
                 <Route path='*' element={<Error_404/>}/>
                 <Route path='/successfulOrder' element={<SuccessfulOrder/>}/>
             </Routes>

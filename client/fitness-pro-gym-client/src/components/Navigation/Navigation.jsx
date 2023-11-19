@@ -5,7 +5,7 @@ import './navigation.css';
 import profilePicture from '../../../public/images/profile_picture.jpg';
 
 export function Navigation() {
-    const {user} = useContext(AuthenticationContext);
+    const {user, setLogoutComponent} = useContext(AuthenticationContext);
     const [dropdown, setDropdown] = useState(false);
 
     return (
@@ -16,7 +16,7 @@ export function Navigation() {
         <li><Link to={'/products'}>Products</Link></li>
         {!user ? <li><Link to={'/login'}>Login</Link></li> : ""}
         
-        {user ? <li><Link to={'/logout'}>Logout</Link></li> : ""}
+        {user ? <li><a onClick={() => setLogoutComponent(true)}>Logout</a></li> : ""}
         {user ? <li>
             <div className="profile-dropdown">
                 <img id="profilePicture" src={profilePicture} alt="Profile picture" onClick={hiddenDropdownHandler}/>
