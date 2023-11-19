@@ -26,27 +26,57 @@ function App() {
         if (!emailValidation) {
             document.querySelector("#login-email-err-p").style.display = 'inline';
             document.querySelector("#login-email").classList.add("err-input-field");
+        
+        } else {
+            document.querySelector("#login-email-err-p").style.display = 'none';
+            document.querySelector("#login-email").classList.remove("err-input-field");
         }
         
         const passwordValidation = validatePassword(password);
         if (!passwordValidation) {
             document.querySelector("#login-password-err-p").style.display = 'inline';
             document.querySelector("#login-password").classList.add("err-input-field");
+        
+        } else {
+            document.querySelector("#login-password-err-p").style.display = 'none';
+            document.querySelector("#login-password").classList.remove("err-input-field");
         }
 
         if (!emailValidation || !passwordValidation) {
             return
         }
         
-        const serverResponse = await fetch("http://localhost:5000/users/login", 
-        {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({email, password})});
-        
-        const token = await serverResponse.json();
-        
-        localStorage.setItem('authenticationToken', JSON.stringify(token));
-        setUser(token);
+        try {
+            const serverResponse = await fetch("http://localhost:5000/users/login", 
+            {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({email, password})});
+            
+            if (serverResponse.status === 403) { // Checking for the case where the Email or the Username has already been used
+                const errorData = await serverResponse.json();
+                
+                if (errorData.error === "Password is not valid!") {
+                    document.querySelector("#login-password-err-p").textContent = errorData.error;
+                    document.querySelector("#login-password-err-p").style.display = 'inline';
+                    document.querySelector("#login-password").classList.add("err-input-field");
+                    return;
+                }
 
-        navigate("/");
+            } else if (!serverResponse.ok) {
+                const errorData = await serverResponse.json();
+                throw new Error(errorData.error || 'An error occurred during the registration process!');
+            }
+
+            const token = await serverResponse.json();
+            
+            localStorage.setItem('authenticationToken', JSON.stringify(token));
+            setUser(token);
+
+            navigate("/");
+        
+        } catch(err) {
+
+            console.log(err);
+            navigate('/404');
+        }
     }
 
     async function registerSubmitHandler(e) {

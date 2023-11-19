@@ -1,30 +1,44 @@
 const { verifyPassword, createToken } = require("../createTokenHashPassVerifyPass");
 const User = require("../schemas/userSchema");
 
+
 async function loginHandler(req, res) {
     const {email, password} = req.body;
 
     const emailValidation = validateEmail(email);
     if (!emailValidation) {
-        return res.json('Email is not valid!');
+        return res.status(400).json({ error: 'Email does not match the validation criteria!' });
     }
 
     const passwordValidation = validatePassword(password);
     if (!passwordValidation) {
-        return res.json('Password is not valid');
+        return res.status(400).json({ error: 'Password does not match the validation criteria!' });
     }
 
-    const user = await User.findOne({email});
+    try {
+        var user = await User.findOne({email});
     
-    const passwordValidity = await verifyPassword(password, user.password);
+    } catch {
+        return res.status(400).json({ error: 'An Error occured while the User was searched in the Database!' });
+    }
     
+    try {
+        var passwordValidity = await verifyPassword(password, user.password);
+    
+    } catch {
+        return res.status(400).json({ error: 'An Error occured while the password was being decrypted from the Database!' });   
+    }
+
     if (passwordValidity) {
         const token = createToken(user._id, user.email, user.user);
 
         console.log(`User: ${user.username} with email: ${user.email} successfully logged in!`);
         res.json(token);
-    }
+    
+    } else {
 
+        return res.status(403).json({ error: 'Password is not valid!' });
+    }
 }
 
 function validateEmail(email) {
