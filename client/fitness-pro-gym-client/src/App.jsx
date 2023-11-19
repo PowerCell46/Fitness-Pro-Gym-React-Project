@@ -113,6 +113,7 @@ function App() {
                
                 } else {
                     document.querySelector("#register-username-err-p").textContent = 'Username already in use!';
+                    document.querySelector("#register-username-err-p").style.display = 'inline';
                     document.querySelector("#register-username").classList.add("err-input-field");
                     return;
                 }

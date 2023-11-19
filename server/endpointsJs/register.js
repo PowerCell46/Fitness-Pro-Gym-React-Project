@@ -22,11 +22,13 @@ async function registerHandler(req, res) {
 
     try {
         let previousUser = await User.find({email});
-        if (previousUser) {
+
+        if (previousUser.length > 0) {
             return res.status(409).json({error: "Email already in use!"});
         }
         previousUser = await User.find({username});
-        if (previousUser) {
+        console.log(previousUser);
+        if (previousUser.length > 0) {
             return res.status(409).json({error: "Username already in use!"});
         }
     } catch {
