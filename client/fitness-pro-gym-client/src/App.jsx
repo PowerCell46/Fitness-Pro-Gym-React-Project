@@ -1,4 +1,4 @@
-import {Route, Routes, useNavigate} from 'react-router-dom';
+import {Route, Routes, redirect, useNavigate} from 'react-router-dom';
 import './App.css';
 import { Navigation } from './components/Navigation/Navigation';
 import { Home } from './components/Home/Home';
@@ -9,10 +9,11 @@ import { Error_404 } from './components/Error_404/Error_404';
 import { SuccessfulOrder } from './components/SuccessfulOrder/SuccessfulOrder';
 import { useState } from 'react';
 import { AuthenticationContext } from './contexts/AuthenticationContext';
+import { Logout } from './components/Logout/Logout';
 
 
 function App() {
-    const [user, setUser] = useState({});
+    const [user, setUser] = useState(localStorage.getItem('authenticationToken'));
     const navigate = useNavigate();
 
     async function loginSubmitHandler(e) {
@@ -38,7 +39,13 @@ function App() {
         
         const serverResponse = await fetch("http://localhost:5000/users/login", 
         {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({email, password})});
-        console.log(serverResponse);
+        
+        const token = await serverResponse.json();
+        
+        localStorage.setItem('authenticationToken', JSON.stringify(token));
+        setUser(token);
+
+        navigate("/");
     }
 
     async function registerSubmitHandler(e) {
@@ -79,12 +86,19 @@ function App() {
         const token = await serverResponse.json();
         
         localStorage.setItem('authenticationToken', JSON.stringify(token));
-        
+        setUser(token);
+
+        navigate("/");
+    }
+
+    async function logoutSubmitHandler() {
+        localStorage.removeItem("authenticationToken");
+        setUser(null);
         navigate("/");
     }
 
     return (
-        <AuthenticationContext.Provider value={{loginSubmitHandler, registerSubmitHandler}}>
+        <AuthenticationContext.Provider value={{loginSubmitHandler, registerSubmitHandler, logoutSubmitHandler, user}}>
         <>
             <Navigation/>
 
@@ -92,6 +106,7 @@ function App() {
                 <Route path='/' element={<Home/>}/>
                 <Route path='/login' element={<Login/>}/>
                 <Route path='/register' element={<Register/>}/>
+                <Route path='/logout' element={<Logout/>}/>
                 <Route path='*' element={<Error_404/>}/>
                 <Route path='/successfulOrder' element={<SuccessfulOrder/>}/>
             </Routes>

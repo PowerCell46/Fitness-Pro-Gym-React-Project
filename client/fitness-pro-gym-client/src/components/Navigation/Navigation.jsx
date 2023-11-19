@@ -1,20 +1,23 @@
 import { Link } from "react-router-dom";
-import profilePicture from '../../../public/images/profile_picture.jpg';
+import { useContext, useState } from "react";
+import { AuthenticationContext } from "../../contexts/AuthenticationContext";
 import './navigation.css';
-import { useState } from "react";
+import profilePicture from '../../../public/images/profile_picture.jpg';
 
 export function Navigation() {
+    const {user} = useContext(AuthenticationContext);
     const [dropdown, setDropdown] = useState(false);
 
     return (
         <header>
-        <li><Link to={'/register'}>Register</Link></li>
+        {!user ? <li><Link to={'/register'}>Register</Link></li> : ""}        
         <li><Link to={'/memberships'}>Memberships</Link></li>
         <li><Link to={'/highlights'}>Highlights</Link></li>        
         <li><Link to={'/products'}>Products</Link></li>
-        <li><Link to={'/login'}>Login</Link></li>
-        {/* <li><Link to={'/logout'}>Logout</Link></li> */}
-        {/* <li>
+        {!user ? <li><Link to={'/login'}>Login</Link></li> : ""}
+        
+        {user ? <li><Link to={'/logout'}>Logout</Link></li> : ""}
+        {user ? <li>
             <div className="profile-dropdown">
                 <img id="profilePicture" src={profilePicture} alt="Profile picture" onClick={hiddenDropdownHandler}/>
                 <div className="hidden-profile-view">
@@ -24,7 +27,9 @@ export function Navigation() {
                     </ul>
                  </div>
             </div>
-        </li>         */}
+        </li>
+        : "" 
+        }
     </header>
     );
     
