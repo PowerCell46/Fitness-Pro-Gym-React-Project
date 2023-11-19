@@ -1,4 +1,4 @@
-import {Route, Routes} from 'react-router-dom';
+import {Route, Routes, useNavigate} from 'react-router-dom';
 import './App.css';
 import { Navigation } from './components/Navigation/Navigation';
 import { Home } from './components/Home/Home';
@@ -13,6 +13,7 @@ import { AuthenticationContext } from './contexts/AuthenticationContext';
 
 function App() {
     const [user, setUser] = useState({});
+    const navigate = useNavigate();
 
     async function loginSubmitHandler(e) {
         e.preventDefault();
@@ -76,7 +77,10 @@ function App() {
         const serverResponse = await fetch("http://localhost:5000/users/register", 
         {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({email, username, password})});
         const token = await serverResponse.json();
-        console.log(token);
+        
+        localStorage.setItem('authenticationToken', JSON.stringify(token));
+        
+        navigate("/");
     }
 
     return (
