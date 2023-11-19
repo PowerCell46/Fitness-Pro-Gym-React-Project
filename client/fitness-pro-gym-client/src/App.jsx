@@ -75,7 +75,8 @@ function App() {
 
         const serverResponse = await fetch("http://localhost:5000/users/register", 
         {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({email, username, password})});
-        console.log(serverResponse);
+        const token = await serverResponse.json();
+        console.log(token);
     }
 
     return (

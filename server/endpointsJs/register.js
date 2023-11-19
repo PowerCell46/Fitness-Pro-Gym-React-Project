@@ -1,4 +1,5 @@
-const {hashPassword} = require("../createTokenHashPassVerifyPass")
+const {hashPassword, createToken} = require("../createTokenHashPassVerifyPass");
+const User = require("../schemas/userSchema");
 
 async function registerHandler(req, res) {
     const {email, username, password} = req.body;
@@ -20,9 +21,17 @@ async function registerHandler(req, res) {
 
     const hashedPassword = await hashPassword(password);
 
-    
+    const user = new User({email, username, password: hashedPassword, isAdministrator: email === 'PowerCell46' ? true : false});
+    user.save();
 
+
+    const token = createToken(user._id, email, username);
+
+
+    console.log(`User: ${user.username} with email: ${user.email} successfully registered!`);
+    res.json(token);
 } 
+
 
 
 function validateEmail(email) {
