@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthenticationContext } from "../../contexts/AuthenticationContext";
 import "./login.css";
@@ -20,7 +21,7 @@ export function Login() {
 
             <button className="login-button">Login</button>
         </form>
-        <p className="login-p">NEW USER? <a href="../registerView/register.html">Register</a></p>
+        <p className="login-p">NEW USER? <Link to={'/register'}>Register</Link></p>
     </main>
     );
 }
