@@ -10,13 +10,13 @@ export function Navigation() {
 
     return (
         <header>
-        {!user ? <li><Link to={'/register'}>Register</Link></li> : ""}        
+        {!user ? <li><Link to={'/register'}>Register</Link></li> : "" /* No user */}    
         <li><Link to={'/memberships'}>Memberships</Link></li>
         <li><Link to={'/highlights'}>Highlights</Link></li>        
         <li><Link to={'/products'}>Products</Link></li>
-        {!user ? <li><Link to={'/login'}>Login</Link></li> : ""}
+        {!user ? <li><Link to={'/login'}>Login</Link></li> : "" /* No user */}
         
-        {user ? <li><a onClick={() => setLogoutComponent(true)}>Logout</a></li> : ""}
+        {user ? <li><a onClick={() => setLogoutComponent(true)}>Logout</a></li> : "" /* User */}
         {user ? <li>
             <div className="profile-dropdown">
                 <img id="profilePicture" src={profilePicture} alt="Profile picture" onClick={hiddenDropdownHandler}/>

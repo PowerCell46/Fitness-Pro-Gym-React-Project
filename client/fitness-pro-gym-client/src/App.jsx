@@ -10,6 +10,11 @@ import { SuccessfulOrder } from './components/SuccessfulOrder/SuccessfulOrder';
 import { useState } from 'react';
 import { AuthenticationContext } from './contexts/AuthenticationContext';
 import { Logout } from './components/Logout/Logout';
+// import jwt from 'jsonwebtoken';
+
+
+
+
 
 
 function App() {
@@ -168,9 +173,11 @@ function App() {
     }
 
     async function logoutSubmitHandler() {
-        localStorage.removeItem("authenticationToken");
-        setUser(null);
-        setLogoutComponent(false);
+        console.log(localStorage.getItem("authenticationToken"));
+        console.log(jwt_decode(localStorage.getItem("authenticationToken")));
+        // localStorage.removeItem("authenticationToken");
+        // setUser(null);
+        // setLogoutComponent(false);
         navigate("/");
     }
 
