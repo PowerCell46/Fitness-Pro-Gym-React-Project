@@ -13,6 +13,7 @@ import { Logout } from './components/Logout/Logout';
 import { PostHighlight } from './components/PostHighlight/PostHighlight';
 import { HighlightContext } from './contexts/HighlightContext';
 import { HighlightDescription } from './components/HighlightDescription/HighlightDescription';
+import { Highlights } from './components/Highlights/Highlights';
 
 
 function App() {
@@ -227,7 +228,7 @@ function App() {
                 <Route path='/login' element={<Login/>}/>
                 <Route path='/register' element={<Register/>}/>   
                 <Route path='/postHighlight' element={<PostHighlight/>}/>
-
+                <Route path='/highlights' element={<Highlights/>}/>
                 <Route path='/highlights/:highlightId' element={<HighlightDescription/>}/>
                 <Route path='/successfulOrder' element={<SuccessfulOrder/>}/>
                 <Route path='*' element={<Error_404/>}/>
