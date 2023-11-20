@@ -40,4 +40,6 @@ router.get("/highlights/:highlightId", getHighlightHandler);
 
 router.post("/highlights/like/:highlightId", likeHighlightHandler);
 
+
+
 module.exports = router;

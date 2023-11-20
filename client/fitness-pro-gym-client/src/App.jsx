@@ -14,6 +14,7 @@ import { PostHighlight } from './components/PostHighlight/PostHighlight';
 import { HighlightContext } from './contexts/HighlightContext';
 import { HighlightDescription } from './components/HighlightDescription/HighlightDescription';
 import { Highlights } from './components/Highlights/Highlights';
+import { PostTrainer } from './components/PostTrainer/PostTrainer';
 
 
 function App() {
@@ -229,6 +230,7 @@ function App() {
                 <Route path='/postHighlight' element={<PostHighlight/>}/>
                 <Route path='/highlights' element={<Highlights/>}/>
                 <Route path='/highlights/:highlightId' element={<HighlightDescription/>}/>
+                <Route path='/postTrainer' element={<PostTrainer/>}/>
                 <Route path='/successfulOrder' element={<SuccessfulOrder/>}/>
                 <Route path='*' element={<Error_404/>}/>
             </Routes>
