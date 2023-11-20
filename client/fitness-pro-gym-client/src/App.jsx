@@ -177,17 +177,27 @@ function App() {
     }
 
     async function postHighlightSubmitHandler(e) {
-        e.preventDefault();
-        // const {image, description} = (Object.fromEntries(new FormData(e.target)));
+        e.preventDefault(); 
+        let formData = new FormData(e.target);
+        formData.append("ownerId", JSON.parse(localStorage.getItem("authenticationTokenAndData")).id);
 
-        // const response = await fetch("http://localhost:5000/highlights", 
-        //     {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({image, description})}); 
-        const formData = new FormData(e.target);
+        const validImage = validateImageExtension(formData.get("image"));
+        if (!validImage) {
+            document.querySelector("#post-highlight-image-err-p").textContent = 'Image format not valid!';                    
+            document.querySelector("#post-highlight-image-err-p").style.display = 'inline';
+            document.querySelector("#post-highlight-image").classList.add("err-input-field");
+            document.querySelector("#post-highlight-span").classList.add("err-input-field");
+       
+        } else {
+            document.querySelector("#post-highlight-image-err-p").style.display = 'none';
+            document.querySelector("#post-highlight-image").classList.remove("err-input-field");
+            document.querySelector("#post-highlight-span").classList.remove("err-input-field");
+        }
 
-        const response = await fetch("http://localhost:5000/highlights", {
-    method: "POST",
-    body: formData,
-  })
+        // const response = await fetch("http://localhost:5000/highlights", {
+        //     method: "POST",
+        //     body: formData,
+        // });
     }
 
     return (
@@ -242,4 +252,15 @@ function validateUsername(username) {
         return false;
     }
     return true;
+}
+
+
+function validateImageExtension(image) {
+    const imageExtensions = ['jpg', 'jpeg', 'png', 'bmp'];
+
+    const validExtension = imageExtensions.includes(image.name.toLowerCase().split(".")[image.name.toLowerCase().split(".").length - 1]);
+
+    const validMimeType = image.type.startsWith('image/');
+
+    return validExtension && validMimeType;
 }

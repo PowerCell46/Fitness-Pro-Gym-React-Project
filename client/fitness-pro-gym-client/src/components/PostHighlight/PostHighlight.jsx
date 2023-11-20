@@ -10,12 +10,12 @@ export function PostHighlight() {
     <main className="main-post-highlight">
         <h1>Post a Highlight</h1>
         <form onSubmit={postHighlightSubmitHandler}>
-            <p className="err-message">The file can be either with JPG or PNG extension!</p>
+            <p id="post-highlight-image-err-p" className="err-message">The file can be either with JPG or PNG extension!</p>
             <input type="file" className="file-upload" hidden="hidden" name="image" onChange={postHighlightRealButtonHandler}/>
            
             <div className="file-upload-div">
-                <button className="err-input-field" onClick={postHighlightFakeButtonHandler}>Choose a file</button>
-                <span>No file chosen</span>
+                <button id="post-highlight-image" onClick={postHighlightFakeButtonHandler}>Choose a file</button>
+                <span id="post-highlight-span">No file chosen</span>
             </div>
           
             <input type="text" name="description" placeholder="Average Arm day pump"/>

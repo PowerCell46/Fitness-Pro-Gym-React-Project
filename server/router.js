@@ -26,7 +26,7 @@ router.post("/users/login", loginHandler);
 router.post("/users/register", registerHandler);
 
 
-router.post('/highlights', upload.single("image"),postHighlightHandler);
+router.post('/highlights', upload.single("image"), postHighlightHandler);
 
 
 module.exports = router;
