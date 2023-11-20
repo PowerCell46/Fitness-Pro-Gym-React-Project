@@ -18,7 +18,12 @@ const highlightSchema = new Schema({
     likes: [{
         type: Schema.Types.ObjectId,
         ref: "User"
-    }]
+    }],
+    uploadDate: {
+        type: Date,
+        required: true,
+        default: Date.now
+    }
 });
 
 

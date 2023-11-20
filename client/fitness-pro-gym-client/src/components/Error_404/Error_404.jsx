@@ -9,5 +9,5 @@ export function Error_404() {
             <h2>Page Not Found!</h2>
             <Link to={'/'}><button>Back To Home</button></Link>
         </main>
-    )
+    );
 }

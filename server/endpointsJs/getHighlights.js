@@ -4,7 +4,7 @@ const Highlight = require("../schemas/highlightSchema");
 
 async function getHighlightsHandler(req, res) {
     try {
-        var data = await Highlight.find().lean();
+        var data = await Highlight.find().sort({ uploadDate: 'desc' }).lean();
         
     } catch {
         return res.status(400).json({ error: 'An error occured while the data was being read from the Database!'});
