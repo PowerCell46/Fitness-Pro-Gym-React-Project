@@ -16,8 +16,6 @@ async function getHighlightsHandler(req, res) {
     }));
     
     res.json(highlightsWithImages);
-
-
 } 
 
 
