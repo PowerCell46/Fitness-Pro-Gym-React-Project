@@ -1,10 +1,10 @@
 import { useContext } from "react";
-import { CreateContext } from "../../contexts/CreateContext";
+import { HighlightContext } from "../../contexts/HighlightContext";
 import "./postHighlight.css";
 
 
 export function PostHighlight() {
-    const {postHighlightSubmitHandler} = useContext(CreateContext);
+    const {postHighlightSubmitHandler} = useContext(HighlightContext);
 
     return (
     <main className="main-post-highlight">

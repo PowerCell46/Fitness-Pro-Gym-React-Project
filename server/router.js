@@ -15,7 +15,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-
+// subfolders for the different kinds of uploads
 
 router.get("/");
 

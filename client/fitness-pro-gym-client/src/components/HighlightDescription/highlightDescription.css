@@ -1,0 +1,96 @@
+
+.highlight-description-main {
+    height: 88vh;
+    width: 100vw;
+    margin-left: -0.4vw;
+    margin-top: 12.5svh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0;
+    color: whitesmoke;
+    text-shadow: 5px 0px 7px rgba(0,0,0,0.68);
+    background: url("../../../public/images/proGymRooms/fourthRoom.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size:cover;
+    background-attachment: fixed;
+
+}
+
+.highlight-description-main p {
+    font-family: 'Salsa', cursive;
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: 0.1rem;
+    margin-bottom: 1rem;
+    margin-top: -5vh;
+}
+
+.highlight-description-main .number-of-likes {
+    margin-top: -2vh;
+    margin-bottom: 3vh;
+    font-size: 3rem;
+}
+
+.highlight-description-main img {
+    height: 45vh;
+    border-radius: 10px;
+    transition: 600ms ease-in-out;
+    border: 1.5px solid white;
+    box-shadow: 0px 0px 25px 4px rgba(0, 0, 0, 0.75);
+}
+
+.highlight-description-main img:hover {
+    cursor: pointer;
+    -webkit-filter: blur(5px);
+    filter: blur(2px);
+    transform: scale(1.05);
+}
+
+.highlight-description-main h5 {
+    text-align: center;
+    width: 40%;
+    font-family: 'Salsa', cursive;
+    font-size: 1.5rem;
+}
+
+.highlight-description-main button {
+    padding: 0.5rem 1rem;
+    margin-right: 3rem;
+    background-color: var(--deep-blue);
+    color: #f5f5f5;
+    font-size: 1.3rem;
+    text-shadow: 5px 0px 7px rgba(0,0,0,0.68);
+    font-family: 'Salsa', cursive;
+    font-weight: 600;
+    letter-spacing: 0.2rem;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 600ms ease-in-out;
+    animation: hithere 10s ease-in-out infinite;
+}
+
+.highlight-description-main button:hover {
+    background-color: var(--dark-blue);
+    transform: translateY(-0.2rem);
+}
+
+.highlight-description-main i {
+    margin-right: 1rem;
+    font-weight: 900;
+    cursor: pointer;
+    transition: 600ms ease-in-out;
+}
+
+.highlight-description-main i:hover {
+    color: var(--deep-blue);
+}
+
+.highlight-description-main .already-liked {
+    color: #ff5700;
+    animation: none;
+}

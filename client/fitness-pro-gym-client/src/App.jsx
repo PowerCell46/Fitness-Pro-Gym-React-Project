@@ -11,7 +11,8 @@ import { useState } from 'react';
 import { AuthenticationContext } from './contexts/AuthenticationContext';
 import { Logout } from './components/Logout/Logout';
 import { PostHighlight } from './components/PostHighlight/PostHighlight';
-import { CreateContext } from './contexts/CreateContext';
+import { HighlightContext } from './contexts/HighlightContext';
+import { HighlightDescription } from './components/HighlightDescription/HighlightDescription';
 
 
 function App() {
@@ -194,15 +195,22 @@ function App() {
             document.querySelector("#post-highlight-span").classList.remove("err-input-field");
         }
 
-        let response = await fetch("http://localhost:5000/highlights", {
-            method: "POST",
-            body: formData,
-        });
+        try {
+            let response = await fetch("http://localhost:5000/highlights", {
+                method: "POST",
+                body: formData,
+            });
 
-        if (response.status === 200) {
-            navigate("/"); // highlights
-        } else {
-            // in case of an error
+            if (response.status === 200) {
+                navigate("/"); // highlights
+            } else {
+                console.log(response); // probably not right
+                navigate('/404');
+            }
+            
+        } catch(err) {
+            console.log(err);
+            navigate('/404');
         }
     }
 
@@ -213,16 +221,18 @@ function App() {
 
             {logoutComponentShown ? <Logout/> : ""}
            
-            <CreateContext.Provider value={{postHighlightSubmitHandler}}>
+            <HighlightContext.Provider value={{postHighlightSubmitHandler}}>
             <Routes>
                 <Route path='/' element={<Home/>}/>
                 <Route path='/login' element={<Login/>}/>
                 <Route path='/register' element={<Register/>}/>   
                 <Route path='/postHighlight' element={<PostHighlight/>}/>
+
+                <Route path='/highlights/:highlightId' element={<HighlightDescription/>}/>
                 <Route path='/successfulOrder' element={<SuccessfulOrder/>}/>
                 <Route path='*' element={<Error_404/>}/>
             </Routes>
-            </CreateContext.Provider>
+            </HighlightContext.Provider>
            
             <Footer/>
         </>
