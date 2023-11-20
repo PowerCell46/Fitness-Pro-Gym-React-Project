@@ -1,6 +1,21 @@
 const router = require("express").Router();
 const loginHandler = require("./endpointsJs/login");
+const { postHighlightHandler } = require("./endpointsJs/postHighlight");
 const registerHandler = require("./endpointsJs/register");
+const multer = require('multer');
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, 'uploads/');
+    },
+    filename: function (req, file, cb) {
+      cb(null, file.originalname);
+    },
+});
+
+const upload = multer({ storage: storage });
+
+
 
 router.get("/");
 
@@ -10,6 +25,8 @@ router.post("/users/login", loginHandler);
 
 router.post("/users/register", registerHandler);
 
+
+router.post('/highlights', upload.single("image"),postHighlightHandler);
 
 
 module.exports = router;

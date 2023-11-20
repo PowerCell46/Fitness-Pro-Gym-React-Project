@@ -10,7 +10,8 @@ import { SuccessfulOrder } from './components/SuccessfulOrder/SuccessfulOrder';
 import { useState } from 'react';
 import { AuthenticationContext } from './contexts/AuthenticationContext';
 import { Logout } from './components/Logout/Logout';
-
+import { PostHighlight } from './components/PostHighlight/PostHighlight';
+import { CreateContext } from './contexts/CreateContext';
 
 
 function App() {
@@ -175,21 +176,38 @@ function App() {
         navigate("/");
     }
 
+    async function postHighlightSubmitHandler(e) {
+        e.preventDefault();
+        // const {image, description} = (Object.fromEntries(new FormData(e.target)));
+
+        // const response = await fetch("http://localhost:5000/highlights", 
+        //     {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({image, description})}); 
+        const formData = new FormData(e.target);
+
+        const response = await fetch("http://localhost:5000/highlights", {
+    method: "POST",
+    body: formData,
+  })
+    }
+
     return (
         <AuthenticationContext.Provider value={{loginSubmitHandler, registerSubmitHandler, logoutSubmitHandler, user, setLogoutComponent}}>
         <>
             <Navigation/>
 
             {logoutComponentShown ? <Logout/> : ""}
-
+           
+            <CreateContext.Provider value={{postHighlightSubmitHandler}}>
             <Routes>
                 <Route path='/' element={<Home/>}/>
                 <Route path='/login' element={<Login/>}/>
-                <Route path='/register' element={<Register/>}/>
-                <Route path='*' element={<Error_404/>}/>
+                <Route path='/register' element={<Register/>}/>   
+                <Route path='/postHighlight' element={<PostHighlight/>}/>
                 <Route path='/successfulOrder' element={<SuccessfulOrder/>}/>
+                <Route path='*' element={<Error_404/>}/>
             </Routes>
-
+            </CreateContext.Provider>
+           
             <Footer/>
         </>
         </AuthenticationContext.Provider>

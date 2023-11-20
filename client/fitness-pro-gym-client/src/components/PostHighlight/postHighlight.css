@@ -1,0 +1,104 @@
+
+.main-post-highlight {
+    margin-left: -0.4vw;
+    margin-top: 10vh;
+    height: 90vh;
+    width: 99.2vw;
+    /* background-color:burlywood; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url("../../../public/images/externalImages/Gym-background.jpg");
+    flex-direction: column;
+}
+
+.main-post-highlight h1 {
+    margin-top: -12.5vh;
+    color: whitesmoke;
+    font-size: 6rem;
+    font-family: 'Permanent Marker', cursive;
+    text-shadow: 5px 0px 7px rgba(0,0,0,0.68);
+    letter-spacing: 0.8rem;
+    margin-bottom: 5vh;
+}
+
+
+.main-post-highlight form {
+    display: flex;
+    flex-direction: column;
+    gap: 7vh;
+
+}
+
+.main-post-highlight form input {
+    font-family: 'Salsa', cursive;
+    font-weight: 300;
+    font-size: 1.1rem;
+    height: 4rem;
+    padding-left: 1rem;
+}
+
+.main-post-highlight .file-upload-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2vw;
+}
+
+.main-post-highlight .file-upload-div span {
+    font-size: 1.2rem;
+    font-family: 'Salsa', cursive;
+    color: whitesmoke;
+    padding: 0.5rem;
+    border-radius: 0.2rem;
+}
+
+
+.main-post-highlight form button {
+    align-self: center;
+    width: 50%;
+    padding: 1.2rem;
+    background-color: var(--deep-blue);
+    color: #f5f5f5;
+    font-size: 1.2rem;
+    text-shadow: 5px 0px 7px rgba(0,0,0,0.68);
+    font-family: 'Salsa', cursive;
+    font-weight: 600;
+    letter-spacing: 0.15rem;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 600ms ease-in-out;
+    animation: hithere 5s ease-in-out infinite;
+}
+
+.main-post-highlight .file-upload-div button {
+    text-align: center;
+    width: 45%;
+    padding: 0.7rem 1.5rem;
+    background-color: #00866c;
+    animation: none;
+}
+
+.main-post-highlight .file-upload-div button:hover {
+    background-color: #009578;
+    transform: translateY(-0.2rem);
+}
+
+.main-post-highlight .err-input-field {
+    border: 3px solid rgb(130, 3, 3);
+}
+
+.main-post-highlight .err-message { /* In case of an error */
+    font-family: 'Salsa';
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.07rem;
+    color: rgb(130, 3, 3);
+    margin-bottom: -4.5vh;
+    margin-top: 0;
+    padding: 0.5rem 0.5rem;
+    border-radius: 10px;
+    background-color: rgba(138, 169, 205, 0.8); 
+    display: none; 
+}

@@ -11,7 +11,7 @@ export function Navigation() {
     return (
         <header>
         {!user ? <li><Link to={'/register'}>Register</Link></li> : "" /* No user */}    
-        <li><Link to={'/memberships'}>Memberships</Link></li>
+        <li>{!user ? <Link to={'/memberships'}>Memberships</Link> : <Link to={'/postHighlight'}>Post a Highlight</Link>}</li>
         <li><Link to={'/highlights'}>Highlights</Link></li>        
         <li><Link to={'/products'}>Products</Link></li>
         {!user ? <li><Link to={'/login'}>Login</Link></li> : "" /* No user */}
