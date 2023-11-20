@@ -85,3 +85,7 @@ header li div img {
     margin-top: 1.7vh;
     display: inline-block;
 }
+
+.img-to-my-profile-link:hover:before {
+    width: 0;
+}

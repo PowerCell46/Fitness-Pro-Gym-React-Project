@@ -33,7 +33,7 @@ async function loginHandler(req, res) {
         const token = createToken(user._id, user.email, user.user);
 
         console.log(`User: ${user.username} with email: ${user.email} successfully logged in!`);
-        res.json(token);
+        res.json({token, username: user.username, email: user.email, id: user._id});
     
     } else {
 

@@ -10,15 +10,11 @@ import { SuccessfulOrder } from './components/SuccessfulOrder/SuccessfulOrder';
 import { useState } from 'react';
 import { AuthenticationContext } from './contexts/AuthenticationContext';
 import { Logout } from './components/Logout/Logout';
-// import jwt from 'jsonwebtoken';
-
-
-
 
 
 
 function App() {
-    const [user, setUser] = useState(localStorage.getItem('authenticationToken'));
+    const [user, setUser] = useState(localStorage.getItem('authenticationTokenAndData'));
     const [logoutComponentShown, setLogoutComponent] = useState(false);
     const navigate = useNavigate();
 
@@ -70,10 +66,10 @@ function App() {
                 throw new Error(errorData.error || 'An error occurred during the registration process!');
             }
 
-            const token = await serverResponse.json();
+            const tokenAndData = await serverResponse.json();
             
-            localStorage.setItem('authenticationToken', JSON.stringify(token));
-            setUser(token);
+            localStorage.setItem('authenticationTokenAndData', JSON.stringify(tokenAndData));
+            setUser(tokenAndData);
 
             navigate("/");
         
@@ -158,10 +154,10 @@ function App() {
                 throw new Error(errorData.error || 'An error occurred during the registration process!');
             }
 
-            const token = await serverResponse.json();
+            const tokenAndData = await serverResponse.json();
             
-            localStorage.setItem('authenticationToken', JSON.stringify(token)); // Setting the token to the local storage
-            setUser(token); // Setting the token to the useState hook of the user
+            localStorage.setItem('authenticationTokenAndData', JSON.stringify(tokenAndData)); // Setting the token to the local storage
+            setUser(tokenAndData); // Setting the token to the useState hook of the user
 
             navigate("/");
         
@@ -173,11 +169,9 @@ function App() {
     }
 
     async function logoutSubmitHandler() {
-        console.log(localStorage.getItem("authenticationToken"));
-        console.log(jwt_decode(localStorage.getItem("authenticationToken")));
-        // localStorage.removeItem("authenticationToken");
-        // setUser(null);
-        // setLogoutComponent(false);
+        localStorage.removeItem("authenticationTokenAndData");
+        setUser(null);
+        setLogoutComponent(false);
         navigate("/");
     }
 
