@@ -203,7 +203,7 @@ function App() {
             });
 
             if (response.status === 200) {
-                navigate("/"); // highlights
+                navigate("/highlights");
             } else {
                 console.log(response); // probably not right
                 navigate('/404');

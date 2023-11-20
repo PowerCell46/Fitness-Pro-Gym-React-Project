@@ -5,7 +5,7 @@ const Highlight = require("../schemas/highlightSchema");
 function postHighlightHandler(req, res) {
     const image = req.file;
     console.log(image);
-    const imageValidation = validateImageExtension(image.originalname, image.mimetype);
+    const imageValidation = validateImageExtension(image);
 
     if (!imageValidation) {
         return res.status(400).json({ error: 'Highlight Image is not of valid type!' });
@@ -28,9 +28,9 @@ function postHighlightHandler(req, res) {
 function validateImageExtension(image) {
     const imageExtensions = ['jpg', 'jpeg', 'png', 'bmp'];
 
-    const validExtension = imageExtensions.includes(image.name.toLowerCase().split(".")[image.name.toLowerCase().split(".").length - 1]);
+    const validExtension = imageExtensions.includes(image.originalname.toLowerCase().split(".")[image.originalname.split(".").length - 1]);
 
-    const validMimeType = image.type.startsWith('image/');
+    const validMimeType = image.mimetype.startsWith('image/');
 
     return validExtension && validMimeType;
 }
