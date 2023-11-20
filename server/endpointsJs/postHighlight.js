@@ -1,10 +1,16 @@
+const Highlight = require("../schemas/highlightSchema");
+
+
+
 function postHighlightHandler(req, res) {
-    // Handle file upload and form data here
-    const image = req.file; // File details
+    const image = req.file;
+    // Valdidate image
     const {description, ownerId} = req.body;
-    // Process and save image and description to the database
-  
-    // Send a response to the client
+
+    const highlight = new Highlight({imageLocation: image.path, description, ownerId, likes: []});
+    highlight.save();
+    // try catch
+
     res.status(200).json({ message: 'File uploaded successfully' });
 }
 

@@ -194,10 +194,16 @@ function App() {
             document.querySelector("#post-highlight-span").classList.remove("err-input-field");
         }
 
-        // const response = await fetch("http://localhost:5000/highlights", {
-        //     method: "POST",
-        //     body: formData,
-        // });
+        let response = await fetch("http://localhost:5000/highlights", {
+            method: "POST",
+            body: formData,
+        });
+
+        if (response.status === 200) {
+            navigate("/"); // highlights
+        } else {
+            // in case of an error
+        }
     }
 
     return (
