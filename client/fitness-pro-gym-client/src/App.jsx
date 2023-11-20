@@ -24,7 +24,6 @@ function App() {
     async function loginSubmitHandler(e) {
         e.preventDefault();
         const {email, password} = (Object.fromEntries(new FormData(e.target)));
-        console.log(email, password);
         
         const emailValidation = validateEmail(email);
         if (!emailValidation) {

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import "./highlightDescription.css";
 import { useEffect, useState } from "react";
@@ -5,15 +6,19 @@ import { useEffect, useState } from "react";
 
 export function HighlightDescription() {
     const [highlightData, setHighlightData] = useState({});
+    const [numberOfLikes, setNumberOfLikes] = useState(0);
     const {highlightId} = useParams();
     
     useEffect(() => {
         async function fetchHighlightData() {
             const response = await fetch(`http://localhost:5000/highlights/${highlightId}`);
-            const data = await response.json();
+            let data = await response.json();
 
             data.uploadDate = new Date(data.uploadDate).toLocaleDateString();
-            data.numberOfLikes = data.likes.length;
+            data.hasLiked = data.likes.includes(JSON.parse(localStorage.getItem("authenticationTokenAndData")).id);
+
+            setNumberOfLikes(data.likes.length);
+            
             setHighlightData(data);   
         }
 
@@ -26,16 +31,42 @@ export function HighlightDescription() {
                 <p>Upload Date: {highlightData.uploadDate}</p>
                 <img src={`data:image/jpeg;base64,${highlightData.photo}`} alt=""/>
                 <h5>{highlightData.description}</h5>
-                <p className="number-of-likes"><i className="fa-solid fa-thumbs-up fa-bounce"></i>Likes: {highlightData.numberOfLikes}</p>
-                <div className="buttons">
-                    <button>Edit</button>
-                    <button>Delete</button>
-                </div>
+              
+                <p className="number-of-likes">
+                    {highlightData.ownerId !== JSON.parse(localStorage.getItem("authenticationTokenAndData")).id ?
+                        <i id="like-icon" onClick={likeHighlightHandler} className={
+                            highlightData.hasLiked
+                            ? "fa-solid fa-thumbs-up already-liked" // If the person has liked, the button will not move and be different colour
+                            : "fa-solid fa-thumbs-up fa-bounce"}
+                        ></i> : ""}
+                    Likes: {numberOfLikes}</p>
+
+                { // Only the owner has the right to edit and delete the highlight
+                highlightData.ownerId === JSON.parse(localStorage.getItem("authenticationTokenAndData")).id ? 
+                    <div class="buttons">
+                        <Link to={`/highlights/edit/${highlightData._id}`}><button>Edit</button></Link>
+                        <Link to={`/highlights/edit/${highlightData._id}`}><button>Delete</button></Link>
+                    </div>
+                    : ""}
                 </> 
                 : 
-                ""}
-
-                
+                ""}                
         </main>
     );  
+    
+    async function likeHighlightHandler() {
+        if (highlightData.likes.includes(JSON.parse(localStorage.getItem("authenticationTokenAndData")).id)) {
+            return;
+        }
+        const response = await fetch(`http://localhost:5000/highlights/like/${highlightId}`, 
+        {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({userId: JSON.parse(localStorage.getItem("authenticationTokenAndData")).id})})
+        const data = await response.json();
+
+        if (data === "Successful operation") {
+            setNumberOfLikes((val) => val + 1, () => {
+                document.querySelector(".number-of-likes").textContent = `Likes: ${numberOfLikes}`;
+            });
+            document.querySelector("#like-icon").classList.add("already-liked");
+        }
+    }
 }

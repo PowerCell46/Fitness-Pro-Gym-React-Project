@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const getHighlightHandler = require("./endpointsJs/getHighlight");
 const getHighlightsHandler = require("./endpointsJs/getHighlights");
+const likeHighlightHandler = require("./endpointsJs/likeHighlight");
 const loginHandler = require("./endpointsJs/login");
 const { postHighlightHandler } = require("./endpointsJs/postHighlight");
 const registerHandler = require("./endpointsJs/register");
@@ -37,5 +38,6 @@ router.post('/highlights', upload.single("image"), postHighlightHandler);
 router.get("/highlights/:highlightId", getHighlightHandler);
 
 
+router.post("/highlights/like/:highlightId", likeHighlightHandler);
 
 module.exports = router;
