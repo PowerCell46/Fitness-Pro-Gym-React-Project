@@ -15,6 +15,7 @@ import { HighlightContext } from './contexts/HighlightContext';
 import { HighlightDescription } from './components/HighlightDescription/HighlightDescription';
 import { Highlights } from './components/Highlights/Highlights';
 import { PostTrainer } from './components/PostTrainer/PostTrainer';
+import { TrainerContext } from './contexts/TrainerContext';
 
 
 function App() {
@@ -189,6 +190,7 @@ function App() {
             document.querySelector("#post-highlight-image-err-p").style.display = 'inline';
             document.querySelector("#post-highlight-image").classList.add("err-input-field");
             document.querySelector("#post-highlight-span").classList.add("err-input-field");
+            return;
        
         } else {
             document.querySelector("#post-highlight-image-err-p").style.display = 'none';
@@ -204,11 +206,87 @@ function App() {
 
             if (response.status === 200) {
                 navigate("/highlights");
+
             } else {
                 console.log(response); // probably not right
                 navigate('/404');
             }
             
+        } catch(err) {
+            console.log(err);
+            navigate('/404');
+        }
+    }
+
+    async function postTrainerSubmitHandler(e) {
+        e.preventDefault();
+        let formData = new FormData(e.target);
+        
+        const validImage = validateImageExtension(formData.get("image"));
+        if (!validImage) {
+            document.querySelector("#post-trainer-image-err-p").textContent = 'Image format not valid!';                    
+            document.querySelector("#post-trainer-image-err-p").style.display = 'inline';
+            document.querySelector("#post-trainer-image").classList.add("err-input-field");
+            document.querySelector("#post-trainer-span").classList.add("err-input-field");
+       
+        } else {
+            document.querySelector("#post-trainer-image-err-p").style.display = 'none';
+            document.querySelector("#post-trainer-image").classList.remove("err-input-field");
+            document.querySelector("#post-trainer-span").classList.remove("err-input-field");
+        }
+
+        const validName = validateName(formData.get("name"));
+        if (!validName) {
+            document.querySelector("#post-trainer-name-err-p").textContent = 'Name is not valid!';                    
+            document.querySelector("#post-trainer-name-err-p").style.display = 'inline';
+            document.querySelector("#post-trainer-name").classList.add("err-input-field");
+        
+        } else {
+            document.querySelector("#post-trainer-name-err-p").style.display = 'none';
+            document.querySelector("#post-trainer-name").classList.remove("err-input-field");
+        }
+
+        const validEmail = validateEmail(formData.get("email"));
+        if (!validEmail) {
+            document.querySelector("#post-trainer-email-err-p").textContent = 'Email is not valid!';                    
+            document.querySelector("#post-trainer-email-err-p").style.display = 'inline';
+            document.querySelector("#post-trainer-email").classList.add("err-input-field");
+        
+        } else {
+            document.querySelector("#post-trainer-email-err-p").style.display = 'none';
+            document.querySelector("#post-trainer-email").classList.remove("err-input-field");
+        }
+
+        const validPhoneNumber = validatePhoneNumber(formData.get("phoneNumber"));
+        if (!validPhoneNumber) {
+            document.querySelector("#post-trainer-phoneNumber-err-p").textContent = 'Phone Number is not valid!';                    
+            document.querySelector("#post-trainer-phoneNumber-err-p").style.display = 'inline';
+            document.querySelector("#post-trainer-phoneNumber").classList.add("err-input-field");
+        
+        } else {
+            document.querySelector("#post-trainer-phoneNumber-err-p").style.display = 'none';
+            document.querySelector("#post-trainer-phoneNumber").classList.remove("err-input-field");
+        }
+
+        if (!validImage || !validName || !validEmail  || !validPhoneNumber) {
+            return;
+        }
+
+        try {
+            
+            let response = await fetch("http://localhost:5000/trainers", {
+                method: "POST",
+                body: formData,
+            });
+
+            if (response.status === 200) {
+                navigate('/'); // Trainers
+
+            } else {
+                console.log(response);
+                navigate('/404');
+            }
+
         } catch(err) {
             console.log(err);
             navigate('/404');
@@ -222,6 +300,7 @@ function App() {
 
             {logoutComponentShown ? <Logout/> : ""}
            
+            <TrainerContext.Provider value={{postTrainerSubmitHandler}}>
             <HighlightContext.Provider value={{postHighlightSubmitHandler}}>
             <Routes>
                 <Route path='/' element={<Home/>}/>
@@ -235,6 +314,7 @@ function App() {
                 <Route path='*' element={<Error_404/>}/>
             </Routes>
             </HighlightContext.Provider>
+            </TrainerContext.Provider>
            
             <Footer/>
         </>
@@ -281,4 +361,18 @@ function validateImageExtension(image) {
     const validMimeType = image.type.startsWith('image/');
 
     return validExtension && validMimeType;
+}
+
+
+function validateName(name) {
+    if (!name.includes(" ") || name.length < 7) {
+        return false;
+    }
+    return true;
+}
+
+
+function validatePhoneNumber(phoneNumber) {
+    const phoneNumberRegex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
+    return phoneNumberRegex.test(phoneNumber);
 }

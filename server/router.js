@@ -4,6 +4,7 @@ const getHighlightsHandler = require("./endpointsJs/getHighlights");
 const likeHighlightHandler = require("./endpointsJs/likeHighlight");
 const loginHandler = require("./endpointsJs/login");
 const { postHighlightHandler } = require("./endpointsJs/postHighlight");
+const postTrainerHandler = require("./endpointsJs/postTrainer");
 const registerHandler = require("./endpointsJs/register");
 const multer = require('multer');
 
@@ -39,6 +40,10 @@ router.get("/highlights/:highlightId", getHighlightHandler);
 
 
 router.post("/highlights/like/:highlightId", likeHighlightHandler);
+
+
+
+router.post("/trainers", upload.single("image"), postTrainerHandler);
 
 
 

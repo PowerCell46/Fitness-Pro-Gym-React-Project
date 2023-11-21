@@ -1,9 +1,9 @@
 
-.post-highlight-main {
+.post-trainer-main {
     margin-left: -0.4vw;
     margin-top: 12.5vh;
     height: 90vh;
-    width: 99.1vw;
+    width: 100vw;
     /* height: 102vh; */
     display: flex;
     align-items: center;
@@ -14,8 +14,8 @@
     background-attachment: fixed;
 }
 
-.post-highlight-main h1 {
-    /* margin-top: -6vh;with errors */
+.post-trainer-main h1 {
+    /* margin-top: -6vh; */
     margin-top: -12vh; 
     color: whitesmoke;
     font-size: 6rem;
@@ -26,14 +26,14 @@
 }
 
 
-.post-highlight-main form {
+.post-trainer-main form {
     display: flex;
     flex-direction: column;
     gap: 5vh;
 
 }
 
-.post-highlight-main form input {
+.post-trainer-main form input {
     font-family: 'Salsa', cursive;
     font-weight: 300;
     font-size: 1.1rem;
@@ -41,14 +41,14 @@
     padding-left: 1rem;
 }
 
-.post-highlight-main .file-upload-div {
+.post-trainer-main .file-upload-div {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 2vw;
 }
 
-.post-highlight-main .file-upload-div span {
+.post-trainer-main .file-upload-div span {
     font-size: 1.2rem;
     font-family: 'Salsa', cursive;
     color: whitesmoke;
@@ -57,7 +57,7 @@
 }
 
 
-.post-highlight-main form button {
+.post-trainer-main form button {
     align-self: center;
     width: 50%;
     padding: 1.2rem;
@@ -75,7 +75,7 @@
     animation: hithere 5s ease-in-out infinite;
 }
 
-.post-highlight-main .file-upload-div button {
+.post-trainer-main .file-upload-div button {
     text-align: center;
     width: 45%;
     padding: 0.7rem 1.5rem;
@@ -83,16 +83,16 @@
     animation: none;
 }
 
-.post-highlight-main .file-upload-div button:hover {
+.post-trainer-main .file-upload-div button:hover {
     background-color: #009578;
     transform: translateY(-0.2rem);
 }
 
-.post-highlight-main .err-input-field {
+.post-trainer-main .err-input-field {
     border: 4px solid rgb(130, 3, 3);
 }
 
-.post-highlight-main .err-message { /* In case of an error + main height + footer margin top*/
+.post-trainer-main .err-message { /* In case of an error + main height + footer margin top*/
     font-family: 'Salsa';
     font-size: 1rem;
     font-weight: 600;
