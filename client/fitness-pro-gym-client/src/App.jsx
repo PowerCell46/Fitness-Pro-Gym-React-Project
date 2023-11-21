@@ -287,7 +287,7 @@ function App() {
                 navigate('/trainers');
 
             } else {
-                console.log(response);
+                console.log(await response.json());
                 navigate('/404');
             }
 
@@ -350,11 +350,25 @@ function App() {
             return;
         }
 
-        //validate product type on the backend !!!!
-        const response =  await fetch("http://localhost:5000/products", {
-            method: "POST",
-            body: formData,
-        });
+        try {
+            
+            const response =  await fetch("http://localhost:5000/products", {
+                method: "POST",
+                body: formData,
+            });
+
+            if (response.status === 200) {
+                navigate('/'); // products
+
+            } else {
+                console.log(response);
+                navigate('/404');
+            }
+
+        } catch(err) {
+            console.log(err);
+            navigate('/404');
+        }        
     }
 
     return (

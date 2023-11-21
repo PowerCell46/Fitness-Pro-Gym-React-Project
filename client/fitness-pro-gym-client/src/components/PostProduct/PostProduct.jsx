@@ -11,7 +11,7 @@ export function PostProduct() {
         <h1>Create Product</h1>
         <form onSubmit={postProductSubmitHandler}>
            
-            <p id="#post-product-name-err-p" className="err-message">Product name must be at least 5 characters long!</p>
+            <p id="post-product-name-err-p" className="err-message">Product name must be at least 5 characters long!</p>
             <input id="post-product-name" type="text" placeholder="Product Name" name="name"/>    
            
             <div className="productTypeContainer">

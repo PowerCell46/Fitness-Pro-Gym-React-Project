@@ -51,7 +51,7 @@ export function validateEmail(email) {
 
 
 export function validateProductName(name) {
-    if (name.length < 5 || name.length > 10) {
+    if (name.length < 5 || name.length > 25) {
         return false;
     }
     return true;

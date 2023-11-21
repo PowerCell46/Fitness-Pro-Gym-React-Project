@@ -4,10 +4,10 @@ const Highlight = require("../schemas/highlightSchema");
 
 function postHighlightHandler(req, res) {
     const image = req.file;
-    console.log(image);
-    const imageValidation = validateImageExtension(image);
+    
+    const validImage = validateImageExtension(image);
 
-    if (!imageValidation) {
+    if (!validImage) {
         return res.status(400).json({ error: 'Highlight Image is not of valid type!' });
     }
 
