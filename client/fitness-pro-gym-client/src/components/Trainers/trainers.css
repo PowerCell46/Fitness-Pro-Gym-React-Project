@@ -1,0 +1,58 @@
+.trainers-main {
+    padding: 7.5vh 2vw;
+    margin-top: 12vh;
+    width: 96.4vw;
+    height: 100%;
+    margin-left: -0.5vw;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2vw;
+    background: url("../../../public/images/proGymRooms/fourthRoom.jpg");
+    background-size:cover;
+    background-attachment: fixed;
+}
+
+.trainers-main .trainer-section {
+    opacity: 0.75;
+    height: 35vh;
+    background-color: #dcd8ce;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: 600ms ease-in-out;
+    border-radius: 0.5rem;
+}
+
+.trainers-main .trainer-section img {
+    width: 15vw;
+    height: auto;
+    max-height: 12vh;
+    border-radius: 0 0 0.5rem 0.5rem;
+}
+
+.trainers-main .trainer-section h5 {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    font-family: 'Permanent Marker';
+    font-size: 1.6rem;
+}
+
+.trainers-main .clickable {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    cursor: pointer;
+    font-family: 'Salsa';
+    color: black;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+.trainers-main .clickable:hover {
+    text-decoration: underline;
+}
+
+.trainers-main .trainer-section:hover {
+    transform: scale(1.1) translateY(-0.2rem);
+    background-color: #e0dcd3;
+    opacity: 1;
+}

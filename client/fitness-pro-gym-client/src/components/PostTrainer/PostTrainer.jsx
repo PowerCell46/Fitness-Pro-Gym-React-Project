@@ -28,6 +28,7 @@ export function PostTrainer() {
             <input id="post-trainer-phoneNumber" type="number" name="phoneNumber" placeholder="+359 2 XXX XXXX"/>
             
             <button>Post</button>
+            
         </form>
     </main>
 

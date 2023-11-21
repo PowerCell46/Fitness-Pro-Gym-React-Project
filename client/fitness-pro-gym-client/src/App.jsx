@@ -16,6 +16,7 @@ import { HighlightDescription } from './components/HighlightDescription/Highligh
 import { Highlights } from './components/Highlights/Highlights';
 import { PostTrainer } from './components/PostTrainer/PostTrainer';
 import { TrainerContext } from './contexts/TrainerContext';
+import { Trainers } from './components/Trainers/Trainers';
 
 
 function App() {
@@ -227,12 +228,12 @@ function App() {
             document.querySelector("#post-trainer-image-err-p").textContent = 'Image format not valid!';                    
             document.querySelector("#post-trainer-image-err-p").style.display = 'inline';
             document.querySelector("#post-trainer-image").classList.add("err-input-field");
-            document.querySelector("#post-trainer-span").classList.add("err-input-field");
+            document.querySelector("#post-trainer-span").classList.add("err-input-field"); // does not look good
        
         } else {
             document.querySelector("#post-trainer-image-err-p").style.display = 'none';
             document.querySelector("#post-trainer-image").classList.remove("err-input-field");
-            document.querySelector("#post-trainer-span").classList.remove("err-input-field");
+            document.querySelector("#post-trainer-span").classList.remove("err-input-field"); // does not look good
         }
 
         const validName = validateName(formData.get("name"));
@@ -310,6 +311,7 @@ function App() {
                 <Route path='/highlights' element={<Highlights/>}/>
                 <Route path='/highlights/:highlightId' element={<HighlightDescription/>}/>
                 <Route path='/postTrainer' element={<PostTrainer/>}/>
+                <Route path='/trainers' element={<Trainers/>} />
                 <Route path='/successfulOrder' element={<SuccessfulOrder/>}/>
                 <Route path='*' element={<Error_404/>}/>
             </Routes>
