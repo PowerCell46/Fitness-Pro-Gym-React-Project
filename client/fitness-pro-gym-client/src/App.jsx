@@ -396,9 +396,9 @@ function App() {
                 <Route path='/postTrainer' element={<PostTrainer/>}/>
                 <Route path='/trainers' element={<Trainers/>} />
 
-
                 <Route path='/postProduct' element={<PostProduct/>} />
                 <Route path='/products' element={<Products/>} />
+                {/* <Route path='/products/:productId' element={} /> */}
 
                 <Route path='/successfulOrder' element={<SuccessfulOrder/>}/>
                 <Route path='*' element={<Error_404/>}/>

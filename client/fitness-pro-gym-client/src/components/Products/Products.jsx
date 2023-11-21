@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./products.css";
 import { Link } from "react-router-dom";
 
+
 export function Products() {
     const [productsData, setProductsData] = useState([]);
 
@@ -30,35 +31,40 @@ export function Products() {
     }, []);
 
     return (
-    <div className="products-main">
-        <div className="aside-wrapper">
-            <aside>
-                <h1 className="selected-view">All</h1>
-                <h1>Fitness Supplements</h1>
-                <h1>Fitness Machines</h1>
-                <h1>Merchandise</h1>
-            </aside>
-        </div>
-        <section>
-        <main>
-
-            {productsData.map((product) => 
-            <Link to={`/products/${product._id}`}>
-            <div className="product-container">
-                <div className="image-container">
-                <img src={`data:image/jpeg;base64,${product.photo}`} alt={`${product.name} Image`}/>
-                    <button>Add To Cart</button>
-                </div>
-                <div className="shown-info">
-                    <h5>{product.name}</h5>
-                    <p id="price">{product.price}<sup>00</sup> Lv.</p>
-                </div>
+        <div className="products-main">
+            
+            <div className="aside-wrapper">
+                <aside>
+                    <h1 className="selected-view">All</h1>
+                    <h1>Fitness Supplements</h1>
+                    <h1>Fitness Machines</h1>
+                    <h1>Merchandise</h1>
+                </aside> 
+                {/* With useState = по дифоулт да е избрано всички видове продукти и със селект на заглавието да се променя
+                стейта и да се филтрират по типа им, вече като са извикани на тях, да не се прави нова заявка ; (снимката да се оправи) */}
             </div>
-            </Link>
-            )}
-           
-        </main>
-    </section>
-    </div>
+            
+            <section>
+                <main>
+
+                    {productsData.map((product) => 
+                    <Link to={`/products/${product._id}`}>
+                    <div className="product-container">
+                        <div className="image-container">
+                        <img src={`data:image/jpeg;base64,${product.photo}`} alt={`${product.name} Image`}/>
+                            <button>Add To Cart</button>
+                        </div>
+                        <div className="shown-info">
+                            <h5>{product.name}</h5>
+                            <p id="price">{product.price}<sup>00</sup> Lv.</p>
+                        </div>
+                    </div>
+                    </Link>
+                    )}
+                
+                </main>
+            </section>
+
+        </div>
     );
 }
