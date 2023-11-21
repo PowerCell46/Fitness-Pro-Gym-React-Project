@@ -1,7 +1,7 @@
 .products-main {
     margin-top: -5vh;
     margin-left: -0.4vw;
-    width: 99.2vw;
+    width: 100vw;
     background: url("https://wallpaperset.com/w/full/9/8/4/534101.jpg");
     background-size:cover;
 }
@@ -34,7 +34,7 @@
     font-weight: 300;
     font-size: 2rem;
     letter-spacing: 0.05rem;
-    transition: 300ms ease-in-out;
+    transition: 400ms ease-in-out;
 }
 
 .products-main .selected-view {
