@@ -23,17 +23,17 @@ export function Trainers() {
     []);
 
     return (
-    <main className="trainers-main">
-        
-        {trainers.map((trainer) => 
-        <div className="trainer-section">
-            <img src={`data:image/jpeg;base64,${trainer.photo}`} alt=""/>
-            <h5>Name: {trainer.name}</h5>
-            <a className="clickable" target="_blank" href={`mailto:${trainer.email}?subject=Subject%20of%20the%20email&body=Body%20of%20the%20email`}>Email: {trainer.email}</a>
-            <a className="clickable" href={`tel:+${trainer.phoneNumber}`}>Telephone: +{trainer.phoneNumber}</a>
-        </div>)}
+        <main className="trainers-main">
+            
+            {trainers.map((trainer) => 
+            <div className="trainer-section">
+                <img src={`data:image/jpeg;base64,${trainer.photo}`} alt=""/>
+                <h5>Name: {trainer.name}</h5>
+                <a className="clickable" target="_blank" href={`mailto:${trainer.email}?subject=Subject%20of%20the%20email&body=Body%20of%20the%20email`}>Email: {trainer.email}</a>
+                <a className="clickable" href={`tel:+${trainer.phoneNumber}`}>Telephone: +{trainer.phoneNumber}</a>
+            </div>)}
 
-    </main>
+        </main>
 
     );
 }

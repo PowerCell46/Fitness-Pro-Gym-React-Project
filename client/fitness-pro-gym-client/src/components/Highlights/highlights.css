@@ -29,17 +29,20 @@
     padding-bottom: 50px;
 }
 
+
 .highlights-main .gallery-div {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
 }
 
+
 .highlights-main .gallery-div .gallery-inner-box {
     display: flex;
     flex-direction: column;
     width: 31%;
 }
+
 
 .highlights-main .gallery-div .gallery-inner-box img{
     width: 100%;
@@ -48,12 +51,14 @@
     transition: 600ms ease-in-out;
 }
 
+
 .highlights-main .gallery-div .gallery-inner-box img:hover {
     cursor: pointer;
     -webkit-filter: blur(5px);
     filter: blur(3px);
     transform: scale(1.05);
 }
+
 
 @media only screen and (max-width: 769px) {
     .highlights-main .gallery-div {

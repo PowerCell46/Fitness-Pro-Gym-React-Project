@@ -14,6 +14,7 @@
     padding-bottom: 8vh;
 }
 
+
 .register-main h1 {
     margin-top: 2vh;
     color: whitesmoke;
@@ -24,6 +25,7 @@
     margin-bottom: -2vh;
 }
 
+
 .register-main input {
     padding: 1.1rem 2rem 1.1rem 2rem;
     border-radius: 5px;
@@ -32,15 +34,18 @@
     border: none;
 }
 
+
 .err-input-field {
     border: 4px solid rgb(130, 3, 3);
 }
+
 
 .register-main input::placeholder {
     font-size: 1.2rem;
     color: grey;
     font-family: 'Salsa', cursive;
 }
+
 
 .register-main button {
     padding: 1rem 3rem;
@@ -61,11 +66,13 @@
     align-self: center;
 }
 
+
 .register-main button:hover {
     background-color: #124b8b;
     color: #d6d6d6;;
     /* transform: translateY(-0.2rem); */
 }
+
 
 .register-main p {
     font-family: 'Salsa', cursive;
@@ -76,11 +83,13 @@
     font-weight: 600;
 }
 
+
 .register-main form {
     display: flex;
     flex-direction: column;
     gap: 5vh;
 }
+
 
 .register-main p a {
     padding: 0.4rem 0.4rem;
@@ -92,12 +101,14 @@
     transition: 600ms ease-in-out;
 }
 
+
 .register-main a:hover {
     /* transform: translateY(-0.2rem); Does not work */
     text-decoration: underline;
     color: var(--dark-blue);
     background-color: rgba(138, 169, 205, 0.7);
 }
+
 
 .err-message { /* In case of an error */
     font-size: 1rem;

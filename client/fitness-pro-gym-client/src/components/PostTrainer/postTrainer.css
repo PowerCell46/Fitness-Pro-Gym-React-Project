@@ -1,4 +1,3 @@
-
 .post-trainer-main {
     margin-left: -0.4vw;
     margin-top: 12.5vh;
@@ -13,6 +12,7 @@
     background-size:cover;
     background-attachment: fixed;
 }
+
 
 .post-trainer-main h1 {
     /* margin-top: -6vh; */
@@ -33,6 +33,7 @@
 
 }
 
+
 .post-trainer-main form input {
     font-family: 'Salsa', cursive;
     font-weight: 300;
@@ -41,12 +42,14 @@
     padding-left: 1rem;
 }
 
+
 .post-trainer-main .file-upload-div {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 2vw;
 }
+
 
 .post-trainer-main .file-upload-div span {
     font-size: 1.2rem;
@@ -75,6 +78,7 @@
     animation: hithere 5s ease-in-out infinite;
 }
 
+
 .post-trainer-main .file-upload-div button {
     text-align: center;
     width: 45%;
@@ -83,14 +87,17 @@
     animation: none;
 }
 
+
 .post-trainer-main .file-upload-div button:hover {
     background-color: #009578;
     transform: translateY(-0.2rem);
 }
 
+
 .post-trainer-main .err-input-field {
     border: 4px solid rgb(130, 3, 3);
 }
+
 
 .post-trainer-main .err-message { /* In case of an error + main height + footer margin top*/
     font-family: 'Salsa';

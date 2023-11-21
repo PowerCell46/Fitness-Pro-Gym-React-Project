@@ -49,6 +49,7 @@
     animation-iteration-count: infinite; 
 }
 
+
 .rooms-heading h2 {
     color: whitesmoke;
     font-size: 5rem;
@@ -57,21 +58,26 @@
     text-shadow: 5px 0px 7px rgba(0,0,0,0.68);
 }
 
+
 .home-main {
     background-image: linear-gradient(to right top, #14539a, #0074b3, #0092bc, #00afb6, #00c9a7);
 }
+
 
 .first-main {
     background-image: linear-gradient(to right top, #14539a, #0074b3, #0092bc, #00afb6, #00c9a7);
 }
 
+
 .second-main {
     background-image: linear-gradient(to right top, #4375ae, #007ead, #0086a1, #008a8e, #008d75);
 }
 
+
 .third-main {
     background-image: linear-gradient(to left top, #00c9a7, #00c0c0, #00b4ce, #4ca6ce, #7298c2);
 }
+
 
 .home-main h2 {
     text-align: center;
@@ -90,6 +96,7 @@
     animation-iteration-count: 1;
 }
 
+
 .home-main div p {
     color: whitesmoke;
     width: 50vw;
@@ -107,9 +114,11 @@
     animation-iteration-count: 1;
 }
 
+
 .home-main div iframe {
     border-radius: 0.3rem;
 }
+
 
 .home-main div h5 {
     text-align: center;
@@ -120,6 +129,7 @@
     font-size: 2rem;
     margin-bottom: 4vh;
 }
+
 
 .home-main img {
     border-radius: 0.25rem;
@@ -132,10 +142,12 @@
     animation-iteration-count: 1;
 }
 
+
 .home-main img:hover {
     -webkit-filter: blur(5px);
     filter: blur(3px);
 }
+
 
 .home-main h2 span {
     color: whitesmoke;

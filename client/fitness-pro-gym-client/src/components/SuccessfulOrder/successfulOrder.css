@@ -10,6 +10,7 @@
     align-items: center;
 }
 
+
 .successful-order-main h1 {
     margin-top: 1vh;
     color: whitesmoke;
@@ -20,12 +21,14 @@
     animation: flash 1.5s ease infinite alternate;
 }
 
+
 .successful-order-main img {
     margin-top: -5vh;
     animation: flash 1.5s ease infinite alternate;
     height: 55vh;
     
 }
+
 
 .successful-order-main button {
     margin-top: -7vh;
@@ -44,6 +47,7 @@
     margin-bottom: -2Vh;
     animation: flash 1.5s ease infinite alternate;
 }
+
 
 .successful-order-main button:hover {
     background-color: var(--carrot-orange);

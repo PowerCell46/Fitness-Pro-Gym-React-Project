@@ -15,12 +15,14 @@ footer {
     text-align: center;
 }
 
+
 footer h5 {
     color: #ffff;
     font-size: 1.5rem;
     margin-bottom: 2.2vh;
     animation: float 6s ease-in-out infinite;
 }
+
 
 footer li {
     cursor: pointer;
@@ -31,19 +33,23 @@ footer li {
     animation: float 6s ease-in-out infinite;
 }
 
+
 footer li a:hover, footer li:hover { 
     color: whitesmoke;
 }
 
+
 footer li a:hover span, footer li:hover span {
     text-decoration: underline;
 }
+
 
 footer ul li a {
     text-decoration: none;
     color: #d6d6d6;
     transition: 300ms ease-in-out;
 }
+
 
 footer ul li i {
     margin-right: 0.5rem;

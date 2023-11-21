@@ -12,6 +12,12 @@ export function HighlightDescription() {
     useEffect(() => {
         async function fetchHighlightData() {
             const response = await fetch(`http://localhost:5000/highlights/${highlightId}`);
+
+            if (!response.ok) {
+                console.log(response);
+                // Redirect
+            }
+
             let data = await response.json();
 
             data.uploadDate = new Date(data.uploadDate).toLocaleDateString();
@@ -29,7 +35,7 @@ export function HighlightDescription() {
         <main className="highlight-description-main">
                 {highlightData ? <>
                 <p>Upload Date: {highlightData.uploadDate}</p>
-                <img src={`data:image/jpeg;base64,${highlightData.photo}`} alt=""/>
+                <img src={`data:image/jpeg;base64,${highlightData.photo}`} alt="Highlight Image"/>
                 <h5>{highlightData.description}</h5>
               
                 <p className="number-of-likes">
@@ -56,10 +62,12 @@ export function HighlightDescription() {
     
     async function likeHighlightHandler() {
         if (highlightData.likes.includes(JSON.parse(localStorage.getItem("authenticationTokenAndData")).id)) {
-            return;
+            return; // Checking if the user isn't trying to like his on highlight
         }
         const response = await fetch(`http://localhost:5000/highlights/like/${highlightId}`, 
-        {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({userId: JSON.parse(localStorage.getItem("authenticationTokenAndData")).id})})
+        {method: "POST", headers: {"Content-Type": "application/json"}, 
+        body: JSON.stringify({userId: JSON.parse(localStorage.getItem("authenticationTokenAndData")).id})})
+        
         const data = await response.json();
 
         if (data === "Successful operation") {

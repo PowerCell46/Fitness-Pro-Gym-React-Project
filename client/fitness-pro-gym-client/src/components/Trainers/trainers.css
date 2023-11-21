@@ -12,6 +12,7 @@
     background-attachment: fixed;
 }
 
+
 .trainers-main .trainer-section {
     opacity: 0.75;
     height: 35vh;
@@ -23,6 +24,7 @@
     border-radius: 0.5rem;
 }
 
+
 .trainers-main .trainer-section img {
     width: 15vw;
     height: auto;
@@ -30,12 +32,14 @@
     border-radius: 0 0 0.5rem 0.5rem;
 }
 
+
 .trainers-main .trainer-section h5 {
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
     font-family: 'Permanent Marker';
     font-size: 1.6rem;
 }
+
 
 .trainers-main .clickable {
     margin-top: 0;
@@ -48,9 +52,11 @@
     text-align: center;
 }
 
+
 .trainers-main .clickable:hover {
     text-decoration: underline;
 }
+
 
 .trainers-main .trainer-section:hover {
     transform: scale(1.1) translateY(-0.2rem);

@@ -17,8 +17,8 @@
     background-position: center center;
     background-size:cover;
     background-attachment: fixed;
-
 }
+
 
 .highlight-description-main p {
     font-family: 'Salsa', cursive;
@@ -29,11 +29,13 @@
     margin-top: -5vh;
 }
 
+
 .highlight-description-main .number-of-likes {
     margin-top: -2vh;
     margin-bottom: 3vh;
     font-size: 3rem;
 }
+
 
 .highlight-description-main img {
     height: 45vh;
@@ -43,6 +45,7 @@
     box-shadow: 0px 0px 25px 4px rgba(0, 0, 0, 0.75);
 }
 
+
 .highlight-description-main img:hover {
     cursor: pointer;
     -webkit-filter: blur(5px);
@@ -50,12 +53,14 @@
     transform: scale(1.05);
 }
 
+
 .highlight-description-main h5 {
     text-align: center;
     width: 40%;
     font-family: 'Salsa', cursive;
     font-size: 1.5rem;
 }
+
 
 .highlight-description-main button {
     padding: 0.5rem 1rem;
@@ -74,10 +79,12 @@
     animation: hithere 10s ease-in-out infinite;
 }
 
+
 .highlight-description-main button:hover {
     background-color: var(--dark-blue);
     transform: translateY(-0.2rem);
 }
+
 
 .highlight-description-main i {
     margin-right: 1rem;
@@ -86,9 +93,11 @@
     transition: 600ms ease-in-out;
 }
 
+
 .highlight-description-main i:hover {
     color: var(--deep-blue);
 }
+
 
 .highlight-description-main .already-liked {
     color: #ff5700;

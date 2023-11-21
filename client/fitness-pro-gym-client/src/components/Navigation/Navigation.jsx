@@ -4,6 +4,7 @@ import { AuthenticationContext } from "../../contexts/AuthenticationContext";
 import './navigation.css';
 import profilePicture from '../../../public/images/profile_picture.jpg';
 
+
 export function Navigation() {
     const {user, setLogoutComponent} = useContext(AuthenticationContext);
     const [dropdown, setDropdown] = useState(false);
@@ -43,6 +44,7 @@ export function Navigation() {
 
     </header>
     );
+    
     
     function hiddenDropdownHandler() {
         const hiddenDiv = document.querySelector(".hidden-profile-view");

@@ -55,6 +55,7 @@
     animation: flash 1.5s ease infinite alternate;
 }
 
+
 .err-main button:hover {
     background-color: var(--carrot-orange);
     color: #d6d6d6;;

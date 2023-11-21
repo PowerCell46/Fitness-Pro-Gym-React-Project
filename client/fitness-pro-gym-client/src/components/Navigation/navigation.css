@@ -11,6 +11,7 @@ header {
     align-items: center;
 }
 
+
 header li {
     list-style: none;
     cursor: pointer;
@@ -23,11 +24,13 @@ header li {
     transform: translatey(0px);
 }
 
+
 header li a {
     text-decoration: none;
     color: whitesmoke;
     transition: all 0.3s ease-in-out;
 }
+
 
 header li a:before {
     content: "";
@@ -42,14 +45,17 @@ header li a:before {
     transition: all 0.3s ease-in-out;
 }
 
+
 header li a:hover {
     text-decoration: underline;
     background-position: 0%;
 }
 
+
 header li a:hover:before {
     width: 100%;
 }
+
 
 header li div img {
     border-radius: 10%;
@@ -57,10 +63,12 @@ header li div img {
     width: calc(5vh * 1.02);
 }
 
+
 .profile-dropdown {
     position: relative;
     display: inline-block;
 }
+
 
 .hidden-profile-view {
     width: 10vw;
@@ -76,15 +84,18 @@ header li div img {
     transition: 400ms ease-in-out;
 }
 
+
 .hidden-profile-view:hover {
     transition: 600ms ease-in-out;
     background-color: rgba(20, 83, 154, 0.80);
 }
 
+
 .hidden-profile-view li {
     margin-top: 1.7vh;
     display: inline-block;
 }
+
 
 .img-to-my-profile-link:hover:before {
     width: 0;

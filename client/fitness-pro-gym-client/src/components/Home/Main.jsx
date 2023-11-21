@@ -1,5 +1,6 @@
 import "./home.css";
 
+
 export function Main(props) {
     return (
         <main className={props.background}>
