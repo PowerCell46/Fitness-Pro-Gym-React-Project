@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./products.css";
+import { Link } from "react-router-dom";
 
 export function Products() {
     const [productsData, setProductsData] = useState([]);
@@ -41,107 +42,21 @@ export function Products() {
         <section>
         <main>
 
+            {productsData.map((product) => 
+            <Link to={`/products/${product._id}`}>
             <div className="product-container">
                 <div className="image-container">
-                    <img src="https://musclepharm.com/cdn/shop/files/MP_4lbCombat_Vanilla_Front.png?v=1683210424&width=700" alt=""/>
+                <img src={`data:image/jpeg;base64,${product.photo}`} alt={`${product.name} Image`}/>
                     <button>Add To Cart</button>
                 </div>
                 <div className="shown-info">
-                    <h5>Combat Protein Powder word word word word</h5>
-                    <p id="price">75.<sup>50</sup> Lv.</p>
+                    <h5>{product.name}</h5>
+                    <p id="price">{product.price}<sup>00</sup> Lv.</p>
                 </div>
             </div>
-            <div className="product-container">
-                <div className="image-container">
-                    <img src="https://musclepharm.com/cdn/shop/files/MP_4lbCombat_Vanilla_Front.png?v=1683210424&width=700" alt=""/>
-                    <button>Add To Cart</button>
-                </div>
-                <div className="shown-info">
-                    <h5>Combat Protein Powder word word word word</h5>
-                    <p id="price">75.<sup>50</sup> Lv.</p>
-                </div>
-            </div>
-            <div className="product-container">
-                <div className="image-container">
-                    <img src="https://musclepharm.com/cdn/shop/files/MP_4lbCombat_Vanilla_Front.png?v=1683210424&width=700" alt=""/>
-                    <button>Add To Cart</button>
-                </div>
-                <div className="shown-info">
-                    <h5>Combat Protein Powder word word word word</h5>
-                    <p id="price">75.<sup>50</sup> Lv.</p>
-                </div>
-            </div>
-            <div className="product-container">
-                <div className="image-container">
-                    <img src="https://musclepharm.com/cdn/shop/files/MP_4lbCombat_Vanilla_Front.png?v=1683210424&width=700" alt=""/>
-                    <button>Add To Cart</button>
-                </div>
-                <div className="shown-info">
-                    <h5>Combat Protein Powder word word word word</h5>
-                    <p id="price">75.<sup>50</sup> Lv.</p>
-                </div>
-            </div>
-            <div className="product-container">
-                <div className="image-container">
-                    <img src="https://musclepharm.com/cdn/shop/files/MP_4lbCombat_Vanilla_Front.png?v=1683210424&width=700" alt=""/>
-                    <button>Add To Cart</button>
-                </div>
-                <div className="shown-info">
-                    <h5>Combat Protein Powder word word word word</h5>
-                    <p id="price">75.<sup>50</sup> Lv.</p>
-                </div>
-            </div>
-            <div className="product-container">
-                <div className="image-container">
-                    <img src="https://musclepharm.com/cdn/shop/files/MP_4lbCombat_Vanilla_Front.png?v=1683210424&width=700" alt=""/>
-                    <button>Add To Cart</button>
-                </div>
-                <div className="shown-info">
-                    <h5>Combat Protein Powder word word word word</h5>
-                    <p id="price">75.<sup>50</sup> Lv.</p>
-                </div>
-            </div>
-            <div className="product-container">
-                <div className="image-container">
-                    <img src="https://musclepharm.com/cdn/shop/files/MP_4lbCombat_Vanilla_Front.png?v=1683210424&width=700" alt=""/>
-                    <button>Add To Cart</button>
-                </div>
-                <div className="shown-info">
-                    <h5>Combat Protein Powder word word word word</h5>
-                    <p id="price">75.<sup>50</sup> Lv.</p>
-                </div>
-            </div>
-            <div className="product-container">
-                <div className="image-container">
-                    <img src="https://musclepharm.com/cdn/shop/files/MP_4lbCombat_Vanilla_Front.png?v=1683210424&width=700" alt=""/>
-                    <button>Add To Cart</button>
-                </div>
-                <div className="shown-info">
-                    <h5>Combat Protein Powder word word word word</h5>
-                    <p id="price">75.<sup>50</sup> Lv.</p>
-                </div>
-            </div>
-            <div className="product-container">
-                <div className="image-container">
-                    <img src="https://musclepharm.com/cdn/shop/files/MP_4lbCombat_Vanilla_Front.png?v=1683210424&width=700" alt=""/>
-                    <button>Add To Cart</button>
-                </div>
-                <div className="shown-info">
-                    <h5>Combat Protein Powder word word word word</h5>
-                    <p id="price">75.<sup>50</sup> Lv.</p>
-                </div>
-            </div>
-            <div className="product-container">
-                <div className="image-container">
-                    <img src="https://musclepharm.com/cdn/shop/files/MP_4lbCombat_Vanilla_Front.png?v=1683210424&width=700" alt=""/>
-                    <button>Add To Cart</button>
-                </div>
-                <div className="shown-info">
-                    <h5>Combat Protein Powder word word word word</h5>
-                    <p id="price">75.<sup>50</sup> Lv.</p>
-                </div>
-            </div>
-        
+            </Link>
+            )}
+           
         </main>
     </section>
     </div>

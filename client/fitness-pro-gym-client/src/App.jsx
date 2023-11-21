@@ -359,7 +359,7 @@ function App() {
             });
 
             if (response.status === 200) {
-                navigate('/'); // products
+                navigate('/products');
 
             } else {
                 console.log(response);
