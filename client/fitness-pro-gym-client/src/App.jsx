@@ -281,7 +281,7 @@ function App() {
             });
 
             if (response.status === 200) {
-                navigate('/'); // Trainers
+                navigate('/trainers');
 
             } else {
                 console.log(response);
@@ -305,13 +305,17 @@ function App() {
             <HighlightContext.Provider value={{postHighlightSubmitHandler}}>
             <Routes>
                 <Route path='/' element={<Home/>}/>
+
                 <Route path='/login' element={<Login/>}/>
                 <Route path='/register' element={<Register/>}/>   
+                
                 <Route path='/postHighlight' element={<PostHighlight/>}/>
                 <Route path='/highlights' element={<Highlights/>}/>
                 <Route path='/highlights/:highlightId' element={<HighlightDescription/>}/>
+
                 <Route path='/postTrainer' element={<PostTrainer/>}/>
                 <Route path='/trainers' element={<Trainers/>} />
+
                 <Route path='/successfulOrder' element={<SuccessfulOrder/>}/>
                 <Route path='*' element={<Error_404/>}/>
             </Routes>
