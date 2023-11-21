@@ -15,7 +15,7 @@ export function PostProduct() {
             <input id="post-product-name" type="text" placeholder="Product Name" name="name"/>    
            
             <div className="productTypeContainer">
-                    <label for="productType">Product Type:</label>
+                    <label htmlFor="productType">Product Type:</label>
                 <select name="productType">
                     <option value="foodSupplement">Food Supplement</option>
                     <option value="fitnessMachine">Fitness Machine</option>

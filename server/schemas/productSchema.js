@@ -21,6 +21,11 @@ const productSchema = new Schema({
     price: {
         type: Number,
         required: true,
+    },
+    uploadDate: {
+        type: Date,
+        required: true,
+        default: Date.now
     }
 });
 

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import "./highlights.css";
+// import "./highlights.css";
 
 
 export function Highlights() {
@@ -8,8 +8,13 @@ export function Highlights() {
 
     useEffect(() => {
         async function fetchHighlightsData() {
-            const response = await fetch("http://localhost:5000/highlights");
-           
+            try {
+                const response = await fetch("http://localhost:5000/highlights");
+            
+            } catch {
+                /// Do something
+            }
+
             if (!response.ok) {
                 console.log(response);
                 // navigate

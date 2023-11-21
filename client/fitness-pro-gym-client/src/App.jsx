@@ -20,6 +20,7 @@ import { Trainers } from './components/Trainers/Trainers';
 import { validatePassword, validateUsername, validateImageExtension, validateTrainerName, validatePhoneNumber, validateEmail, validateProductName, validateProductDescription, validateProductPrice } from './validators';
 import { PostProduct } from './components/PostProduct/PostProduct';
 import { ProductContext } from './contexts/ProductContext';
+import { Products } from './components/Products/Products';
 
 
 function App() {
@@ -397,6 +398,7 @@ function App() {
 
 
                 <Route path='/postProduct' element={<PostProduct/>} />
+                <Route path='/products' element={<Products/>} />
 
                 <Route path='/successfulOrder' element={<SuccessfulOrder/>}/>
                 <Route path='*' element={<Error_404/>}/>

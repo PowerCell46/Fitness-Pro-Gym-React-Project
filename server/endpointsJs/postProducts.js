@@ -83,4 +83,3 @@ function validateProductPrice(price) {
 
 
 module.exports = postProductHandler;
-//validate product type on the backend !!!!

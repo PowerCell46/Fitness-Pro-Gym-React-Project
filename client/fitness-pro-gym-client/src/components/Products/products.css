@@ -1,0 +1,201 @@
+.products-main {
+    margin-top: -5vh;
+    margin-left: -0.4vw;
+    width: 99.2vw;
+    background: url("https://wallpaperset.com/w/full/9/8/4/534101.jpg");
+    background-size:cover;
+}
+
+
+.aside-wrapper {
+    margin: 16vh auto 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+aside {
+    margin-top: 6vh;
+    border-radius: 1rem;
+    width: 75%;
+    background-color: var(--deep-blue);
+    display: flex;
+    flex-direction: row;
+    align-items:center;
+    justify-content: space-around;
+    box-shadow: 8px 8px 9px 2px rgba(0,0,0,0.65);
+}
+
+aside h1 {
+    color: #fff;
+    margin-top: 5vh;
+    font-family: 'Salsa', cursive;
+    text-shadow: 5px 0px 7px rgba(0,0,0,0.68);
+    font-weight: 300;
+    font-size: 2rem;
+    letter-spacing: 0.05rem;
+    transition: 300ms ease-in-out;
+}
+
+.selected-view {
+    text-decoration: underline;
+    color: #ff5700;
+}
+
+aside h1:hover {
+    color: #ff5700;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+main {
+    margin-top: -5vh;
+    width: 94vw;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1vw;
+    padding: 10vh 2vw;
+    padding-bottom: 0;
+}
+
+.product-container {
+    box-shadow: 8px 8px 9px 2px rgba(0,0,0,0.65);
+    text-shadow: 5px 0px 7px rgba(0,0,0,0.2);
+    height: 47vh;
+    background-color: var(--deep-blue);
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: column;
+    position: relative;
+    transition: 600ms ease-in-out;
+    margin-bottom: 5vh;
+    border-radius: 0.8rem;
+}
+
+.product-container:hover .shown-info {
+    height: 45%;
+}
+
+.image-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: 600ms ease-in-out;
+}
+
+.product-container img {
+    margin-top: 1.5vh;
+    width: 100%;
+    height: auto;
+}
+
+.shown-info {
+    width: 100%;
+    height: 30%;
+    background-color: whitesmoke;
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    flex-direction: column;
+    transition: 600ms ease-in-out;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-radius: 0.8rem;
+}
+
+.shown-info h5 {
+    margin-top: 1vh;
+    font-size: 1.2rem;
+    text-align: center;
+    font-family: 'Salsa', cursive;
+    font-weight: 300;
+    letter-spacing: 0.03rem;
+    z-index: 2;
+}
+
+.show-info-inner-container {
+    display: flex;
+}
+
+.shown-info p {
+    color: #ff5700;
+    text-align: center;
+    font-size: 1rem;
+    width: 60%;
+    margin-top: -3vh;
+    font-family: 'Salsa', cursive;
+    align-self: flex-start;
+    margin-left: 1rem;
+}
+
+#price {
+    font-size: 2rem;
+    align-self: center;
+    font-weight: 600;
+    letter-spacing: 0.02rem;
+    margin-bottom: 0.8vh;
+}
+
+button {
+    position: absolute;
+    top: 10%;
+    z-index: 10;
+    padding: 0.5rem 1rem;
+    background-color: #ff5700;
+    color: #f5f5f5;
+    font-size: 1.8rem;
+    text-shadow: 5px 0px 7px rgba(0,0,0,0.68);
+    font-family: 'Salsa', cursive;
+    font-weight: 600;
+    letter-spacing: 0.15rem;
+    border: none;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    transition: 600ms ease-in-out;
+    margin-bottom: -2Vh;
+    opacity: 0;
+    transition: opacity 0.6s ease-in-out;
+    transition: 600ms ease-in-out;
+}
+
+button:nth-child(2) {
+    top: 40%;
+}
+
+.product-container:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.product-container:hover button {
+    opacity: 1;
+}
+
+.product-container:hover .shown-info {
+    background-color: #FBEAFF
+
+}
+
+
+.product-container:hover .image-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(251, 235, 255, 0.25);
+    z-index: 1;
+    transition: 1000ms ease-in-out;
+    border-radius: 0.8rem;
+}
+
+button:hover {
+    background-color: #e64e00;
+    transform: translateY(-0.2rem);
+}
