@@ -34,7 +34,7 @@ export function Products() {
                                 </div>
                                 <div className="shown-info">
                                     <h5>{product.name}</h5>
-                                    <p id="price">{product.price}<sup>00</sup> Lv.</p>
+                                    <p id="price">{product.price}<sup>00</sup> BGN</p>
                                 </div>
                             </div>
                         </Link>

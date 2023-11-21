@@ -9,7 +9,6 @@ async function getHighlightHandler(req, res) {
         let highlight = await Highlight.findOne({_id: highlightId}).lean();
         const imageData = await fs.promises.readFile(`${highlight.imageLocation}`, {encoding: 'base64'});
 
-        console.log(highlight);
         highlight = {...highlight, photo: imageData}
         res.json(highlight);
 

@@ -11,10 +11,17 @@ export function HighlightDescription() {
     
     useEffect(() => {
         async function fetchHighlightData() {
-            const response = await fetch(`http://localhost:5000/highlights/${highlightId}`);
+
+            try {
+            var response = await fetch(`http://localhost:5000/highlights/${highlightId}`);
+
+            } catch {
+                console.log( await response.json());
+                //Redirect
+            }
 
             if (!response.ok) {
-                console.log(response);
+                console.log( await response.json());
                 // Redirect
             }
 
@@ -49,7 +56,7 @@ export function HighlightDescription() {
 
                 { // Only the owner has the right to edit and delete the highlight
                 highlightData.ownerId === JSON.parse(localStorage.getItem("authenticationTokenAndData")).id ? 
-                    <div class="buttons">
+                    <div className="buttons">
                         <Link to={`/highlights/edit/${highlightData._id}`}><button>Edit</button></Link>
                         <Link to={`/highlights/edit/${highlightData._id}`}><button>Delete</button></Link>
                     </div>

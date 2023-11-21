@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const getHighlightHandler = require("./endpointsJs/getHighlight");
 const getHighlightsHandler = require("./endpointsJs/getHighlights");
+const getProductHandler = require("./endpointsJs/getProduct");
 const getProductsHandler = require("./endpointsJs/getProducts");
 const getProductsMachinesHandler = require("./endpointsJs/getProductsMachines");
 const getProductsMerchandiseHandler = require("./endpointsJs/getProductsMerchandise");
@@ -67,6 +68,11 @@ router.get("/products/machines", getProductsMachinesHandler);
 router.get("/products/merchandise", getProductsMerchandiseHandler);
 
 router.post("/products", upload.single("image"), postProductHandler);
+
+
+
+router.get("/products/:productId", getProductHandler);
+
 
 
 module.exports = router;

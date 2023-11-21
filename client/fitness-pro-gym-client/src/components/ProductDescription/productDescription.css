@@ -1,0 +1,122 @@
+.product-description-main {
+    width: 100vw;
+    height: 90vh;
+    /* FIX THE HEIGHT */
+    margin: 12.5vh auto 0;
+    margin-left: -0.4vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 8vh;
+    background: url("https://wallpapers.com/images/featured/black-metal-background-r9liulu984twkndf.jpg");
+    background-size:cover;
+    background-attachment: fixed;
+}
+
+
+.product-description-main img {
+    transition: 600ms ease-in-out;
+    width: 35%;
+    height: auto;
+    border-radius: 2rem;
+}
+
+
+.product-description-main img:hover {
+    transform: scale(1.1);
+}
+
+
+.product-description-main aside {
+    height: 75vh;
+    width: 45vw;
+    background-color: rgba(0, 0, 0, 0.45);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 20px;
+    transition: 600ms ease-in-out;
+}
+
+
+.product-description-main aside:hover {
+    background-color: rgba(0, 0, 0, 0.55);
+    transform: scale(1.02);
+}
+
+
+.product-description-main aside h2 {
+    color: #c4c4c4;
+    font-size: 3.5rem;
+    text-align: center;
+    font-family: 'Permanent Marker', cursive;
+    text-shadow: 5px 0px 7px rgba(0,0,0,0.68);
+    letter-spacing: 0.8rem;
+    margin-bottom: 0;
+    transition: 600ms ease-in-out;
+}
+
+
+.product-description-main aside:hover h2, aside:hover h3, aside:hover p {
+    color: whitesmoke ;
+}
+
+
+.product-description-main aside h3 {
+    margin-top: 1vh;
+    color: #c4c4c4;
+    font-size: 2rem;
+    text-align: center;
+    font-family: 'Salsa', cursive;
+    text-shadow: 5px 0px 7px rgba(0,0,0,0.68);
+    letter-spacing: 0.1rem;
+    transition: 600ms ease-in-out;
+}
+
+
+.product-description-main aside p {
+    font-size: 1.1rem;
+    margin-top: -1vh;
+    width: 90%;
+    font-family: 'Salsa', cursive;
+    letter-spacing: 0.05rem;
+    color: #c4c4c4;
+    font-weight: 100;
+    line-height: 2rem;
+    transition: 600ms ease-in-out;
+}
+
+
+.product-description-main aside div {
+    align-self: center;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+
+.product-description-main aside button {
+    margin-top: 2vh;
+    padding: 1rem 1.5rem;
+    background-color: var(--deep-blue);
+    color: #f5f5f5;
+    font-size: 1.2rem;
+    text-shadow: 5px 0px 7px rgba(0,0,0,0.68);
+    font-family: 'Salsa', cursive;
+    font-weight: 600;
+    letter-spacing: 0.15rem;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 600ms ease-in-out;
+    margin-bottom: -2Vh;
+    animation: hithere 5s ease-in-out infinite;
+    /* margin-right: 3vw; */
+}
+
+
+.product-description-main aside button:hover {
+    background-color: var(--dark-blue);
+    transform: translateY(-0.2rem);
+}

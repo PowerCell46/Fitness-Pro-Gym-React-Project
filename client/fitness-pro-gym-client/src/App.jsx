@@ -21,6 +21,7 @@ import { validatePassword, validateUsername, validateImageExtension, validateTra
 import { PostProduct } from './components/PostProduct/PostProduct';
 import { ProductContext } from './contexts/ProductContext';
 import { Products } from './components/Products/Products';
+import { ProductDescription } from './components/ProductDescription/ProductDescription';
 
 
 function App() {
@@ -398,7 +399,7 @@ function App() {
 
                 <Route path='/postProduct' element={<PostProduct/>} />
                 <Route path='/products' element={<Products/>} />
-                {/* <Route path='/products/:productId' element={} /> */}
+                <Route path='/products/:productId' element={<ProductDescription/>} />
 
                 <Route path='/successfulOrder' element={<SuccessfulOrder/>}/>
                 <Route path='*' element={<Error_404/>}/>
