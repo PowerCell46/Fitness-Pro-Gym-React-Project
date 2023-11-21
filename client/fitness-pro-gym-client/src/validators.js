@@ -59,7 +59,7 @@ export function validateProductName(name) {
 
 
 export function validateProductDescription(description) {
-    if (description.length < 10 || description.length > 50) {
+    if (description.length < 10 || description.length > 500) {
         return false;
     }
     return true;

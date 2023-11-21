@@ -328,7 +328,7 @@ function App() {
 
         const validDescription = validateProductDescription(formData.get("description"));
         if (!validDescription) {
-            document.querySelector("#post-product-description-err-p").textContent = 'Name is not valid!';                    
+            document.querySelector("#post-product-description-err-p").textContent = 'Description is not valid!';                    
             document.querySelector("#post-product-description-err-p").style.display = 'inline';
             document.querySelector("#post-product-description").classList.add("err-input-field");
 
@@ -339,7 +339,7 @@ function App() {
 
         const validPrice = validateProductPrice(formData.get("price"));
         if (!validPrice) {
-            document.querySelector("#post-product-price-err-p").textContent = 'Name is not valid!';                    
+            document.querySelector("#post-product-price-err-p").textContent = 'Price is not valid!';                    
             document.querySelector("#post-product-price-err-p").style.display = 'inline';
             document.querySelector("#post-product-price").classList.add("err-input-field");
 
