@@ -2,6 +2,10 @@ const { model, Schema } = require("mongoose");
 
 
 const productSchema = new Schema({
+    imageLocation: {
+        type: String,
+        required: true
+    },
     name: {
         type: String,
         required: true,
@@ -17,12 +21,7 @@ const productSchema = new Schema({
     price: {
         type: Number,
         required: true,
-    },
-    productImage: {
-        type: Buffer, // Or Image URL A.K.A. String
-        required: true,
     }
-
 });
 
 

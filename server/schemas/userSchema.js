@@ -2,6 +2,10 @@ const { model, Schema } = require("mongoose");
 
 
 const userSchema = new Schema({
+    // imageLocation: {
+    //     type: String,
+    //     required: true,
+    // },
     email: {
         type: String,
         required: true,
@@ -15,16 +19,11 @@ const userSchema = new Schema({
         type: String,
         required: true,
     },
-    // profilePicture: {
-    //     type: Buffer,
-    //     required: true,
-    // },
     isAdministrator: {
         type: Boolean,
         default: false,
         required: true
     }
-
 });
 
 

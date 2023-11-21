@@ -59,7 +59,7 @@ async function registerHandler(req, res) {
     }
 
     console.log(`User: ${user.username} with email: ${user.email} successfully registered!`);
-    res.json({token, username: user.username, email: user.email, id: user._id});
+    res.json({token, username: user.username, email: user.email, id: user._id, isAdministrator: user.isAdministrator});
 } 
 
 

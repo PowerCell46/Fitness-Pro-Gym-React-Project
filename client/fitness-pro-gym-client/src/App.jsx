@@ -17,7 +17,9 @@ import { Highlights } from './components/Highlights/Highlights';
 import { PostTrainer } from './components/PostTrainer/PostTrainer';
 import { TrainerContext } from './contexts/TrainerContext';
 import { Trainers } from './components/Trainers/Trainers';
-import { validatePassword, validateUsername, validateImageExtension, validateName, validatePhoneNumber, validateEmail } from './validators';
+import { validatePassword, validateUsername, validateImageExtension, validateTrainerName, validatePhoneNumber, validateEmail, validateProductName, validateProductDescription, validateProductPrice } from './validators';
+import { PostProduct } from './components/PostProduct/PostProduct';
+import { ProductContext } from './contexts/ProductContext';
 
 
 function App() {
@@ -237,7 +239,7 @@ function App() {
             document.querySelector("#post-trainer-span").classList.remove("err-input-field"); // does not look good
         }
 
-        const validName = validateName(formData.get("name"));
+        const validName = validateTrainerName(formData.get("name"));
         if (!validName) {
             document.querySelector("#post-trainer-name-err-p").textContent = 'Name is not valid!';                    
             document.querySelector("#post-trainer-name-err-p").style.display = 'inline';
@@ -295,6 +297,66 @@ function App() {
         }
     }
 
+    async function postProductSubmitHandler(e) {
+        e.preventDefault();
+
+        let formData = new FormData(e.target);
+        
+        const validImage = validateImageExtension(formData.get("image"));
+        if (!validImage) {
+            document.querySelector("#post-product-image-err-p").textContent = 'Image format not valid!';                    
+            document.querySelector("#post-product-image-err-p").style.display = 'inline';
+            document.querySelector("#post-product-image").classList.add("err-input-field");
+       
+        } else {
+            document.querySelector("#post-product-image-err-p").style.display = 'none';
+            document.querySelector("#post-product-image").classList.remove("err-input-field");
+        }
+
+        const validName = validateProductName(formData.get("name"));
+        if (!validName) {
+            document.querySelector("#post-product-name-err-p").textContent = 'Name is not valid!';                    
+            document.querySelector("#post-product-name-err-p").style.display = 'inline';
+            document.querySelector("#post-product-name").classList.add("err-input-field");
+        
+        } else {
+            document.querySelector("#post-product-name-err-p").style.display = 'none';
+            document.querySelector("#post-product-name").classList.remove("err-input-field");
+        }
+
+        const validDescription = validateProductDescription(formData.get("description"));
+        if (!validDescription) {
+            document.querySelector("#post-product-description-err-p").textContent = 'Name is not valid!';                    
+            document.querySelector("#post-product-description-err-p").style.display = 'inline';
+            document.querySelector("#post-product-description").classList.add("err-input-field");
+
+        } else {
+            document.querySelector("#post-product-description-err-p").style.display = 'none';
+            document.querySelector("#post-product-description").classList.remove("err-input-field");
+        }
+
+        const validPrice = validateProductPrice(formData.get("price"));
+        if (!validPrice) {
+            document.querySelector("#post-product-price-err-p").textContent = 'Name is not valid!';                    
+            document.querySelector("#post-product-price-err-p").style.display = 'inline';
+            document.querySelector("#post-product-price").classList.add("err-input-field");
+
+        } else {
+            document.querySelector("#post-product-price-err-p").style.display = 'none';
+            document.querySelector("#post-product-price").classList.remove("err-input-field");
+        }
+
+        if (!validImage || !validName || !validDescription || !validPrice) {
+            return;
+        }
+
+        //validate product type on the backend !!!!
+        const response =  await fetch("http://localhost:5000/products", {
+            method: "POST",
+            body: formData,
+        });
+    }
+
     return (
         <AuthenticationContext.Provider value={{loginSubmitHandler, registerSubmitHandler, logoutSubmitHandler, user, setLogoutComponent}}>
         <>
@@ -302,8 +364,10 @@ function App() {
 
             {logoutComponentShown ? <Logout/> : ""}
            
+            <ProductContext.Provider value={{postProductSubmitHandler}}>
             <TrainerContext.Provider value={{postTrainerSubmitHandler}}>
             <HighlightContext.Provider value={{postHighlightSubmitHandler}}>
+          
             <Routes>
                 <Route path='/' element={<Home/>}/>
 
@@ -317,11 +381,16 @@ function App() {
                 <Route path='/postTrainer' element={<PostTrainer/>}/>
                 <Route path='/trainers' element={<Trainers/>} />
 
+
+                <Route path='/postProduct' element={<PostProduct/>} />
+
                 <Route path='/successfulOrder' element={<SuccessfulOrder/>}/>
                 <Route path='*' element={<Error_404/>}/>
             </Routes>
+           
             </HighlightContext.Provider>
             </TrainerContext.Provider>
+            </ProductContext.Provider>
            
             <Footer/>
         </>

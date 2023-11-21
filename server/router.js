@@ -5,9 +5,11 @@ const getTrainersHandler = require("./endpointsJs/getTrainers");
 const likeHighlightHandler = require("./endpointsJs/likeHighlight");
 const loginHandler = require("./endpointsJs/login");
 const { postHighlightHandler } = require("./endpointsJs/postHighlight");
+const postProductHandler = require("./endpointsJs/postProducts");
 const postTrainerHandler = require("./endpointsJs/postTrainer");
 const registerHandler = require("./endpointsJs/register");
 const multer = require('multer');
+
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -17,6 +19,7 @@ const storage = multer.diskStorage({
       cb(null, file.originalname);
     },
 });
+
 
 const upload = multer({ storage: storage });
 
@@ -29,6 +32,7 @@ router.post("/users/login", loginHandler);
 
 
 router.post("/users/register", registerHandler);
+
 
 
 router.get("/highlights", getHighlightsHandler);
@@ -48,6 +52,9 @@ router.get("/trainers", getTrainersHandler);
 
 router.post("/trainers", upload.single("image"), postTrainerHandler);
 
+
+
+router.post("/products", upload.single("image"), postProductHandler);
 
 
 module.exports = router;

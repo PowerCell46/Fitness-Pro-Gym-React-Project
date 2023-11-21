@@ -30,7 +30,7 @@ export function validateImageExtension(image) {
 }
 
 
-export function validateName(name) {
+export function validateTrainerName(name) {
     if (!name.includes(" ") || name.length < 7) {
         return false;
     }
@@ -47,4 +47,28 @@ export function validatePhoneNumber(phoneNumber) {
 export function validateEmail(email) {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return emailRegex.test(email);
+}
+
+
+export function validateProductName(name) {
+    if (name.length < 5 || name.length > 10) {
+        return false;
+    }
+    return true;
+}
+
+
+export function validateProductDescription(description) {
+    if (description.length < 10 || description.length > 50) {
+        return false;
+    }
+    return true;
+}
+
+
+export function validateProductPrice(price) {
+    if (price <= 0 || price > 100000) {
+        return false;
+    } 
+    return true;
 }

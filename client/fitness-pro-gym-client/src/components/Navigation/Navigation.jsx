@@ -26,8 +26,8 @@ export function Navigation() {
                 <img id="profilePicture" src={profilePicture} alt="Profile picture" onClick={hiddenDropdownHandler}/>
                 <div className="hidden-profile-view">
                     <ul>
-                    <li><Link to={'/create/product'}>Create Product</Link></li>
-                    <li><Link to={'/create/trainer'}>Create Trainer</Link></li>
+                    <li><Link to={'/postProduct'}>Create Product</Link></li>
+                    <li><Link to={'/postTrainer'}>Create Trainer</Link></li>
                     </ul>
                 </div>
             </div>
