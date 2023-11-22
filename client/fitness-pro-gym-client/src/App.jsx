@@ -22,6 +22,7 @@ import { PostProduct } from './components/PostProduct/PostProduct';
 import { ProductContext } from './contexts/ProductContext';
 import { Products } from './components/Products/Products';
 import { ProductDescription } from './components/ProductDescription/ProductDescription';
+import { Memberships } from './components/Memberships/Memberships';
 
 
 function App() {
@@ -400,6 +401,8 @@ function App() {
                 <Route path='/postProduct' element={<PostProduct/>} />
                 <Route path='/products' element={<Products/>} />
                 <Route path='/products/:productId' element={<ProductDescription/>} />
+
+                <Route path='/memberships' element={<Memberships/>} />
 
                 <Route path='/successfulOrder' element={<SuccessfulOrder/>}/>
                 <Route path='*' element={<Error_404/>}/>
