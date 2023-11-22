@@ -2,9 +2,16 @@ export function validatePassword(password) {
     password = password.split("");
     const uppercaseChars = password.filter(char => char.charCodeAt() >= 65 && char.charCodeAt() <= 90);
     const digits = password.filter(char =>char.charCodeAt() >= 48 && char.charCodeAt() <= 57);
-    if (password.length < 6 || !uppercaseChars || !digits) {
-        return false;
+    if (uppercaseChars.length === 0) {
+        return `Password must have at least one Uppercase!`;
+    
+    } else if (digits.length === 0) {
+        return `Password must have at least one Number!`;
+    
+    } else if (password.length < 6) {
+        return `Password must be at least 6 characters!`;
     }
+
     return true;
 }
 
@@ -45,8 +52,23 @@ export function validatePhoneNumber(phoneNumber) {
 
 
 export function validateEmail(email) {
+    if (email.length < 5) {
+        return `Email must be at least 5 characers!`;
+    
+    } else if (!email.includes("@")) {
+        return `Email must include @ sign!`;
+    
+    } else if (!email.includes(".")) {
+        return `Email must include . sign!`;
+    }
+    
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    return emailRegex.test(email);
+
+    if (!emailRegex.test(email)) {
+        return `Email is not valid!`
+    };
+
+    return true;
 }
 
 

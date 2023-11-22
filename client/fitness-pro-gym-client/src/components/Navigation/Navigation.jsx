@@ -19,28 +19,30 @@ export function Navigation() {
         
         {user ? <li><a onClick={() => setLogoutComponent(true)}>Logout</a></li> : "" /* User */}
        
-        {user ? 
-        user.isAdministrator ? 
-        <li> {/* If the user is the administrator - access to the create menus*/}
+
+        {user ?
+        JSON.parse(localStorage.getItem("authenticationTokenAndData")).isAdministrator ? 
+        <li> {/* If the user is the administrator - access to create menus */}
             <div className="profile-dropdown">
                 <img id="profilePicture" src={profilePicture} alt="Profile picture" onClick={hiddenDropdownHandler}/>
                 <div className="hidden-profile-view">
                     <ul>
-                    <li><Link to={'/postProduct'}>Create Product</Link></li>
-                    <li><Link to={'/postTrainer'}>Create Trainer</Link></li>
+                        <li><Link to={'/postProduct'}>Create Product</Link></li>
+                        <li><Link to={'/postTrainer'}>Create Trainer</Link></li>
                     </ul>
                 </div>
             </div>
         </li> 
         : 
-        <li> {/* If the user is not the administrator - the image is a link to My Profile*/}
+        <li> {/* If the user is not the administrator - the image is a link to My Profile */}
             <div className="profile-dropdown">
-                <Link className="img-to-my-profile-link" to={'/myProfile'}><img id="profilePicture" src={profilePicture} alt="Profile picture" onClick={hiddenDropdownHandler}/></Link>
+                <Link className="img-to-my-profile-link" to={'/myProfile'}>
+                    <img id="profilePicture" src={profilePicture} alt="Profile picture" onClick={hiddenDropdownHandler}/>
+                </Link>
             </div>
         </li>
-        : 
-        "" 
-        }
+    : // Remove the colon here
+    "" }
 
     </header>
     );
@@ -57,6 +59,5 @@ export function Navigation() {
         }
 
         setDropdown((oldValue) => !oldValue);
-        console.log(dropdown);
     }
 }

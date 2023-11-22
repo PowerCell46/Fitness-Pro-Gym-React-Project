@@ -6,20 +6,25 @@ async function loginHandler(req, res) {
     const {email, password} = req.body;
 
     const emailValidation = validateEmail(email);
-    if (!emailValidation) {
+    if (emailValidation !== true) {
         return res.status(400).json({ error: 'Email does not match the validation criteria!' });
     }
 
     const passwordValidation = validatePassword(password);
-    if (!passwordValidation) {
+    if (passwordValidation !== true) {
         return res.status(400).json({ error: 'Password does not match the validation criteria!' });
     }
 
+    // Making the request with Valid Email and Password
     try {
         var user = await User.findOne({email});
-    
+        
+        if (user === null) {
+            return res.status(400).json({ error: 'No such user found!' });    
+        }
+
     } catch {
-        return res.status(400).json({ error: 'An Error occured while the User was searched in the Database!' });
+        return res.status(400).json({ error: 'No such user found!' });
     }
     
     try {
@@ -33,6 +38,7 @@ async function loginHandler(req, res) {
         const token = createToken(user._id, user.email, user.user);
 
         console.log(`User: ${user.username} with email: ${user.email} successfully logged in!`);
+       
         res.json({token, username: user.username, email: user.email, id: user._id, isAdministrator: user.isAdministrator});
     
     } else {
@@ -41,19 +47,42 @@ async function loginHandler(req, res) {
     }
 }
 
-function validateEmail(email) {
+
+export function validateEmail(email) {
+    if (email.length < 5) {
+        return `Email must be at least 5 characers!`;
+    
+    } else if (!email.includes("@")) {
+        return `Email must include @ sign!`;
+    
+    } else if (!email.includes(".")) {
+        return `Email must include . sign!`;
+    }
+    
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    return emailRegex.test(email);
+
+    if (!emailRegex.test(email)) {
+        return `Email is not valid!`
+    };
+
+    return true;
 }
   
   
-function validatePassword(password) {
+export function validatePassword(password) {
     password = password.split("");
     const uppercaseChars = password.filter(char => char.charCodeAt() >= 65 && char.charCodeAt() <= 90);
     const digits = password.filter(char =>char.charCodeAt() >= 48 && char.charCodeAt() <= 57);
-    if (password.length < 6 || !uppercaseChars || !digits) {
-        return false;
+    if (uppercaseChars.length === 0) {
+        return `Password must have at least one Uppercase!`;
+    
+    } else if (digits.length === 0) {
+        return `Password must have at least one Number!`;
+    
+    } else if (password.length < 6) {
+        return `Password must be at least 6 characters!`;
     }
+
     return true;
 }
 

@@ -39,9 +39,9 @@ export function ProductDescription() {
                 <h3>{productData.price}.<sup>00</sup> BGN</h3>
                 <p>{productData.description}</p>
                 <div>
-                {user.isAdministrator ? <button>EDIT</button> : ""}
+                {JSON.parse(localStorage.getItem("authenticationTokenAndData")).isAdministrator ? <button>EDIT</button> : ""}
                 <button>ADD TO CART</button>
-                {user.isAdministrator ? <button>DELETE</button> : ""}
+                {JSON.parse(localStorage.getItem("authenticationTokenAndData")).isAdministrator ? <button>DELETE</button> : ""}
                 </div>
             </aside>
         </main>

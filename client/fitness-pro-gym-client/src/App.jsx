@@ -32,10 +32,12 @@ function App() {
 
     async function loginSubmitHandler(e) {
         e.preventDefault();
+     
         const {email, password} = (Object.fromEntries(new FormData(e.target)));
         
         const emailValidation = validateEmail(email);
-        if (!emailValidation) {
+        if (emailValidation !== true) {
+            document.querySelector("#login-email-err-p").textContent = emailValidation;
             document.querySelector("#login-email-err-p").style.display = 'inline';
             document.querySelector("#login-email").classList.add("err-input-field");
         
@@ -45,7 +47,9 @@ function App() {
         }
         
         const passwordValidation = validatePassword(password);
-        if (!passwordValidation) {
+        
+        if (passwordValidation !== true) {
+            document.querySelector("#login-password-err-p").textContent = passwordValidation;
             document.querySelector("#login-password-err-p").style.display = 'inline';
             document.querySelector("#login-password").classList.add("err-input-field");
         
@@ -54,15 +58,18 @@ function App() {
             document.querySelector("#login-password").classList.remove("err-input-field");
         }
 
-        if (!emailValidation || !passwordValidation) {
-            return
+        if (emailValidation !== true || passwordValidation !== true) {
+            return;
         }
         
         try {
-            const serverResponse = await fetch("http://localhost:5000/users/login", 
+            var serverResponse = await fetch("http://localhost:5000/users/login", 
             {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({email, password})});
-            
-            if (serverResponse.status === 403) { // Checking for the case where the Email or the Username has already been used
+       
+        } catch {
+            navigate("/404"); // Error with the making of the request
+        }
+            if (serverResponse.status === 403 ) { // Wrong Password
                 const errorData = await serverResponse.json();
                 
                 if (errorData.error === "Password is not valid!") {
@@ -72,9 +79,20 @@ function App() {
                     return;
                 }
 
-            } else if (!serverResponse.ok) {
+            } else if (serverResponse.status === 400) { // Error with the passwordValidity operation...
                 const errorData = await serverResponse.json();
-                throw new Error(errorData.error || 'An error occurred during the registration process!');
+                
+                if (errorData.error === 'No such user found!') {
+                    document.querySelector("#login-email-err-p").textContent = errorData.error;
+                    document.querySelector("#login-email-err-p").style.display = 'inline';
+                    document.querySelector("#login-email").classList.add("err-input-field");
+                    return;
+                
+                } else {
+                    navigate("/404");
+                }
+            } else if (!serverResponse.ok) { // Other type of Error...
+                navigate("/404");
             }
 
             const tokenAndData = await serverResponse.json();
@@ -83,12 +101,6 @@ function App() {
             setUser(tokenAndData);
 
             navigate("/");
-        
-        } catch(err) {
-
-            console.log(err);
-            navigate('/404');
-        }
     }
 
     async function registerSubmitHandler(e) {
