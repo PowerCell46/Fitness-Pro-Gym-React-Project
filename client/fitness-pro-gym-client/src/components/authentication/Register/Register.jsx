@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useContext } from "react";
-import { AuthenticationContext } from "../../contexts/AuthenticationContext";
+import { AuthenticationContext } from "../../../contexts/AuthenticationContext";
 import "./resgister.css";
 
 

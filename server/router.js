@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const fs = require("fs");
 const getHighlightHandler = require("./endpointsJs/getHighlight");
 const getHighlightsHandler = require("./endpointsJs/getHighlights");
 const getProductHandler = require("./endpointsJs/getProduct");
@@ -10,25 +11,33 @@ const getTrainersHandler = require("./endpointsJs/getTrainers");
 const likeHighlightHandler = require("./endpointsJs/likeHighlight");
 const loginHandler = require("./endpointsJs/login");
 const { postHighlightHandler } = require("./endpointsJs/postHighlight");
-const postProductHandler = require("./endpointsJs/postProducts");
+const postProductHandler = require("./endpointsJs/postProduct");
 const postTrainerHandler = require("./endpointsJs/postTrainer");
 const registerHandler = require("./endpointsJs/register");
 const multer = require('multer');
 
 
 const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, 'uploads/');
-    },
-    filename: function (req, file, cb) {
-      cb(null, file.originalname);
-    },
-});
+  destination: function (req, file, cb) {
+    // Extract the route path to determine the type of entity
+    const routePath = req.route.path;
+    const entityType = routePath.split("/")[1]; // Assuming your routes are structured like '/entityType/...'
 
+    // Set the destination path dynamically
+    const destinationPath = `images/${entityType}/`;
+
+    // Create the subfolder if it doesn't exist
+    fs.mkdirSync(destinationPath, { recursive: true });
+
+    cb(null, destinationPath);
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  },
+});
 
 const upload = multer({ storage: storage });
 
-// subfolders for the different kinds of uploads
 
 router.get("/");
 

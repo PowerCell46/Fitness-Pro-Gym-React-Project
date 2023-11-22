@@ -1,15 +1,15 @@
-import {Route, Routes, redirect, useNavigate} from 'react-router-dom';
+import {Route, Routes, useNavigate} from 'react-router-dom';
 import './App.css';
 import { Navigation } from './components/Navigation/Navigation';
 import { Home } from './components/Home/Home';
 import { Footer } from './components/Footer/footer';
-import { Login } from './components/Login/Login';
-import { Register } from './components/Register/Register';
+import { Login } from './components/authentication/Login/Login';
+import { Register } from './components/authentication/Register/Register';
 import { Error_404 } from './components/Error_404/Error_404';
 import { SuccessfulOrder } from './components/SuccessfulOrder/SuccessfulOrder';
 import { useState } from 'react';
 import { AuthenticationContext } from './contexts/AuthenticationContext';
-import { Logout } from './components/Logout/Logout';
+import { Logout } from './components/authentication/Logout/Logout';
 import { PostHighlight } from './components/PostHighlight/PostHighlight';
 import { HighlightContext } from './contexts/HighlightContext';
 import { HighlightDescription } from './components/HighlightDescription/HighlightDescription';
@@ -323,72 +323,77 @@ function App() {
         let formData = new FormData(e.target);
         
         const validImage = validateImageExtension(formData.get("image"));
-        if (!validImage) {
-            document.querySelector("#post-product-image-err-p").textContent = 'Image format not valid!';                    
+        if (!validImage) {;                    
             document.querySelector("#post-product-image-err-p").style.display = 'inline';
             document.querySelector("#post-product-image").classList.add("err-input-field");
-       
+            document.querySelector(".post-product-main").style.height = "115vh";
         } else {
             document.querySelector("#post-product-image-err-p").style.display = 'none';
             document.querySelector("#post-product-image").classList.remove("err-input-field");
+            document.querySelector(".post-product-main").style.height = "95vh";
         }
 
-        const validName = validateProductName(formData.get("name"));
-        if (!validName) {
-            document.querySelector("#post-product-name-err-p").textContent = 'Name is not valid!';                    
+        const nameValidation = validateProductName(formData.get("name"));
+        if (nameValidation !== true) {
+            document.querySelector("#post-product-name-err-p").textContent = nameValidation;                    
             document.querySelector("#post-product-name-err-p").style.display = 'inline';
             document.querySelector("#post-product-name").classList.add("err-input-field");
-        
+            document.querySelector(".post-product-main").style.height = "115vh";
+
         } else {
             document.querySelector("#post-product-name-err-p").style.display = 'none';
             document.querySelector("#post-product-name").classList.remove("err-input-field");
+            document.querySelector(".post-product-main").style.height = "95vh";
+
         }
 
-        const validDescription = validateProductDescription(formData.get("description"));
-        if (!validDescription) {
-            document.querySelector("#post-product-description-err-p").textContent = 'Description is not valid!';                    
+        const descriptionValidation = validateProductDescription(formData.get("description"));
+        if (descriptionValidation !== true) {
+            document.querySelector("#post-product-description-err-p").textContent = descriptionValidation;                    
             document.querySelector("#post-product-description-err-p").style.display = 'inline';
             document.querySelector("#post-product-description").classList.add("err-input-field");
+            document.querySelector(".post-product-main").style.height = "115vh";
 
         } else {
             document.querySelector("#post-product-description-err-p").style.display = 'none';
             document.querySelector("#post-product-description").classList.remove("err-input-field");
+            document.querySelector(".post-product-main").style.height = "95vh";
         }
 
-        const validPrice = validateProductPrice(formData.get("price"));
-        if (!validPrice) {
-            document.querySelector("#post-product-price-err-p").textContent = 'Price is not valid!';                    
+        const priceValidation = validateProductPrice(formData.get("price"));
+        if (priceValidation !== true) {
+            document.querySelector("#post-product-price-err-p").textContent = priceValidation;                    
             document.querySelector("#post-product-price-err-p").style.display = 'inline';
             document.querySelector("#post-product-price").classList.add("err-input-field");
+            document.querySelector(".post-product-main").style.height = "115vh";
 
         } else {
             document.querySelector("#post-product-price-err-p").style.display = 'none';
             document.querySelector("#post-product-price").classList.remove("err-input-field");
+            document.querySelector(".post-product-main").style.height = "95vh";
         }
 
-        if (!validImage || !validName || !validDescription || !validPrice) {
+        if (!validImage || nameValidation !== true || descriptionValidation !== true || priceValidation !== true) {
             return;
         }
 
         try {
-            
-            const response =  await fetch("http://localhost:5000/products", {
+            var response =  await fetch("http://localhost:5000/products", {
                 method: "POST",
                 body: formData,
             });
+        
+            } catch(е) {
+                navigate('/404');
+            }  
 
             if (response.status === 200) {
                 navigate('/products');
 
-            } else {
+            } else { // Validation Error or Error with writing the data on the Database
                 console.log(response);
                 navigate('/404');
             }
-
-        } catch(err) {
-            console.log(err);
-            navigate('/404');
-        }        
     }
 
     return (

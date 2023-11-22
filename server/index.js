@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 
-app.use('/uploads', express.static('uploads')); // Serve uploaded files
+app.use('/images', express.static('uploads'));
 
 
 app.use(router);

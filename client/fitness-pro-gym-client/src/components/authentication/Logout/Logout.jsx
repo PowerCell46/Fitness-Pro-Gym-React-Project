@@ -1,6 +1,6 @@
 import "./logout.css";
 import { useContext } from "react";
-import { AuthenticationContext } from "../../contexts/AuthenticationContext";
+import { AuthenticationContext } from "../../../contexts/AuthenticationContext";
 
 
 export function Logout() {

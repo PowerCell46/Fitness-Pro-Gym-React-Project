@@ -41,7 +41,7 @@ export function Navigation() {
                 </Link>
             </div>
         </li>
-    : // Remove the colon here
+    :
     "" }
 
     </header>

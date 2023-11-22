@@ -30,7 +30,7 @@ export function PostProduct() {
             <input id="post-product-price" type="number" placeholder="Product Price" name="price"/>
            
             <input onChange={postProductRealButtonHandler} type="file" name="image" className="file-upload" hidden="hidden"/>
-            <p id="post-product-image-err-p" className="err-message">The file can be either with JPG or PNG extension!</p>
+            <p id="post-product-image-err-p" className="err-message">Invalid File Type!</p>
             <div className="file-upload-div">
                 <button id="post-product-image" onClick={postProductFakeButtonHandler}>Choose a file</button>
                 <span>No file chosen</span>

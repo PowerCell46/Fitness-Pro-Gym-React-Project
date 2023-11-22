@@ -30,7 +30,7 @@ export function validateUsername(username) {
 
 
 export function validateImageExtension(image) {
-    const imageExtensions = ['jpg', 'jpeg', 'png', 'bmp'];
+    const imageExtensions = ['jpg', 'jpeg', 'png', 'bmp', 'webp'];
 
     const validExtension = imageExtensions.includes(image.name.toLowerCase().split(".")[image.name.toLowerCase().split(".").length - 1]);
 
@@ -76,24 +76,35 @@ export function validateEmail(email) {
 
 
 export function validateProductName(name) {
-    if (name.length < 5 || name.length > 25) {
-        return false;
+    if (name.length < 5) {
+        return `Name must be at least 5 characters!`;
+   
+    } else if (name.length > 25) {
+        return `Name must be less than 25 characters!`;
     }
+
     return true;
 }
 
 
 export function validateProductDescription(description) {
-    if (description.length < 10 || description.length > 500) {
-        return false;
+    if (description.length < 5) {
+        return `Description must be at least 5 characters!`;
+    
+    } else if (description.length > 1500) {
+        return `Description must be less than 1500 characters!`;
     }
+    
     return true;
 }
 
 
 export function validateProductPrice(price) {
-    if (price <= 0 || price > 100000) {
-        return false;
-    } 
+    if (price <= 0) {
+        return `Price must be > 0!`
+    } else if (price >100000){
+        return `Price must be < 100 000!`;
+    }
+    
     return true;
 }
