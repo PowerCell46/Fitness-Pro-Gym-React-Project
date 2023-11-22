@@ -113,7 +113,8 @@ function App() {
         const {email, username, password, repeatPassword} = (Object.fromEntries(new FormData(e.target)));
         
         const emailValidation = validateEmail(email);
-        if (!emailValidation) {
+        if (emailValidation !== true) {
+            document.querySelector("#register-email-err-p").textContent = emailValidation;
             document.querySelector("#register-email-err-p").style.display = 'inline';
             document.querySelector("#register-email").classList.add("err-input-field");
         
@@ -123,17 +124,19 @@ function App() {
         }
 
         const usernameValidation = validateUsername(username);
-        if (!usernameValidation) {
+        if (usernameValidation !== true) {
+            document.querySelector("#register-username-err-p").textContent = usernameValidation;
             document.querySelector("#register-username-err-p").style.display = 'inline';
             document.querySelector("#register-username").classList.add("err-input-field");
         
-        } else {
+        } else { 
             document.querySelector("#register-username-err-p").style.display = 'none';
             document.querySelector("#register-username").classList.remove("err-input-field");
         }
         
         const passwordValidation = validatePassword(password);
-        if (!passwordValidation) {
+        if (passwordValidation !== true) {
+            document.querySelector("#register-password-err-p").textContent = passwordValidation;
             document.querySelector("#register-password-err-p").style.display = 'inline';
             document.querySelector("#register-password").classList.add("err-input-field");
         
@@ -151,15 +154,18 @@ function App() {
             document.querySelector("#register-repeat-password").classList.remove("err-input-field");
         }
 
-        if (!emailValidation || !passwordValidation || !usernameValidation || password !== repeatPassword) {
+        if (emailValidation !== true || passwordValidation !== true || usernameValidation !== true || password !== repeatPassword) {
             return
         }
+        
         // Valid data is being given to the server
-
         try {
-            const serverResponse = await fetch("http://localhost:5000/users/register", 
+            var serverResponse = await fetch("http://localhost:5000/users/register", 
             {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({email, username, password})});
-            
+       
+        } catch {
+            navigate('/404'); // Error while making the request
+        }
             if (serverResponse.status === 409) { // Checking for the case where the Email or the Username has already been used
                 const errorData = await serverResponse.json();
 
@@ -178,7 +184,8 @@ function App() {
 
             } else if (!serverResponse.ok) {
                 const errorData = await serverResponse.json();
-                throw new Error(errorData.error || 'An error occurred during the registration process!');
+                console.log(errorData);
+                navigate('/404'); // Any other type of Error
             }
 
             const tokenAndData = await serverResponse.json();
@@ -187,12 +194,6 @@ function App() {
             setUser(tokenAndData); // Setting the token to the useState hook of the user
 
             navigate("/");
-        
-        } catch(err) {
-
-            console.log(err);
-            navigate('/404');
-        }
     }
 
     async function logoutSubmitHandler() {

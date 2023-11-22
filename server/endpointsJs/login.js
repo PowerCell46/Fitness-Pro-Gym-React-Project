@@ -37,7 +37,7 @@ async function loginHandler(req, res) {
     if (passwordValidity) {
         const token = createToken(user._id, user.email, user.user);
 
-        console.log(`User: ${user.username} with email: ${user.email} successfully logged in!`);
+        console.log(`User: ${user.username} with email: ${user.email} successfully Logged in!`);
        
         res.json({token, username: user.username, email: user.email, id: user._id, isAdministrator: user.isAdministrator});
     
@@ -48,7 +48,7 @@ async function loginHandler(req, res) {
 }
 
 
-export function validateEmail(email) {
+function validateEmail(email) {
     if (email.length < 5) {
         return `Email must be at least 5 characers!`;
     
@@ -69,7 +69,7 @@ export function validateEmail(email) {
 }
   
   
-export function validatePassword(password) {
+function validatePassword(password) {
     password = password.split("");
     const uppercaseChars = password.filter(char => char.charCodeAt() >= 65 && char.charCodeAt() <= 90);
     const digits = password.filter(char =>char.charCodeAt() >= 48 && char.charCodeAt() <= 57);
