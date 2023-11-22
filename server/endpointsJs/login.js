@@ -24,14 +24,14 @@ async function loginHandler(req, res) {
         }
 
     } catch {
-        return res.status(400).json({ error: 'No such user found!' });
+        return res.status(500).json({ error: 'Internal Server Error' }); // searching for the user crashed
     }
     
     try {
         var passwordValidity = await verifyPassword(password, user.password);
     
     } catch {
-        return res.status(400).json({ error: 'An Error occured while the password was being decrypted from the Database!' });   
+        return res.status(500).json({ error: 'An Error occured while the password was being decrypted from the Database!' });   
     }
 
     if (passwordValidity) {

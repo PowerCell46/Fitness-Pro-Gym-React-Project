@@ -67,7 +67,7 @@ function App() {
             {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({email, password})});
        
         } catch {
-            navigate("/404"); // Error with the making of the request
+            navigate("/404"); // Error while making the request
         }
             if (serverResponse.status === 403 ) { // Wrong Password
                 const errorData = await serverResponse.json();
@@ -79,7 +79,7 @@ function App() {
                     return;
                 }
 
-            } else if (serverResponse.status === 400) { // Error with the passwordValidity operation...
+            } else if (serverResponse.status === 400) { // Error User not found
                 const errorData = await serverResponse.json();
                 
                 if (errorData.error === 'No such user found!') {
@@ -89,9 +89,13 @@ function App() {
                     return;
                 
                 } else {
-                    navigate("/404");
+                    navigate("/404"); // Some other 400 Error 
                 }
-            } else if (!serverResponse.ok) { // Other type of Error...
+                navigate('/404') 
+            } else if (serverResponse.status === 500) { // Internal Server Error
+                navigate('/404') 
+
+            }  else if (!serverResponse.ok) { // Other type of Error...
                 navigate("/404");
             }
 
