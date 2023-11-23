@@ -16,6 +16,7 @@ const postTrainerHandler = require("./endpointsJs/postTrainer");
 const registerHandler = require("./endpointsJs/register");
 const multer = require('multer');
 const membershipsHandler = require("./endpointsJs/memberships");
+const buyProductHandler = require("./endpointsJs/buyProductHandler");
 
 
 const storage = multer.diskStorage({
@@ -79,11 +80,14 @@ router.get("/products/merchandise", getProductsMerchandiseHandler);
 
 router.post("/products", upload.single("image"), postProductHandler);
 
+router.get("/products/:productId", getProductHandler);
+
+router.post("/products/buy/:productId", buyProductHandler);
+
 
 router.post("/memberships/:type/:category", membershipsHandler)
 
 
-router.get("/products/:productId", getProductHandler);
 
 
 

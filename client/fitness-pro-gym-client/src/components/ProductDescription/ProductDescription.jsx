@@ -41,7 +41,7 @@ export function ProductDescription() {
                 <div>
                     {user ? JSON.parse(localStorage.getItem("authenticationTokenAndData")).isAdministrator ? 
                         <Link to={`/products/edit/${productId}`}><button>EDIT</button></Link> : "": ""}
-                    <button onClick={addProductToCart}>ADD TO CART</button>
+                    <button id='add-to-cart-btn' onClick={addProductToCart}>ADD TO CART</button>
                     {user ? JSON.parse(localStorage.getItem("authenticationTokenAndData")).isAdministrator ? 
                         <button onClick={deleteProductHandler}>DELETE</button> : "" : ""}
                 </div>
@@ -55,7 +55,25 @@ export function ProductDescription() {
     }
 
     async function addProductToCart() {
-        // Write the functionality
-        console.log("ADDED");
+        
+        const userId = JSON.parse(localStorage.getItem("authenticationTokenAndData")).id;
+
+        try {
+            var response = await fetch(`http://localhost:5000/products/buy/${productId}`, {
+                method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({userId})
+            });
+            
+            if (response.status === 200) {
+                
+                const element = document.querySelector(".product-description-main aside #add-to-cart-btn");
+                element.style.backgroundColor = "#cc1e00";
+
+                setTimeout(() => {
+                    element.style.backgroundColor = "#145299"; 
+                }, 3000);
+            }
+        } catch {
+            navigate("/404");
+        }
     }
 }

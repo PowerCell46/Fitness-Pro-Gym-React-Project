@@ -18,7 +18,7 @@ async function loginHandler(req, res) {
     // Making the request with Valid Email and Password
     try {
         var user = await User.findOne({email});
-        
+
         if (user === null) {
             return res.status(400).json({ error: 'No such user found!' });    
         }

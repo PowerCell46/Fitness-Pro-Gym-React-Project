@@ -14,7 +14,7 @@ export function Memberships() {
            
             <Section title={"Monthly Membership"} under18={30} men={38} women={32}/>
            
-            <Section title={"Three Months Membership"} under18={85} men={105} women={100}/>
+            <Section title={"Three Months Membership"} under18={85} men={105} women={95}/>
           
             <Section title={"Six Months Membership"} under18={150} men={190} women={180}/>
          
@@ -22,5 +22,4 @@ export function Memberships() {
        
         </main>
     );
-
 }

@@ -1,4 +1,5 @@
 const { model, Schema } = require("mongoose");
+const Product = require("./productSchema");
 
 
 const userSchema = new Schema({
@@ -22,7 +23,15 @@ const userSchema = new Schema({
     isAdministrator: {
         type: Boolean,
         default: false,
-        required: true
+        required: true,
+    },
+    cart: { // Every User's selected Products
+        type: Array,
+        default: [],
+    },
+    orders: { // History of the previous Orders
+        type: Array,
+        default: [],
     }
 });
 
