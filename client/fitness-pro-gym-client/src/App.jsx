@@ -23,6 +23,7 @@ import { ProductContext } from './contexts/ProductContext';
 import { Products } from './components/Products/Products';
 import { ProductDescription } from './components/ProductDescription/ProductDescription';
 import { Memberships } from './components/Memberships/Memberships';
+import { Checkout } from './components/Checkout/Checkout';
 
 
 function App() {
@@ -426,7 +427,9 @@ function App() {
 
                 <Route path='/memberships' element={<Memberships/>} />
 
+                <Route path='/checkout' element={<Checkout/>} />
                 <Route path='/successfulOrder' element={<SuccessfulOrder/>}/>
+                
                 <Route path='*' element={<Error_404/>}/>
             </Routes>
            
