@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { AuthenticationContext } from "../../contexts/AuthenticationContext";
 import "./products.css";
 import { Link } from "react-router-dom";
 
 
 export function Products() {
+    const {navigate} = useContext(AuthenticationContext);
     const [productsData, setProductsData] = useState([]);
 
     useEffect(() => {
@@ -13,7 +15,7 @@ export function Products() {
     return (
         <div className="products-main">
             
-            <div className="aside-wrapper">
+            <div className="aside-wrapper"> {/* Filtering the Products*/}
                 <aside>
                     <h1 id="h1-all" onClick={fetchProductsData}>All</h1>
                     <h1 id="h1-fitness-supplements" onClick={filterToFitnessSupplements}>Fitness Supplements</h1>
@@ -30,7 +32,7 @@ export function Products() {
                             <div className="product-container">
                                 <div className="image-container">
                                 <img src={`data:image/jpeg;base64,${product.photo}`} alt={`${product.name} Image`}/>
-                                    <button>Add To Cart</button>
+                                    <button onClick={addProductToCart}>Add To Cart</button>
                                 </div>
                                 <div className="shown-info">
                                     <h5>{product.name}</h5>
@@ -51,18 +53,17 @@ export function Products() {
             var response = await fetch("http://localhost:5000/products");
         
         } catch {
-            //do something
             console.log(await response.json());
+            navigate("/404");
         }
         
         if (!response.ok) {
             console.log(await response.json());
-            // navigate
+            navigate("/404");
         }
         
         const data = await response.json();
         
-        console.log(data);
         setProductsData(data);
 
         document.querySelector("#h1-all").classList.add("selected-view");
@@ -71,18 +72,23 @@ export function Products() {
         document.querySelector("#h1-merchandise").classList.remove("selected-view");
     }
 
+    async function addProductToCart() {
+        // Write the functionality
+        console.log("ADDED");
+    }
+
     async function filterToFitnessSupplements() {
         try {
             var response = await fetch("http://localhost:5000/products/supplements");
         
         } catch {
-            //do something
             console.log(await response.json());
+            navigate("/404");
         }
         
         if (!response.ok) {
             console.log(await response.json());
-            // navigate
+            navigate("/404");
         }
         
         const data = await response.json();
@@ -100,13 +106,13 @@ export function Products() {
             var response = await fetch("http://localhost:5000/products/machines");
         
         } catch {
-            //do something
             console.log(await response.json());
+            navigate("/404");
         }
         
         if (!response.ok) {
             console.log(await response.json());
-            // navigate
+            navigate("/404");
         }
         
         const data = await response.json();
@@ -124,13 +130,13 @@ export function Products() {
             var response = await fetch("http://localhost:5000/products/merchandise");
         
         } catch {
-            //do something
             console.log(await response.json());
+            navigate("/404");
         }
         
         if (!response.ok) {
             console.log(await response.json());
-            // navigate
+            navigate("/404");
         }
         
         const data = await response.json();

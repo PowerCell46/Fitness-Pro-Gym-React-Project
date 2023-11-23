@@ -397,7 +397,7 @@ function App() {
     }
 
     return (
-        <AuthenticationContext.Provider value={{loginSubmitHandler, registerSubmitHandler, logoutSubmitHandler, user, setLogoutComponent}}>
+        <AuthenticationContext.Provider value={{loginSubmitHandler, registerSubmitHandler, logoutSubmitHandler, user, setLogoutComponent, navigate}}>
         <>
             <Navigation/>
 
