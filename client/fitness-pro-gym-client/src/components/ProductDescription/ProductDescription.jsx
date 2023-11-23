@@ -1,11 +1,11 @@
 import { useEffect, useState, useContext } from 'react';
 import './productDescription.css';
 import { AuthenticationContext } from "../../contexts/AuthenticationContext";
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 
 export function ProductDescription() {
-    const {user} = useContext(AuthenticationContext);
+    const {user, navigate} = useContext(AuthenticationContext);
     const [productData, setProductData] = useState({});
     const {productId} = useParams();
 
@@ -16,12 +16,12 @@ export function ProductDescription() {
     
                 } catch {
                     console.log( await response.json());
-                    //Redirect
+                    navigate("/404");
                 }
     
                 if (!response.ok) {
                     console.log( await response.json());
-                    // Redirect
+                    console.log('/404');
                 }
                 
                 let data = await response.json();
@@ -39,11 +39,23 @@ export function ProductDescription() {
                 <h3>{productData.price}.<sup>00</sup> BGN</h3>
                 <p>{productData.description}</p>
                 <div>
-                {JSON.parse(localStorage.getItem("authenticationTokenAndData")).isAdministrator ? <button>EDIT</button> : ""}
-                <button>ADD TO CART</button>
-                {JSON.parse(localStorage.getItem("authenticationTokenAndData")).isAdministrator ? <button>DELETE</button> : ""}
+                    {user ? JSON.parse(localStorage.getItem("authenticationTokenAndData")).isAdministrator ? 
+                        <Link to={`/products/edit/${productId}`}><button>EDIT</button></Link> : "": ""}
+                    <button onClick={addProductToCart}>ADD TO CART</button>
+                    {user ? JSON.parse(localStorage.getItem("authenticationTokenAndData")).isAdministrator ? 
+                        <button onClick={deleteProductHandler}>DELETE</button> : "" : ""}
                 </div>
             </aside>
         </main>
     );
+
+    async function deleteProductHandler() {
+        console.log("DELETE");
+        // write functionality and design of the popup
+    }
+
+    async function addProductToCart() {
+        // Write the functionality
+        console.log("ADDED");
+    }
 }

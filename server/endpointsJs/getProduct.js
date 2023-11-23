@@ -9,7 +9,7 @@ async function getProductHandler(req, res) {
         var product = await Product.findOne({_id: productId}).lean();
         
     } catch {
-        return res.status(400).json({ error: 'An error occured while the data was being read from the Database!'});
+        return res.status(500).json({ error: 'An error occured while the data was being read from the Database!'});
     }
 
     try {
@@ -17,8 +17,7 @@ async function getProductHandler(req, res) {
         product = {...product, photo: imageData}
 
     } catch {
-        return res.status(400).json({ error: 'An error occured while the image was being read!'});
-    
+        return res.status(500).json({ error: 'An Error occured while the Image was being converted!'});
     } 
 
     res.json(product);
