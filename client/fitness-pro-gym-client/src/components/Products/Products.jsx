@@ -32,7 +32,7 @@ export function Products() {
                             <div className="product-container">
                                 <div className="image-container">
                                 <img src={`data:image/jpeg;base64,${product.photo}`} alt={`${product.name} Image`}/>
-                                    <button onClick={addProductToCart}>Add To Cart</button>
+                                    <button onClick={(e) => addProductToCart(e, product._id)}>Add To Cart</button>
                                 </div>
                                 <div className="shown-info">
                                     <h5>{product.name}</h5>
@@ -47,6 +47,7 @@ export function Products() {
 
         </div>
     );
+
 
     async function fetchProductsData() {
         try {
@@ -72,10 +73,35 @@ export function Products() {
         document.querySelector("#h1-merchandise").classList.remove("selected-view");
     }
 
-    async function addProductToCart() {
-        // Write the functionality
-        console.log("ADDED");
+
+    async function addProductToCart(e, productId) {
+        e.preventDefault();
+        e.stopPropagation();
+
+
+        
+        const userId = JSON.parse(localStorage.getItem("authenticationTokenAndData")).id;
+
+        try {
+            var response = await fetch(`http://localhost:5000/products/buy/${productId}`, {
+                method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({userId})
+            });
+            
+            if (response.status === 200) {
+                
+                const element = e.target;
+                element.style.backgroundColor = "#cc1e00";
+
+                setTimeout(() => {
+                    element.style.backgroundColor = "#ff5700"; 
+                }, 3000);
+            }
+            
+        } catch {
+            navigate("/404");
+        }
     }
+
 
     async function filterToFitnessSupplements() {
         try {
@@ -101,6 +127,7 @@ export function Products() {
         document.querySelector("#h1-merchandise").classList.remove("selected-view");
     }
 
+
     async function filterToFitnessMachines() {
         try {
             var response = await fetch("http://localhost:5000/products/machines");
@@ -124,6 +151,7 @@ export function Products() {
         document.querySelector("#h1-fitness-machines").classList.add("selected-view");
         document.querySelector("#h1-merchandise").classList.remove("selected-view");
     }
+
 
     async function filterToMerchandise() {
         try {

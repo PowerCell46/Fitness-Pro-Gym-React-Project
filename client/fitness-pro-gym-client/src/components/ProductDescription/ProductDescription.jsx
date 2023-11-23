@@ -72,6 +72,7 @@ export function ProductDescription() {
                     element.style.backgroundColor = "#145299"; 
                 }, 3000);
             }
+            
         } catch {
             navigate("/404");
         }
