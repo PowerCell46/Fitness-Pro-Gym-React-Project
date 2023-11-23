@@ -419,15 +419,15 @@ function App() {
                 <Route path='/highlights/:highlightId' element={<HighlightDescription/>}/>
 
                 <Route path='/postTrainer' element={<PostTrainer/>}/>
-                <Route path='/trainers' element={<Trainers/>} />
+                <Route path='/trainers' element={<Trainers/>}/>
 
-                <Route path='/postProduct' element={<PostProduct/>} />
+                <Route path='/postProduct' element={<PostProduct/>}/>
                 <Route path='/products' element={<Products/>} />
-                <Route path='/products/:productId' element={<ProductDescription/>} />
+                <Route path='/products/:productId' element={<ProductDescription/>}/>
 
-                <Route path='/memberships' element={<Memberships/>} />
+                <Route path='/memberships' element={<Memberships/>}/>
 
-                <Route path='/checkout' element={<Checkout/>} />
+                <Route path='/checkout' element={<Checkout/>}/>
                 <Route path='/successfulOrder' element={<SuccessfulOrder/>}/>
                 
                 <Route path='*' element={<Error_404/>}/>

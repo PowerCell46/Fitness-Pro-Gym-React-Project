@@ -1,6 +1,32 @@
+import { useEffect, useState } from 'react';
 import './checkout.css';
 
 export function Checkout() {
+    const userId = JSON.parse(localStorage.getItem("authenticationTokenAndData")).id;
+    const [checkoutData, setCheckoutData] = useState([]);
+
+    useEffect(() => {
+        async function fetchCheckoutData() {
+            try {
+                var response = await fetch("http://localhost:5000/checkout", {
+                    method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({userId})});
+
+            } catch {
+                // Do smth
+            }
+
+            if (!response.ok) {
+                console.log(response);
+                // navigate
+            }
+
+            const data = await response.json();
+
+            setCheckoutData(data);
+        }
+
+        fetchCheckoutData();
+    }, []);
     return (
     <main className="checkout-main">
         <section>
@@ -59,10 +85,10 @@ export function Checkout() {
                     <input type="text" name="city" id="" placeholder="Sofia"/>
                     </div>
 
-                    {/* <!-- <div>
+                        {/* <div>
                     <label htmlFor="postcode">PostCode:</label>
-                    <input type="text" name="postcode" id="" placeholder="1404">
-                    </div> --> */}
+                    <input type="text" name="postcode" id="" placeholder="1404"/>
+                    </div>  */}
 
                     <div>
                     <label htmlFor="neighbourhood">Neighbourhood:</label>

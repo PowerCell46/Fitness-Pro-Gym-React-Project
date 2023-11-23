@@ -133,7 +133,7 @@ async function membershipsHandler(req, res) {
     const { userId } = req.body;
 
     const currentMembershipData = memberships[membershipType][membershipCategory];
-
+    // currentMembershipData.uploadDate = Date.now();
     try {
         var currentUser = await User.findOne({ _id: userId }).lean();
    
