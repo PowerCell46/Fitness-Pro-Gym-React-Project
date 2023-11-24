@@ -91,10 +91,7 @@ export function Products() {
                 
                 const element = e.target;
                 element.style.backgroundColor = "#cc1e00";
-
-                setTimeout(() => {
-                    element.style.backgroundColor = "#ff5700"; 
-                }, 3000);
+                element.disabled = true;
             }
             
         } catch {

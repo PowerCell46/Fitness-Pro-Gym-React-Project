@@ -132,15 +132,19 @@ async function membershipsHandler(req, res) {
     const membershipCategory = req.params.category;
     const { userId } = req.body;
 
-    let currentMembershipData = memberships[membershipType][membershipCategory];
+    if (!Object.keys(memberships).includes(membershipType)) {
+        return res.status(400).json({error: "Invalid Membership Type!"});
+    }
 
-    const timestamp = Date.now();
-    const currentDate = new Date(timestamp);
-    const formattedDate = currentDate.toISOString();
+    if (!Object.keys(memberships['Single Workout']).includes(membershipCategory)) {
+        return res.status(400).json({error: "Invalid Membership Category!"});
+    }
 
-    currentMembershipData.uploadDate = formattedDate;
-    currentMembershipData._id = Math.random().toString(36).substring(2) + (new Date()).getTime().toString(36);
-        try {
+    let currentMembershipData = {membershipType, membershipCategory};
+
+    // currentMembershipData._id = Math.random().toString(36).substring(2) + (new Date()).getTime().toString(36);
+    
+    try {
         var currentUser = await User.findOne({ _id: userId }).lean();
    
     } catch (error) {
@@ -149,7 +153,12 @@ async function membershipsHandler(req, res) {
 
     try {
 
-        currentUser.cart.push(currentMembershipData);
+        if (!currentUser.cart.includes(currentMembershipData)) {
+            currentUser.cart.push(currentMembershipData);
+            
+        } else {
+            // You can show the user that he already has this membership in the cart
+        }
 
         await User.updateOne({ _id: userId }, { cart: currentUser.cart }); 
         

@@ -13,12 +13,16 @@
 }
 
 .checkout-main section {
+    margin-top: 2vh;
+    margin-bottom: 5vh;
+    margin-left: -1.5vw;
+    background-color: #9c3b2b;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     opacity: 0.85;
-    /* box-shadow: 2px 2px 18px 2px rgba(0,0,0,0.75); */
+    box-shadow: 2px 2px 18px 2px rgba(0,0,0,0.75);
     border-radius:  0.7rem;
     transition: 600ms ease-in-out;
 }
@@ -28,7 +32,7 @@
 }
 
 .checkout-main .shopping-cart, .details {
-    width: 45vw;
+    width: 48vw;
     height: 90vh;
 }
 

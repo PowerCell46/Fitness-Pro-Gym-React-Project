@@ -66,12 +66,8 @@ export function ProductDescription() {
             if (response.status === 200) {
                 
                 const element = document.querySelector(".product-description-main aside #add-to-cart-btn");
-                element.style.backgroundColor = "#cc1e00";
-
-                setTimeout(() => {
-                    element.style.backgroundColor = "#145299"; 
-                }, 3000);
-           
+                element.style.backgroundColor = "#cc1e00"; 
+                element.disabled = true;
             } else {
                 navigate("/404");
             }

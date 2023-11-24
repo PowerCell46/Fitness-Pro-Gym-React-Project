@@ -14,15 +14,21 @@ async function buyProductHandler(req, res) {
     
     try {
 
-        currentUser.cart.push(productId);
+        if (!currentUser.cart.includes(productId)) {
+            currentUser.cart.push(productId);
 
-        await User.updateOne({ _id: userId }, { cart: currentUser.cart }); 
+            await User.updateOne({ _id: userId }, { cart: currentUser.cart }); 
         
+        } else {
+            // You can show the user that the product is already in the cart 
+        }
+
         res.json("Successful Operation!");
   
     } catch (error) {
         return res.status(500).json({ error: 'An error occurred while the membership was being added to the user!' });
     }
 }
+
 
 module.exports = buyProductHandler;

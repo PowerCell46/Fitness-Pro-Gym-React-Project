@@ -2,6 +2,132 @@ const Product = require("../schemas/productSchema");
 const User = require("../schemas/userSchema");
 const fs = require("fs");
 
+const memberships = {
+    "Single Workout": {
+        "under 18": {
+            imageLocation: "images/dumbbells-cartoon-icon-isolated-vector-32127279.jpg",
+            name: "Single Workout Under 18",
+            type: "Fitness Membership",
+            price: 2
+        },
+        "men": {
+            imageLocation: "images/dumbbells-cartoon-icon-isolated-vector-32127279.jpg",
+            name: "Single Workout Men",
+            type: "Fitness Membership",
+            price: 4
+        },
+        "women": {
+            imageLocation: "images/dumbbells-cartoon-icon-isolated-vector-32127279.jpg",
+            name: "Single Workout Women",
+            type: "Fitness Membership",
+            price: 3
+        }
+    },
+    "Weekly Membership": {
+        "under 18": {
+            imageLocation: "images/dumbbells-cartoon-icon-isolated-vector-32127279.jpg",
+            name: "Weekly Membership Under 18",
+            type: "Fitness Membership",
+            price: 8
+        },
+        "men": {
+            imageLocation: "images/dumbbells-cartoon-icon-isolated-vector-32127279.jpg",
+            name: "Weekly Membership Men",
+            type: "Fitness Membership",
+            price: 12
+        },
+        "women": {
+            imageLocation: "images/dumbbells-cartoon-icon-isolated-vector-32127279.jpg",
+            name: "Weekly Membership Women",
+            type: "Fitness Membership",
+            price: 10
+        }
+    },
+    "Monthly Membership": {
+        "under 18": {
+            imageLocation: "images/dumbbells-cartoon-icon-isolated-vector-32127279.jpg",
+            name: "Monthly Memberhip Under 18",
+            type: "Fitness Membership",
+            price: 30
+        },
+        "men": {
+            imageLocation: "images/dumbbells-cartoon-icon-isolated-vector-32127279.jpg",
+            name: "Monthly Membership Men",
+            type: "Fitness Membership",
+            price: 38
+        },
+        "women": {
+            imageLocation: "images/dumbbells-cartoon-icon-isolated-vector-32127279.jpg",
+            name: "Monthly Membership Women",
+            type: "Fitness Membership",
+            price: 32
+        }
+    },
+    "Three Months Membership": {
+        "under 18": {
+            imageLocation: "images/dumbbells-cartoon-icon-isolated-vector-32127279.jpg",
+            name: "Three Months Membership Under 18",
+            type: "Fitness Membership",
+            price: 85
+        },
+        "men": {
+            "under 18": {
+                imageLocation: "images/dumbbells-cartoon-icon-isolated-vector-32127279.jpg",
+                name: "Three Months Membership Men",
+                type: "Fitness Membership",
+                price: 105
+            },
+        },
+        "women": {
+            "under 18": {
+                imageLocation: "images/dumbbells-cartoon-icon-isolated-vector-32127279.jpg",
+                name: "Three Months Membership Women",
+                type: "Fitness Membership",
+                price: 95
+            },
+        }
+    },
+    "Six Months Membership": {
+        "under 18": {
+                imageLocation: "images/dumbbells-cartoon-icon-isolated-vector-32127279.jpg",
+                name: "Six Months Membership Under 18",
+                type: "Fitness Membership",
+                price: 150
+        },
+        "men": {
+                imageLocation: "images/dumbbells-cartoon-icon-isolated-vector-32127279.jpg",
+                name: "Six Months Membership Men",
+                type: "Fitness Membership",
+                price: 190
+        },
+        "women": {
+                imageLocation: "images/dumbbells-cartoon-icon-isolated-vector-32127279.jpg",
+                name: "Six Months Membership Women",
+                type: "Fitness Membership",
+                price: 180
+        }
+    },
+    "Year Membership": {
+        "under 18": {
+            imageLocation: "images/dumbbells-cartoon-icon-isolated-vector-32127279.jpg",
+            name: "Year Membership Under 18",
+            type: "Fitness Membership",
+            price: 200
+        },
+        "men": {
+            imageLocation: "images/dumbbells-cartoon-icon-isolated-vector-32127279.jpg",
+            name: "Year Membership Men",
+            type: "Fitness Membership",
+            price: 250
+        },
+        "women": {
+            imageLocation: "images/dumbbells-cartoon-icon-isolated-vector-32127279.jpg",
+                name: "Year Membership Women",
+                type: "Fitness Membership",
+                price: 220
+        }
+    }
+}   
 
 async function checkoutHandler(req, res) {
     const {userId} = req.body;
@@ -20,7 +146,7 @@ async function checkoutHandler(req, res) {
 
         for (let product of currentUserCart) {
             if (typeof product === 'object') {
-                finalProducts.push(product);
+                finalProducts.push(memberships[product.membershipType][product.membershipCategory]);
             
             } else {
                 const currentProduct = await Product.findOne({_id: product});
@@ -33,14 +159,8 @@ async function checkoutHandler(req, res) {
     }
 
     try {
-        finalProducts.sort((a, b) => { // Sorting the Products by upload date in Desc Order
-            const dateA = new Date(a.uploadDate);
-            const dateB = new Date(b.uploadDate);
-        
-            return dateB - dateA;
-        });
 
-        const checkoutProductsWithImages = await Promise.all(finalProducts.map(async (product) => {
+        const checkoutProductsWithImages = await Promise.all(finalProducts.reverse().map(async (product) => {
             const imageData = fs.promises.readFile(`${product.imageLocation}`, {encoding: 'base64'});
             return {...product, photo: await imageData};
         }));

@@ -40,6 +40,7 @@ export function Checkout() {
                 <table>
                     <thead>
                         <tr>
+                            <th>Quantity</th>
                             <th>Product Image</th>
                             <th>Product Name</th>
                             <th>Price</th>
@@ -49,7 +50,11 @@ export function Checkout() {
                     <tbody>
                         {checkoutData.map((product) => (
                             <tr key={product._doc ? product._doc._id : product._id}>
-                               
+                                <td> 
+                                    <button>+</button>
+                                            1 {/* Make it Work */}
+                                    <button>-</button>
+                                </td>
                                 <td onClick={() => product._doc ? navigate(`/products/${product._doc._id}`)  : navigate("/memberships")}>
                                     <img src={`data:image/jpeg;base64,${product.photo}`} alt={`${product.name} Image`}/>
                                 </td>
@@ -62,7 +67,7 @@ export function Checkout() {
                                     {product._doc ? product._doc.price : product.price} BGN
                                 </td>
                             
-                                <td onClick={() => removeProductFromCartHandler(product._doc ? product._doc._id : product._id)}>
+                                <td onClick={() => removeProductFromCartHandler(product._doc ? product._doc._id : product._id, product._doc ? product._doc.uploadDate : product.uploadDate)}>
                                     Remove
                                 </td>
 
@@ -120,9 +125,9 @@ export function Checkout() {
 
     );
 
-    async function removeProductFromCartHandler(removedProductId) {
+    async function removeProductFromCartHandler(removedProductId, removedProductUploadDate) {
         const userId = JSON.parse(localStorage.getItem("authenticationTokenAndData")).id;
-    
+        
         try {
             const response = await fetch(`http://localhost:5000/checkout/removeProduct`, {
                 method: "POST",
