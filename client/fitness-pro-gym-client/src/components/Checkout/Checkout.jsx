@@ -10,6 +10,29 @@ export function Checkout() {
     const [checkoutData, setCheckoutData] = useState([]);
     const [totalSum, setTotalSum] = useState(0);
 
+    const [quantities, setQuantities] = useState({});
+
+    const handleIncrement = (productName, productPrice) => {
+        if (quantities[productName] + 1 <= 9 || quantities[productName] === undefined) {
+            setTotalSum((previousSum) => previousSum + productPrice);    
+        }
+        setQuantities((prevQuantities) => ({
+            ...prevQuantities,
+            [productName]: Math.min((prevQuantities[productName] || 1) + 1, 9),
+  
+          }));
+    };
+    
+    const handleDecrement = (productName, productPrice) => {
+        if (quantities[productName] - 1 >= 1) {
+            setTotalSum((previousSum) => previousSum - productPrice);
+        }
+        setQuantities((prevQuantities) => ({
+            ...prevQuantities,
+            [productName]: Math.max((prevQuantities[productName] || 1) - 1, 1),
+        }));
+    };
+
     useEffect(() => {
         async function fetchCheckoutData() {
             try {
@@ -25,7 +48,7 @@ export function Checkout() {
                 // navigate
             }
             const data = await response.json();
-            console.log(data);
+
             setTotalSum(getTotalPrice(data));
             setCheckoutData(data);
         }
@@ -49,12 +72,12 @@ export function Checkout() {
                     </thead>
                     <tbody>
                         {checkoutData.map((product) => (
-                            <tr key={product._doc ? product._doc._id : product._id}>
-                                <td> 
-                                    <button>+</button>
-                                            1 {/* Make it Work */}
-                                    <button>-</button>
-                                </td>
+                            <tr key={product._doc ? product._doc.name : product.name}>
+                            <td id='quantity-td'>
+        <button onClick={() => handleIncrement(product._doc ? product._doc.name : product.name, product._doc ? product._doc.price : product.price)}>+</button>
+        {quantities[product._doc ? product._doc.name : product.name] || 1}
+        <button onClick={() => handleDecrement(product._doc ? product._doc.name : product.name, product._doc ? product._doc.price : product.price)}>-</button>
+                            </td>
                                 <td onClick={() => product._doc ? navigate(`/products/${product._doc._id}`)  : navigate("/memberships")}>
                                     <img src={`data:image/jpeg;base64,${product.photo}`} alt={`${product.name} Image`}/>
                                 </td>
@@ -85,40 +108,35 @@ export function Checkout() {
 
             <div className="details">
                 <h1>Shipping Details</h1>
-                <form method="POST">
+                <form onSubmit={postOrderHandler}>
                     <div>
-                    <label htmlFor="country">Country:</label>
-                    <input type="text" name="country" id="" placeholder="Bulgaria"/>
+                        <label htmlFor="country">Country:</label>
+                        <input type="text" name="country" id="" placeholder="Bulgaria"/>
                     </div>
 
                     <div>
-                    <label htmlFor="city">City:</label>
-                    <input type="text" name="city" id="" placeholder="Sofia"/>
-                    </div>
-
-                        {/* <div>
-                    <label htmlFor="postcode">PostCode:</label>
-                    <input type="text" name="postcode" id="" placeholder="1404"/>
-                    </div>  */}
-
-                    <div>
-                    <label htmlFor="neighbourhood">Neighbourhood:</label>
-                    <input type="text" name="neighbourhood" placeholder="Gotse Delchev"/>
+                        <label htmlFor="city">City:</label>
+                        <input type="text" name="city" id="" placeholder="Sofia"/>
                     </div>
 
                     <div>
-                    <label htmlFor="street">Street:</label>
-                    <input type="text" name="street" placeholder="Nishava"/>
+                        <label htmlFor="neighbourhood">Neighbourhood:</label>
+                        <input type="text" name="neighbourhood" placeholder="Gotse Delchev"/>
                     </div>
 
                     <div>
-                    <label htmlFor="number">Number:</label>
-                    <input type="text" name="number" placeholder="23"/>
+                        <label htmlFor="street">Street:</label>
+                        <input type="text" name="street" placeholder="Nishava"/>
+                    </div>
+
+                    <div>
+                        <label htmlFor="number">Number:</label>
+                        <input type="text" name="number" placeholder="23"/>
                     </div>
                     
                     <div>
-                    <label htmlFor="apartment">Apartment:</label>
-                    <input type="text" name="apartment" placeholder="7"/>
+                        <label htmlFor="apartment">Apartment:</label>
+                        <input type="text" name="apartment" placeholder="7"/>
                     </div>
 
                     <button>Order</button>
@@ -145,7 +163,7 @@ export function Checkout() {
                 );
     
                 // Use the callback form of setTotalSum to ensure you're working with the updated state
-                setTotalSum((previousTotalSum) => previousTotalSum - getProductPrice(removedProductId));
+                setTotalSum((previousTotalSum) => previousTotalSum - getProductPrice(removedProductId, productForRemoval.name));
             } else {
                 navigate("/404");
             }
@@ -154,8 +172,8 @@ export function Checkout() {
         }
     }
     
-    function getProductPrice(productId) {
-        const product = checkoutData.find((data) => (data._doc ? data._doc._id === productId : data._id === productId));
+    function getProductPrice(productId, name) {
+        const product = checkoutData.find((data) => (data._doc ? data._doc._id === productId : data.name === name));
         return product ? (product._doc ? product._doc.price : product.price) : 0;
     }
 
@@ -164,7 +182,23 @@ export function Checkout() {
         for (let product of products) {
             totalPrice += product._doc ? product._doc.price : product.price;
         }
-        console.log(totalPrice);
         return totalPrice;
+    }
+
+    async function postOrderHandler(e) {
+        e.preventDefault();
+        const {country, city, neighbourhood, street, number, apartment} = (Object.fromEntries(new FormData(e.target)));
+        let orderProductsDetails = [];
+        
+        for (let product of checkoutData) {
+            console.log(product);
+            const name = product._doc ? product._doc.name : product.name;
+            console.log(name);
+            const id = product._doc ? product._doc._id :
+                {membershipType: product.name.substring(0, product.name.lastIndexOf(" ")), 
+                membershipCategory: product.name.substring(product.name.lastIndexOf(" ") + 1).toLowerCase()}
+            
+        
+        }
     }
 }

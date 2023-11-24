@@ -187,3 +187,11 @@
 }
 
 
+#quantity-td button{
+    cursor: pointer;
+    margin: 0.4rem;
+    padding: 0.1rem 0.3rem;
+    font-size: 0.8rem;
+    border: none;
+    background-color: #9c3b2b;
+}
