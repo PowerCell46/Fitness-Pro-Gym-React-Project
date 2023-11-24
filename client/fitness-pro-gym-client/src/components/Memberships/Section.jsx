@@ -48,7 +48,7 @@ export function Section(props) {
                 const children = parentElement.children;
 
                 for (let i = 0; i < children.length; i++) {
-                    console.log(children[i]);
+                  
                     children[i].classList.add("added-membership");
                 }
             } else {

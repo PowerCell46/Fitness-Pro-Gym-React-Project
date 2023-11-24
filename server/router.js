@@ -18,7 +18,7 @@ const multer = require('multer');
 const membershipsHandler = require("./endpointsJs/memberships");
 const buyProductHandler = require("./endpointsJs/buyProductHandler");
 const checkoutHandler = require("./endpointsJs/checkout");
-
+const checkoutRemoveProductHandler = require("./endpointsJs/checkoutRemoveProduct");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -92,6 +92,6 @@ router.post("/memberships/:type/:category", membershipsHandler);
 
 router.post("/checkout", checkoutHandler);
 
-
+router.post("/checkout/removeProduct", checkoutRemoveProductHandler);
 
 module.exports = router;

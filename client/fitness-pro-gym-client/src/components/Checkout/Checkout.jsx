@@ -8,6 +8,7 @@ export function Checkout() {
     const {navigate} = useContext(AuthenticationContext);
     const userId = JSON.parse(localStorage.getItem("authenticationTokenAndData")).id;
     const [checkoutData, setCheckoutData] = useState([]);
+    const [totalSum, setTotalSum] = useState(0);
 
     useEffect(() => {
         async function fetchCheckoutData() {
@@ -25,7 +26,7 @@ export function Checkout() {
             }
 
             const data = await response.json();
-            console.log(data[2]._doc._id);
+            setTotalSum(getTotalPrice(data));
             setCheckoutData(data);
         }
 
@@ -61,16 +62,16 @@ export function Checkout() {
                                     {product._doc ? product._doc.price : product.price} BGN
                                 </td>
                             
-                                <td>
+                                <td onClick={() => removeProductFromCartHandler(product._doc ? product._doc._id : product._id)}>
                                     Remove
                                 </td>
-                                
+
                             </tr>
                         ))}
                     </tbody>
                 </table>
 
-                <h3>Total Sum: 254.32$</h3>
+                <h3>Total Sum: {totalSum}<sup>00</sup> BGN</h3>
             </div>
 
             <div className="details">
@@ -118,4 +119,43 @@ export function Checkout() {
     </main>
 
     );
+
+    async function removeProductFromCartHandler(removedProductId) {
+        const userId = JSON.parse(localStorage.getItem("authenticationTokenAndData")).id;
+    
+        try {
+            const response = await fetch(`http://localhost:5000/checkout/removeProduct`, {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({userId, removedProductId}),
+            });
+    
+            if (response.status === 200) {
+                setCheckoutData((previousData) =>
+                    previousData.filter((data) => (data._doc ? data._doc._id !== removedProductId : data._id !== removedProductId))
+                );
+    
+                // Use the callback form of setTotalSum to ensure you're working with the updated state
+                setTotalSum((previousTotalSum) => previousTotalSum - getProductPrice(removedProductId));
+            } else {
+                navigate("/404");
+            }
+        } catch {
+            navigate("/404");
+        }
+    }
+    
+    function getProductPrice(productId) {
+        const product = checkoutData.find((data) => (data._doc ? data._doc._id === productId : data._id === productId));
+        return product ? (product._doc ? product._doc.price : product.price) : 0;
+    }
+
+    function getTotalPrice(products) {
+        let totalPrice = 0;
+        for (let product of products) {
+            totalPrice += product._doc ? product._doc.price : product.price;
+        }
+        console.log(totalPrice);
+        return totalPrice;
+    }
 }

@@ -19,13 +19,11 @@ async function checkoutHandler(req, res) {
     try {
 
         for (let product of currentUserCart) {
-            
             if (typeof product === 'object') {
                 finalProducts.push(product);
             
             } else {
                 const currentProduct = await Product.findOne({_id: product});
-                
                 finalProducts.push(currentProduct);
             }
         }

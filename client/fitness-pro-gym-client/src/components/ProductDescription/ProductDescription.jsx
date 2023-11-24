@@ -71,6 +71,9 @@ export function ProductDescription() {
                 setTimeout(() => {
                     element.style.backgroundColor = "#145299"; 
                 }, 3000);
+           
+            } else {
+                navigate("/404");
             }
             
         } catch {
