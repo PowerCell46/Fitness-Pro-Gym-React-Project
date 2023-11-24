@@ -24,8 +24,8 @@ export function Checkout() {
                 console.log(response);
                 // navigate
             }
-
             const data = await response.json();
+            console.log(data);
             setTotalSum(getTotalPrice(data));
             setCheckoutData(data);
         }
@@ -67,7 +67,11 @@ export function Checkout() {
                                     {product._doc ? product._doc.price : product.price} BGN
                                 </td>
                             
-                                <td onClick={() => removeProductFromCartHandler(product._doc ? product._doc._id : product._id, product._doc ? product._doc.uploadDate : product.uploadDate)}>
+                                <td onClick={() => removeProductFromCartHandler(
+                                    product._doc ? product._doc._id :
+                                        {membershipType: product.name.substring(0, product.name.lastIndexOf(" ")), 
+                                        membershipCategory: product.name.substring(product.name.lastIndexOf(" ") + 1).toLowerCase()},
+                                    product)}>
                                     Remove
                                 </td>
 
@@ -125,9 +129,9 @@ export function Checkout() {
 
     );
 
-    async function removeProductFromCartHandler(removedProductId, removedProductUploadDate) {
+    async function removeProductFromCartHandler(removedProductId, productForRemoval) {
         const userId = JSON.parse(localStorage.getItem("authenticationTokenAndData")).id;
-        
+        console.log(removedProductId);
         try {
             const response = await fetch(`http://localhost:5000/checkout/removeProduct`, {
                 method: "POST",
@@ -137,7 +141,7 @@ export function Checkout() {
     
             if (response.status === 200) {
                 setCheckoutData((previousData) =>
-                    previousData.filter((data) => (data._doc ? data._doc._id !== removedProductId : data._id !== removedProductId))
+                    previousData.filter((data) => (data !== productForRemoval))
                 );
     
                 // Use the callback form of setTotalSum to ensure you're working with the updated state

@@ -3,7 +3,7 @@ const User = require("../schemas/userSchema");
 
 async function checkoutRemoveProductHandler(req, res) {
     const {userId, removedProductId} = req.body;
-    
+
     try {
         var currentUser = await User.findOne({_id: userId});
     
@@ -13,8 +13,13 @@ async function checkoutRemoveProductHandler(req, res) {
 
     
     try {
-        currentUser.cart = currentUser.cart.filter((element) => typeof(element) === "object" ? element._id !== removedProductId : element !== removedProductId);
-        
+        if (typeof removedProductId === "object")  {
+            currentUser.cart = currentUser.cart.filter((element) => !(element.membershipType === removedProductId.membershipType && element.membershipCategory === removedProductId.membershipCategory));
+      
+        } else {
+            currentUser.cart = currentUser.cart.filter((element) => element !== removedProductId);
+        }
+
         await User.updateOne({ _id: userId }, { cart: currentUser.cart }); 
         
         res.json("Successful Operation!");
