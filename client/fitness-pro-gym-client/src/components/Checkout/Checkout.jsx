@@ -1,7 +1,11 @@
 import { useEffect, useState } from 'react';
 import './checkout.css';
+import { useContext } from 'react';
+import { AuthenticationContext } from "../../contexts/AuthenticationContext";
+
 
 export function Checkout() {
+    const {navigate} = useContext(AuthenticationContext);
     const userId = JSON.parse(localStorage.getItem("authenticationTokenAndData")).id;
     const [checkoutData, setCheckoutData] = useState([]);
 
@@ -9,7 +13,7 @@ export function Checkout() {
         async function fetchCheckoutData() {
             try {
                 var response = await fetch("http://localhost:5000/checkout", {
-                    method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({userId})});
+                    method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({userId})   });
 
             } catch {
                 // Do smth
@@ -21,7 +25,7 @@ export function Checkout() {
             }
 
             const data = await response.json();
-
+            console.log(data[2]._doc._id);
             setCheckoutData(data);
         }
 
@@ -35,39 +39,36 @@ export function Checkout() {
                 <table>
                     <thead>
                         <tr>
-                        <th>Product Image</th>
-                        <th>Product Name</th>
-                        <th>Price</th>
-                        <th>Removal</th>
+                            <th>Product Image</th>
+                            <th>Product Name</th>
+                            <th>Price</th>
+                            <th>Removal</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr id='product-data'>
-                            <td><img src="./images/profile_picture.jpg" alt=""/></td>
-                            <td>Whey Protein</td>
-                            <td>75.23$</td>
-                            <td>Remove</td>
-                        </tr>
-                        <tr>
-                            <td><img src="https://musclepharm.com/cdn/shop/files/MP_4lbCombat_Vanilla_Front.png?v=1683210424&width=700" alt=""/></td>
-                            <td>Whey Protein</td>
-                            <td>75.23$</td>
-                            <td>Remove</td>
-                        </tr>
-                        <tr>
-                            <td><img src="./images/profile_picture.jpg" alt=""/></td>
-                            <td>Whey Protein</td>
-                            <td>75.23$</td>
-                            <td>Remove</td>
-                        </tr>
-                        <tr>
-                            <td><img src="https://musclepharm.com/cdn/shop/files/MP_4lbCombat_Vanilla_Front.png?v=1683210424&width=700" alt=""/></td>
-                            <td>Whey Protein</td>
-                            <td>75.23$</td>
-                            <td>Remove</td>
-                        </tr>
+                        {checkoutData.map((product) => (
+                            <tr key={product._doc ? product._doc._id : product._id}>
+                               
+                                <td onClick={() => product._doc ? navigate(`/products/${product._doc._id}`)  : navigate("/memberships")}>
+                                    <img src={`data:image/jpeg;base64,${product.photo}`} alt={`${product.name} Image`}/>
+                                </td>
+                              
+                                <td onClick={() => product._doc ? navigate(`/products/${product._doc._id}`)  : navigate("/memberships")}>
+                                    {product._doc ? product._doc.name : product.name}
+                                </td>
+                             
+                                <td onClick={() => product._doc ? navigate(`/products/${product._doc._id}`)  : navigate("/memberships")}>
+                                    {product._doc ? product._doc.price : product.price} BGN
+                                </td>
+                            
+                                <td>
+                                    Remove
+                                </td>
+                                
+                            </tr>
+                        ))}
                     </tbody>
-                    </table>
+                </table>
 
                 <h3>Total Sum: 254.32$</h3>
             </div>
