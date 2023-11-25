@@ -52,10 +52,10 @@ export function Navigation() {
         const hiddenDiv = document.querySelector(".hidden-profile-view");
         
         if (!dropdown) {
-            hiddenDiv.style.opacity = 1;
+            hiddenDiv.style.display = 'block';
         
         } else {
-            hiddenDiv.style.opacity = 0;
+            hiddenDiv.style.display = 'none';
         }
 
         setDropdown((oldValue) => !oldValue);
