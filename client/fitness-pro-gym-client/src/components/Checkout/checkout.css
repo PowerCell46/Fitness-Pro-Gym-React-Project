@@ -52,6 +52,7 @@
     font-family: 'Permanent Marker', cursive;
     letter-spacing: 0.4rem;
     text-shadow: 5px 0px 7px rgba(0,0,0,0.68);
+
 }
 
 
@@ -126,7 +127,7 @@
 }
 
 .checkout-main .details h1 {
-    margin-bottom: 4vh;
+    margin-bottom: 2vh;
 }
 
 .checkout-main .details div {

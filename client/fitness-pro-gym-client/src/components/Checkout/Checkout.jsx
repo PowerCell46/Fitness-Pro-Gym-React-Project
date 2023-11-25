@@ -111,32 +111,32 @@ export function Checkout() {
                 <form onSubmit={postOrderHandler}>
                     <div>
                         <label htmlFor="country">Country:</label>
-                        <input type="text" name="country" id="" placeholder="Bulgaria"/>
+                        <input type="text" name="country" id="checkout-country" placeholder="Bulgaria"/>
                     </div>
 
                     <div>
                         <label htmlFor="city">City:</label>
-                        <input type="text" name="city" id="" placeholder="Sofia"/>
+                        <input type="text" name="city" id="checkout-city" placeholder="Sofia"/>
                     </div>
 
                     <div>
                         <label htmlFor="neighbourhood">Neighbourhood:</label>
-                        <input type="text" name="neighbourhood" placeholder="Gotse Delchev"/>
+                        <input type="text" name="neighbourhood" id='checkout-neighbourhood' placeholder="Gotse Delchev"/>
                     </div>
 
                     <div>
                         <label htmlFor="street">Street:</label>
-                        <input type="text" name="street" placeholder="Nishava"/>
+                        <input type="text" name="street" id='checkout-street' placeholder="Nishava"/>
                     </div>
 
                     <div>
                         <label htmlFor="number">Number:</label>
-                        <input type="text" name="number" placeholder="23"/>
+                        <input type="number" name="number" id='checkout-number' placeholder="23"/>
                     </div>
                     
                     <div>
                         <label htmlFor="apartment">Apartment:</label>
-                        <input type="text" name="apartment" placeholder="7"/>
+                        <input type="number" name="apartment" id='checkout-apartment' placeholder="7"/>
                     </div>
 
                     <button>Order</button>
@@ -188,6 +188,48 @@ export function Checkout() {
     async function postOrderHandler(e) {
         e.preventDefault();
         const {country, city, neighbourhood, street, number, apartment} = (Object.fromEntries(new FormData(e.target)));
+
+        if (country.length === 0) {
+            document.querySelector("#checkout-country").style.border = '5px solid #339933';
+        } else {
+            document.querySelector("#checkout-country").style.border = 'none';
+        }
+
+        if (city.length === 0) {
+            document.querySelector("#checkout-city").style.border = '5px solid #339933';
+        } else {
+            document.querySelector("#checkout-city").style.border = 'none';
+        }
+
+        if (neighbourhood.length === 0) {
+            document.querySelector("#checkout-neighbourhood").style.border = '5px solid #339933';
+        } else {
+            document.querySelector("#checkout-neighbourhood").style.border = 'none';
+        }
+
+        if (street.length === 0) {
+            document.querySelector("#checkout-street").style.border = '5px solid #339933';
+        } else {
+            document.querySelector("#checkout-street").style.border = 'none';
+        }
+
+        if (Number(number) <= 0 || number === '') {
+            document.querySelector("#checkout-number").style.border = '5px solid #339933';
+        } else {
+            document.querySelector("#checkout-number").style.border = 'none';
+        }
+
+        if (Number(apartment) < 0 || apartment === "") {
+            document.querySelector("#checkout-apartment").style.border = '5px solid #339933';
+        } else {
+            document.querySelector("#checkout-apartment").style.border = 'none';
+        }
+
+        if (country.length === 0 || city.length === 0 || neighbourhood.length === 0 || street.length === 0 || Number(number) <= 0 || Number(apartment) < 0 || apartment === "" || number === '') {
+            return;
+        }
+
+
         let orderProductsDetails = {products: [], totalPrice: totalSum};
         
         for (let product of checkoutData) {
