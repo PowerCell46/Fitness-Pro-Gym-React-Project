@@ -12,7 +12,7 @@ function postHighlightHandler(req, res) {
     }
 
     const {description, ownerId} = req.body;
-
+    // validate OwnerId
     try {
         const highlight = new Highlight({imageLocation: image.path, description, ownerId, likes: []});
         highlight.save();

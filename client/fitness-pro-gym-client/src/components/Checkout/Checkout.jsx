@@ -188,17 +188,38 @@ export function Checkout() {
     async function postOrderHandler(e) {
         e.preventDefault();
         const {country, city, neighbourhood, street, number, apartment} = (Object.fromEntries(new FormData(e.target)));
-        let orderProductsDetails = [];
+        let orderProductsDetails = {products: [], totalPrice: totalSum};
         
         for (let product of checkoutData) {
-            console.log(product);
             const name = product._doc ? product._doc.name : product.name;
-            console.log(name);
-            const id = product._doc ? product._doc._id :
+            // console.log(`Product Name: ${name}`);
+            const productQuantity = quantities[name] || 1
+            // console.log(`Product Quantity: ${productQuantity}`);
+
+            const productId = product._doc ? product._doc._id :
                 {membershipType: product.name.substring(0, product.name.lastIndexOf(" ")), 
                 membershipCategory: product.name.substring(product.name.lastIndexOf(" ") + 1).toLowerCase()}
             
-        
+            orderProductsDetails.products.push({name, productQuantity, productId});
+        }
+
+        try {
+            var serverResponse = await fetch("http://localhost:5000/checkout/finishOrder", 
+            {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(
+                {userId: JSON.parse(localStorage.getItem("authenticationTokenAndData")).id,
+                orderDetails: orderProductsDetails, 
+                shippingDetails: {country, city, neighbourhood, street, number, apartment}
+            })});
+
+            if (serverResponse.status === 200) {
+                navigate("/") // My Profile
+           
+            } else {
+                navigate("/404");
+            }
+       
+        } catch {
+            navigate("/404"); // Error while making the request
         }
     }
 }
