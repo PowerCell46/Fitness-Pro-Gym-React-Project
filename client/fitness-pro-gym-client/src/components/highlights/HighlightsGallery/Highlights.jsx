@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { AuthenticationContext } from "../../../contexts/AuthenticationContext";
 import "./highlights.css";
 
 
 export function Highlights() {
+    const {navigate} = useContext(AuthenticationContext);
     const [highlightsData, setHighlightsData] = useState([]);
 
     useEffect(() => {
@@ -12,12 +14,11 @@ export function Highlights() {
                 var response = await fetch("http://localhost:5000/highlights");
             
             } catch {
-                /// Do something
+                navigate("/404");
             }
 
             if (!response.ok) {
-                console.log(response);
-                // navigate
+                navigate("/404");
             }
             
             const data = await response.json();

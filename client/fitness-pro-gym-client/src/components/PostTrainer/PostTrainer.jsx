@@ -1,6 +1,7 @@
 import "./postTrainer.css";
 import { useContext } from "react";
 import { TrainerContext } from "../../contexts/TrainerContext";
+import { fakeButtonHandler, realButtonHandler } from "../../utils/fakeBtnRealBtn";
 
 
 export function PostTrainer() {
@@ -12,9 +13,9 @@ export function PostTrainer() {
             <form onSubmit={postTrainerSubmitHandler}>
                 
                 <p id="post-trainer-image-err-p" className="err-message">File format not available!</p>
-                <input name="image" type="file" className="file-upload" hidden="hidden" onChange={postTrainerRealButtonHandler}/>
+                <input name="image" type="file" className="file-upload" hidden="hidden" onChange={realButtonHandler}/>
                 <div className="file-upload-div">
-                    <button id="post-trainer-image" onClick={postTrainerFakeButtonHandler}>Choose a file</button>
+                    <button id="post-trainer-image" onClick={fakeButtonHandler}>Choose a file</button>
                     <span id="post-trainer-span">No file chosen</span>
                 </div>
                 
@@ -32,23 +33,4 @@ export function PostTrainer() {
             </form>
         </main>
     );
-}
-
-
-function postTrainerFakeButtonHandler(e) {
-    e.preventDefault();
-    document.querySelector(".file-upload").click();
-}
-
-
-function postTrainerRealButtonHandler() {
-    const realFileButton = document.querySelector(".file-upload");
-    const spanFile = document.querySelector(".file-upload-div span");
-    if (realFileButton.value) {
-        spanFile.textContent= realFileButton.value.match(/[\/\\]([\w\d\s\.\-\(\)]+)$/)[1];
-        spanFile.style.color = "#007760";
-        spanFile.style.backgroundColor = "rgba(255, 255, 255, 0.5)"
-    } else {
-        spanFile.textContent = 'No file chosen';
-    }
 }

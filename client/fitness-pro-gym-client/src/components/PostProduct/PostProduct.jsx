@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { ProductContext } from "../../contexts/ProductContext";
 import "./postProduct.css";
-
+import { fakeButtonHandler, realButtonHandler } from "../../utils/fakeBtnRealBtn";
 
 export function PostProduct() {
     const {postProductSubmitHandler} = useContext(ProductContext);
@@ -29,10 +29,10 @@ export function PostProduct() {
             <p id="post-product-price-err-p" className="err-message">Product price must be bigger than 0!</p>
             <input id="post-product-price" type="number" placeholder="Product Price" name="price"/>
            
-            <input onChange={postProductRealButtonHandler} type="file" name="image" className="file-upload" hidden="hidden"/>
+            <input onChange={realButtonHandler} type="file" name="image" className="file-upload" hidden="hidden"/>
             <p id="post-product-image-err-p" className="err-message">Invalid File Type!</p>
             <div className="file-upload-div">
-                <button id="post-product-image" onClick={postProductFakeButtonHandler}>Choose a file</button>
+                <button id="post-product-image" onClick={fakeButtonHandler}>Choose a file</button>
                 <span>No file chosen</span>
             </div>
           
@@ -40,23 +40,4 @@ export function PostProduct() {
         </form>
     </main>
     );
-}
-
-
-function postProductFakeButtonHandler(e) {
-    e.preventDefault();
-    document.querySelector(".file-upload").click();
-}
-
-
-function postProductRealButtonHandler() {
-    const realFileButton = document.querySelector(".file-upload");
-    const spanFile = document.querySelector(".file-upload-div span");
-    if (realFileButton.value) {
-        spanFile.textContent= realFileButton.value.match(/[\/\\]([\w\d\s\.\-\(\)]+)$/)[1];
-        spanFile.style.color = "#007760";
-        spanFile.style.backgroundColor = "rgba(255, 255, 255, 0.5)"
-    } else {
-        spanFile.textContent = 'No file chosen';
-    }
 }

@@ -10,14 +10,14 @@ import { SuccessfulOrder } from './components/SuccessfulOrder/SuccessfulOrder';
 import { useState } from 'react';
 import { AuthenticationContext } from './contexts/AuthenticationContext';
 import { Logout } from './components/authentication/Logout/Logout';
-import { PostHighlight } from './components/PostHighlight/PostHighlight';
+import { PostHighlight } from './components/highlights/PostHighlight/PostHighlight';
 import { HighlightContext } from './contexts/HighlightContext';
-import { HighlightDescription } from './components/HighlightDescription/HighlightDescription';
-import { Highlights } from './components/Highlights/Highlights';
+import { HighlightDescription } from './components/highlights/HighlightDescription/HighlightDescription';
+import { Highlights } from './components/highlights/HighlightsGallery/Highlights';
 import { PostTrainer } from './components/PostTrainer/PostTrainer';
 import { TrainerContext } from './contexts/TrainerContext';
 import { Trainers } from './components/Trainers/Trainers';
-import { validatePassword, validateUsername, validateImageExtension, validateTrainerName, validatePhoneNumber, validateEmail, validateProductName, validateProductDescription, validateProductPrice } from './validators';
+import { validatePassword, validateUsername, validateImageExtension, validateTrainerName, validatePhoneNumber, validateEmail, validateProductName, validateProductDescription, validateProductPrice } from './utils/validators';
 import { PostProduct } from './components/PostProduct/PostProduct';
 import { ProductContext } from './contexts/ProductContext';
 import { Products } from './components/Products/Products';
@@ -233,12 +233,10 @@ function App() {
                 navigate("/highlights");
 
             } else {
-                console.log(response); // probably not right
                 navigate('/404');
             }
             
-        } catch(err) {
-            console.log(err);
+        } catch {
             navigate('/404');
         }
     }
