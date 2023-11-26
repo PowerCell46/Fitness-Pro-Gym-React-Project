@@ -14,7 +14,7 @@
 
 html {
   font-size: 20px;
-  background-color: #0e3a6c;
+  background-color: var(--deep-blue);
 } 
 
 

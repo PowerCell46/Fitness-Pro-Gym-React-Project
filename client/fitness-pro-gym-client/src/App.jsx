@@ -383,18 +383,17 @@ function App() {
                 method: "POST",
                 body: formData,
             });
-        
-            } catch(е) {
-                navigate('/404');
-            }  
-
+            
             if (response.status === 200) {
                 navigate('/products');
-
-            } else { // Validation Error or Error with writing the data on the Database
-                console.log(response);
+    
+            } else {
                 navigate('/404');
             }
+
+        } catch {
+            navigate('/404');
+        }  
     }
 
     return (

@@ -1,4 +1,5 @@
 const Product = require("../schemas/productSchema");
+const {validateImageExtension, validateProductName, validateProductType, validateProductDescription, validateProductPrice}  = require("../utilities/validators");
 
 
 async function postProductHandler(req, res) {
@@ -41,57 +42,6 @@ async function postProductHandler(req, res) {
     }
 
     res.status(200).json({ message: 'Product uploaded successfully' });
-}
-
-
-function validateImageExtension(image) {
-    const imageExtensions = ['jpg', 'jpeg', 'png', 'bmp', 'webp'];
-
-    const validExtension = imageExtensions.includes(image.originalname.toLowerCase().split(".")[image.originalname.toLowerCase().split(".").length - 1]);
-
-    const validMimeType = image.mimetype.startsWith('image/');
-
-    return validExtension && validMimeType;
-}
-
-
-function validateProductName(name) {
-    if (name.length < 5) {
-        return `Name must be at least 5 characters!`;
-   
-    } else if (name.length > 25) {
-        return `Name must be less than 25 characters!`;
-    }
-
-    return true;
-}
-
-
-function validateProductType(productType) {
-    return ["foodSupplement", "fitnessMachine", "merchandise"].includes(productType);
-}
-
-
-function validateProductDescription(description) {
-    if (description.length < 5) {
-        return `Description must be at least 5 characters!`;
-    
-    } else if (description.length > 1500) {
-        return `Description must be less than 1500 characters!`;
-    }
-    
-    return true;
-}
-
-
-function validateProductPrice(price) {
-    if (price <= 0) {
-        return `Price must be > 0!`
-    } else if (price >100000){
-        return `Price must be < 100 000!`;
-    }
-    
-    return true;
 }
 
 

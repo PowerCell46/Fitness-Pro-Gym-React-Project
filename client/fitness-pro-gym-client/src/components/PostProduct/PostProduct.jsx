@@ -3,6 +3,7 @@ import { ProductContext } from "../../contexts/ProductContext";
 import "./postProduct.css";
 import { fakeButtonHandler, realButtonHandler } from "../../utils/fakeBtnRealBtn";
 
+
 export function PostProduct() {
     const {postProductSubmitHandler} = useContext(ProductContext);
 
