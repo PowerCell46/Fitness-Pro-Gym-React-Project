@@ -27,17 +27,15 @@ async function postTrainerHandler(req, res) {
         return res.status(400).json({ error: 'Trainer Phone Number is not valid!' });  
     }
     
-    
     try {
         const trainer = new Trainer({imageLocation: image.path, name, email, phoneNumber})
         trainer.save();
 
     } catch {
-        return res.status(400).json({ error: 'An error occured while the data was being written on the Database!' });   
+        return res.status(500).json({ error: 'Internal Server Error - Creating the Trainer' });   
     }
 
     res.status(200).json({ message: 'File uploaded successfully' });
-
 } 
 
 

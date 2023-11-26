@@ -301,7 +301,6 @@ function App() {
         }
 
         try {
-            
             let response = await fetch("http://localhost:5000/trainers", {
                 method: "POST",
                 body: formData,
@@ -311,12 +310,10 @@ function App() {
                 navigate('/trainers');
 
             } else {
-                console.log(await response.json());
                 navigate('/404');
             }
 
-        } catch(err) {
-            console.log(err);
+        } catch {
             navigate('/404');
         }
     }
