@@ -7,6 +7,10 @@ async function buyProductHandler(req, res) {
 
     try {
         var currentUser = await User.findOne({_id: userId});
+
+        if (currentUser === null) {
+            return res.status(400).json({ error: 'No such user found!' });    
+        }
         
     } catch {
         return res.status(500).json({ error: 'An error occurred while the user was being searched in the database!' });
@@ -20,7 +24,7 @@ async function buyProductHandler(req, res) {
             await User.updateOne({ _id: userId }, { cart: currentUser.cart }); 
         
         } else {
-            // You can show the user that the product is already in the cart 
+            return res.status(400).json({ error: 'Product already in cart!'}); // Instead of showing the 404 page, show a message to the User    
         }
 
         res.json("Successful Operation!");

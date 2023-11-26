@@ -14,6 +14,7 @@ async function getProductsSupplementsHandler(req, res) {
         const imageData = fs.promises.readFile(`${product.imageLocation}`, {encoding: 'base64'});
         return {...product, photo: await imageData};
     }));
+    
     res.json(productsWithImages);
 }
 

@@ -9,7 +9,7 @@ export function Products() {
     const [productsData, setProductsData] = useState([]);
 
     useEffect(() => {
-        fetchProductsData();
+        filterToCertainProducts("");
     }, []);
 
     return (
@@ -17,10 +17,10 @@ export function Products() {
             
             <div className="aside-wrapper"> {/* Filtering the Products*/}
                 <aside>
-                    <h1 id="h1-all" onClick={fetchProductsData}>All</h1>
-                    <h1 id="h1-fitness-supplements" onClick={filterToFitnessSupplements}>Fitness Supplements</h1>
-                    <h1 id="h1-fitness-machines" onClick={filterToFitnessMachines}>Fitness Machines</h1>
-                    <h1 id="h1-merchandise" onClick={filterToMerchandise}>Merchandise</h1>
+                    <h1 id="h1-all" onClick={() => filterToCertainProducts("")}>All</h1>
+                    <h1 id="h1-fitness-supplements" onClick={() => filterToCertainProducts('/supplements')}>Fitness Supplements</h1>
+                    <h1 id="h1-fitness-machines" onClick={() => filterToCertainProducts('/machines')}>Fitness Machines</h1>
+                    <h1 id="h1-merchandise" onClick={() => filterToCertainProducts('/merchandise')}>Merchandise</h1>
                 </aside> 
             </div>
             
@@ -49,36 +49,9 @@ export function Products() {
     );
 
 
-    async function fetchProductsData() {
-        try {
-            var response = await fetch("http://localhost:5000/products");
-        
-        } catch {
-            console.log(await response.json());
-            navigate("/404");
-        }
-        
-        if (!response.ok) {
-            console.log(await response.json());
-            navigate("/404");
-        }
-        
-        const data = await response.json();
-        
-        setProductsData(data);
-
-        document.querySelector("#h1-all").classList.add("selected-view");
-        document.querySelector("#h1-fitness-supplements").classList.remove("selected-view");
-        document.querySelector("#h1-fitness-machines").classList.remove("selected-view");
-        document.querySelector("#h1-merchandise").classList.remove("selected-view");
-    }
-
-
     async function addProductToCart(e, productId) {
         e.preventDefault();
         e.stopPropagation();
-
-
         
         const userId = JSON.parse(localStorage.getItem("authenticationTokenAndData")).id;
 
@@ -92,6 +65,9 @@ export function Products() {
                 const element = e.target;
                 element.style.backgroundColor = "#cc1e00";
                 element.disabled = true;
+            
+            } else {
+                navigate("/404");
             }
             
         } catch {
@@ -99,78 +75,44 @@ export function Products() {
         }
     }
 
-
-    async function filterToFitnessSupplements() {
+    async function filterToCertainProducts(endpoint) {
         try {
-            var response = await fetch("http://localhost:5000/products/supplements");
-        
+            var response = await fetch(`http://localhost:5000/products${endpoint}`);
+            
+            if (!response.ok) {
+                navigate("/404");
+            }
+
         } catch {
-            console.log(await response.json());
-            navigate("/404");
-        }
-        
-        if (!response.ok) {
-            console.log(await response.json());
             navigate("/404");
         }
         
         const data = await response.json();
         
         setProductsData(data);
-
-        document.querySelector("#h1-all").classList.remove("selected-view");
-        document.querySelector("#h1-fitness-supplements").classList.add("selected-view");
-        document.querySelector("#h1-fitness-machines").classList.remove("selected-view");
-        document.querySelector("#h1-merchandise").classList.remove("selected-view");
-    }
-
-
-    async function filterToFitnessMachines() {
-        try {
-            var response = await fetch("http://localhost:5000/products/machines");
+        if (endpoint === "") {
+            document.querySelector("#h1-all").classList.add("selected-view");
+            document.querySelector("#h1-fitness-supplements").classList.remove("selected-view");
+            document.querySelector("#h1-fitness-machines").classList.remove("selected-view");
+            document.querySelector("#h1-merchandise").classList.remove("selected-view");
         
-        } catch {
-            console.log(await response.json());
-            navigate("/404");
+        } else if (endpoint === '/supplements') {
+            document.querySelector("#h1-all").classList.remove("selected-view");
+            document.querySelector("#h1-fitness-supplements").classList.add("selected-view");
+            document.querySelector("#h1-fitness-machines").classList.remove("selected-view");
+            document.querySelector("#h1-merchandise").classList.remove("selected-view");
+
+        } else if (endpoint === '/machines') {
+            document.querySelector("#h1-all").classList.remove("selected-view");
+            document.querySelector("#h1-fitness-supplements").classList.remove("selected-view");
+            document.querySelector("#h1-fitness-machines").classList.add("selected-view");
+            document.querySelector("#h1-merchandise").classList.remove("selected-view");
+
+        } else if (endpoint === '/merchandise') {
+            document.querySelector("#h1-all").classList.remove("selected-view");
+            document.querySelector("#h1-fitness-supplements").classList.remove("selected-view");
+            document.querySelector("#h1-fitness-machines").classList.remove("selected-view");
+            document.querySelector("#h1-merchandise").classList.add("selected-view");
         }
-        
-        if (!response.ok) {
-            console.log(await response.json());
-            navigate("/404");
-        }
-        
-        const data = await response.json();
-        
-        setProductsData(data);
-
-        document.querySelector("#h1-all").classList.remove("selected-view");
-        document.querySelector("#h1-fitness-supplements").classList.remove("selected-view");
-        document.querySelector("#h1-fitness-machines").classList.add("selected-view");
-        document.querySelector("#h1-merchandise").classList.remove("selected-view");
-    }
-
-
-    async function filterToMerchandise() {
-        try {
-            var response = await fetch("http://localhost:5000/products/merchandise");
-        
-        } catch {
-            console.log(await response.json());
-            navigate("/404");
-        }
-        
-        if (!response.ok) {
-            console.log(await response.json());
-            navigate("/404");
-        }
-        
-        const data = await response.json();
-        
-        setProductsData(data);
-
-        document.querySelector("#h1-all").classList.remove("selected-view");
-        document.querySelector("#h1-fitness-supplements").classList.remove("selected-view");
-        document.querySelector("#h1-fitness-machines").classList.remove("selected-view");
-        document.querySelector("#h1-merchandise").classList.add("selected-view");
     }
 }
