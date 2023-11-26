@@ -14,14 +14,14 @@ import { PostHighlight } from './components/highlights/PostHighlight/PostHighlig
 import { HighlightContext } from './contexts/HighlightContext';
 import { HighlightDescription } from './components/highlights/HighlightDescription/HighlightDescription';
 import { Highlights } from './components/highlights/HighlightsGallery/Highlights';
-import { PostTrainer } from './components/PostTrainer/PostTrainer';
+import { PostTrainer } from './components/trainers/PostTrainer/PostTrainer';
 import { TrainerContext } from './contexts/TrainerContext';
-import { Trainers } from './components/Trainers/Trainers';
+import { Trainers } from './components/trainers/TrainersGallery/Trainers';
 import { validatePassword, validateUsername, validateImageExtension, validateTrainerName, validatePhoneNumber, validateEmail, validateProductName, validateProductDescription, validateProductPrice } from './utils/validators';
-import { PostProduct } from './components/PostProduct/PostProduct';
+import { PostProduct } from './components/products/PostProduct/PostProduct';
 import { ProductContext } from './contexts/ProductContext';
-import { Products } from './components/Products/Products';
-import { ProductDescription } from './components/ProductDescription/ProductDescription';
+import { Products } from './components/products/ProductsGallery/Products';
+import { ProductDescription } from './components/products/ProductDescription/ProductDescription';
 import { Memberships } from './components/Memberships/Memberships';
 import { Checkout } from './components/Checkout/Checkout';
 

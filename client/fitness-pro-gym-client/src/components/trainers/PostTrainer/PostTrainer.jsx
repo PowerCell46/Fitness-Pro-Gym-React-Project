@@ -1,7 +1,7 @@
 import "./postTrainer.css";
 import { useContext } from "react";
-import { TrainerContext } from "../../contexts/TrainerContext";
-import { fakeButtonHandler, realButtonHandler } from "../../utils/fakeBtnRealBtn";
+import { TrainerContext } from "../../../contexts/TrainerContext";
+import { fakeButtonHandler, realButtonHandler } from "../../../utils/fakeBtnRealBtn";
 
 
 export function PostTrainer() {

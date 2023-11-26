@@ -1,7 +1,7 @@
 import { useContext } from "react";
-import { ProductContext } from "../../contexts/ProductContext";
+import { ProductContext } from "../../../contexts/ProductContext";
 import "./postProduct.css";
-import { fakeButtonHandler, realButtonHandler } from "../../utils/fakeBtnRealBtn";
+import { fakeButtonHandler, realButtonHandler } from "../../../utils/fakeBtnRealBtn";
 
 
 export function PostProduct() {

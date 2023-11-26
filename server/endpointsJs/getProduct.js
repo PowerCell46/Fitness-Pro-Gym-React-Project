@@ -8,6 +8,10 @@ async function getProductHandler(req, res) {
     try {
         var product = await Product.findOne({_id: productId}).lean();
         
+        if (product === null) {
+            return res.status(400).json({ error: 'Product not found!'});    
+        }
+        
     } catch {
         return res.status(500).json({ error: 'An error occured while the data was being read from the Database!'});
     }

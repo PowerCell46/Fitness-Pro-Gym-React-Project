@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { AuthenticationContext } from "../../contexts/AuthenticationContext"; 
 
 
-export function Section(props) {
+export function MembershipsSection(props) {
     const {navigate} = useContext(AuthenticationContext);
 
     return (

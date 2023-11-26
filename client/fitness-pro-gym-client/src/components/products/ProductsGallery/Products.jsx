@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from "react";
-import { AuthenticationContext } from "../../contexts/AuthenticationContext";
+import { AuthenticationContext } from "../../../contexts/AuthenticationContext";
 import "./products.css";
 import { Link } from "react-router-dom";
 
@@ -9,7 +9,7 @@ export function Products() {
     const [productsData, setProductsData] = useState([]);
 
     useEffect(() => {
-        filterToCertainProducts("");
+        fetchCertainProducts("");
     }, []);
 
     return (
@@ -17,10 +17,10 @@ export function Products() {
             
             <div className="aside-wrapper"> {/* Filtering the Products*/}
                 <aside>
-                    <h1 id="h1-all" onClick={() => filterToCertainProducts("")}>All</h1>
-                    <h1 id="h1-fitness-supplements" onClick={() => filterToCertainProducts('/supplements')}>Fitness Supplements</h1>
-                    <h1 id="h1-fitness-machines" onClick={() => filterToCertainProducts('/machines')}>Fitness Machines</h1>
-                    <h1 id="h1-merchandise" onClick={() => filterToCertainProducts('/merchandise')}>Merchandise</h1>
+                    <h1 id="h1-all" onClick={() => fetchCertainProducts("")}>All</h1>
+                    <h1 id="h1-fitness-supplements" onClick={() => fetchCertainProducts('/supplements')}>Fitness Supplements</h1>
+                    <h1 id="h1-fitness-machines" onClick={() => fetchCertainProducts('/machines')}>Fitness Machines</h1>
+                    <h1 id="h1-merchandise" onClick={() => fetchCertainProducts('/merchandise')}>Merchandise</h1>
                 </aside> 
             </div>
             
@@ -75,7 +75,7 @@ export function Products() {
         }
     }
 
-    async function filterToCertainProducts(endpoint) {
+    async function fetchCertainProducts(endpoint) {
         try {
             var response = await fetch(`http://localhost:5000/products${endpoint}`);
             
