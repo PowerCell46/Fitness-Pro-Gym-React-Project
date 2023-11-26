@@ -48,9 +48,9 @@ export function MembershipsSection(props) {
                 const children = parentElement.children;
 
                 for (let i = 0; i < children.length; i++) {
-                  
                     children[i].classList.add("added-membership");
                 }
+
             } else {
                 navigate("/404");
             }

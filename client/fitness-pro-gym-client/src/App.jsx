@@ -24,6 +24,7 @@ import { Products } from './components/products/ProductsGallery/Products';
 import { ProductDescription } from './components/products/ProductDescription/ProductDescription';
 import { Memberships } from './components/Memberships/Memberships';
 import { Checkout } from './components/Checkout/Checkout';
+import { MyProfile } from './components/MyProfile/MyProfile';
 
 
 function App() {
@@ -411,7 +412,8 @@ function App() {
                 <Route path='/' element={<Home/>}/>
 
                 <Route path='/login' element={<Login/>}/>
-                <Route path='/register' element={<Register/>}/>   
+                <Route path='/register' element={<Register/>}/>
+                <Route path='/myProfile' element={<MyProfile/>}/>   
                 
                 <Route path='/postHighlight' element={<PostHighlight/>}/>
                 <Route path='/highlights' element={<Highlights/>}/>

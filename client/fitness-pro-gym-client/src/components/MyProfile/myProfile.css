@@ -1,0 +1,169 @@
+.my-profile-main {
+    margin-top: 12.5vh;
+    padding-top: 5vh;
+    height: 100%;
+    width: 100vw;
+    margin-left: -0.4vw;
+    background: url("https://images.unsplash.com/photo-1651647232601-fbea5b6cca0d?auto=format&fit=crop&q=80&w=1000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8M3xLcjFzS3VGbnp5Y3x8ZW58MHx8fHx8");
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2vh;
+    
+}
+
+.my-profile-main .main-heading {
+    margin-top: -4vh;
+    margin-bottom: 1vh;
+}
+
+.my-profile-main .hexagon-container {
+    margin-top: -1vh;
+    width: auto; 
+    height: 35vh;
+    position: relative;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    transition: 600ms ease-in-out;
+}
+  
+.my-profile-main .hexagon-container img {
+    width: auto;
+    height: 100%;
+    display: block;
+    transition: 600ms ease-in-out;
+}
+
+.my-profile-main .hexagon-container:hover {
+    transform: scale(1.1);
+    transform: translateY(-0.2rem);
+}
+
+.my-profile-main .hexagon-container:hover img {
+    filter: brightness(0.7); /* Darkens the image to 70% of its original brightness */
+}
+
+.my-profile-main h2 {
+    margin-bottom: 0;
+    text-align: center;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 3rem;
+    font-weight: bolder;
+    color: whitesmoke;
+    text-shadow: 5px 0px 7px rgba(0,0,0,0.68);
+    letter-spacing: 0.7rem;
+}
+
+.my-profile-main .trainer-qr-code-section {
+    display: flex;
+    flex-direction: row;
+    width: 50vw;
+    justify-content: space-between;
+}
+
+.my-profile-main .trainer-qr-code-section img {
+    height: 30vh;
+    border-radius: 0.7rem;
+    transition: 600ms ease-in-out;
+}
+
+.my-profile-main .trainer-qr-code-section img:hover {
+    transform: translateY(-0.3rem);
+}
+
+.my-profile-main .trainer-qr-code-section h2 {
+    font-size: 3.5rem;
+}
+
+
+.my-profile-main section {
+    border-radius: 0.3rem;
+    box-shadow: 7px 6px 13px 0px rgba(0,0,0,0.75);
+    padding-left: 3vw;
+    display: flex;
+    align-items: center;
+    font-family: 'Salsa', cursive;
+    color: whitesmoke;
+    text-shadow: 5px 0px 7px rgba(0,0,0,0.68);
+    letter-spacing: 0.05rem;
+    background-color: #14539a;
+    width: 60vw;
+    height: 17.5vh;
+    gap: 3vw;
+    transition: 600ms ease-in-out;
+}
+
+.my-profile-main section:hover {
+    transform: scale(1.1);
+    transform: translateY(-0.2rem);
+}
+
+.my-profile-main .order-details-template {
+    font-weight: 600;
+    letter-spacing: 0.1rem;
+}
+
+
+.my-profile-main section button {
+    position: relative;
+    left: 34vw;
+    padding: 0.7rem 0.7rem;
+    background-color: #008F7A;
+    color: #f5f5f5;
+    font-size: 1rem;
+    text-shadow: 5px 0px 7px rgba(0,0,0,0.68);
+    font-family: 'Salsa', cursive;
+    font-weight: 600;
+    letter-spacing: 0.15rem;
+    border: none;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    transition: 600ms ease-in-out;
+    margin-bottom: -2Vh;
+    animation: hithere 5s ease-in-out infinite;
+}
+
+.my-profile-main section button:hover {
+        background-color: #00816e;
+        transform: translateY(-0.2rem);
+}
+
+.my-profile-main .my-highlights {
+    width: 90vw;
+}
+
+.my-profile-main h1 {
+    text-align: center;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 5rem;
+    font-weight: bolder;
+    color: whitesmoke;
+    text-shadow: 5px 0px 7px rgba(0,0,0,0.68);
+    letter-spacing: 0.7rem;
+}
+
+.my-profile-main .gallery-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.my-profile-main .gallery-div .gallery-inner-box {
+    display: flex;
+    flex-direction: column;
+    width: 22%;
+}
+
+.my-profile-main .gallery-div .gallery-inner-box img{
+    width: 100%;
+    margin-bottom: 2rem;
+    border-radius: 1rem;
+    transition: 600ms ease-in-out;
+}
+
+.my-profile-main .gallery-div .gallery-inner-box img:hover {
+    cursor: pointer;
+    -webkit-filter: blur(5px);
+    filter: blur(3px);
+    transform: scale(1.05);
+}
