@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import "./highlightDescription.css";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { AuthenticationContext } from "../../../contexts/AuthenticationContext";
 
 
 export function HighlightDescription() {
+    const {navigate} = useContext(AuthenticationContext);
     const [highlightData, setHighlightData] = useState({});
     const [numberOfLikes, setNumberOfLikes] = useState(0);
     const {highlightId} = useParams();
@@ -13,22 +15,20 @@ export function HighlightDescription() {
         async function fetchHighlightData() {
 
             try {
-            var response = await fetch(`http://localhost:5000/highlights/${highlightId}`);
+                var response = await fetch(`http://localhost:5000/highlights/${highlightId}`);
 
             } catch {
-                console.log( await response.json());
-                //Redirect
+                navigate("/404");
             }
 
             if (!response.ok) {
-                console.log( await response.json());
-                // Redirect
+                navigate("/404");
             }
 
             let data = await response.json();
 
-            data.uploadDate = new Date(data.uploadDate).toLocaleDateString();
-            data.hasLiked = data.likes.includes(JSON.parse(localStorage.getItem("authenticationTokenAndData")).id);
+            data.uploadDate = new Date(data.uploadDate).toLocaleDateString(); // Converting the Date
+            data.hasLiked = data.likes.includes(JSON.parse(localStorage.getItem("authenticationTokenAndData")).id); // Checking whether the User has liked the Post before
 
             setNumberOfLikes(data.likes.length);
             
@@ -46,7 +46,7 @@ export function HighlightDescription() {
                 <h5>{highlightData.description}</h5>
               
                 <p className="number-of-likes">
-                    {highlightData.ownerId !== JSON.parse(localStorage.getItem("authenticationTokenAndData")).id ?
+                    {highlightData.ownerId !== JSON.parse(localStorage.getItem("authenticationTokenAndData")).id ? // The like button is available only if the User is not the Creator
                         <i id="like-icon" onClick={likeHighlightHandler} className={
                             highlightData.hasLiked
                             ? "fa-solid fa-thumbs-up already-liked" // If the person has liked, the button will not move and be different colour
@@ -58,7 +58,7 @@ export function HighlightDescription() {
                 highlightData.ownerId === JSON.parse(localStorage.getItem("authenticationTokenAndData")).id ? 
                     <div className="buttons">
                         <Link to={`/highlights/edit/${highlightData._id}`}><button>Edit</button></Link>
-                        <Link to={`/highlights/edit/${highlightData._id}`}><button>Delete</button></Link>
+                        <Link to={`/highlights/delete/${highlightData._id}`}><button>Delete</button></Link> {/* Popup asking whether the user really wants to delete his highlight */}
                     </div>
                     : ""}
                 </> 
@@ -71,17 +71,23 @@ export function HighlightDescription() {
         if (highlightData.likes.includes(JSON.parse(localStorage.getItem("authenticationTokenAndData")).id)) {
             return; // Checking if the user isn't trying to like his on highlight
         }
-        const response = await fetch(`http://localhost:5000/highlights/like/${highlightId}`, 
-        {method: "POST", headers: {"Content-Type": "application/json"}, 
-        body: JSON.stringify({userId: JSON.parse(localStorage.getItem("authenticationTokenAndData")).id})})
-        
-        const data = await response.json();
+        try {
+            var response = await fetch(`http://localhost:5000/highlights/like/${highlightId}`, 
+            {method: "POST", headers: {"Content-Type": "application/json"}, 
+            body: JSON.stringify({userId: JSON.parse(localStorage.getItem("authenticationTokenAndData")).id})});
 
-        if (data === "Successful operation") {
-            setNumberOfLikes((val) => val + 1, () => {
-                document.querySelector(".number-of-likes").textContent = `Likes: ${numberOfLikes}`;
-            });
-            document.querySelector("#like-icon").classList.add("already-liked");
+            if (response.status === 200) {
+                setNumberOfLikes((val) => val + 1, () => {
+                    document.querySelector(".number-of-likes").textContent = `Likes: ${numberOfLikes}`;
+                });
+                document.querySelector("#like-icon").classList.add("already-liked");    
+           
+            } else {
+                navigate("/404");
+            }
+
+        } catch {
+            navigate("/404");
         }
     }
 }

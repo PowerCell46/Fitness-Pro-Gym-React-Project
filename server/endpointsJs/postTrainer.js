@@ -1,4 +1,5 @@
 const Trainer = require("../schemas/trainerSchema");
+const {validateImageExtension, validateTrainerName, validateEmail, validatePhoneNumber} = require("../utilities/validators");
 
 
 async function postTrainerHandler(req, res) {
@@ -11,20 +12,18 @@ async function postTrainerHandler(req, res) {
 
     const {name, email, phoneNumber} = req.body;
 
-    const validName = validateName(name);
-    if (!validName) {
+    const validName = validateTrainerName(name);
+    if (validName !== true) {
         return res.status(400).json({ error: 'Trainer Name is not valid!' });
-    
     }
 
     const validEmail = validateEmail(email);
-    if (!validEmail) {
+    if (validEmail !== true) {
         return res.status(400).json({ error: 'Trainer Email is not valid!' });
-
     } 
 
     const validPhoneNumber = validatePhoneNumber(phoneNumber);
-    if (!validPhoneNumber) {
+    if (validPhoneNumber !== true) {
         return res.status(400).json({ error: 'Trainer Phone Number is not valid!' });  
     }
     
@@ -41,36 +40,6 @@ async function postTrainerHandler(req, res) {
 
 } 
 
-
-function validateImageExtension(image) {
-    const imageExtensions = ['jpg', 'jpeg', 'png', 'bmp'];
-
-    const validExtension = imageExtensions.includes(image.originalname.toLowerCase().split(".")[image.originalname.split(".").length - 1]);
-
-    const validMimeType = image.mimetype.startsWith('image/');
-
-    return validExtension && validMimeType;
-}
-
-
-function validateEmail(email) {
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    return emailRegex.test(email);
-}
-
-
-function validateName(name) {
-    if (!name.includes(" ") || name.length < 7) {
-        return false;
-    }
-    return true;
-}
-
-
-function validatePhoneNumber(phoneNumber) {
-    const phoneNumberRegex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
-    return phoneNumberRegex.test(phoneNumber);
-}
 
 
 module.exports = postTrainerHandler;

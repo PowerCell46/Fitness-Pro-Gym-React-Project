@@ -41,9 +41,12 @@ export function validateImageExtension(image) {
 
 
 export function validateTrainerName(name) {
-    if (!name.includes(" ") || name.length < 7) {
-        return false;
+    if (!name.includes(" ")) {
+        return 'Full Name requiried!';
+    } else if (name.length < 7) {
+        return 'Full name must be at least 7 characters';
     }
+    
     return true;
 }
 

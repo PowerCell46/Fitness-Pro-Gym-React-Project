@@ -7,11 +7,14 @@ async function getHighlightsHandler(req, res) {
         var data = await Highlight.find().sort({ uploadDate: 'desc' }).lean();
         
     } catch {
-        return res.status(400).json({ error: 'An error occured while the data was being read from the Database!'});
+        return res.status(500).json({ error: 'Internal Server Error'});
     }
     
+    // can be moved to another file...!
     const highlightsWithImages = await Promise.all(data.map(async (highlight) => {
+       
         const imageData = fs.promises.readFile(`${highlight.imageLocation}`, {encoding: 'base64'});
+       
         return {...highlight, photo: await imageData};
     }));
     

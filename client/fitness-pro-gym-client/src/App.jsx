@@ -246,38 +246,41 @@ function App() {
         let formData = new FormData(e.target);
         
         const validImage = validateImageExtension(formData.get("image"));
-        if (!validImage) {
+        if (validImage !== true) {
             document.querySelector("#post-trainer-image-err-p").textContent = 'Image format not valid!';                    
             document.querySelector("#post-trainer-image-err-p").style.display = 'inline';
             document.querySelector("#post-trainer-image").classList.add("err-input-field");
-            document.querySelector("#post-trainer-span").classList.add("err-input-field"); // does not look good
-       
+            document.querySelector(".post-trainer-main").style.height = '105vh';
+
         } else {
             document.querySelector("#post-trainer-image-err-p").style.display = 'none';
             document.querySelector("#post-trainer-image").classList.remove("err-input-field");
-            document.querySelector("#post-trainer-span").classList.remove("err-input-field"); // does not look good
+            document.querySelector(".post-trainer-main").style.height = '90vh';
         }
 
         const validName = validateTrainerName(formData.get("name"));
-        if (!validName) {
-            document.querySelector("#post-trainer-name-err-p").textContent = 'Name is not valid!';                    
+        if (validName !== true) {
+            document.querySelector("#post-trainer-name-err-p").textContent = validName;                    
             document.querySelector("#post-trainer-name-err-p").style.display = 'inline';
             document.querySelector("#post-trainer-name").classList.add("err-input-field");
-        
+            document.querySelector(".post-trainer-main").style.height = '105vh';
         } else {
             document.querySelector("#post-trainer-name-err-p").style.display = 'none';
             document.querySelector("#post-trainer-name").classList.remove("err-input-field");
+            document.querySelector(".post-trainer-main").style.height = '90vh';
         }
 
         const validEmail = validateEmail(formData.get("email"));
-        if (!validEmail) {
-            document.querySelector("#post-trainer-email-err-p").textContent = 'Email is not valid!';                    
+        if (validEmail !== true) {
+            document.querySelector("#post-trainer-email-err-p").textContent = validEmail;                    
             document.querySelector("#post-trainer-email-err-p").style.display = 'inline';
             document.querySelector("#post-trainer-email").classList.add("err-input-field");
-        
+            document.querySelector(".post-trainer-main").style.height = '105vh';
+
         } else {
             document.querySelector("#post-trainer-email-err-p").style.display = 'none';
             document.querySelector("#post-trainer-email").classList.remove("err-input-field");
+            document.querySelector(".post-trainer-main").style.height = '90vh';
         }
 
         const validPhoneNumber = validatePhoneNumber(formData.get("phoneNumber"));
@@ -285,13 +288,15 @@ function App() {
             document.querySelector("#post-trainer-phoneNumber-err-p").textContent = 'Phone Number is not valid!';                    
             document.querySelector("#post-trainer-phoneNumber-err-p").style.display = 'inline';
             document.querySelector("#post-trainer-phoneNumber").classList.add("err-input-field");
-        
+            document.querySelector(".post-trainer-main").style.height = '105vh';
+
         } else {
             document.querySelector("#post-trainer-phoneNumber-err-p").style.display = 'none';
             document.querySelector("#post-trainer-phoneNumber").classList.remove("err-input-field");
+            document.querySelector(".post-trainer-main").style.height = '90vh';
         }
 
-        if (!validImage || !validName || !validEmail  || !validPhoneNumber) {
+        if (!validImage || validName !== true || validEmail !== true  || !validPhoneNumber) {
             return;
         }
 
