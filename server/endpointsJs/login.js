@@ -35,16 +35,15 @@ async function loginHandler(req, res) {
     }
 
     if (passwordValidity) {
-        const token = createToken(user._id, user.email, user.user);
-
-        console.log(`User: ${user.username} with email: ${user.email} successfully Logged in!`);
-       
-        res.json({token, username: user.username, email: user.email, id: user._id, isAdministrator: user.isAdministrator});
-    
+        var token = createToken(user._id, user.email, user.user);     
+        
     } else {
-
         return res.status(403).json({ error: 'Password is not valid!' });
     }
+    
+    console.log(`User: ${user.username} with email: ${user.email} successfully Logged in!`);
+    
+    res.json({token, username: user.username, email: user.email, id: user._id, isAdministrator: user.isAdministrator});
 }
 
 

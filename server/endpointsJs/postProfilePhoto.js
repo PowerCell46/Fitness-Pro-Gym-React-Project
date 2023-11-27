@@ -1,10 +1,13 @@
 const User = require("../schemas/userSchema");
 const { validateImageExtension } = require("../utilities/validators");
+const fs = require('fs');
 
 
 async function postProfilePhotoHandler(req, res) {
     const image = req.file;
 
+    // console.log(image);
+    
     const validImage = validateImageExtension(image);
    
     if (!validImage) {
@@ -27,7 +30,9 @@ async function postProfilePhotoHandler(req, res) {
     try {
         await User.updateOne({ _id: userId }, { imageLocation: image.path}); 
     
-        res.json("Successful Operation!");
+        const imageData = await fs.promises.readFile(`${image.path}`, {encoding: "base64"});
+
+        res.json(imageData);
 
     } catch {
         return res.status(500).json({ error: 'Internal Server Error - Changing the ImageLocation' }); // searching for the user crashed

@@ -1,5 +1,6 @@
 const {hashPassword, createToken} = require("../createTokenHashPassVerifyPass");
 const User = require("../schemas/userSchema");
+const fs = require("fs");
 
 
 async function registerHandler(req, res) {
@@ -61,8 +62,8 @@ async function registerHandler(req, res) {
     } 
 
     try {
-        var token = createToken(user._id, email, username, user.isAdministrator); // Profile Image ??? 
-    
+        var token = createToken(user._id, email, username, user.isAdministrator);
+        
     } catch {
         return res.status(500).json({ error: 'An Error occured while the Authentication Token was being created!' });   
     }

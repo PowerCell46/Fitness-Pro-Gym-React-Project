@@ -1,12 +1,11 @@
 import { Link } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { AuthenticationContext } from "../../contexts/AuthenticationContext";
 import './navigation.css';
-import profilePicture from '../../../public/images/profile_picture.jpg';
 
 
 export function Navigation() {
-    const {user, setLogoutComponent} = useContext(AuthenticationContext);
+    const {user, setLogoutComponent, profilePhoto} = useContext(AuthenticationContext);
     const [dropdown, setDropdown] = useState(false);
 
     return (
@@ -24,7 +23,7 @@ export function Navigation() {
         JSON.parse(localStorage.getItem("authenticationTokenAndData")).isAdministrator ? 
         <li> {/* If the user is the administrator - access to create menus */}
             <div className="profile-dropdown">
-                <img id="profilePicture" src={profilePicture} alt="Profile picture" onClick={hiddenDropdownHandler}/>
+            <img src={`data:image/jpeg;base64,${profilePhoto}`} alt="Profile Photo" onClick={hiddenDropdownHandler}/>
                 <div className="hidden-profile-view">
                     <ul>
                         <li><Link to={'/postProduct'}>Create Product</Link></li>
@@ -37,13 +36,12 @@ export function Navigation() {
         <li> {/* If the user is not the administrator - the image is a link to My Profile */}
             <div className="profile-dropdown">
                 <Link className="img-to-my-profile-link" to={'/myProfile'}>
-                    <img id="profilePicture" src={profilePicture} alt="Profile picture" onClick={hiddenDropdownHandler}/>
+                    <img src={`data:image/jpeg;base64,${profilePicture}`} alt="Profile Photo"/>
                 </Link>
             </div>
         </li>
     :
     "" }
-
     </header>
     );
     

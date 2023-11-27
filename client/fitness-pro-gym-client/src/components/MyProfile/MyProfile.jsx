@@ -1,12 +1,12 @@
-import { AuthenticationContext } from "../../contexts/AuthenticationContext";
-import { useState, useContext } from "react";
 import "./myProfile.css";
-import { useEffect } from "react";
+import { useState, useContext, useEffect } from "react";
+import { AuthenticationContext } from "../../contexts/AuthenticationContext";
 import {HighlightsDiv} from '../highlights/HighlightsGallery/HighlightsDiv';
 import { MyProfileSection } from "./MyProfileSection";
 import { fakeButtonHandler, realButtonHandler } from "../../utils/fakeBtnRealBtn";
 
 export function MyProfile() {
+    const {profilePhoto, changeProfilePictureHandler} = useContext(AuthenticationContext);
     const {navigate} = useContext(AuthenticationContext);
     const [highlights, setHighlights] = useState([]);
     const [orders, setOrders] = useState([]);
@@ -66,12 +66,12 @@ export function MyProfile() {
     return (
         <main className="my-profile-main">
         <div className="hexagon-container">
-            <img src="./images/profile_picture.jpg" alt="" className="profile-picture" onClick={fakeButtonHandler}/>
+            <img src={`data:image/jpeg;base64,${profilePhoto}`} alt="Profile Photo" onClick={fakeButtonHandler}/>
         </div>
             <input type="file" className="file-upload" hidden="hidden" name="image" onChange={realButtonHandler}/>
 
             <button id="change-profile-photo" onClick={changeProfilePictureHandler}>Change Picture</button>
-            
+
         <h1 className="main-heading">My profile</h1>
         
         <div className="trainer-qr-code-section">
@@ -101,35 +101,5 @@ export function MyProfile() {
             </div>
         </div>
     </main>
-    );
-
-    async function changeProfilePictureHandler() {
-        const fileInput = document.querySelector(".file-upload");
-
-        if (fileInput.files.length === 0) {
-            // Show that no image was selected
-        }
-
-        // validate image
-        const formData = new FormData();
-        formData.append("image", fileInput.files[0]);
-        formData.append("userId", JSON.parse(localStorage.getItem("authenticationTokenAndData")).id);
-
-        try {
-            var response = await fetch("http://localhost:5000/profilePhotos", {
-                method: "POST",
-                body: formData
-            });
-
-            if (response.status === 200) {
-                navigate("/"); // change!!!
-
-            } else {
-                navigate("/404");
-            }
-
-        } catch {
-            navigate("/404");
-        }
-    }
+    );  
 } 

@@ -13,12 +13,12 @@ export function Highlights() {
         async function fetchHighlightsData() {
             try {
                 var response = await fetch("http://localhost:5000/highlights");
-            
-            } catch {
-                navigate("/404");
-            }
+                
+                if (response.status !== 200) {
+                    navigate("/404");
+                }
 
-            if (!response.ok) {
+            } catch {
                 navigate("/404");
             }
             

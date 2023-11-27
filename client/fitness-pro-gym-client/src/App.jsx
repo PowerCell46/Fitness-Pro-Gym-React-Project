@@ -1,4 +1,4 @@
-import {Route, Routes, useNavigate} from 'react-router-dom';
+import {Route, Routes, redirect, useNavigate} from 'react-router-dom';
 import './App.css';
 import { Navigation } from './components/Navigation/Navigation';
 import { Home } from './components/Home/Home';
@@ -7,7 +7,7 @@ import { Login } from './components/authentication/Login/Login';
 import { Register } from './components/authentication/Register/Register';
 import { Error_404 } from './components/Error_404/Error_404';
 import { SuccessfulOrder } from './components/SuccessfulOrder/SuccessfulOrder';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { AuthenticationContext } from './contexts/AuthenticationContext';
 import { Logout } from './components/authentication/Logout/Logout';
 import { PostHighlight } from './components/highlights/PostHighlight/PostHighlight';
@@ -30,7 +30,32 @@ import { MyProfile } from './components/MyProfile/MyProfile';
 function App() {
     const [user, setUser] = useState(localStorage.getItem('authenticationTokenAndData'));
     const [logoutComponentShown, setLogoutComponent] = useState(false);
+    const [profilePhoto, setProfilePhoto] = useState("");
     const navigate = useNavigate();
+
+    useEffect(() => {
+        async function getProfilePhoto() {
+            try {
+                const response = await fetch(`http://localhost:5000/users/getProfilePhoto`, 
+                {method: "POST", headers: {"Content-Type": "application/json"}, 
+                body: JSON.stringify({userId: JSON.parse(localStorage.getItem("authenticationTokenAndData")).id})});   
+                
+                if (response.status === 200) {
+                    const data = await response.json();
+                    
+                    setProfilePhoto(data);
+                
+                } else {
+                    redirect("/404");
+                }
+                
+            } catch {
+                redirect("/404");
+            }
+        }
+
+        getProfilePhoto();
+    }, []);
 
     async function loginSubmitHandler(e) {
         e.preventDefault();
@@ -397,8 +422,40 @@ function App() {
         }  
     }
 
+    async function changeProfilePictureHandler() {
+        const fileInput = document.querySelector(".file-upload");
+
+        if (fileInput.files.length === 0) {
+            // Show that no image was selected
+        }
+
+        // validate image
+        const formData = new FormData();
+        formData.append("image", fileInput.files[0]);
+        formData.append("userId", JSON.parse(localStorage.getItem("authenticationTokenAndData")).id);
+
+        try {
+            var response = await fetch("http://localhost:5000/profilePhotos", {
+                method: "POST",
+                body: formData
+            });
+
+            if (response.status === 200) {
+                const data = await response.json();
+                
+                setProfilePhoto(data);
+
+            } else {
+                navigate("/404");
+            }
+
+        } catch {
+            navigate("/404");
+        }
+    }
+
     return (
-        <AuthenticationContext.Provider value={{loginSubmitHandler, registerSubmitHandler, logoutSubmitHandler, user, setLogoutComponent, navigate}}>
+        <AuthenticationContext.Provider value={{loginSubmitHandler, registerSubmitHandler, logoutSubmitHandler, user, setLogoutComponent, navigate, profilePhoto, changeProfilePictureHandler}}>
         <>
             <Navigation/>
 

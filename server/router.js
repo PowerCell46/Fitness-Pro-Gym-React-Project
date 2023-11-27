@@ -23,6 +23,7 @@ const finishOrderHandler = require("./endpointsJs/finishOrder");
 const getUserHighlightsHandler = require("./endpointsJs/getUserHighlights");
 const getOrdersHandler = require("./endpointsJs/orders");
 const postProfilePhotoHandler = require("./endpointsJs/postProfilePhoto");
+const getProfilePhoto = require("./endpointsJs/getProfilePhoto");
 
 
 const storage = multer.diskStorage({
@@ -59,7 +60,13 @@ router.post("/users/register", registerHandler);
 router.post("/users/orders", getOrdersHandler);
 
 
+router.post("/users/getProfilePhoto", getProfilePhoto);
+
+
 router.post("/profilePhotos", upload.single("image"), postProfilePhotoHandler);
+
+
+
 
 
 
