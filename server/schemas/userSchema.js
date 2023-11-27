@@ -1,12 +1,7 @@
 const { model, Schema } = require("mongoose");
-const Product = require("./productSchema");
 
 
 const userSchema = new Schema({
-    // imageLocation: {
-    //     type: String,
-    //     required: true,
-    // },
     email: {
         type: String,
         required: true,
@@ -19,6 +14,10 @@ const userSchema = new Schema({
     password: {
         type: String,
         required: true,
+    },
+    imageLocation: {
+        type: String,
+        default: "images/profilePhotos/blank-avatar-photo-place-holder-600nw-1095249842.png",
     },
     isAdministrator: {
         type: Boolean,

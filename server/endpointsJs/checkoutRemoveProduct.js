@@ -22,7 +22,7 @@ async function checkoutRemoveProductHandler(req, res) {
         } else {
             currentUser.cart = currentUser.cart.filter((element) => element !== removedProductId);
         }
-
+        
         await User.updateOne({ _id: userId }, { cart: currentUser.cart }); 
         
         res.json("Successful Operation!");

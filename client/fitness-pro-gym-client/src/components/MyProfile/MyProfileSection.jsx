@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 export function MyProfileSection(props) {
     return (
@@ -12,7 +13,7 @@ export function MyProfileSection(props) {
                 <p>{props.order.orderDetails.orderDate}</p>
                 <p>{props.order.orderDetails.totalPrice}<sup>00</sup> BGN</p>
             </div>
-            <button>Details</button>
+            <Link to={`/orders/${props.order.orderDetails.orderId}`}><button>Details</button></Link>
         </section>
     );
 }
