@@ -19,8 +19,6 @@ async function getUserHighlightsHandler(req, res) {
 
     try {
         var userHighlights = await Highlight.find({ownerId: userId}).sort({ uploadDate: 'desc' }).lean();
-        
-        console.log(userHighlights);
     
     } catch {
         return res.status(500).json({ error: 'Internal Server Error - Searching for the Highlights' }); // searching for the user crashed

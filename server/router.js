@@ -21,6 +21,7 @@ const checkoutHandler = require("./endpointsJs/checkout");
 const checkoutRemoveProductHandler = require("./endpointsJs/checkoutRemoveProduct");
 const finishOrderHandler = require("./endpointsJs/finishOrder");
 const getUserHighlightsHandler = require("./endpointsJs/getUserHighlights");
+const getOrdersHandler = require("./endpointsJs/orders");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -52,6 +53,8 @@ router.post("/users/login", loginHandler);
 
 router.post("/users/register", registerHandler);
 
+
+router.post("/users/orders", getOrdersHandler);
 
 
 router.get("/highlights", getHighlightsHandler);

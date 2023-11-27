@@ -3,10 +3,12 @@ import { useState, useContext } from "react";
 import "./myProfile.css";
 import { useEffect } from "react";
 import {HighlightsDiv} from '../highlights/HighlightsGallery/HighlightsDiv';
+import { MyProfileSection } from "./MyProfileSection";
 
 export function MyProfile() {
     const {navigate} = useContext(AuthenticationContext);
     const [highlights, setHighlights] = useState([]);
+    const [orders, setOrders] = useState([]);
     
     useEffect(() => {
         async function fetchHighlightsData() {
@@ -15,22 +17,41 @@ export function MyProfile() {
                 {method: "POST", headers: {"Content-Type": "application/json"}, 
                 body: JSON.stringify({userId: JSON.parse(localStorage.getItem("authenticationTokenAndData")).id})});        
         
-        
+                if (!response.ok) {
+                    navigate("/404");
+                }
+
             } catch {
                 navigate("/404");
             }
 
-            if (!response.ok) {
-                navigate("/404");
-            }
-            
             const data = await response.json();
-            console.log(data);
+            
             setHighlights(data);
  
         }
 
+        async function fetchOrdersData() {
+            try {
+                var response = await fetch(`http://localhost:5000/users/orders`, 
+                {method: "POST", headers: {"Content-Type": "application/json"}, 
+                body: JSON.stringify({userId: JSON.parse(localStorage.getItem("authenticationTokenAndData")).id})});        
+        
+                if (!response.ok) {
+                    navigate("/404");
+                }
+
+            } catch {
+                navigate("/404");
+            }
+
+            const data = await response.json();
+            console.log(data);
+            setOrders(data);
+        }
+
         fetchHighlightsData();
+        fetchOrdersData();
     }, []);
     
     return (
@@ -45,12 +66,15 @@ export function MyProfile() {
             <h2>Pro Gym <br/> Fitness Card</h2>
         </div>
         <h2>Orders History</h2>
+
+        { orders.map((order) => 
+            <MyProfileSection order={order}/>)
+        }
         <section>
             <div className="order-details-template">
                 <p>Order №:</p>
                 <p>Order Date:</p>
                 <p>Total Price:</p>
-                {/* <!-- <p>Status ???</p> --> */}
             </div>
             <div>
                 <p>575645</p>
@@ -64,21 +88,6 @@ export function MyProfile() {
                 <p>Order №:</p>
                 <p>Order Date:</p>
                 <p>Total Price:</p>
-                {/* <!-- <p>Status ???</p> --> */}
-            </div>
-            <div>
-                <p>575645</p>
-                <p>10.11.2023</p>
-                <p>127.69$</p>
-            </div>
-            <button>Details</button>
-        </section>
-        <section>
-            <div className="order-details-template">
-                <p>Order №:</p>
-                <p>Order Date:</p>
-                <p>Total Price:</p>
-                {/* <!-- <p>Status ???</p> --> */}
             </div>
             <div>
                 <p>575645</p>
@@ -89,6 +98,7 @@ export function MyProfile() {
         </section>
 
         <div className="my-highlights">
+            
             <h1>My Highlights</h1>
 
             <div className="gallery-div">
