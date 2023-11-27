@@ -1,21 +1,52 @@
+import { AuthenticationContext } from "../../contexts/AuthenticationContext";
+import { useState, useContext } from "react";
 import "./myProfile.css";
-
+import { useEffect } from "react";
+import {HighlightsDiv} from '../highlights/HighlightsGallery/HighlightsDiv';
 
 export function MyProfile() {
+    const {navigate} = useContext(AuthenticationContext);
+    const [highlights, setHighlights] = useState([]);
+    
+    useEffect(() => {
+        async function fetchHighlightsData() {
+            try {
+                var response = await fetch(`http://localhost:5000/highlights/myhighlights`, 
+                {method: "POST", headers: {"Content-Type": "application/json"}, 
+                body: JSON.stringify({userId: JSON.parse(localStorage.getItem("authenticationTokenAndData")).id})});        
+        
+        
+            } catch {
+                navigate("/404");
+            }
+
+            if (!response.ok) {
+                navigate("/404");
+            }
+            
+            const data = await response.json();
+            console.log(data);
+            setHighlights(data);
+ 
+        }
+
+        fetchHighlightsData();
+    }, []);
+    
     return (
         <main className="my-profile-main">
-        <div class="hexagon-container">
-            <img src="./images/profile_picture.jpg" alt="" class="profile-picture" />
+        <div className="hexagon-container">
+            <img src="./images/profile_picture.jpg" alt="" className="profile-picture" />
         </div>
-        <h1 class="main-heading">My profile</h1>
+        <h1 className="main-heading">My profile</h1>
         
-        <div class="trainer-qr-code-section">
+        <div className="trainer-qr-code-section">
             <img src="https://cdn.britannica.com/17/155017-050-9AC96FC8/Example-QR-code.jpg" alt=""/>
             <h2>Pro Gym <br/> Fitness Card</h2>
         </div>
         <h2>Orders History</h2>
         <section>
-            <div class="order-details-template">
+            <div className="order-details-template">
                 <p>Order №:</p>
                 <p>Order Date:</p>
                 <p>Total Price:</p>
@@ -29,7 +60,7 @@ export function MyProfile() {
             <button>Details</button>
         </section>
         <section>
-            <div class="order-details-template">
+            <div className="order-details-template">
                 <p>Order №:</p>
                 <p>Order Date:</p>
                 <p>Total Price:</p>
@@ -43,7 +74,7 @@ export function MyProfile() {
             <button>Details</button>
         </section>
         <section>
-            <div class="order-details-template">
+            <div className="order-details-template">
                 <p>Order №:</p>
                 <p>Order Date:</p>
                 <p>Total Price:</p>
@@ -57,33 +88,19 @@ export function MyProfile() {
             <button>Details</button>
         </section>
 
-        <div class="my-highlights">
+        <div className="my-highlights">
             <h1>My Highlights</h1>
 
-            <div class="gallery-div">
+            <div className="gallery-div">
+                
+                <HighlightsDiv highlightsData={highlights.filter((el, index) => index % 4 == 0)}/>
+                
+                <HighlightsDiv highlightsData={highlights.filter((el, index) => (index + 1) % 4 == 0)}/>
 
-                <div class="gallery-inner-box">
-                    <img src="./images/364538988_215016618201450_9064104799704686842_n.jpg" alt=""/>
-                    <img src="./images/a.png" alt=""/>
-                    <img src="./images/b.PNG" alt=""/>
-                </div>
+                <HighlightsDiv highlightsData={highlights.filter((el, index) => (index + 2) % 4 == 0)}/>
+                
+                <HighlightsDiv highlightsData={highlights.filter((el, index) => (index + 3) % 4 == 0)}/>
 
-                <div class="gallery-inner-box">
-                    <img src="./images/c.PNG" alt=""/>
-                    <img src="./images/received_782141073155761.jpeg" alt=""/>
-                    <img src="./images/Screenshot_20230712_224319_Instagram.jpg" alt=""/>
-                </div>
-
-                <div class="gallery-inner-box">
-                    <img src="./images/b.PNG" alt=""/>
-                    <img src="./images/c.PNG" alt=""/>
-                    <img src="./images/b.PNG" alt=""/>
-                </div>
-                <div class="gallery-inner-box">
-                    <img src="./images/b.PNG" alt=""/>
-                    <img src="./images/c.PNG" alt=""/>
-                    <img src="./images/b.PNG" alt=""/>
-                </div>
             </div>
         </div>
     </main>

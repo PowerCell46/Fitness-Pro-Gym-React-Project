@@ -10,6 +10,7 @@ async function getHighlightsHandler(req, res) {
         return res.status(500).json({ error: 'Internal Server Error'});
     }
     
+    // TRY CATCH
     // can be moved to another file...!
     const highlightsWithImages = await Promise.all(data.map(async (highlight) => {
        
