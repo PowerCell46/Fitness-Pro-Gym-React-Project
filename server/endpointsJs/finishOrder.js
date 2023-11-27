@@ -21,7 +21,6 @@ async function finishOrderHandler(req, res) {
         } 
 
     } catch {
-        console.log("err");
         return res.status(500).json({ error: 'An error occured while the User was being searched in the Database!'});
     }
 
@@ -56,5 +55,6 @@ async function finishOrderHandler(req, res) {
 
     res.json("Successful Operation!");
 }
+
 
 module.exports = finishOrderHandler;

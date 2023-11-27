@@ -37,16 +37,16 @@ export function Checkout() {
         async function fetchCheckoutData() {
             try {
                 var response = await fetch("http://localhost:5000/checkout", {
-                    method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({userId})   });
+                    method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({userId})});
+                
+                if (!response.ok) {
+                    navigate("/404");
+                }
 
             } catch {
-                // Do smth
+                navigate("/404");
             }
 
-            if (!response.ok) {
-                console.log(response);
-                // navigate
-            }
             const data = await response.json();
 
             setTotalSum(getTotalPrice(data));
@@ -55,6 +55,7 @@ export function Checkout() {
 
         fetchCheckoutData();
     }, []);
+
     return (
     <main className="checkout-main">
         <section>
@@ -73,19 +74,20 @@ export function Checkout() {
                     <tbody>
                         {checkoutData.map((product) => (
                             <tr key={product._doc ? product._doc.name : product.name}>
-                            <td id='quantity-td'>
-        <button onClick={() => handleIncrement(product._doc ? product._doc.name : product.name, product._doc ? product._doc.price : product.price)}>+</button>
-        {quantities[product._doc ? product._doc.name : product.name] || 1}
-        <button onClick={() => handleDecrement(product._doc ? product._doc.name : product.name, product._doc ? product._doc.price : product.price)}>-</button>
-                            </td>
+                                <td id='quantity-td'>
+    <button onClick={() => handleIncrement(product._doc ? product._doc.name : product.name, product._doc ? product._doc.price : product.price)}>+</button>
+    {quantities[product._doc ? product._doc.name : product.name] || 1}
+    <button onClick={() => handleDecrement(product._doc ? product._doc.name : product.name, product._doc ? product._doc.price : product.price)}>-</button>
+                                </td>
+
                                 <td onClick={() => product._doc ? navigate(`/products/${product._doc._id}`)  : navigate("/memberships")}>
                                     <img src={`data:image/jpeg;base64,${product.photo}`} alt={`${product.name} Image`}/>
                                 </td>
-                              
+                            
                                 <td onClick={() => product._doc ? navigate(`/products/${product._doc._id}`)  : navigate("/memberships")}>
                                     {product._doc ? product._doc.name : product.name}
                                 </td>
-                             
+                            
                                 <td onClick={() => product._doc ? navigate(`/products/${product._doc._id}`)  : navigate("/memberships")}>
                                     {product._doc ? product._doc.price : product.price} BGN
                                 </td>
@@ -94,10 +96,8 @@ export function Checkout() {
                                     product._doc ? product._doc._id :
                                         {membershipType: product.name.substring(0, product.name.lastIndexOf(" ")), 
                                         membershipCategory: product.name.substring(product.name.lastIndexOf(" ") + 1).toLowerCase()},
-                                    product)}>
-                                    Remove
+                                    product)}>Remove
                                 </td>
-
                             </tr>
                         ))}
                     </tbody>
@@ -149,7 +149,7 @@ export function Checkout() {
 
     async function removeProductFromCartHandler(removedProductId, productForRemoval) {
         const userId = JSON.parse(localStorage.getItem("authenticationTokenAndData")).id;
-        console.log(removedProductId);
+
         try {
             const response = await fetch(`http://localhost:5000/checkout/removeProduct`, {
                 method: "POST",
@@ -161,12 +161,12 @@ export function Checkout() {
                 setCheckoutData((previousData) =>
                     previousData.filter((data) => (data !== productForRemoval))
                 );
-    
-                // Use the callback form of setTotalSum to ensure you're working with the updated state
                 setTotalSum((previousTotalSum) => previousTotalSum - getProductPrice(removedProductId, productForRemoval.name));
+           
             } else {
                 navigate("/404");
             }
+
         } catch {
             navigate("/404");
         }
@@ -191,52 +191,63 @@ export function Checkout() {
 
         if (country.length === 0) {
             document.querySelector("#checkout-country").style.border = '5px solid #339933';
+       
         } else {
             document.querySelector("#checkout-country").style.border = 'none';
         }
 
         if (city.length === 0) {
             document.querySelector("#checkout-city").style.border = '5px solid #339933';
+        
         } else {
             document.querySelector("#checkout-city").style.border = 'none';
         }
 
         if (neighbourhood.length === 0) {
             document.querySelector("#checkout-neighbourhood").style.border = '5px solid #339933';
+       
         } else {
             document.querySelector("#checkout-neighbourhood").style.border = 'none';
         }
 
         if (street.length === 0) {
             document.querySelector("#checkout-street").style.border = '5px solid #339933';
+       
         } else {
             document.querySelector("#checkout-street").style.border = 'none';
         }
 
         if (Number(number) <= 0 || number === '') {
             document.querySelector("#checkout-number").style.border = '5px solid #339933';
+       
         } else {
             document.querySelector("#checkout-number").style.border = 'none';
         }
 
         if (Number(apartment) < 0 || apartment === "") {
             document.querySelector("#checkout-apartment").style.border = '5px solid #339933';
+       
         } else {
             document.querySelector("#checkout-apartment").style.border = 'none';
         }
 
-        if (country.length === 0 || city.length === 0 || neighbourhood.length === 0 || street.length === 0 || Number(number) <= 0 || Number(apartment) < 0 || apartment === "" || number === '') {
+
+        if (country.length === 0 || city.length === 0 || neighbourhood.length === 0 || street.length === 0 || Number(number) <= 0 || Number(apartment) < 0 || apartment === "" || number === "") {
             return;
         }
 
-
-        let orderProductsDetails = {products: [], totalPrice: totalSum};
+        // Making the request with non-empty data fields
+        let orderProductsDetails = {
+            products: [], 
+            totalPrice: totalSum, 
+            orderDate: `${new Date().getDate()}.${new Date().getMonth()}.${new Date().getFullYear()}`, 
+            orderId: Math.floor(Math.random() * (999999 - 100000 + 1)) + 100000
+        };
         
         for (let product of checkoutData) {
             const name = product._doc ? product._doc.name : product.name;
-            // console.log(`Product Name: ${name}`);
-            const productQuantity = quantities[name] || 1
-            // console.log(`Product Quantity: ${productQuantity}`);
+
+            const productQuantity = quantities[name] || 1;
 
             const productId = product._doc ? product._doc._id :
                 {membershipType: product.name.substring(0, product.name.lastIndexOf(" ")), 
@@ -247,21 +258,22 @@ export function Checkout() {
 
         try {
             var serverResponse = await fetch("http://localhost:5000/checkout/finishOrder", 
-            {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(
-                {userId: JSON.parse(localStorage.getItem("authenticationTokenAndData")).id,
+            {method: "POST", 
+            headers: {"Content-Type": "application/json"}, 
+            body: JSON.stringify({userId: JSON.parse(localStorage.getItem("authenticationTokenAndData")).id,
                 orderDetails: orderProductsDetails, 
                 shippingDetails: {country, city, neighbourhood, street, number, apartment}
             })});
 
             if (serverResponse.status === 200) {
-                navigate("/") // My Profile
+                navigate("/myProfile") // My Profile
            
             } else {
                 navigate("/404");
             }
        
         } catch {
-            navigate("/404"); // Error while making the request
+            navigate("/404");
         }
     }
 }

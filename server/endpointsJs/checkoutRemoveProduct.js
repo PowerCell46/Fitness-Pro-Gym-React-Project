@@ -6,11 +6,14 @@ async function checkoutRemoveProductHandler(req, res) {
 
     try {
         var currentUser = await User.findOne({_id: userId});
-    
+        
+        if (currentUser === null) {
+            return res.status(400).json({ error: 'No such user found!' });    
+        }
+
     } catch {
         return res.status(500).json({ error: 'An error occured while the User was being searched in the Database!'});
     }
-
     
     try {
         if (typeof removedProductId === "object")  {
@@ -28,5 +31,6 @@ async function checkoutRemoveProductHandler(req, res) {
         return res.status(500).json({ error: 'An error occurred while the Product was being removed from the User cart!' });
     }
 }
+
 
 module.exports = checkoutRemoveProductHandler;

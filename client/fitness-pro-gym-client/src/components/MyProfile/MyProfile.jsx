@@ -70,32 +70,6 @@ export function MyProfile() {
         { orders.map((order) => 
             <MyProfileSection order={order}/>)
         }
-        <section>
-            <div className="order-details-template">
-                <p>Order №:</p>
-                <p>Order Date:</p>
-                <p>Total Price:</p>
-            </div>
-            <div>
-                <p>575645</p>
-                <p>10.11.2023</p>
-                <p>127.69$</p>
-            </div>
-            <button>Details</button>
-        </section>
-        <section>
-            <div className="order-details-template">
-                <p>Order №:</p>
-                <p>Order Date:</p>
-                <p>Total Price:</p>
-            </div>
-            <div>
-                <p>575645</p>
-                <p>10.11.2023</p>
-                <p>127.69$</p>
-            </div>
-            <button>Details</button>
-        </section>
 
         <div className="my-highlights">
             
