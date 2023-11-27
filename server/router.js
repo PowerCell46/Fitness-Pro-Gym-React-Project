@@ -1,29 +1,29 @@
 const router = require("express").Router();
 const fs = require("fs");
-const getHighlightHandler = require("./endpointsJs/getHighlight");
-const getHighlightsHandler = require("./endpointsJs/getHighlights");
-const getProductHandler = require("./endpointsJs/getProduct");
-const getProductsHandler = require("./endpointsJs/getProducts");
-const getProductsMachinesHandler = require("./endpointsJs/getProductsMachines");
-const getProductsMerchandiseHandler = require("./endpointsJs/getProductsMerchandise");
-const getProductsSupplementsHandler = require("./endpointsJs/getProductsSupplements");
-const getTrainersHandler = require("./endpointsJs/getTrainers");
-const likeHighlightHandler = require("./endpointsJs/likeHighlight");
-const loginHandler = require("./endpointsJs/login");
-const { postHighlightHandler } = require("./endpointsJs/postHighlight");
-const postProductHandler = require("./endpointsJs/postProduct");
-const postTrainerHandler = require("./endpointsJs/postTrainer");
-const registerHandler = require("./endpointsJs/register");
+const getHighlightHandler = require("./endpointsJs/highlights/getHighlight");
+const getHighlightsHandler = require("./endpointsJs/highlights/getHighlights");
+const getProductHandler = require("./endpointsJs/products/getProduct");
+const getProductsHandler = require("./endpointsJs/products/getProducts");
+const getProductsMachinesHandler = require("./endpointsJs/products/getProductsMachines");
+const getProductsMerchandiseHandler = require("./endpointsJs/products/getProductsMerchandise");
+const getProductsSupplementsHandler = require("./endpointsJs/products/getProductsSupplements");
+const getTrainersHandler = require("./endpointsJs/trainers/getTrainers");
+const likeHighlightHandler = require("./endpointsJs/highlights/likeHighlight");
+const loginHandler = require("./endpointsJs/authentication/login");
+const { postHighlightHandler } = require("./endpointsJs/highlights/postHighlight");
+const postProductHandler = require("./endpointsJs/products/postProduct");
+const postTrainerHandler = require("./endpointsJs/trainers/postTrainer");
+const registerHandler = require("./endpointsJs/authentication/register");
 const multer = require('multer');
 const membershipsHandler = require("./endpointsJs/memberships");
 const buyProductHandler = require("./endpointsJs/buyProductHandler");
 const checkoutHandler = require("./endpointsJs/checkout");
 const checkoutRemoveProductHandler = require("./endpointsJs/checkoutRemoveProduct");
 const finishOrderHandler = require("./endpointsJs/finishOrder");
-const getUserHighlightsHandler = require("./endpointsJs/getUserHighlights");
+const getUserHighlightsHandler = require("./endpointsJs/highlights/getUserHighlights");
 const getOrdersHandler = require("./endpointsJs/orders");
 const postProfilePhotoHandler = require("./endpointsJs/postProfilePhoto");
-const getProfilePhoto = require("./endpointsJs/getProfilePhoto");
+const getProfilePhoto = require("./endpointsJs/products/getProfilePhoto");
 
 
 const storage = multer.diskStorage({
@@ -51,6 +51,7 @@ const upload = multer({ storage: storage });
 router.get("/");
 
 
+
 router.post("/users/login", loginHandler);
 
 
@@ -63,8 +64,8 @@ router.post("/users/orders", getOrdersHandler);
 router.post("/users/getProfilePhoto", getProfilePhoto);
 
 
-router.post("/profilePhotos", upload.single("image"), postProfilePhotoHandler);
 
+router.post("/profilePhotos", upload.single("image"), postProfilePhotoHandler);
 
 
 
@@ -74,21 +75,22 @@ router.get("/highlights", getHighlightsHandler);
 
 router.post('/highlights', upload.single("image"), postHighlightHandler);
 
+router.post("/highlights/myhighlights", getUserHighlightsHandler);
+
 
 
 router.get("/highlights/:highlightId", getHighlightHandler);
-
 
 router.post("/highlights/like/:highlightId", likeHighlightHandler);
 
 
 
-router.post("/highlights/myhighlights", getUserHighlightsHandler);
 
 
 router.get("/trainers", getTrainersHandler);
 
 router.post("/trainers", upload.single("image"), postTrainerHandler);
+
 
 
 
@@ -100,23 +102,26 @@ router.get("/products/machines", getProductsMachinesHandler);
 
 router.get("/products/merchandise", getProductsMerchandiseHandler);
 
-router.post("/products", upload.single("image"), postProductHandler);
 
 router.get("/products/:productId", getProductHandler);
+
+router.post("/products", upload.single("image"), postProductHandler);
 
 
 router.post("/products/buy/:productId", buyProductHandler);
 
 
+
 router.post("/memberships/:type/:category", membershipsHandler);
+
 
 
 router.post("/checkout", checkoutHandler);
 
 router.post("/checkout/removeProduct", checkoutRemoveProductHandler);
 
-
 router.post("/checkout/finishOrder", finishOrderHandler);
+
 
 
 module.exports = router;
