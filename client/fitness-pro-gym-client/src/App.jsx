@@ -97,54 +97,55 @@ function App() {
             var serverResponse = await fetch("http://localhost:5000/users/login", 
             {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({email, password})});
        
-            
         } catch {
             return navigate("/404"); // Error while making the request
         }
         
-            if (serverResponse.status === 403 ) { // Wrong Password
-                const errorData = await serverResponse.json();
-                
-                if (errorData.error === "Password is not valid!") {
-                    document.querySelector("#login-password-err-p").textContent = errorData.error;
-                    document.querySelector("#login-password-err-p").style.display = 'inline';
-                    document.querySelector("#login-password").classList.add("err-input-field");
-                    return;
-                }
-
-            } else if (serverResponse.status === 400) { // Error User not found
-                const errorData = await serverResponse.json();
-
-                if (errorData.error === 'No such user found!') {
-                    document.querySelector("#login-email-err-p").textContent = errorData.error;
-                    document.querySelector("#login-email-err-p").style.display = 'inline';
-                    document.querySelector("#login-email").classList.add("err-input-field");
-                    return;
-
-                } else {
-                    errorToastMessage(errorData.error);
-                    return navigate('/404');
-                }
-
-
-            } else if (serverResponse.status === 500) { // Internal Server Error
-                const errorData = await serverResponse.json();
-
-                errorToastMessage(errorData.error);
-                return navigate('/404'); 
-
-            }  else if (!serverResponse.ok) { // Other type of Error...
-                
-                errorToastMessage(errorData.error);
-                return navigate('/404'); 
+        if (serverResponse.status === 403 ) { // Wrong Password
+            const errorData = await serverResponse.json();
+            
+            if (errorData.error === "Password is not valid!") {
+                document.querySelector("#login-password-err-p").textContent = errorData.error;
+                document.querySelector("#login-password-err-p").style.display = 'inline';
+                document.querySelector("#login-password").classList.add("err-input-field");
+                return;
             }
 
-            const tokenAndData = await serverResponse.json();
-            
-            localStorage.setItem('authenticationTokenAndData', JSON.stringify(tokenAndData));
-            setUser(tokenAndData);
+        } else if (serverResponse.status === 400) { // Error User not found
+            const errorData = await serverResponse.json();
 
-            navigate("/");
+            if (errorData.error === 'No such user found!') {
+                document.querySelector("#login-email-err-p").textContent = errorData.error;
+                document.querySelector("#login-email-err-p").style.display = 'inline';
+                document.querySelector("#login-email").classList.add("err-input-field");
+                return;
+
+            } else {
+                errorToastMessage(errorData.error);
+                return navigate('/404');
+            }
+
+
+        } else if (serverResponse.status === 500) { // Internal Server Error
+            const errorData = await serverResponse.json();
+
+            errorToastMessage(errorData.error);
+            return navigate('/404'); 
+
+        }  else if (!serverResponse.ok) { // Other type of Error...
+            
+            errorToastMessage(errorData.error);
+            return navigate('/404'); 
+        }
+
+        const {image, ...tokenAndData} = await serverResponse.json();
+
+        setProfilePhoto(image);
+        
+        localStorage.setItem('authenticationTokenAndData', JSON.stringify(tokenAndData));
+        setUser(tokenAndData);
+
+        navigate("/");
     }
 
     async function registerSubmitHandler(e) {

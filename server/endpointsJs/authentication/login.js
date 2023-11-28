@@ -1,19 +1,22 @@
 const { verifyPassword, createToken } = require("../../utilities/createTokenHashPassVerifyPass");
 const User = require("../../schemas/userSchema");
+const fs = require("fs");
+const {validatePassword, validateEmail} = require("../../utilities/validators");
 
 
 async function loginHandler(req, res) {
     const { email, password } = req.body;
 
-    return res.status(400).json({ error: 'Email does not match the validation criteria!' });
     const emailValidation = validateEmail(email);
     if (emailValidation !== true) {
+        return res.status(400).json({ error: 'Email does not match the validation criteria!' });
     }
 
     const passwordValidation = validatePassword(password);
     if (passwordValidation !== true) {
         return res.status(400).json({ error: 'Password does not match the validation criteria!' });
     }
+
 
     // Making the request with Valid Email and Password
     try {
@@ -24,14 +27,15 @@ async function loginHandler(req, res) {
         }
 
     } catch {
-        return res.status(500).json({ error: 'Internal Server Error' }); // searching for the user crashed
+        return res.status(500).json({ error: 'Internal Server Error -> (Searching for the User)' });
     }
+
 
     try {
         var passwordValidity = await verifyPassword(password, user.password);
 
     } catch {
-        return res.status(500).json({ error: 'An Error occured while the password was being decrypted from the Database!' });
+        return res.status(500).json({ error: 'An Error occured while the password was being decrypted!' });
     }
 
     if (passwordValidity) {
@@ -41,48 +45,16 @@ async function loginHandler(req, res) {
         return res.status(403).json({ error: 'Password is not valid!' });
     }
 
+    try {
+        var imageData = await fs.promises.readFile(`${user.imageLocation}`, { encoding: "base64" });
+
+    } catch {
+        return res.status(500).json({ error: 'An Error occured while the Image was being converted!' });
+    }
+
     console.log(`User: ${user.username} with email: ${user.email} successfully Logged in!`);
 
-    res.json({ token, username: user.username, email: user.email, id: user._id, isAdministrator: user.isAdministrator });
-}
-
-
-function validateEmail(email) {
-    if (email.length < 5) {
-        return `Email must be at least 5 characers!`;
-
-    } else if (!email.includes("@")) {
-        return `Email must include @ sign!`;
-
-    } else if (!email.includes(".")) {
-        return `Email must include . sign!`;
-    }
-
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-
-    if (!emailRegex.test(email)) {
-        return `Email is not valid!`
-    };
-
-    return true;
-}
-
-
-function validatePassword(password) {
-    password = password.split("");
-    const uppercaseChars = password.filter(char => char.charCodeAt() >= 65 && char.charCodeAt() <= 90);
-    const digits = password.filter(char => char.charCodeAt() >= 48 && char.charCodeAt() <= 57);
-    if (uppercaseChars.length === 0) {
-        return `Password must have at least one Uppercase!`;
-
-    } else if (digits.length === 0) {
-        return `Password must have at least one Number!`;
-
-    } else if (password.length < 6) {
-        return `Password must be at least 6 characters!`;
-    }
-
-    return true;
+    return res.json({ token, username: user.username, email: user.email, id: user._id, isAdministrator: user.isAdministrator, image: imageData });
 }
 
 

@@ -87,7 +87,25 @@ function validateProductPrice(price) {
 }
 
 
+function validatePassword(password) {
+    password = password.split("");
+    const uppercaseChars = password.filter(char => char.charCodeAt() >= 65 && char.charCodeAt() <= 90);
+    const digits = password.filter(char => char.charCodeAt() >= 48 && char.charCodeAt() <= 57);
+    if (uppercaseChars.length === 0) {
+        return `Password must have at least one Uppercase!`;
+
+    } else if (digits.length === 0) {
+        return `Password must have at least one Number!`;
+
+    } else if (password.length < 6) {
+        return `Password must be at least 6 characters!`;
+    }
+
+    return true;
+}
+
 module.exports = {
     validateImageExtension, validateTrainerName, 
     validateEmail, validatePhoneNumber, validateProductName,
-    validateProductType, validateProductDescription, validateProductPrice}
+    validateProductType, validateProductDescription, validateProductPrice,
+    validatePassword}
