@@ -1,6 +1,7 @@
 const { hashPassword, createToken } = require("../../utilities/createTokenHashPassVerifyPass");
 const User = require("../../schemas/userSchema");
 const fs = require("fs");
+const {validateEmail, validatePassword, validateUsername} = require("../../utilities/validators");
 
 
 async function registerHandler(req, res) {
@@ -28,6 +29,7 @@ async function registerHandler(req, res) {
         if (previousUser.length > 0) {
             return res.status(409).json({ error: "Email already in use!" });
         }
+
         previousUser = await User.find({ username });
 
         if (previousUser.length > 0) {
@@ -35,7 +37,7 @@ async function registerHandler(req, res) {
         }
 
     } catch {
-        return res.status(500).json({ error: 'Internal Server Error' }); // searching for the user crashed
+        return res.status(500).json({ error: 'Internal Server Error -> (Searching for the Users)' });
     }
 
 
@@ -69,62 +71,18 @@ async function registerHandler(req, res) {
         return res.status(500).json({ error: 'An Error occured while the Authentication Token was being created!' });
     }
 
+    try {
+        var imageData = await fs.promises.readFile(`${user.imageLocation}`, { encoding: "base64" });
+
+    } catch {
+        return res.status(500).json({ error: 'An Error occured while the Image was being converted!' });
+    }
+
+
     console.log(`User: ${user.username} with email: ${user.email} successfully Registered!`);
 
-    res.json({ token, username: user.username, email: user.email, id: user._id, isAdministrator: user.isAdministrator });
-}
 
-
-
-function validateEmail(email) {
-    if (email.length < 5) {
-        return `Email must be at least 5 characers!`;
-
-    } else if (!email.includes("@")) {
-        return `Email must include @ sign!`;
-
-    } else if (!email.includes(".")) {
-        return `Email must include . sign!`;
-    }
-
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-
-    if (!emailRegex.test(email)) {
-        return `Email is not valid!`
-    };
-
-    return true;
-}
-
-
-function validatePassword(password) {
-    password = password.split("");
-    const uppercaseChars = password.filter(char => char.charCodeAt() >= 65 && char.charCodeAt() <= 90);
-    const digits = password.filter(char => char.charCodeAt() >= 48 && char.charCodeAt() <= 57);
-    if (uppercaseChars.length === 0) {
-        return `Password must have at least one Uppercase!`;
-
-    } else if (digits.length === 0) {
-        return `Password must have at least one Number!`;
-
-    } else if (password.length < 6) {
-        return `Password must be at least 6 characters!`;
-    }
-
-    return true;
-}
-
-
-function validateUsername(username) {
-    username = username.split("");
-    const uppercaseChars = username.filter(char => char.charCodeAt() >= 65 && char.charCodeAt() <= 90);
-    if (username.length < 4) {
-        return 'Username must be at least 4 characters!';
-    } else if (uppercaseChars.length === 0) {
-        return `Username must have at leat one Uppercase!`;
-    }
-
-    return true;
+    res.json({ token, username: user.username, email: user.email, id: user._id, isAdministrator: user.isAdministrator, image: imageData });
 }
 
 

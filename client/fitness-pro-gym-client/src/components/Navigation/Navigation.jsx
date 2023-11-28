@@ -36,7 +36,7 @@ export function Navigation() {
         <li> {/* If the user is not the administrator - the image is a link to My Profile */}
             <div className="profile-dropdown">
                 <Link className="img-to-my-profile-link" to={'/myProfile'}>
-                    <img src={`data:image/jpeg;base64,${profilePicture}`} alt="Profile Photo"/>
+                    <img src={`data:image/jpeg;base64,${profilePhoto}`} alt="Profile Photo"/>
                 </Link>
             </div>
         </li>

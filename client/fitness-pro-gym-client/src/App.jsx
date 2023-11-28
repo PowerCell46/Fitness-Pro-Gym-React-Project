@@ -196,7 +196,7 @@ function App() {
         }
 
         if (emailValidation !== true || passwordValidation !== true || usernameValidation !== true || password !== repeatPassword) {
-            return
+            return;
         }
         
         // Valid data is being given to the server
@@ -205,43 +205,49 @@ function App() {
             {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({email, username, password})});
        
         } catch {
-            navigate('/404'); // Error while making the request
+            return navigate('/404'); // Error while making the request
         }
-            if (serverResponse.status === 409) { // Checking for the case where the Email or the Username has already been used
-                const errorData = await serverResponse.json();
 
-                if (errorData.error === 'Email already in use!') {
-                    document.querySelector("#register-email-err-p").textContent = 'Email already in use!';                    
-                    document.querySelector("#register-email-err-p").style.display = 'inline';
-                    document.querySelector("#register-email").classList.add("err-input-field");
-                    return;
-               
-                } else {
-                    document.querySelector("#register-username-err-p").textContent = 'Username already in use!';
-                    document.querySelector("#register-username-err-p").style.display = 'inline';
-                    document.querySelector("#register-username").classList.add("err-input-field");
-                    return;
-                }
+        if (serverResponse.status === 409) { // Checking for the case where the Email or the Username has already been used
+            const errorData = await serverResponse.json();
 
-            } else if (!serverResponse.ok) {
-                const errorData = await serverResponse.json();
-                console.log(errorData);
-                navigate('/404'); // Any other type of Error
+            if (errorData.error === 'Email already in use!') {
+                document.querySelector("#register-email-err-p").textContent = 'Email already in use!';                    
+                document.querySelector("#register-email-err-p").style.display = 'inline';
+                document.querySelector("#register-email").classList.add("err-input-field");
+                return;
+            
+            } else {
+                document.querySelector("#register-username-err-p").textContent = 'Username already in use!';
+                document.querySelector("#register-username-err-p").style.display = 'inline';
+                document.querySelector("#register-username").classList.add("err-input-field");
+                return;
             }
 
-            const tokenAndData = await serverResponse.json();
+        } else if (!serverResponse.ok) { // Any other type of Error
+            const errorData = await serverResponse.json();
             
-            localStorage.setItem('authenticationTokenAndData', JSON.stringify(tokenAndData)); // Setting the token to the local storage
-            setUser(tokenAndData); // Setting the token to the useState hook of the user
+            errorToastMessage(errorData.error);
 
-            navigate("/");
+            return navigate('/404'); 
+        }
+
+        const {image, ...tokenAndData} = await serverResponse.json();
+
+        setProfilePhoto(image);
+        
+        localStorage.setItem('authenticationTokenAndData', JSON.stringify(tokenAndData));
+        setUser(tokenAndData);
+
+        navigate("/");
     }
 
     async function logoutSubmitHandler() {
         localStorage.removeItem("authenticationTokenAndData");
         setUser(null);
+        setProfilePhoto("");
         setLogoutComponent(false);
-        navigate("/");
+        return navigate("/");
     }
 
     async function postHighlightSubmitHandler(e) {

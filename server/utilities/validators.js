@@ -104,8 +104,23 @@ function validatePassword(password) {
     return true;
 }
 
+
+
+function validateUsername(username) {
+    username = username.split("");
+    const uppercaseChars = username.filter(char => char.charCodeAt() >= 65 && char.charCodeAt() <= 90);
+    if (username.length < 4) {
+        return 'Username must be at least 4 characters!';
+    } else if (uppercaseChars.length === 0) {
+        return `Username must have at leat one Uppercase!`;
+    }
+
+    return true;
+}
+
+
 module.exports = {
     validateImageExtension, validateTrainerName, 
     validateEmail, validatePhoneNumber, validateProductName,
     validateProductType, validateProductDescription, validateProductPrice,
-    validatePassword}
+    validatePassword, validateUsername}
