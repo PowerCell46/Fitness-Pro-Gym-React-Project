@@ -15,7 +15,7 @@ async function buyProductHandler(req, res) {
     } catch {
         return res.status(500).json({ error: 'An error occurred while the user was being searched in the database!' });
     }
-    
+
     try {
 
         if (!currentUser.cart.includes(productId)) {
@@ -24,10 +24,10 @@ async function buyProductHandler(req, res) {
             await User.updateOne({ _id: userId }, { cart: currentUser.cart }); 
         
         } else {
-            return res.status(400).json({ error: 'Product already in cart!'}); // Instead of showing the 404 page, show a message to the User    
+            return res.json("Product already in Cart!");
         }
 
-        res.json("Successful Operation!");
+        return res.json("Successful Operation!");
   
     } catch (error) {
         return res.status(500).json({ error: 'An error occurred while the membership was being added to the user!' });

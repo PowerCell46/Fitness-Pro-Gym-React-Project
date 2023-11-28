@@ -2,6 +2,9 @@ import { useEffect, useState, useContext } from "react";
 import { AuthenticationContext } from "../../../contexts/AuthenticationContext";
 import "./products.css";
 import { Link } from "react-router-dom";
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
+import { productSuccessfullyAdded } from '../../../utils/toastify';
 
 
 export function Products() {
@@ -44,7 +47,7 @@ export function Products() {
                 
                 </main>
             </section>
-
+            <ToastContainer />
         </div>
     );
 
@@ -61,11 +64,20 @@ export function Products() {
             });
             
             if (response.status === 200) {
-                
-                const element = e.target;
-                element.style.backgroundColor = "#cc1e00";
+                const responseCondition = await response.json();
+                const element = document.querySelector(".product-description-main aside #add-to-cart-btn");
+                element.style.backgroundColor = "#cc1e00"; 
+                element.textContent = 'ADDED TO CART';
                 element.disabled = true;
-            
+                
+                if (responseCondition === "Successful Operation!") {
+                    productSuccessfullyAdded();
+
+                } else if (responseCondition === "Product already in Cart!") {
+                    productAlreadyAddedToCart();
+                    
+                }
+                
             } else {
                 navigate("/404");
             }

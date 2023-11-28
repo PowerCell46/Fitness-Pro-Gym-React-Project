@@ -1,14 +1,16 @@
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useState, useContext, React } from 'react';
 import './productDescription.css';
 import { AuthenticationContext } from "../../../contexts/AuthenticationContext";
 import { Link, useParams } from 'react-router-dom';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { productAlreadyAddedToCart, productSuccessfullyAdded } from '../../../utils/toastify';
 
 export function ProductDescription() {
     const {user, navigate} = useContext(AuthenticationContext);
     const [productData, setProductData] = useState({});
     const {productId} = useParams();
-
+    
     useEffect(() => {
         async function fetchProductData() {
             try {
@@ -48,8 +50,11 @@ export function ProductDescription() {
                         <button onClick={deleteProductHandler}>DELETE</button> : "" : ""}
                 </div>
             </aside>
+            <ToastContainer />
         </main>
     );
+
+
 
     async function deleteProductHandler() {
         console.log("DELETE");
@@ -66,16 +71,29 @@ export function ProductDescription() {
             });
             
             if (response.status === 200) {
+                const responseCondition = await response.json();
                 const element = document.querySelector(".product-description-main aside #add-to-cart-btn");
                 element.style.backgroundColor = "#cc1e00"; 
+                element.textContent = 'ADDED TO CART';
                 element.disabled = true;
+                
+                if (responseCondition === "Successful Operation!") {
+                    productSuccessfullyAdded();
+
+                } else if (responseCondition === "Product already in Cart!") {
+                    productAlreadyAddedToCart();
+                    
+                }
                 
             } else {
                 navigate("/404");
             }
             
-        } catch {
+        } catch(err) {
+            console.log(err);
             navigate("/404");
         }
     }
+
+    
 }
