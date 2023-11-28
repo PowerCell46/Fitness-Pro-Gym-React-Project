@@ -25,6 +25,9 @@ import { ProductDescription } from './components/products/ProductDescription/Pro
 import { Memberships } from './components/Memberships/Memberships';
 import { Checkout } from './components/Checkout/Checkout';
 import { MyProfile } from './components/MyProfile/MyProfile';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import {errorToastMessage} from "./utils/toastify";
 
 
 function App() {
@@ -89,13 +92,16 @@ function App() {
             return;
         }
         
+        // Making the request with valid parameters
         try {
             var serverResponse = await fetch("http://localhost:5000/users/login", 
             {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({email, password})});
        
+            
         } catch {
-            navigate("/404"); // Error while making the request
+            return navigate("/404"); // Error while making the request
         }
+        
             if (serverResponse.status === 403 ) { // Wrong Password
                 const errorData = await serverResponse.json();
                 
@@ -108,22 +114,29 @@ function App() {
 
             } else if (serverResponse.status === 400) { // Error User not found
                 const errorData = await serverResponse.json();
-                
+
                 if (errorData.error === 'No such user found!') {
                     document.querySelector("#login-email-err-p").textContent = errorData.error;
                     document.querySelector("#login-email-err-p").style.display = 'inline';
                     document.querySelector("#login-email").classList.add("err-input-field");
                     return;
-                
+
                 } else {
-                    navigate("/404"); // Some other 400 Error 
+                    errorToastMessage(errorData.error);
+                    return navigate('/404');
                 }
-                navigate('/404') 
+
+
             } else if (serverResponse.status === 500) { // Internal Server Error
-                navigate('/404') 
+                const errorData = await serverResponse.json();
+
+                errorToastMessage(errorData.error);
+                return navigate('/404'); 
 
             }  else if (!serverResponse.ok) { // Other type of Error...
-                navigate("/404");
+                
+                errorToastMessage(errorData.error);
+                return navigate('/404'); 
             }
 
             const tokenAndData = await serverResponse.json();
@@ -458,8 +471,9 @@ function App() {
         <AuthenticationContext.Provider value={{loginSubmitHandler, registerSubmitHandler, logoutSubmitHandler, user, setLogoutComponent, navigate, profilePhoto, changeProfilePictureHandler}}>
         <>
             <Navigation/>
-
             {logoutComponentShown ? <Logout/> : ""}
+            
+            <ToastContainer />
            
             <ProductContext.Provider value={{postProductSubmitHandler}}>
             <TrainerContext.Provider value={{postTrainerSubmitHandler}}>

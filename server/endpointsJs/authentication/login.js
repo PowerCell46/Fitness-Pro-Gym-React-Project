@@ -5,9 +5,9 @@ const User = require("../../schemas/userSchema");
 async function loginHandler(req, res) {
     const { email, password } = req.body;
 
+    return res.status(400).json({ error: 'Email does not match the validation criteria!' });
     const emailValidation = validateEmail(email);
     if (emailValidation !== true) {
-        return res.status(400).json({ error: 'Email does not match the validation criteria!' });
     }
 
     const passwordValidation = validatePassword(password);

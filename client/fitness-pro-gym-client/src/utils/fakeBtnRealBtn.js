@@ -11,6 +11,7 @@ export function realButtonHandler() {
         spanFile.textContent= realFileButton.value.match(/[\/\\]([\w\d\s\.\-\(\)]+)$/)[1];
         spanFile.style.color = "#007760";
         spanFile.style.backgroundColor = "rgba(255, 255, 255, 0.5)"
+ 
     } else {
         spanFile.textContent = 'No file chosen';
     }

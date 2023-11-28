@@ -4,7 +4,7 @@ import "./products.css";
 import { Link } from "react-router-dom";
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
-import { productSuccessfullyAdded } from '../../../utils/toastify';
+import { productSuccessfullyAdded, productAlreadyAddedToCart } from '../../../utils/toastify';
 
 
 export function Products() {
@@ -65,17 +65,15 @@ export function Products() {
             
             if (response.status === 200) {
                 const responseCondition = await response.json();
-                const element = document.querySelector(".product-description-main aside #add-to-cart-btn");
-                element.style.backgroundColor = "#cc1e00"; 
-                element.textContent = 'ADDED TO CART';
-                element.disabled = true;
+                e.target.style.backgroundColor = "#cc1e00"; 
+                e.target.textContent = 'Added to Cart';
+                e.target.disabled = true;
                 
                 if (responseCondition === "Successful Operation!") {
                     productSuccessfullyAdded();
 
                 } else if (responseCondition === "Product already in Cart!") {
                     productAlreadyAddedToCart();
-                    
                 }
                 
             } else {
