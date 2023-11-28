@@ -15,14 +15,14 @@ const postProductHandler = require("./endpointsJs/products/postProduct");
 const postTrainerHandler = require("./endpointsJs/trainers/postTrainer");
 const registerHandler = require("./endpointsJs/authentication/register");
 const multer = require('multer');
-const membershipsHandler = require("./endpointsJs/memberships");
-const buyProductHandler = require("./endpointsJs/buyProductHandler");
-const checkoutHandler = require("./endpointsJs/checkout");
-const checkoutRemoveProductHandler = require("./endpointsJs/checkoutRemoveProduct");
-const finishOrderHandler = require("./endpointsJs/finishOrder");
+const membershipsHandler = require("./endpointsJs/products/memberships");
+const buyProductHandler = require("./endpointsJs/products/buyProductHandler");
+const checkoutHandler = require("./endpointsJs/orders&checkout/checkout");
+const checkoutRemoveProductHandler = require("./endpointsJs/orders&checkout/checkoutRemoveProduct");
+const finishOrderHandler = require("./endpointsJs/orders&checkout/finishOrder");
 const getUserHighlightsHandler = require("./endpointsJs/highlights/getUserHighlights");
-const getOrdersHandler = require("./endpointsJs/orders");
-const postProfilePhotoHandler = require("./endpointsJs/postProfilePhoto");
+const getOrdersHandler = require("./endpointsJs/orders&checkout/orders");
+const postProfilePhotoHandler = require("./endpointsJs/authentication/postProfilePhoto");
 const getProfilePhoto = require("./endpointsJs/products/getProfilePhoto");
 
 
