@@ -6,15 +6,19 @@ export function Trainers() {
     const [trainers, setTrainers] = useState([]);
 
     useEffect(() => {
-        
         async function fetchTrainersData() {
             const response = await fetch("http://localhost:5000/trainers");
+          
             if (!response.ok) {
-                console.log(response);
+                const errorData = await response.json();
+
+                errorToastMessage(errorData.error);
+                
+                return navigate('/404'); 
             }
 
             const data = await response.json();
-            console.log(data);
+
             setTrainers(data);
         }
 
@@ -34,6 +38,5 @@ export function Trainers() {
             </div>)}
 
         </main>
-
     );
 }

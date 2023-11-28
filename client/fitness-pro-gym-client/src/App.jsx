@@ -25,7 +25,7 @@ import { ProductDescription } from './components/products/ProductDescription/Pro
 import { Memberships } from './components/Memberships/Memberships';
 import { Checkout } from './components/Checkout/Checkout';
 import { MyProfile } from './components/MyProfile/MyProfile';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {errorToastMessage} from "./utils/toastify";
 
@@ -252,6 +252,7 @@ function App() {
 
     async function postHighlightSubmitHandler(e) {
         e.preventDefault(); 
+
         let formData = new FormData(e.target);
         formData.append("ownerId", JSON.parse(localStorage.getItem("authenticationTokenAndData")).id);
 
@@ -279,7 +280,11 @@ function App() {
                 navigate("/highlights");
 
             } else {
-                navigate('/404');
+                const errorData = await serverResponse.json();
+            
+                errorToastMessage(errorData.error);
+
+                navigate("/404");
             }
             
         } catch {
@@ -353,14 +358,17 @@ function App() {
             });
 
             if (response.status === 200) {
-                navigate('/trainers');
+                return navigate('/trainers');
 
             } else {
-                navigate('/404');
+                const errorData = await response.json();
+
+                errorToastMessage(errorData.error);
+                return navigate('/404'); 
             }
 
         } catch {
-            navigate('/404');
+            return navigate('/404');
         }
     }
 

@@ -10,11 +10,11 @@ async function likeHighlightHandler(req, res) {
         const user = await User.findOne({ _id: userId });
 
         if (!user) {
-            return res.status(400).json({ error: 'User not found!' });
+            return res.status(500).json({ error: 'User not found!' });
         }
 
     } catch {
-        return res.status(500).json({ error: 'Internal Server Error - User not found!' });
+        return res.status(500).json({ error: 'Internal Server Error -> (User not found)' });
     }
 
     try {
@@ -35,7 +35,8 @@ async function likeHighlightHandler(req, res) {
     highlight.save();
 
 
-    res.json("Successful operation");
+    return res.json("Successful operation");
 }
+
 
 module.exports = likeHighlightHandler;

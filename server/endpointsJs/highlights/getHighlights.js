@@ -7,19 +7,22 @@ async function getHighlightsHandler(req, res) {
         var data = await Highlight.find().sort({ uploadDate: 'desc' }).lean();
 
     } catch {
-        return res.status(500).json({ error: 'Internal Server Error' });
+        return res.status(500).json({ error: 'Internal Server Error -> (Searching for the Highlights)' });
     }
 
-    // TRY CATCH
-    // can be moved to another file...!
-    const highlightsWithImages = await Promise.all(data.map(async (highlight) => {
-
+    try {
+        var highlightsWithImages = await Promise.all(data.map(async (highlight) => {
+    
         const imageData = fs.promises.readFile(`${highlight.imageLocation}`, { encoding: 'base64' });
-
+    
         return { ...highlight, photo: await imageData };
-    }));
+        }));
 
-    res.json(highlightsWithImages);
+    } catch {
+        return res.status(500).json({ error: 'Internal Server Error -> (Converting the Images)' });
+    }
+
+    return res.json(highlightsWithImages);
 }
 
 

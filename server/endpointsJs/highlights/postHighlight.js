@@ -9,7 +9,7 @@ async function postHighlightHandler(req, res) {
     const validImage = validateImageExtension(image);
 
     if (!validImage) {
-        return res.status(500).json({ error: 'Highlight Image is not of valid type!' });
+        return res.status(400).json({ error: 'Highlight Image is not of valid type!' });
     }
 
     const { description, ownerId } = req.body;
@@ -18,11 +18,11 @@ async function postHighlightHandler(req, res) {
         const user = await User.findOne({ _id: ownerId });
 
         if (user === null) {
-            return res.status(400).json({ error: 'No such user found!' });
+            return res.status(500).json({ error: 'No such user found!' });
         }
 
     } catch {
-        return res.status(500).json({ error: 'Internal Server Error - Searching for the user' }); // searching for the user crashed
+        return res.status(500).json({ error: 'Internal Server Error -> (Searching for the user)' }); 
     }
 
     try {
@@ -33,7 +33,7 @@ async function postHighlightHandler(req, res) {
         return res.status(500).json({ error: 'An error occured while the data was being written on the Database!' });
     }
 
-    res.status(200).json({ message: 'File uploaded successfully' });
+    res.status(200).json({ message: 'File uploaded successfully!' });
 }
 
 

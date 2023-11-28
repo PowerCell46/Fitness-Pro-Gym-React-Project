@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 
+
 export function HighlightsDiv(props) {
     return(
         <div className="gallery-inner-box">
