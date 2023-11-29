@@ -22,7 +22,7 @@ import { PostProduct } from './components/products/PostProduct/PostProduct';
 import { ProductContext } from './contexts/ProductContext';
 import { Products } from './components/products/ProductsGallery/Products';
 import { ProductDescription } from './components/products/ProductDescription/ProductDescription';
-import { Memberships } from './components/Memberships/Memberships';
+import { Memberships } from './components/products/Memberships/Memberships';
 import { Checkout } from './components/Checkout/Checkout';
 import { MyProfile } from './components/MyProfile/MyProfile';
 import { ToastContainer } from 'react-toastify';

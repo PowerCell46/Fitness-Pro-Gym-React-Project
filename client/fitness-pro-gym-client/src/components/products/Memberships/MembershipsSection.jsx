@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import { AuthenticationContext } from "../../contexts/AuthenticationContext"; 
+import { AuthenticationContext } from "../../../contexts/AuthenticationContext"; 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { productAlreadyAddedToCart, productSuccessfullyAdded } from '../../utils/toastify';
+import { productAlreadyAddedToCart, productSuccessfullyAdded } from '../../../utils/toastify';
 
 
 export function MembershipsSection(props) {

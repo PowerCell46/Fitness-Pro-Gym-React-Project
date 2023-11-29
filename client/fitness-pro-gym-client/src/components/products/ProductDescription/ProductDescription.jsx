@@ -5,13 +5,15 @@ import { Link, useParams } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { productAlreadyAddedToCart, productSuccessfullyAdded } from '../../../utils/toastify';
-
+import { DeleteProduct } from '../DeleteProduct/DeleteProduct';
+import { ProductContext } from "../../../contexts/ProductContext";
 
 export function ProductDescription() {
     const {user, navigate} = useContext(AuthenticationContext);
     const [productData, setProductData] = useState({});
     const {productId} = useParams();
-    
+    const [deleteProductComponentShown, setDeleteProductComponent] = useState(false);
+
     useEffect(() => {
         async function fetchProductData() {
             try {
@@ -39,6 +41,9 @@ export function ProductDescription() {
 
     return (
         <main className='product-description-main' >
+            <ProductContext.Provider value={{setDeleteProductComponent, productId}}>
+                {deleteProductComponentShown ? <DeleteProduct/> : ""}
+            </ProductContext.Provider>
             <img src={`data:image/jpeg;base64,${productData.photo}`} alt={`${productData.name} Image`}/>
 
             <aside>
@@ -52,18 +57,12 @@ export function ProductDescription() {
                     <button id='add-to-cart-btn' onClick={addProductToCart}>ADD TO CART</button>
                   
                     {user ? JSON.parse(localStorage.getItem("authenticationTokenAndData")).isAdministrator ? // Only the Administrator has access to DELETE 
-                        <button onClick={deleteProductHandler}>DELETE</button> : "" : ""}
+                        <button onClick={() => setDeleteProductComponent(true)}>DELETE</button> : "" : ""}
                 </div>
             </aside>
             <ToastContainer />
         </main>
     );
-
-
-    async function deleteProductHandler() {
-        console.log("DELETE");
-        // write functionality and design of the popup
-    }
 
 
     async function addProductToCart() {
