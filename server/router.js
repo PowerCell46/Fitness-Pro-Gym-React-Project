@@ -27,6 +27,7 @@ const getProfilePhoto = require("./endpointsJs/products/getProfilePhoto");
 const deleteProductHandler = require("./endpointsJs/products/deleteProduct");
 const deleteHighlight = require("./endpointsJs/highlights/deleteHighlight");
 const editHighlight = require("./endpointsJs/highlights/editHighlight");
+const editProductHandler = require("./endpointsJs/products/editProduct");
 
 
 const storage = multer.diskStorage({
@@ -119,6 +120,8 @@ router.post("/products", upload.single("image"), postProductHandler);
 router.post("/products/buy/:productId", buyProductHandler);
 
 router.get("/products/delete/:productId", deleteProductHandler);
+
+router.post("/products/edit/:productId", upload.single("image"), editProductHandler);
 
 
 router.post("/memberships/:type/:category", membershipsHandler);
