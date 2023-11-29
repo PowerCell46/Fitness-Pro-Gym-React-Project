@@ -47,7 +47,6 @@ async function checkoutHandler(req, res) {
     } catch(err) {
         return res.status(500).json({ error: 'An error occured while the Images were being converted!'});
     }
-    
 } 
 
 

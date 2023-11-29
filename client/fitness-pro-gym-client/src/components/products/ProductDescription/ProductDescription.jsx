@@ -6,6 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { productAlreadyAddedToCart, productSuccessfullyAdded } from '../../../utils/toastify';
 
+
 export function ProductDescription() {
     const {user, navigate} = useContext(AuthenticationContext);
     const [productData, setProductData] = useState({});
@@ -17,7 +18,11 @@ export function ProductDescription() {
                 var response = await fetch(`http://localhost:5000/products/${productId}`);
     
                 if (!response.ok) {
-                    console.log('/404');
+                    const errorData = await response.json();
+            
+                    errorToastMessage(errorData.error);
+
+                    return navigate("/404");
                 }
 
             } catch {
@@ -55,11 +60,11 @@ export function ProductDescription() {
     );
 
 
-
     async function deleteProductHandler() {
         console.log("DELETE");
         // write functionality and design of the popup
     }
+
 
     async function addProductToCart() {
         
@@ -78,22 +83,22 @@ export function ProductDescription() {
                 element.disabled = true;
                 
                 if (responseCondition === "Successful Operation!") {
-                    productSuccessfullyAdded();
+                    return productSuccessfullyAdded();
 
                 } else if (responseCondition === "Product already in Cart!") {
-                    productAlreadyAddedToCart();
-                    
+                    return productAlreadyAddedToCart();
                 }
                 
             } else {
-                navigate("/404");
+                const errorData = await response.json();
+            
+                errorToastMessage(errorData.error);
+
+                return navigate("/404");
             }
             
-        } catch(err) {
-            console.log(err);
+        } catch {
             navigate("/404");
         }
     }
-
-    
 }

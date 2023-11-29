@@ -4,7 +4,7 @@ import "./products.css";
 import { Link } from "react-router-dom";
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
-import { productSuccessfullyAdded, productAlreadyAddedToCart } from '../../../utils/toastify';
+import { productSuccessfullyAdded, productAlreadyAddedToCart, errorToastMessage } from '../../../utils/toastify';
 
 
 export function Products() {
@@ -70,18 +70,21 @@ export function Products() {
                 e.target.disabled = true;
                 
                 if (responseCondition === "Successful Operation!") {
-                    productSuccessfullyAdded();
+                    return productSuccessfullyAdded();
 
                 } else if (responseCondition === "Product already in Cart!") {
-                    productAlreadyAddedToCart();
+                    return productAlreadyAddedToCart();
                 }
                 
             } else {
-                navigate("/404");
+                const errorData = await response.json();
+            
+                errorToastMessage(errorData.error);
+                return navigate("/404");
             }
             
         } catch {
-            navigate("/404");
+            return navigate("/404");
         }
     }
 
@@ -90,7 +93,10 @@ export function Products() {
             var response = await fetch(`http://localhost:5000/products${endpoint}`);
             
             if (!response.ok) {
-                navigate("/404");
+                const errorData = await response.json();
+            
+                errorToastMessage(errorData.error);
+                return navigate("/404");
             }
 
         } catch {

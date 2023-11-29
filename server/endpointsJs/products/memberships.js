@@ -29,12 +29,18 @@ async function membershipsHandler(req, res) {
     }
 
     try {
+        const membershipExists = currentUser.cart.some(item => {
+            return (
+              item.membershipType === currentMembershipData.membershipType &&
+              item.membershipCategory === currentMembershipData.membershipCategory
+            );
+          });
 
-        if (!currentUser.cart.includes(currentMembershipData)) {
+        if (!membershipExists) {
             currentUser.cart.push(currentMembershipData);
             
         } else {
-            return res.status(400).json({ error: 'Membership already in cart!'}); // Instead of showing the 404 page, show a message to the User    
+            return res.json("Membership already in Cart!");    
         }
 
         await User.updateOne({ _id: userId }, { cart: currentUser.cart }); 

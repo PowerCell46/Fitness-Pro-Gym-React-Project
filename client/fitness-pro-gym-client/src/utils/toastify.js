@@ -35,4 +35,28 @@ export const errorToastMessage = (ErrMessage) => toast.error(`${ErrMessage} 😓
     draggable: true,
     progress: undefined,
     theme: "light",
-    });
+});
+
+
+export const productSuccessfullyRemoved = () => toast.success('📦 Product removed from the Cart! 🤠', {
+    position: "top-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+});
+
+
+export const successfullOrder = () => toast.success('💪 Order successfully made! 😎', {
+    position: "top-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+});

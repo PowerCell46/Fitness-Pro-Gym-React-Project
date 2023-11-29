@@ -284,7 +284,7 @@ function App() {
             
                 errorToastMessage(errorData.error);
 
-                navigate("/404");
+                return navigate("/404");
             }
             
         } catch {
@@ -442,11 +442,15 @@ function App() {
                 navigate('/products');
     
             } else {
-                navigate('/404');
+                const errorData = await response.json();
+            
+                errorToastMessage(errorData.error);
+
+                return navigate("/404");
             }
 
         } catch {
-            navigate('/404');
+            return navigate('/404');
         }  
     }
 

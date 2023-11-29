@@ -10,10 +10,15 @@ async function getProductsMerchandiseHandler(req, res) {
         return res.status(400).json({ error: 'An error occured while the data was being read from the Database!' });
     }
 
-    const productsWithImages = await Promise.all(data.map(async (product) => {
-        const imageData = fs.promises.readFile(`${product.imageLocation}`, { encoding: 'base64' });
-        return { ...product, photo: await imageData };
-    }));
+    try {
+        var productsWithImages = await Promise.all(data.map(async (product) => {
+            const imageData = fs.promises.readFile(`${product.imageLocation}`, { encoding: 'base64' });
+            return { ...product, photo: await imageData };
+        }));
+
+    } catch {
+        return res.status(400).json({ error: 'An error occured while the Images where being converted!' });
+    }
 
     res.json(productsWithImages);
 }

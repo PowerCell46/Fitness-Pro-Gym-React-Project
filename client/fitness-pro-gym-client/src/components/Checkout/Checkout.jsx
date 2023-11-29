@@ -2,7 +2,9 @@ import { useEffect, useState } from 'react';
 import './checkout.css';
 import { useContext } from 'react';
 import { AuthenticationContext } from "../../contexts/AuthenticationContext";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import {errorToastMessage, productSuccessfullyRemoved, successfullOrder} from '../../utils/toastify';
 
 export function Checkout() {
     const {navigate} = useContext(AuthenticationContext);
@@ -40,6 +42,10 @@ export function Checkout() {
                     method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({userId})});
                 
                 if (!response.ok) {
+                    const errorData = await response.json();
+            
+                    errorToastMessage(errorData.error);
+
                     navigate("/404");
                 }
 
@@ -143,8 +149,8 @@ export function Checkout() {
                 </form>
             </div>
         </section>
+        <ToastContainer />
     </main>
-
     );
 
     async function removeProductFromCartHandler(removedProductId, productForRemoval) {
@@ -162,9 +168,15 @@ export function Checkout() {
                     previousData.filter((data) => (data !== productForRemoval))
                 );
                 setTotalSum((previousTotalSum) => previousTotalSum - getProductPrice(removedProductId, productForRemoval.name));
-           
+                
+                return productSuccessfullyRemoved();
+                
             } else {
-                navigate("/404");
+                const errorData = await response.json();
+            
+                errorToastMessage(errorData.error);
+
+                return navigate("/404");
             }
 
         } catch {
@@ -268,8 +280,14 @@ export function Checkout() {
             if (serverResponse.status === 200) {
                 navigate("/myProfile") // My Profile
            
+                return successfullOrder();
+                
             } else {
-                navigate("/404");
+                const errorData = await serverResponse.json();
+            
+                errorToastMessage(errorData.error);
+
+                return navigate("/404");
             }
        
         } catch {

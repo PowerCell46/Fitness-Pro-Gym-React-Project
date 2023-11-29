@@ -4,6 +4,10 @@ import { AuthenticationContext } from "../../contexts/AuthenticationContext";
 import {HighlightsDiv} from '../highlights/HighlightsGallery/HighlightsDiv';
 import { MyProfileSection } from "./MyProfileSection";
 import { fakeButtonHandler, realButtonHandler } from "../../utils/fakeBtnRealBtn";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import {errorToastMessage, productSuccessfullyRemoved, successfullOrder} from '../../utils/toastify';
+
 
 export function MyProfile() {
     const {profilePhoto, changeProfilePictureHandler} = useContext(AuthenticationContext);
@@ -19,7 +23,11 @@ export function MyProfile() {
                 body: JSON.stringify({userId: JSON.parse(localStorage.getItem("authenticationTokenAndData")).id})});        
         
                 if (!response.ok) {
-                    navigate("/404");
+                    const errorData = await response.json();
+            
+                    errorToastMessage(errorData.error);
+
+                    return navigate("/404");
                 }
 
             } catch {
@@ -39,7 +47,11 @@ export function MyProfile() {
                 body: JSON.stringify({userId: JSON.parse(localStorage.getItem("authenticationTokenAndData")).id})});        
         
                 if (!response.ok) {
-                    navigate("/404");
+                    const errorData = await response.json();
+            
+                    errorToastMessage(errorData.error);
+
+                    return navigate("/404");
                 }
 
             } catch {
@@ -47,7 +59,7 @@ export function MyProfile() {
             }
 
             const data = await response.json();
-            console.log(data);
+            
             setOrders(data);
         }
 
@@ -100,6 +112,7 @@ export function MyProfile() {
 
             </div>
         </div>
+    <ToastContainer />
     </main>
     );  
 } 

@@ -1,5 +1,8 @@
 import { useContext } from "react";
 import { AuthenticationContext } from "../../contexts/AuthenticationContext"; 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { productAlreadyAddedToCart, productSuccessfullyAdded } from '../../utils/toastify';
 
 
 export function MembershipsSection(props) {
@@ -16,8 +19,8 @@ export function MembershipsSection(props) {
                 <th>Price</th>
               </tr>
               <tr>
-                <td onClick={(e) => addMembershipToCart(e, props.title, "under 18")}>Under 18</td>
-                <td onClick={(e) => addMembershipToCart(e, props.title, "under 18")}>{props.under18}.<sup>00</sup> BGN</td>
+                <td onClick={(e) => addMembershipToCart(e, props.title, "under18")}>Under 18</td>
+                <td onClick={(e) => addMembershipToCart(e, props.title, "under18")}>{props.under18}.<sup>00</sup> BGN</td>
               </tr>
               <tr>
                 <td onClick={(e) => addMembershipToCart(e, props.title, "men")}>Men</td>
@@ -30,6 +33,7 @@ export function MembershipsSection(props) {
             </tbody>
           </table>
         </div>
+      <ToastContainer/>
       </section>
       
     );
@@ -44,15 +48,27 @@ export function MembershipsSection(props) {
             });
             
             if (response.status === 200) {
-                const parentElement = e.target.parentElement;
-                const children = parentElement.children;
+                const responseCondition = await response.json();
 
-                for (let i = 0; i < children.length; i++) {
-                    children[i].classList.add("added-membership");
+                if (responseCondition === "Successful Operation!") {
+                  const parentElement = e.target.parentElement;
+                  const children = parentElement.children;
+  
+                  for (let i = 0; i < children.length; i++) {
+                      children[i].classList.add("added-membership");
+                  }
+                  return productSuccessfullyAdded();
+
+                } else {
+                  return productAlreadyAddedToCart();
                 }
 
             } else {
-                navigate("/404");
+                  const errorData = await response.json();
+                
+                  errorToastMessage(errorData.error);
+
+                  return navigate("/404");
             }
 
         } catch {
