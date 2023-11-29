@@ -1,10 +1,40 @@
-import { useContext } from "react";
-import { ProductContext } from "../../../contexts/ProductContext";
+import { useContext, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import "./editProduct.css";
 import { fakeButtonHandler, realButtonHandler } from "../../../utils/fakeBtnRealBtn";
+import { useState } from "react";
+import { AuthenticationContext } from "../../../contexts/AuthenticationContext";
 
 
 export function EditProduct() {
+    const {productId} = useParams();
+    const [productData, setProductData] = useState({});
+    const {navigate} = useContext(AuthenticationContext);
+
+    useEffect(() => {
+        async function fetchProductData() {
+            try {
+                var response = await fetch(`http://localhost:5000/products/${productId}`);
+    
+                if (!response.ok) {
+                    const errorData = await response.json();
+            
+                    errorToastMessage(errorData.error);
+
+                    return navigate("/404");
+                }
+
+            } catch {
+                navigate("/404");
+            }       
+            
+            let data = await response.json();
+            console.log(data);
+            setProductData(data);
+        }
+
+        fetchProductData();
+    }, []);
 
     return (
         <main className="edit-product-main">
