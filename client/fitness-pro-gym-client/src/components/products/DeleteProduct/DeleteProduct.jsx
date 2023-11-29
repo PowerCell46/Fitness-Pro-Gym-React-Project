@@ -2,6 +2,7 @@ import "./deleteProduct.css";
 import { useContext } from "react";
 import { ProductContext } from "../../../contexts/ProductContext";
 import {AuthenticationContext} from "../../../contexts/AuthenticationContext";
+import { errorToastMessage, productSuccessfullyDeleted } from "../../../utils/toastify";
  
 
 export function DeleteProduct() {    
@@ -29,7 +30,10 @@ export function DeleteProduct() {
         }
 
         if (response.status === 200) {
-            navigate("/products");
+            
+            productSuccessfullyDeleted();
+
+            return navigate("/products");
       
         } else {
             const errorData = await response.json();

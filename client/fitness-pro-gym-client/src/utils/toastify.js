@@ -60,3 +60,14 @@ export const successfullOrder = () => toast.success('💪 Order successfully mad
     progress: undefined,
     theme: "light",
 });
+
+export const productSuccessfullyDeleted = () => toast.success('📦 Product successfully Deleted! 🥺', {
+    position: "top-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+});
