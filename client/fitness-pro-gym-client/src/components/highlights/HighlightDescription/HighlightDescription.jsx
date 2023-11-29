@@ -3,15 +3,19 @@ import { useParams } from "react-router-dom";
 import "./highlightDescription.css";
 import { useEffect, useState, useContext } from "react";
 import { AuthenticationContext } from "../../../contexts/AuthenticationContext";
+import { HighlightContext } from "../../../contexts/HighlightContext";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { errorToastMessage } from "../../../utils/toastify";
+import { DeleteHighlight } from "../DeleteHighlight/DeleteHighlight";
 
 
 export function HighlightDescription() {
+    const userId = JSON.parse(localStorage.getItem("authenticationTokenAndData")).id;
     const {navigate} = useContext(AuthenticationContext);
     const [highlightData, setHighlightData] = useState({});
     const [numberOfLikes, setNumberOfLikes] = useState(0);
+    const [deleteHighlightComponentShown, setDeleteHighlightComponent] = useState(false);
     const {highlightId} = useParams();
     
     useEffect(() => {
@@ -34,7 +38,7 @@ export function HighlightDescription() {
             let data = await response.json();
 
             data.uploadDate = new Date(data.uploadDate).toLocaleDateString();
-            data.hasLiked = data.likes.includes(JSON.parse(localStorage.getItem("authenticationTokenAndData")).id); // Checking whether the User has liked the Post before
+            data.hasLiked = data.likes.includes(userId); // Checking whether the User has liked the Post before
 
             setNumberOfLikes(data.likes.length);
             
@@ -46,6 +50,9 @@ export function HighlightDescription() {
     
     return (
     <main className="highlight-description-main">
+        <HighlightContext.Provider value={{setDeleteHighlightComponent, highlightId, userId}}>
+            {deleteHighlightComponentShown ? <DeleteHighlight/> : ""} 
+        </HighlightContext.Provider>
         <ToastContainer />
             {highlightData ? <>
             <p>Upload Date: {highlightData.uploadDate}</p>
@@ -53,7 +60,7 @@ export function HighlightDescription() {
             <h5>{highlightData.description}</h5>
             
             <p className="number-of-likes">
-                {highlightData.ownerId !== JSON.parse(localStorage.getItem("authenticationTokenAndData")).id ? // The like button is available only if the User is not the Creator
+                {highlightData.ownerId !== userId ? // The like button is available only if the User is not the Creator
                     <i id="like-icon" onClick={likeHighlightHandler} className={
                         highlightData.hasLiked
                         ? "fa-solid fa-thumbs-up already-liked" // If the person has liked, the button will not move and be different colour
@@ -62,10 +69,10 @@ export function HighlightDescription() {
                 Likes: {numberOfLikes}</p>
 
             { // Only the owner has the right to edit and delete the highlight
-            highlightData.ownerId === JSON.parse(localStorage.getItem("authenticationTokenAndData")).id ? 
+            highlightData.ownerId === userId ? 
                 <div className="buttons">
                     <Link to={`/highlights/edit/${highlightData._id}`}><button>Edit</button></Link>
-                    <Link to={`/highlights/delete/${highlightData._id}`}><button>Delete</button></Link> {/* Popup asking whether the user really wants to delete his highlight */}
+                    <button onClick={() => setDeleteHighlightComponent(true)}>Delete</button>
                 </div>
                 : ""}
             </> 
@@ -75,14 +82,14 @@ export function HighlightDescription() {
     );  
     
     async function likeHighlightHandler() {
-        if (highlightData.likes.includes(JSON.parse(localStorage.getItem("authenticationTokenAndData")).id)) {
+        if (highlightData.likes.includes(userId)) {
             errorToastMessage(`You've already liked this Highlight!`);
             return;
         }
         try {
             var response = await fetch(`http://localhost:5000/highlights/like/${highlightId}`, 
             {method: "POST", headers: {"Content-Type": "application/json"}, 
-            body: JSON.stringify({userId: JSON.parse(localStorage.getItem("authenticationTokenAndData")).id})});
+            body: JSON.stringify({userId: userId})});
 
             if (response.status === 200) {
                 setNumberOfLikes((val) => val + 1, () => {

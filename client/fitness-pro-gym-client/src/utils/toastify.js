@@ -71,3 +71,14 @@ export const productSuccessfullyDeleted = () => toast.success('📦 Product succ
     progress: undefined,
     theme: "light",
 });
+
+export const highlightSuccessfullyDeleted = () => toast.success('📷 Highlight successfully Deleted! 🤗', {
+    position: "top-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+});

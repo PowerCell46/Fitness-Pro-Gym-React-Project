@@ -8,6 +8,7 @@ import { productAlreadyAddedToCart, productSuccessfullyAdded } from '../../../ut
 import { DeleteProduct } from '../DeleteProduct/DeleteProduct';
 import { ProductContext } from "../../../contexts/ProductContext";
 
+
 export function ProductDescription() {
     const {user, navigate} = useContext(AuthenticationContext);
     const [productData, setProductData] = useState({});
