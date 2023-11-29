@@ -1,0 +1,61 @@
+const Highlight = require("../../schemas/highlightSchema");
+const User = require("../../schemas/userSchema");
+const {validateImageExtension} = require("../../utilities/validators");
+
+
+async function editHighlight(req, res) {
+    const image = req.file;
+    const { description, ownerId } = req.body;
+    const highlightId = req.params.highlightId;
+
+    try {
+        var user = await User.findOne({_id: ownerId});
+
+        if (user === null) {
+            return res.status(500).json({ error: 'No such user found!' });
+        }
+
+    } catch {
+        return res.status(500).json({ error: 'Internal Server Error -> (Searching for the user)' }); 
+    }
+
+
+    if (image === undefined) { // only the description was changed
+        
+       try {
+            await Highlight.findOneAndUpdate(
+                { _id: highlightId },
+                {description: description },
+                { new: true }
+            );
+
+       } catch {
+            return res.status(500).json({ error: 'Internal Server Error -> (Updating the user)' }); 
+       }
+
+    } else { // Image was being changed
+        const image = req.file;
+        
+        const validImage = validateImageExtension(image);
+
+        if (!validImage) {
+            return res.status(400).json({ error: 'Highlight Image is not of valid type!' });
+        }
+
+        try {
+            await Highlight.findOneAndUpdate(
+                { _id: highlightId },
+                { imageLocation: image.path, description: description },
+                { new: true }
+              );
+            
+        } catch {
+            return res.status(500).json({ error: 'Internal Server Error -> (Updating the user)' }); 
+        }
+    }
+
+    res.status(200).json({ message: 'File updated successfully!' });
+}
+
+
+module.exports = editHighlight;

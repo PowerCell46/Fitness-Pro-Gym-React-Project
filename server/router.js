@@ -26,6 +26,7 @@ const postProfilePhotoHandler = require("./endpointsJs/authentication/postProfil
 const getProfilePhoto = require("./endpointsJs/products/getProfilePhoto");
 const deleteProductHandler = require("./endpointsJs/products/deleteProduct");
 const deleteHighlight = require("./endpointsJs/highlights/deleteHighlight");
+const editHighlight = require("./endpointsJs/highlights/editHighlight");
 
 
 const storage = multer.diskStorage({
@@ -82,6 +83,9 @@ router.post("/highlights/myhighlights", getUserHighlightsHandler);
 
 
 router.get("/highlights/:highlightId", getHighlightHandler);
+
+router.post('/highlights/edit/:highlightId', upload.single("image"), editHighlight);
+
 
 router.post("/highlights/delete/:highlightId", deleteHighlight);
 

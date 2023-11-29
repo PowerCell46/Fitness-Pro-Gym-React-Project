@@ -82,3 +82,14 @@ export const highlightSuccessfullyDeleted = () => toast.success('📷 Highlight 
     progress: undefined,
     theme: "light",
 });
+
+export const highlightSuccessfullyEdited = () => toast.success('📷 Highlight successfully Edited! 😎', {
+    position: "top-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+});

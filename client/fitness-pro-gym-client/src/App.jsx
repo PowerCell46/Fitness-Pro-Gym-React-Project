@@ -28,6 +28,7 @@ import { MyProfile } from './components/MyProfile/MyProfile';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {errorToastMessage} from "./utils/toastify";
+import { EditHighlight } from './components/highlights/EditHighlight/EditHighlight';
 
 
 function App() {
@@ -508,6 +509,7 @@ function App() {
                 <Route path='/postHighlight' element={<PostHighlight/>}/>
                 <Route path='/highlights' element={<Highlights/>}/>
                 <Route path='/highlights/:highlightId' element={<HighlightDescription/>}/>
+                <Route path='/highlights/edit/:highlightId' element={<EditHighlight/>}/>
 
                 <Route path='/postTrainer' element={<PostTrainer/>}/>
                 <Route path='/trainers' element={<Trainers/>}/>

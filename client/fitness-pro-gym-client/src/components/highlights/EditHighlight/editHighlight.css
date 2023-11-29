@@ -1,9 +1,8 @@
-.main-post-highlight {
+.main-edit-highlight {
     margin-left: -0.4vw;
     margin-top: 10vh;
     height: 90vh;
     width: 100vw;
-    /* background-color:burlywood; */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -12,7 +11,7 @@
 }
 
 
-.main-post-highlight h1 {
+.main-edit-highlight h1 {
     margin-top: -12.5vh;
     color: whitesmoke;
     font-size: 6rem;
@@ -23,7 +22,7 @@
 }
 
 
-.main-post-highlight form {
+.main-edit-highlight form {
     display: flex;
     flex-direction: column;
     gap: 7vh;
@@ -31,7 +30,7 @@
 }
 
 
-.main-post-highlight form input {
+.main-edit-highlight form input {
     font-family: 'Salsa', cursive;
     font-weight: 300;
     font-size: 1.1rem;
@@ -40,7 +39,7 @@
 }
 
 
-.main-post-highlight .file-upload-div {
+.main-edit-highlight .file-upload-div {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -48,16 +47,16 @@
 }
 
 
-.main-post-highlight .file-upload-div span {
+.main-edit-highlight .file-upload-div span {
     font-size: 1.2rem;
     font-family: 'Salsa', cursive;
     color: whitesmoke;
     padding: 0.5rem;
     border-radius: 0.2rem;
+    background-color: rgba(255, 255, 255, 0.5);
 }
 
-
-.main-post-highlight form button {
+.main-edit-highlight form button {
     align-self: center;
     width: 50%;
     padding: 1.2rem;
@@ -76,7 +75,7 @@
 }
 
 
-.main-post-highlight .file-upload-div button {
+.main-edit-highlight .file-upload-div button {
     text-align: center;
     width: 45%;
     padding: 0.7rem 1.5rem;
@@ -84,19 +83,18 @@
     animation: none;
 }
 
-
-.main-post-highlight .file-upload-div button:hover {
+.main-edit-highlight .file-upload-div button:hover {
     background-color: #009578;
     transform: translateY(-0.2rem);
 }
 
 
-.main-post-highlight .err-input-field {
+.main-edit-highlight .err-input-field {
     border: 3px solid rgb(130, 3, 3);
 }
 
 
-.main-post-highlight .err-message { /* In case of an error */
+.main-edit-highlight .err-message { /* In case of an error */
     font-family: 'Salsa';
     font-size: 1rem;
     font-weight: 600;
