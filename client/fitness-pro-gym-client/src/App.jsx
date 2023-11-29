@@ -29,6 +29,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {errorToastMessage} from "./utils/toastify";
 import { EditHighlight } from './components/highlights/EditHighlight/EditHighlight';
+import { EditProduct } from './components/products/EditProduct/EditProduct';
 
 
 function App() {
@@ -517,6 +518,7 @@ function App() {
                 <Route path='/postProduct' element={<PostProduct/>}/>
                 <Route path='/products' element={<Products/>} />
                 <Route path='/products/:productId' element={<ProductDescription/>}/>
+                <Route path='/products/edit/:productId' element={<EditProduct/>}/>
 
                 <Route path='/memberships' element={<Memberships/>}/>
 

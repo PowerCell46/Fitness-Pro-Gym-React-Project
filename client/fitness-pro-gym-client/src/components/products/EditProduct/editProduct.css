@@ -1,4 +1,4 @@
-.post-product-main {
+.edit-product-main {
     width: 100.1vw;
     height: 100vh;
     margin: 3vh auto 0;
@@ -12,7 +12,7 @@
     background-size: cover;
 }
 
-.post-product-main h1 {
+.edit-product-main h1 {
     color: whitesmoke;
     font-size: 6rem;
     font-family: 'Permanent Marker', cursive;
@@ -22,13 +22,13 @@
     margin-bottom: 2vh;
 }
 
-.post-product-main form {
+.edit-product-main form {
     display: flex;
     flex-direction: column;
     gap: 2rem;
 }
 
-.post-product-main form input {
+.edit-product-main form input {
     padding: 1.2rem 1.2rem 1.2rem 1.2rem;
     border-radius: 5px;
     font-size: 1.2rem;
@@ -36,19 +36,19 @@
     border: none;
 }
 
-.post-product-main form input::placeholder {
+.edit-product-main form input::placeholder {
     font-size: 1.2rem;
     font-family: 'Salsa', cursive;
     color: grey;
 }
 
-.post-product-main form div {
+.edit-product-main form div {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.post-product-main form div label {
+.edit-product-main form div label {
     color: whitesmoke;
     font-family: 'Salsa', cursive;
     text-shadow: 5px 0px 7px rgba(0,0,0,0.68);
@@ -58,7 +58,7 @@
     font-weight: 600;
 }
 
-.post-product-main form div select {
+.edit-product-main form div select {
     padding: 1rem 1rem 1rem 1rem;
     border-radius: 5px;
     font-size: 1.2rem;
@@ -69,7 +69,7 @@
 }
 
 
-.post-product-main form button {
+.edit-product-main form button {
     align-self: center;
     width: 60%;
     padding: 1.2rem;
@@ -87,13 +87,13 @@
     animation: hithere 5s ease-in-out infinite;
 }
 
-.post-product-main button:hover {
+.edit-product-main button:hover {
     background-color: #124b8b;
     color: #d6d6d6;;
     /* transform: translateY(-0.2rem); */
 }
 
-.post-product-main .file-upload-div button {
+.edit-product-main .file-upload-div button {
     text-align: center;
     width: 45%;
     padding: 0.7rem 1.5rem;
@@ -101,11 +101,11 @@
     animation: none;
 }
 
-.post-product-main .file-upload-div button:hover {
+.edit-product-main .file-upload-div button:hover {
     background-color: #009578;
     transform: translateY(-0.2rem);
 }
-.post-product-main .file-upload-div {
+.edit-product-main .file-upload-div {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -113,7 +113,7 @@
     margin-bottom: 2vh;
 }
 
-.post-product-main .file-upload-div span {
+.edit-product-main .file-upload-div span {
     font-size: 1.2rem;
     font-family: 'Salsa', cursive;
     color: whitesmoke;
@@ -121,11 +121,11 @@
     border-radius: 0.2rem;
 }
 
-.post-product-main .err-input-field {
+.edit-product-main .err-input-field {
     border: 4px solid rgb(130, 3, 3);
 }
 
-.post-product-main .err-message { /* In case of an error  + main height + footer margin-top*/
+.edit-product-main .err-message { /* In case of an error  + main height + footer margin-top*/
     font-family: 'Salsa';
     font-size: 1rem;
     font-weight: 600;
