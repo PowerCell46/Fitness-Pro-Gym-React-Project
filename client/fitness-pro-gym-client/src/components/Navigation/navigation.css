@@ -84,9 +84,11 @@ header li div img {
     transition: 400ms ease-in-out;
 }
 
+
 .hidden-profile-view li a::before {
     background: none;
 }
+
 
 .hidden-profile-view:hover {
     transition: 600ms ease-in-out;

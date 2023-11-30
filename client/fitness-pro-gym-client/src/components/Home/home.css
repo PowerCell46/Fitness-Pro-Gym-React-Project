@@ -154,10 +154,12 @@
     font-size: 3rem;
 }
 
+
 @media screen and (min-width: 2501px) { 
     .home-main img  {
         width: 37vw;
     }
+
 
     .home-main div iframe {
         width: 30vw;
@@ -165,17 +167,20 @@
     }
 }
 
+
 @media screen and (max-width: 1900px) { 
 
     .main-section {
         margin-left: -0.8vw;
     }
 
+
     .home-main div iframe {
         width: 30vw;
         height: 40vh;
     }
 
+    
     .home-main img  {
         width: 35.5vw;
     }

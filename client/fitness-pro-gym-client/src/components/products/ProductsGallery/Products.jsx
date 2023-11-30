@@ -3,16 +3,19 @@ import { AuthenticationContext } from "../../../contexts/AuthenticationContext";
 import "./products.css";
 import { Link } from "react-router-dom";
 import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer, toast } from 'react-toastify';
-import { productSuccessfullyAdded, productAlreadyAddedToCart, errorToastMessage } from '../../../utils/toastify';
+import { ToastContainer } from 'react-toastify';
+import { errorToastMessage } from '../../../utils/toastify';
+import { addProductToCart } from "./addProductToCart";
+import { fetchCertainProducts } from "./fetchCertainProducts";
 
 
 export function Products() {
+    const userId = JSON.parse(localStorage.getItem("authenticationTokenAndData")).id;
     const {navigate} = useContext(AuthenticationContext);
     const [productsData, setProductsData] = useState([]);
 
     useEffect(() => {
-        fetchCertainProducts("");
+        fetchCertainProducts("", errorToastMessage, navigate, setProductsData);
     }, []);
 
     return (
@@ -20,10 +23,10 @@ export function Products() {
             
             <div className="aside-wrapper"> {/* Filtering the Products*/}
                 <aside>
-                    <h1 id="h1-all" onClick={() => fetchCertainProducts("")}>All</h1>
-                    <h1 id="h1-fitness-supplements" onClick={() => fetchCertainProducts('/supplements')}>Fitness Supplements</h1>
-                    <h1 id="h1-fitness-machines" onClick={() => fetchCertainProducts('/machines')}>Fitness Machines</h1>
-                    <h1 id="h1-merchandise" onClick={() => fetchCertainProducts('/merchandise')}>Merchandise</h1>
+                    <h1 id="h1-all" onClick={() => fetchCertainProducts("", errorToastMessage, navigate, setProductsData)}>All</h1>
+                    <h1 id="h1-fitness-supplements" onClick={() => fetchCertainProducts('/supplements', errorToastMessage, navigate, setProductsData)}>Fitness Supplements</h1>
+                    <h1 id="h1-fitness-machines" onClick={() => fetchCertainProducts('/machines', errorToastMessage, navigate, setProductsData)}>Fitness Machines</h1>
+                    <h1 id="h1-merchandise" onClick={() => fetchCertainProducts('/merchandise', errorToastMessage, navigate, setProductsData)}>Merchandise</h1>
                 </aside> 
             </div>
             
@@ -35,7 +38,7 @@ export function Products() {
                             <div className="product-container">
                                 <div className="image-container">
                                 <img src={`data:image/jpeg;base64,${product.photo}`} alt={`${product.name} Image`}/>
-                                    <button onClick={(e) => addProductToCart(e, product._id)}>Add To Cart</button>
+                                    <button onClick={(e) => addProductToCart(e, product._id, userId, navigate)}>Add To Cart</button>
                                 </div>
                                 <div className="shown-info">
                                     <h5>{product.name}</h5>
@@ -50,85 +53,4 @@ export function Products() {
             <ToastContainer />
         </div>
     );
-
-
-    async function addProductToCart(e, productId) {
-        e.preventDefault();
-        e.stopPropagation();
-        
-        const userId = JSON.parse(localStorage.getItem("authenticationTokenAndData")).id;
-
-        try {
-            var response = await fetch(`http://localhost:5000/products/buy/${productId}`, {
-                method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({userId})
-            });
-            
-            if (response.status === 200) {
-                const responseCondition = await response.json();
-                e.target.style.backgroundColor = "#cc1e00"; 
-                e.target.textContent = 'Added to Cart';
-                e.target.disabled = true;
-                
-                if (responseCondition === "Successful Operation!") {
-                    return productSuccessfullyAdded();
-
-                } else if (responseCondition === "Product already in Cart!") {
-                    return productAlreadyAddedToCart();
-                }
-                
-            } else {
-                const errorData = await response.json();
-            
-                errorToastMessage(errorData.error);
-                return navigate("/404");
-            }
-            
-        } catch {
-            return navigate("/404");
-        }
-    }
-
-    async function fetchCertainProducts(endpoint) {
-        try {
-            var response = await fetch(`http://localhost:5000/products${endpoint}`);
-            
-            if (!response.ok) {
-                const errorData = await response.json();
-            
-                errorToastMessage(errorData.error);
-                return navigate("/404");
-            }
-
-        } catch {
-            return navigate("/404");
-        }
-        
-        const data = await response.json();
-        
-        setProductsData(data);
-        if (endpoint === "") {
-            document.querySelector("#h1-all").classList.add("selected-view");
-            document.querySelector("#h1-fitness-supplements").classList.remove("selected-view");
-            document.querySelector("#h1-fitness-machines").classList.remove("selected-view");
-            document.querySelector("#h1-merchandise").classList.remove("selected-view");
-        
-        } else if (endpoint === '/supplements') {
-            document.querySelector("#h1-all").classList.remove("selected-view");
-            document.querySelector("#h1-fitness-supplements").classList.add("selected-view");
-            document.querySelector("#h1-fitness-machines").classList.remove("selected-view");
-            document.querySelector("#h1-merchandise").classList.remove("selected-view");
-
-        } else if (endpoint === '/machines') {
-            document.querySelector("#h1-all").classList.remove("selected-view");
-            document.querySelector("#h1-fitness-supplements").classList.remove("selected-view");
-            document.querySelector("#h1-fitness-machines").classList.add("selected-view");
-            document.querySelector("#h1-merchandise").classList.remove("selected-view");
-
-        } else if (endpoint === '/merchandise') {
-            document.querySelector("#h1-all").classList.remove("selected-view");
-            document.querySelector("#h1-fitness-supplements").classList.remove("selected-view");
-            document.querySelector("#h1-fitness-machines").classList.remove("selected-view");
-            document.querySelector("#h1-merchandise").classList.add("selected-view");
-        }
-    }
 }

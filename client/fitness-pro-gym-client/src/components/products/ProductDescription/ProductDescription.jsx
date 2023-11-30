@@ -2,14 +2,15 @@ import { useEffect, useState, useContext, React } from 'react';
 import './productDescription.css';
 import { AuthenticationContext } from "../../../contexts/AuthenticationContext";
 import { Link, useParams } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { productAlreadyAddedToCart, productSuccessfullyAdded } from '../../../utils/toastify';
 import { DeleteProduct } from '../DeleteProduct/DeleteProduct';
 import { ProductContext } from "../../../contexts/ProductContext";
+import { addProductToCart } from '../ProductsGallery/addProductToCart';
 
 
 export function ProductDescription() {
+    const userId = JSON.parse(localStorage.getItem("authenticationTokenAndData")).id;
     const {user, navigate} = useContext(AuthenticationContext);
     const [productData, setProductData] = useState({});
     const {productId} = useParams();
@@ -55,7 +56,7 @@ export function ProductDescription() {
                     {user ? JSON.parse(localStorage.getItem("authenticationTokenAndData")).isAdministrator ? // Only the Administrator has access to EDIT
                         <Link to={`/products/edit/${productId}`}><button>EDIT</button></Link> : "": ""}
                   
-                    <button id='add-to-cart-btn' onClick={addProductToCart}>ADD TO CART</button>
+                    <button id='add-to-cart-btn' onClick={(e) => addProductToCart(e, productId, userId, navigate)}>ADD TO CART</button>
                   
                     {user ? JSON.parse(localStorage.getItem("authenticationTokenAndData")).isAdministrator ? // Only the Administrator has access to DELETE 
                         <button onClick={() => setDeleteProductComponent(true)}>DELETE</button> : "" : ""}
@@ -64,40 +65,4 @@ export function ProductDescription() {
             <ToastContainer />
         </main>
     );
-
-
-    async function addProductToCart() {
-        const userId = JSON.parse(localStorage.getItem("authenticationTokenAndData")).id;
-
-        try {
-            var response = await fetch(`http://localhost:5000/products/buy/${productId}`, {
-                method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({userId})
-            });
-            
-            if (response.status === 200) {
-                const responseCondition = await response.json();
-                const element = document.querySelector(".product-description-main aside #add-to-cart-btn");
-                element.style.backgroundColor = "#cc1e00"; 
-                element.textContent = 'ADDED TO CART';
-                element.disabled = true;
-                
-                if (responseCondition === "Successful Operation!") {
-                    return productSuccessfullyAdded();
-
-                } else if (responseCondition === "Product already in Cart!") {
-                    return productAlreadyAddedToCart();
-                }
-                
-            } else {
-                const errorData = await response.json();
-            
-                errorToastMessage(errorData.error);
-
-                return navigate("/404");
-            }
-            
-        } catch {
-            return navigate("/404");
-        }
-    }
 }

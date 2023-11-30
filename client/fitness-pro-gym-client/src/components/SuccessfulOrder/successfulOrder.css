@@ -55,11 +55,13 @@
     transform: translateY(-0.2rem);   
 }
 
+
 @media screen and (min-width: 2501px) { 
     .successful-order-main button {
         padding: 1.5rem 3rem;
     }
 }
+
 
 @media screen and (max-width: 1900px) { 
     .successful-order-main {
