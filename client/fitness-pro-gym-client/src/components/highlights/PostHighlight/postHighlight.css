@@ -110,6 +110,7 @@
     display: none; 
 }
 
+
 @media screen and (min-width: 2501px) { 
     .main-post-highlight {
         background-size: cover; /* This makes the background image cover the entire element */
@@ -120,6 +121,7 @@
         margin-top: -20vh;
     }
 }
+
 
 @media screen and (max-width: 1900px) {
     .main-post-highlight {

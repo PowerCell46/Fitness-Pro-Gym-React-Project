@@ -3,15 +3,16 @@ import { fakeButtonHandler, realButtonHandler } from "../../../utils/fakeBtnReal
 import { useParams } from "react-router-dom";
 import { useEffect, useContext } from "react";
 import { useState } from "react";
-import { validateImageExtension } from "../../../utils/validators";
-import { errorToastMessage, highlightSuccessfullyEdited } from "../../../utils/toastify";
-import { AuthenticationContext } from "../../../contexts/AuthenticationContext";
+import { errorToastMessage } from "../../../utils/toastify";
+import { editHighlightSubmitHandler } from "./editHighlightSubmitHandler";
+import { GlobalContext } from "../../../contexts/GlobalContext";
 
 
 export function EditHighlight() {
-    const {navigate} = useContext(AuthenticationContext);
+    const {navigate} = useContext(GlobalContext);
     const [highlight, setHighlightData] = useState({});
     const {highlightId} = useParams();
+    const userId = JSON.parse(localStorage.getItem("authenticationTokenAndData")).id;
 
     useEffect(() => {
         async function fetchHighlightData() {
@@ -47,7 +48,7 @@ export function EditHighlight() {
     return (
         <main className="main-edit-highlight">
             <h1>Edit a Highlight</h1>
-            <form onSubmit={editHighlightSubmitHandler}>
+            <form onSubmit={(e) => editHighlightSubmitHandler(e, userId, highlight, highlightId, navigate)}>
                 <p id="edit-highlight-image-err-p" className="err-message">File format not available!</p>
                 <input type="file" className="file-upload" hidden="hidden" name="image" onChange={realButtonHandler}/>
             
@@ -62,53 +63,4 @@ export function EditHighlight() {
             </form>
         </main>
     );
-
-    async function editHighlightSubmitHandler(e) {
-        e.preventDefault();
-
-        const spanElement = document.querySelector("#edit-highlight-span");
-        
-        let formData = new FormData(e.target);
-        formData.append("ownerId", JSON.parse(localStorage.getItem("authenticationTokenAndData")).id);
-        
-        if (spanElement.textContent !== highlight.imageLocation.substring(highlight.imageLocation.length - 15)) { // The image was changed
-        
-            const validImage = validateImageExtension(formData.get("image"));
-           
-            if (!validImage) {
-                document.querySelector("#edit-highlight-image-err-p").textContent = 'Image format not valid!';                    
-                document.querySelector("#edit-highlight-image-err-p").style.display = 'inline';
-                document.querySelector("#edit-highlight-image").classList.add("err-input-field");
-                return;
-        
-            } else {
-                document.querySelector("#edit-highlight-image-err-p").style.display = 'none';
-                document.querySelector("#edit-highlight-image").classList.remove("err-input-field");
-            }
-        }
-        
-        try {
-            let response = await fetch(`http://localhost:5000/highlights/edit/${highlightId}`, {
-                method: "POST",
-                body: formData,
-            });
-
-            if (response.status === 200) {
-                
-                highlightSuccessfullyEdited();
-
-                return navigate(`/highlights/${highlightId}`);
-
-            } else {
-                const errorData = await serverResponse.json();
-            
-                errorToastMessage(errorData.error);
-
-                return navigate("/404");
-            }
-            
-        } catch {
-            return navigate('/404');
-        }
-    }
 }

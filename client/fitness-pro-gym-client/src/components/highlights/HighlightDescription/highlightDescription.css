@@ -1,4 +1,3 @@
-
 .highlight-description-main {
     height: 88vh;
     width: 100vw;
@@ -103,6 +102,7 @@
     color: #ff5700;
     animation: none;
 }
+
 
 @media screen and (max-width: 1900px) { 
     .highlight-description-main h5 {

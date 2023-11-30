@@ -4,6 +4,7 @@ import "./postHighlight.css";
 import { fakeButtonHandler, realButtonHandler } from "../../../utils/fakeBtnRealBtn";
 import { GlobalContext } from "../../../contexts/GlobalContext";
 
+
 export function PostHighlight() {
     const {navigate, errorToastMessage} = useContext(GlobalContext);
     const {postHighlightSubmitHandler} = useContext(HighlightContext);

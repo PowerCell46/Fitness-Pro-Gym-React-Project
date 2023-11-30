@@ -65,19 +65,9 @@
         flex-direction: column;
     }
 
+
     .highlights-main .gallery-div .gallery-inner-box {
         width: 100%;
-    }
-}
-
-
-@media only screen and (max-width: 643px) {
-    .highlights-main .heading {
-        width: 100%;
-    }
-
-    .highlights-main .heading  h3{
-        font-size: 1em;
     }
 }
 
@@ -90,8 +80,21 @@
     }
 }
 
+
 @media screen and (max-width: 1900px) { 
     .highlights-main {
         margin-left: -0.5vw;
+    }
+}
+
+
+@media only screen and (max-width: 643px) {
+    .highlights-main .heading {
+        width: 100%;
+    }
+
+
+    .highlights-main .heading  h3{
+        font-size: 1em;
     }
 }
