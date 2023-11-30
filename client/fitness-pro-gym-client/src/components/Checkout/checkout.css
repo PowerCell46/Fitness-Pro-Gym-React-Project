@@ -188,11 +188,49 @@
 }
 
 
-#quantity-td button{
+#quantity-td button {
     cursor: pointer;
     margin: 0.4rem;
     padding: 0.1rem 0.3rem;
     font-size: 0.8rem;
     border: none;
     background-color: #9c3b2b;
+}
+
+@media screen and (min-width: 2501px) { 
+    .checkout-main h1 {
+        font-size: 4rem;
+    }
+    
+    .checkout-main .shopping-cart  {
+        font-size: 2rem;
+    }
+
+    .checkout-main .details div label {
+        text-shadow: 5px 0px 7px rgba(0,0,0,0.68);
+        letter-spacing: 0.1rem;
+        font-size: 1.4rem;
+        color: whitesmoke;
+        padding: 0.5rem;
+        border-radius: 0.2rem;
+        margin-right: 10px;
+    }
+    
+
+    .checkout-main .details div input {
+        font-family: 'Salsa', cursive;
+        font-weight: 300;
+        font-size: 1.3rem;
+        height: 2.5rem;
+        width: 10rem;
+        padding-left: 1.3rem;
+        align-self: center;
+        justify-self: center;
+        border-radius: 0.3rem;
+        border: 0.5px solid black;
+    }
+
+    .checkout-main .details form button {
+        margin-top: 2vh;
+    }
 }

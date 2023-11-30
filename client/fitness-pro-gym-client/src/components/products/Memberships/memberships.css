@@ -101,3 +101,20 @@
 .added-membership {
     background-color: #cc1e00;
 }
+
+
+@media screen and (min-width: 2501px) { 
+    .memberships-main section h3 {
+        font-size: 3.5rem;
+    }
+
+    .memberships-main table th, table td {
+        font-size: 1.75rem;
+        padding: 1.25rem 9rem;
+
+    }
+
+    .memberships-main h1 {
+        font-size: 6rem;
+    }
+}

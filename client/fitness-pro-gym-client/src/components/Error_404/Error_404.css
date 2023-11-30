@@ -62,3 +62,10 @@
     transform: translateY(-0.2rem);
     
 }
+
+@media screen and (min-width: 2501px) { 
+    .err-main h2 {
+        font-size: 3.5rem;
+        margin-bottom: 4rem;
+    }    
+}
