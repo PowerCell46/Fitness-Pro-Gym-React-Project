@@ -221,3 +221,14 @@
         top: 29vh;
     }
 }
+
+@media screen and (max-width: 1900px) {
+    .my-profile-main h2 {
+        font-size: 3.5rem;
+    }
+    
+    .my-profile-main .trainer-qr-code-section h2 {
+        font-size: 4.5rem;
+    }
+
+}

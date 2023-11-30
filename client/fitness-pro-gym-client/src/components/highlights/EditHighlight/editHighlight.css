@@ -123,3 +123,13 @@
         font-size: 1.5rem;
     }
 }
+
+@media screen and (max-width: 1900px) {
+    .main-edit-highlight {
+        margin-left: -0.5vw;
+    }
+
+    .main-post-highlight .err-input-field {
+        border: 2.5px solid rgb(130, 3, 3);
+    }
+}

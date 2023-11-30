@@ -125,4 +125,8 @@
     .main-post-highlight {
         margin-left: -0.5vw;
     }
+
+    .main-post-highlight .err-input-field {
+        border: 2.5px solid rgb(130, 3, 3);
+    }
 }

@@ -103,3 +103,14 @@
     color: #ff5700;
     animation: none;
 }
+
+@media screen and (max-width: 1900px) { 
+    .highlight-description-main h5 {
+        font-size: 1.75rem;
+    }   
+
+    .highlight-description-main {
+        margin-left: -0.5rem;
+    }
+}
+
