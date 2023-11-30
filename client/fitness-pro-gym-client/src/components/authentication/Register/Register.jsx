@@ -1,18 +1,20 @@
+import "./resgister.css";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthenticationContext } from "../../../contexts/AuthenticationContext";
-import "./resgister.css";
+import { GlobalContext } from "../../../contexts/GlobalContext";
 
 
 export function Register() {
-    const {registerSubmitHandler} = useContext(AuthenticationContext);
+    const {registerSubmitHandler, setProfilePhoto, setUser} = useContext(AuthenticationContext);
+    const {navigate, errorToastMessage} = useContext(GlobalContext);
 
     return (
         <main className="register-main">
         
             <h1>Register</h1>
             
-            <form onSubmit={registerSubmitHandler}>
+            <form onSubmit={(e) => registerSubmitHandler(e, navigate, errorToastMessage, setProfilePhoto, setUser)}>
                 <p id="register-email-err-p" className="err-message">Email is not valid!</p>
                 <input id="register-email" type="text" name="email" placeholder="Email" className="err-input-field"/>
 

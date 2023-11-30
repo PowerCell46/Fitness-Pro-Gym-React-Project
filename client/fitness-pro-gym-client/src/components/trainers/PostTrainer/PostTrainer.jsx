@@ -2,15 +2,17 @@ import "./postTrainer.css";
 import { useContext } from "react";
 import { TrainerContext } from "../../../contexts/TrainerContext";
 import { fakeButtonHandler, realButtonHandler } from "../../../utils/fakeBtnRealBtn";
+import { GlobalContext } from "../../../contexts/GlobalContext";
 
 
 export function PostTrainer() {
+    const {navigate, errorToastMessage} = useContext(GlobalContext);
     const {postTrainerSubmitHandler} = useContext(TrainerContext);
 
     return (
         <main className="post-trainer-main">
             <h1>Add A Trainer</h1>
-            <form onSubmit={postTrainerSubmitHandler}>
+            <form onSubmit={(e) => postTrainerSubmitHandler(e, navigate, errorToastMessage)}>
                 
                 <p id="post-trainer-image-err-p" className="err-message">File format not available!</p>
                 <input name="image" type="file" className="file-upload" hidden="hidden" onChange={realButtonHandler}/>

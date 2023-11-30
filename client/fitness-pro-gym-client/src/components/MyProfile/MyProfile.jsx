@@ -7,11 +7,12 @@ import { fakeButtonHandler, realButtonMyProfileHandler } from "../../utils/fakeB
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {errorToastMessage} from '../../utils/toastify';
+import { GlobalContext } from "../../contexts/GlobalContext";
 
 
 export function MyProfile() {
-    const {profilePhoto, changeProfilePictureHandler} = useContext(AuthenticationContext);
-    const {navigate} = useContext(AuthenticationContext);
+    const {navigate} = useContext(GlobalContext)
+    const {profilePhoto, changeProfilePictureHandler, setProfilePhoto} = useContext(AuthenticationContext);
     const [highlights, setHighlights] = useState([]);
     const [orders, setOrders] = useState([]);
     
@@ -81,7 +82,7 @@ export function MyProfile() {
         </div>
             <input type="file" className="file-upload" hidden="hidden" name="image" onChange={realButtonMyProfileHandler}/>
 
-            <button id="change-profile-photo" onClick={changeProfilePictureHandler}>Change Picture</button>
+            <button id="change-profile-photo" onClick={() => changeProfilePictureHandler(setProfilePhoto, navigate)}>Change Picture</button>
 
         <h1 className="main-heading">My profile</h1>
         

@@ -123,9 +123,10 @@
     /* display: none;  */
 }
 
+
 @media screen and (min-width: 2501px) { 
     .register-main {
-        height: 81vh;
+        height: 82vh;
     }
     .register-main h1 {
         margin-top: 6vh;
