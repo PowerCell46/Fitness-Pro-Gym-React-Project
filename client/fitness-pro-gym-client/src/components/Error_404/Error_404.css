@@ -10,6 +10,7 @@
     align-items: center;
 }
 
+
 .err-main h1 {
     margin-top: 1vh;
     margin-bottom: 1vh;
@@ -21,6 +22,7 @@
     animation: flash 1.5s ease infinite alternate;
 }
 
+
 .err-main h2 {
     margin-top: -1vh;
     color: whitesmoke;
@@ -30,12 +32,14 @@
     animation: flash 1.5s ease infinite alternate;
 }
 
+
 .err-main img {
     margin-top: -7vh;
     height: 55vh;
     border-radius: 0.5rem;
     border: 2px solid white;
 }
+
 
 .err-main button {
     margin-top: -3vh;
@@ -62,6 +66,7 @@
     transform: translateY(-0.2rem);
     
 }
+
 
 @media screen and (min-width: 2501px) { 
     .err-main h2 {

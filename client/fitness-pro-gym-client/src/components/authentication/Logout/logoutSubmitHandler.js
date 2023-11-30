@@ -1,5 +1,4 @@
 export async function logoutSubmitHandler(navigate, setLogoutComponent, setUser, setProfilePhoto) {
-
     localStorage.removeItem("authenticationTokenAndData");
     
     setUser(null);

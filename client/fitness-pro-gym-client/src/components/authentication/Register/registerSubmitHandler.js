@@ -90,6 +90,7 @@ export async function registerSubmitHandler(e, navigate, errorToastMessage, setP
     setProfilePhoto(image);
     
     localStorage.setItem('authenticationTokenAndData', JSON.stringify(tokenAndData));
+    
     setUser(tokenAndData);
 
     navigate("/");

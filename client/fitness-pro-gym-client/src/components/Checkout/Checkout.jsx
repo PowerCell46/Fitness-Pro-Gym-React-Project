@@ -1,40 +1,20 @@
 import { useEffect, useState } from 'react';
 import './checkout.css';
 import { useContext } from 'react';
-import { AuthenticationContext } from "../../contexts/AuthenticationContext";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {errorToastMessage, productSuccessfullyRemoved, successfullOrder} from '../../utils/toastify';
+import { handleIncrement,handleDecrement } from './handleIncrementDecrement';
+import { removeProductFromCartHandler } from './removeProductFromCartHandler';
+import { postOrderHandler } from './postOrderHandler';
+import { GlobalContext } from '../../contexts/GlobalContext';
 
 
 export function Checkout() {
-    const {navigate} = useContext(AuthenticationContext);
+    const {navigate, errorToastMessage} = useContext(GlobalContext);
     const userId = JSON.parse(localStorage.getItem("authenticationTokenAndData")).id;
     const [checkoutData, setCheckoutData] = useState([]);
     const [totalSum, setTotalSum] = useState(0);
-
     const [quantities, setQuantities] = useState({});
-
-    const handleIncrement = (productName, productPrice) => {
-        if (quantities[productName] + 1 <= 9 || quantities[productName] === undefined) {
-            setTotalSum((previousSum) => previousSum + productPrice);    
-        }
-        setQuantities((prevQuantities) => ({
-            ...prevQuantities,
-            [productName]: Math.min((prevQuantities[productName] || 1) + 1, 9),
-  
-          }));
-    };
-    
-    const handleDecrement = (productName, productPrice) => {
-        if (quantities[productName] - 1 >= 1) {
-            setTotalSum((previousSum) => previousSum - productPrice);
-        }
-        setQuantities((prevQuantities) => ({
-            ...prevQuantities,
-            [productName]: Math.max((prevQuantities[productName] || 1) - 1, 1),
-        }));
-    };
 
     useEffect(() => {
         async function fetchCheckoutData() {
@@ -82,9 +62,9 @@ export function Checkout() {
                         {checkoutData.map((product) => (
                             <tr key={product._doc ? product._doc.name : product.name}>
                                 <td id='quantity-td'>
-    <button onClick={() => handleIncrement(product._doc ? product._doc.name : product.name, product._doc ? product._doc.price : product.price)}>+</button>
+    <button onClick={() => handleIncrement(product._doc ? product._doc.name : product.name, product._doc ? product._doc.price : product.price, quantities, setTotalSum, setQuantities)}>+</button>
     {quantities[product._doc ? product._doc.name : product.name] || 1}
-    <button onClick={() => handleDecrement(product._doc ? product._doc.name : product.name, product._doc ? product._doc.price : product.price)}>-</button>
+    <button onClick={() => handleDecrement(product._doc ? product._doc.name : product.name, product._doc ? product._doc.price : product.price, quantities, setTotalSum, setQuantities)}>-</button>
                                 </td>
 
                                 <td onClick={() => product._doc ? navigate(`/products/${product._doc._id}`)  : navigate("/memberships")}>
@@ -103,7 +83,7 @@ export function Checkout() {
                                     product._doc ? product._doc._id :
                                         {membershipType: product.name.substring(0, product.name.lastIndexOf(" ")), 
                                         membershipCategory: product.name.substring(product.name.lastIndexOf(" ") + 1).toLowerCase()},
-                                    product)}>Remove
+                                    product, userId, setCheckoutData, setTotalSum, getProductPrice)}>Remove
                                 </td>
                             </tr>
                         ))}
@@ -115,7 +95,7 @@ export function Checkout() {
 
             <div className="details">
                 <h1>Shipping Details</h1>
-                <form onSubmit={postOrderHandler}>
+                <form onSubmit={(e) => postOrderHandler(e, checkoutData, quantities, userId, totalSum, navigate)}>
                     <div>
                         <label htmlFor="country">Country:</label>
                         <input type="text" name="country" id="checkout-country" placeholder="Bulgaria"/>
@@ -153,40 +133,10 @@ export function Checkout() {
         <ToastContainer />
     </main>
     );
-
-    async function removeProductFromCartHandler(removedProductId, productForRemoval) {
-        const userId = JSON.parse(localStorage.getItem("authenticationTokenAndData")).id;
-
-        try {
-            const response = await fetch(`http://localhost:5000/checkout/removeProduct`, {
-                method: "POST",
-                headers: {"Content-Type": "application/json"},
-                body: JSON.stringify({userId, removedProductId}),
-            });
-    
-            if (response.status === 200) {
-                setCheckoutData((previousData) =>
-                    previousData.filter((data) => (data !== productForRemoval))
-                );
-                setTotalSum((previousTotalSum) => previousTotalSum - getProductPrice(removedProductId, productForRemoval.name));
-                
-                return productSuccessfullyRemoved();
-                
-            } else {
-                const errorData = await response.json();
-            
-                errorToastMessage(errorData.error);
-
-                return navigate("/404");
-            }
-
-        } catch {
-            return navigate("/404");
-        }
-    }
     
     function getProductPrice(productId, name) {
         const product = checkoutData.find((data) => (data._doc ? data._doc._id === productId : data.name === name));
+       
         return product ? (product._doc ? product._doc.price : product.price) : 0;
     }
 
@@ -196,103 +146,5 @@ export function Checkout() {
             totalPrice += product._doc ? product._doc.price : product.price;
         }
         return totalPrice;
-    }
-
-    async function postOrderHandler(e) {
-        e.preventDefault();
-        const {country, city, neighbourhood, street, number, apartment} = (Object.fromEntries(new FormData(e.target)));
-
-        if (country.length === 0) {
-            document.querySelector("#checkout-country").style.border = '5px solid #339933';
-       
-        } else {
-            document.querySelector("#checkout-country").style.border = 'none';
-        }
-
-        if (city.length === 0) {
-            document.querySelector("#checkout-city").style.border = '5px solid #339933';
-        
-        } else {
-            document.querySelector("#checkout-city").style.border = 'none';
-        }
-
-        if (neighbourhood.length === 0) {
-            document.querySelector("#checkout-neighbourhood").style.border = '5px solid #339933';
-       
-        } else {
-            document.querySelector("#checkout-neighbourhood").style.border = 'none';
-        }
-
-        if (street.length === 0) {
-            document.querySelector("#checkout-street").style.border = '5px solid #339933';
-       
-        } else {
-            document.querySelector("#checkout-street").style.border = 'none';
-        }
-
-        if (Number(number) <= 0 || number === '') {
-            document.querySelector("#checkout-number").style.border = '5px solid #339933';
-       
-        } else {
-            document.querySelector("#checkout-number").style.border = 'none';
-        }
-
-        if (Number(apartment) < 0 || apartment === "") {
-            document.querySelector("#checkout-apartment").style.border = '5px solid #339933';
-       
-        } else {
-            document.querySelector("#checkout-apartment").style.border = 'none';
-        }
-
-
-        if (country.length === 0 || city.length === 0 || neighbourhood.length === 0 || street.length === 0 || Number(number) <= 0 || Number(apartment) < 0 || apartment === "" || number === "") {
-            return;
-        }
-
-        // Making the request with non-empty data fields
-        let orderProductsDetails = {
-            products: [], 
-            totalPrice: totalSum, 
-            orderDate: `${new Date().getDate()}.${new Date().getMonth()}.${new Date().getFullYear()}`, 
-            orderId: Math.floor(Math.random() * (999999 - 100000 + 1)) + 100000
-        };
-        
-        for (let product of checkoutData) {
-            const name = product._doc ? product._doc.name : product.name;
-
-            const productQuantity = quantities[name] || 1;
-
-            const productId = product._doc ? product._doc._id :
-                {membershipType: product.name.substring(0, product.name.lastIndexOf(" ")), 
-                membershipCategory: product.name.substring(product.name.lastIndexOf(" ") + 1).toLowerCase()}
-            
-            orderProductsDetails.products.push({name, productQuantity, productId});
-        }
-
-        try {
-            var serverResponse = await fetch("http://localhost:5000/checkout/finishOrder", 
-            {method: "POST", 
-            headers: {"Content-Type": "application/json"}, 
-            body: JSON.stringify({userId: JSON.parse(localStorage.getItem("authenticationTokenAndData")).id,
-                orderDetails: orderProductsDetails, 
-                shippingDetails: {country, city, neighbourhood, street, number, apartment}
-            })});
-
-            if (serverResponse.status === 200) {
-                navigate("/myProfile") // My Profile
-           
-                return successfullOrder();
-                
-            } else {
-                const errorData = await serverResponse.json();
-            
-                errorToastMessage(errorData.error);
-
-                return navigate("/404");
-            }
-       
-        } catch {
-            return navigate("/404");
-        }
     }
 }

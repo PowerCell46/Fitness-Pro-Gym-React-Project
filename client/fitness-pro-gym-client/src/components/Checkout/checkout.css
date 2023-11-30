@@ -12,6 +12,7 @@
     background-size:cover;
 }
 
+
 .checkout-main section {
     margin-top: 2vh;
     margin-bottom: 5vh;
@@ -27,9 +28,11 @@
     transition: 600ms ease-in-out;
 }
 
+
 .checkout-main section:hover {
     opacity: 1;
 }
+
 
 .checkout-main .shopping-cart, .details {
     width: 48vw;
@@ -47,6 +50,7 @@
     border-radius:  0.7rem 0 0  0.7rem;
 }
 
+
 .checkout-main h1 {
     font-size: 3rem;
     font-family: 'Permanent Marker', cursive;
@@ -63,6 +67,7 @@
     border-spacing: 20px;
     width: 90%;
 }
+
 
 .checkout-main .shopping-cart table th, 
 .shopping-cart table td {
@@ -84,16 +89,19 @@
     background-color: #0e3a6c;
 }
 
+
 .checkout-main .shopping-cart tbody tr:hover {
     cursor: pointer;
     background-color: #00ad93;
     transform: translateY(-0.4rem);
 }
 
+
 .checkout-main .shopping-cart table th {
     padding: 0.5rem;
     font-weight: 900;
 }
+
 
 .checkout-main .shopping-cart table td img {
     width: 5vw;
@@ -126,9 +134,11 @@
     font-family: 'Salsa', cursive;
 }
 
+
 .checkout-main .details h1 {
     margin-bottom: 2vh;
 }
+
 
 .checkout-main .details div {
     margin-bottom: 1vh;
@@ -153,6 +163,7 @@
     border: 0.5px solid black;
 }
 
+
 .checkout-main .details div label {
     text-shadow: 5px 0px 7px rgba(0,0,0,0.68);
     letter-spacing: 0.1rem;
@@ -163,11 +174,13 @@
     margin-right: 10px;
 }
 
+
 .checkout-main form {
     display: flex;
     align-items: center;
     flex-direction: column;
 }
+
 
 .checkout-main .details form button {
     margin-top: 5vh;
@@ -197,14 +210,17 @@
     background-color: #9c3b2b;
 }
 
+
 @media screen and (min-width: 2501px) { 
     .checkout-main h1 {
         font-size: 4rem;
     }
+
     
     .checkout-main .shopping-cart  {
         font-size: 2rem;
     }
+
 
     .checkout-main .details div label {
         text-shadow: 5px 0px 7px rgba(0,0,0,0.68);
@@ -229,6 +245,7 @@
         border-radius: 0.3rem;
         border: 0.5px solid black;
     }
+
 
     .checkout-main .details form button {
         margin-top: 2vh;
