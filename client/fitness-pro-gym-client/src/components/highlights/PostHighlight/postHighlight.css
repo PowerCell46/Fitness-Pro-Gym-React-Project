@@ -109,3 +109,14 @@
     background-color: rgba(138, 169, 205, 0.8); 
     display: none; 
 }
+
+@media screen and (min-width: 2501px) { 
+    .main-post-highlight {
+        background-size: cover; /* This makes the background image cover the entire element */
+        background-repeat: no-repeat;
+    }
+    
+    .main-post-highlight h1 {
+        margin-top: -20vh;
+    }
+}

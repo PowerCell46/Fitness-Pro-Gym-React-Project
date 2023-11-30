@@ -119,6 +119,7 @@
     color: whitesmoke;
     padding: 0.5rem;
     border-radius: 0.2rem;
+    background-color: rgba(255, 255, 255, 0.5);
 }
 
 .edit-product-main .err-input-field {
@@ -137,4 +138,12 @@
     border-radius: 10px;
     background-color: rgba(138, 169, 205, 0.8); 
     display: none; 
+}
+
+
+
+@media screen and (min-width: 2501px) { 
+    .edit-product-main form  {
+        gap: 2.4rem;
+    }
 }
