@@ -120,3 +120,9 @@
         margin-top: -20vh;
     }
 }
+
+@media screen and (max-width: 1900px) {
+    .main-post-highlight {
+        margin-left: -0.5vw;
+    }
+}

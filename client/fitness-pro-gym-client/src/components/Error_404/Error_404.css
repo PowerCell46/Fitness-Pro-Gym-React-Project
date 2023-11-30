@@ -69,3 +69,10 @@
         margin-bottom: 4rem;
     }    
 }
+
+
+@media screen and (max-width: 1900px) { 
+    .err-main {
+        margin-left: -0.5vw;
+    }
+}

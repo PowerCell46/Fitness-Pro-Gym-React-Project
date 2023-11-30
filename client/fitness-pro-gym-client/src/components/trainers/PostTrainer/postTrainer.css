@@ -30,7 +30,6 @@
     display: flex;
     flex-direction: column;
     gap: 5vh;
-
 }
 
 
@@ -117,5 +116,24 @@
 @media screen and (min-width: 2501px) { 
     .post-trainer-main h1 {
         margin-top: -10vh;
+    }
+}
+
+@media screen and (max-width: 1900px) {
+    .post-trainer-main {
+        margin-left: -0.5vw;
+        padding-bottom: 7.5vh;
+    }
+
+    .post-trainer-main h1 {
+        margin-top: -10vh;
+    }
+
+    .post-trainer-main .err-input-field {
+        border: 3px solid rgb(130, 3, 3);
+    }
+
+    .post-trainer-main .err-message {
+        margin-bottom: -4vh;
     }
 }

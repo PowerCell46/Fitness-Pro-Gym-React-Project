@@ -136,3 +136,9 @@ html {
         font-size: 22.5px;
     }
 }
+
+@media screen and (max-width: 1900px) { 
+    html {
+        font-size: 15px;
+    }
+}

@@ -89,3 +89,9 @@
         margin-bottom: 1vh;
     }
 }
+
+@media screen and (max-width: 1900px) { 
+    .highlights-main {
+        margin-left: -0.5vw;
+    }
+}

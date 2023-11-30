@@ -144,3 +144,21 @@
         gap: 2.4rem;
     }
 }
+
+@media screen and (max-width: 1900px) {
+    .post-product-main {
+        margin-left: -0.5vw;
+    }
+
+    .post-product-main h1 {
+        margin-top: 15vh;
+    }
+
+    .post-product-main {
+        padding-bottom: 12.5vh;
+    }
+
+    .post-product-main .err-input-field {
+        border: 3px solid rgb(130, 3, 3);
+    }
+}

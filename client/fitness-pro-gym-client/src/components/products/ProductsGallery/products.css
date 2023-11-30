@@ -200,3 +200,9 @@
     background-color: #e64e00;
     transform: translateY(-0.2rem);
 }
+
+@media screen and (max-width: 1900px) { 
+    .products-main {
+        margin-left: -0.5vw;
+    }
+}

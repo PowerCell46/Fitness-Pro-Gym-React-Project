@@ -60,3 +60,9 @@
         padding: 1.5rem 3rem;
     }
 }
+
+@media screen and (max-width: 1900px) { 
+    .successful-order-main {
+        margin-left: -0.5vw;
+    }
+}
