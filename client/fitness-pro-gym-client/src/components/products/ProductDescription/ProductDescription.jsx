@@ -29,7 +29,7 @@ export function ProductDescription() {
                 }
 
             } catch {
-                navigate("/404");
+                return navigate("/404");
             }       
             
             let data = await response.json();
@@ -67,7 +67,6 @@ export function ProductDescription() {
 
 
     async function addProductToCart() {
-        
         const userId = JSON.parse(localStorage.getItem("authenticationTokenAndData")).id;
 
         try {
@@ -98,7 +97,7 @@ export function ProductDescription() {
             }
             
         } catch {
-            navigate("/404");
+            return navigate("/404");
         }
     }
 }

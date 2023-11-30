@@ -153,3 +153,14 @@
     color: whitesmoke;
     font-size: 3rem;
 }
+
+@media screen and (min-width: 2501px) { 
+    .home-main img  {
+        width: 37vw;
+    }
+
+    .home-main div iframe {
+        width: 30vw;
+        height: 40vh;
+    }
+}

@@ -25,7 +25,7 @@ export function HighlightDescription() {
                 var response = await fetch(`http://localhost:5000/highlights/${highlightId}`);
 
             } catch {
-                navigate("/404");
+                return navigate("/404");
             }
 
             if (!response.ok) {
@@ -116,7 +116,7 @@ export function HighlightDescription() {
             }
 
         } catch {
-            navigate("/404");
+            return navigate("/404");
         }
     }
 }

@@ -27,7 +27,7 @@ export function EditProduct() {
                 }
 
             } catch {
-                navigate("/404");
+                return navigate("/404");
             }       
             
             let data = await response.json();
@@ -38,28 +38,33 @@ export function EditProduct() {
         fetchProductData();
     }, []);
 
+    function handleFieldChange(event) {
+        setProductData({...productData, [event.target.name]: event.target.value});
+    }
+
     return (
         <main className="edit-product-main">
         <h1>Edit Product</h1>
         <form onSubmit={editProductHandler}>
            
             <p id="edit-product-name-err-p" className="err-message">Product name must be at least 5 characters long!</p>
-            <input id="edit-product-name" type="text" placeholder="Product Name" name="name" value={productData.name}/>    
+            <input id="edit-product-name" type="text" placeholder="Product Name" name="name" value={productData.name} onChange={handleFieldChange}/>    
            
             <div className="productTypeContainer">
                     <label htmlFor="productType">Product Type:</label>
-                <select name="productType">
-                    {productData.type === "foodSupplement" ? <option value="foodSupplement" selected>Food Supplement</option> : <option value="foodSupplement">Food Supplement</option>}
-                    {productData.type === 'fitnessMachine' ? <option value="fitnessMachine" selected>Fitness Machine</option> : <option value="fitnessMachine">Fitness Machine</option>}
-                    {productData.type === 'merchandise' ? <option value="merchandise" selected>Merchandise</option> : <option value="merchandise" >Merchandise</option>}
-                </select>
+                    <select name="productType" onChange={handleFieldChange}>
+                        <option value="foodSupplement" selected={productData.type === "foodSupplement"}>Food Supplement</option>
+                        <option value="fitnessMachine" selected={productData.type === "fitnessMachine"}>Fitness Machine</option>
+                        <option value="merchandise" selected={productData.type === "merchandise"}>Merchandise</option>
+                    </select>
+
             </div>
            
             <p id="edit-product-description-err-p" className="err-message">Product Description must be at least 10 characters long!</p>
-            <input id="edit-product-description" type="text" placeholder="Product Description" name="description" value={productData.description}/>
+            <input id="edit-product-description" type="text" placeholder="Product Description" name="description" value={productData.description} onChange={handleFieldChange}/>
             
             <p id="edit-product-price-err-p" className="err-message">Product price must be bigger than 0!</p>
-            <input id="edit-product-price" type="number" placeholder="Product Price" name="price" value={productData.price}/>
+            <input id="edit-product-price" type="number" placeholder="Product Price" name="price" value={productData.price} onChange={handleFieldChange}/>
            
             <input onChange={realButtonHandler} type="file" name="image" className="file-upload" hidden="hidden"/>
             <p id="edit-product-image-err-p" className="err-message">Invalid File Type!</p>
@@ -107,7 +112,7 @@ export function EditProduct() {
                 
                 productSuccessfullyEdited();
 
-                navigate(`/products/${productId}`);
+                return navigate(`/products/${productId}`);
 
             } else {
                 const errorData = await serverResponse.json();
@@ -118,7 +123,7 @@ export function EditProduct() {
             }
             
         } catch {
-            navigate('/404');
+            return navigate('/404');
         }
     }
 }

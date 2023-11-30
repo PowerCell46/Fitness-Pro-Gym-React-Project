@@ -100,7 +100,7 @@ export function Products() {
             }
 
         } catch {
-            navigate("/404");
+            return navigate("/404");
         }
         
         const data = await response.json();

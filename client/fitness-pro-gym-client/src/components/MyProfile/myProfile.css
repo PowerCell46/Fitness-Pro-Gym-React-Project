@@ -32,6 +32,7 @@
     height: 100%;
     display: block;
     transition: 600ms ease-in-out;
+    cursor: pointer;
 }
 
 .my-profile-main .hexagon-container:hover {
@@ -186,4 +187,37 @@
     transition: 600ms ease-in-out;
     margin-bottom: -2Vh;
     animation: hithere 5s ease-in-out infinite;
+    display: none;
+}
+
+@media screen and (min-width: 2501px) { 
+    .my-profile-main .hexagon-container {
+        height: 30vh;
+        margin-bottom: 3vh;
+    }
+
+    .my-profile-main .trainer-qr-code-section img  {
+        height: 25vh;
+    }   
+    
+    
+    .my-profile-main section button {
+        padding: 0.9rem 0.9rem;
+        font-size: 1.2rem;
+    }
+    .my-profile-main h2 {
+        font-size: 3.5rem;
+    }
+    
+    .my-profile-main .trainer-qr-code-section h2 {
+        margin-top: 1vh;
+        font-size: 4rem;
+    }
+    .trainer-qr-code-section {
+        margin-top: 4vh;
+    }
+
+    #change-profile-photo {
+        top: 29vh;
+    }
 }

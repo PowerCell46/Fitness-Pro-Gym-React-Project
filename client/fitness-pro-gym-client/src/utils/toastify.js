@@ -104,3 +104,14 @@ export const productSuccessfullyEdited = () => toast.success('Product successful
     progress: undefined,
     theme: "light",
 });
+
+export const profileImageSuccessfullyChanged = () => toast.success('Profile Picture successfully changed! 🙌', {
+    position: "top-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+});

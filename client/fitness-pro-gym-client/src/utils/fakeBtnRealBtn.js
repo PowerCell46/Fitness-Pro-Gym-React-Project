@@ -16,3 +16,7 @@ export function realButtonHandler() {
         spanFile.textContent = 'No file chosen';
     }
 }
+
+export function realButtonMyProfileHandler() {
+    document.querySelector("#change-profile-photo").style.display = 'inline-block';
+}

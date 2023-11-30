@@ -20,7 +20,7 @@ export function EditHighlight() {
                 var response = await fetch(`http://localhost:5000/highlights/${highlightId}`);
 
             } catch {
-                navigate("/404");
+                return navigate("/404");
             }
 
             if (!response.ok) {
@@ -97,7 +97,7 @@ export function EditHighlight() {
                 
                 highlightSuccessfullyEdited();
 
-                navigate(`/highlights/${highlightId}`);
+                return navigate(`/highlights/${highlightId}`);
 
             } else {
                 const errorData = await serverResponse.json();
@@ -108,7 +108,7 @@ export function EditHighlight() {
             }
             
         } catch {
-            navigate('/404');
+            return navigate('/404');
         }
     }
 }

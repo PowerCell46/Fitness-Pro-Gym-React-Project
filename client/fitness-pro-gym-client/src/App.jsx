@@ -27,7 +27,7 @@ import { Checkout } from './components/Checkout/Checkout';
 import { MyProfile } from './components/MyProfile/MyProfile';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {errorToastMessage} from "./utils/toastify";
+import {errorToastMessage, profileImageSuccessfullyChanged} from "./utils/toastify";
 import { EditHighlight } from './components/highlights/EditHighlight/EditHighlight';
 import { EditProduct } from './components/products/EditProduct/EditProduct';
 
@@ -63,6 +63,7 @@ function App() {
     }, []);
 
     async function loginSubmitHandler(e) {
+    
         e.preventDefault();
      
         const {email, password} = (Object.fromEntries(new FormData(e.target)));
@@ -89,7 +90,7 @@ function App() {
             document.querySelector("#login-password-err-p").style.display = 'none';
             document.querySelector("#login-password").classList.remove("err-input-field");
         }
-
+    
         if (emailValidation !== true || passwordValidation !== true) {
             return;
         }
@@ -112,41 +113,41 @@ function App() {
                 document.querySelector("#login-password").classList.add("err-input-field");
                 return;
             }
-
+    
         } else if (serverResponse.status === 400) { // Error User not found
             const errorData = await serverResponse.json();
-
+    
             if (errorData.error === 'No such user found!') {
                 document.querySelector("#login-email-err-p").textContent = errorData.error;
                 document.querySelector("#login-email-err-p").style.display = 'inline';
                 document.querySelector("#login-email").classList.add("err-input-field");
                 return;
-
+    
             } else {
                 errorToastMessage(errorData.error);
                 return navigate('/404');
             }
-
-
+    
+    
         } else if (serverResponse.status === 500) { // Internal Server Error
             const errorData = await serverResponse.json();
-
+    
             errorToastMessage(errorData.error);
             return navigate('/404'); 
-
+    
         }  else if (!serverResponse.ok) { // Other type of Error...
             
             errorToastMessage(errorData.error);
             return navigate('/404'); 
         }
-
+    
         const {image, ...tokenAndData} = await serverResponse.json();
-
+    
         setProfilePhoto(image);
         
         localStorage.setItem('authenticationTokenAndData', JSON.stringify(tokenAndData));
         setUser(tokenAndData);
-
+    
         navigate("/");
     }
 
@@ -210,7 +211,7 @@ function App() {
             return navigate('/404'); // Error while making the request
         }
 
-        if (serverResponse.status === 409) { // Checking for the case where the Email or the Username has already been used
+        if (serverResponse.status === 409) { // Checking for the case where the Email or the Username has already been Used
             const errorData = await serverResponse.json();
 
             if (errorData.error === 'Email already in use!') {
@@ -246,9 +247,13 @@ function App() {
 
     async function logoutSubmitHandler() {
         localStorage.removeItem("authenticationTokenAndData");
+        
         setUser(null);
+       
         setProfilePhoto("");
+        
         setLogoutComponent(false);
+       
         return navigate("/");
     }
 
@@ -271,6 +276,7 @@ function App() {
             document.querySelector("#post-highlight-image").classList.remove("err-input-field");
             document.querySelector("#post-highlight-span").classList.remove("err-input-field");
         }
+        // No required validation for the Description
 
         try {
             let response = await fetch("http://localhost:5000/highlights", {
@@ -476,7 +482,11 @@ function App() {
 
             if (response.status === 200) {
                 const data = await response.json();
+
+                document.querySelector("#change-profile-photo").style.display = 'none';
                 
+                profileImageSuccessfullyChanged();
+
                 setProfilePhoto(data);
 
             } else {
@@ -489,7 +499,7 @@ function App() {
     }
 
     return (
-        <AuthenticationContext.Provider value={{loginSubmitHandler, registerSubmitHandler, logoutSubmitHandler, user, setLogoutComponent, navigate, profilePhoto, changeProfilePictureHandler}}>
+        <AuthenticationContext.Provider value={{loginSubmitHandler, registerSubmitHandler, logoutSubmitHandler, user, setUser, setLogoutComponent, navigate, profilePhoto, setProfilePhoto, changeProfilePictureHandler}}>
         <>
             <Navigation/>
             {logoutComponentShown ? <Logout/> : ""}

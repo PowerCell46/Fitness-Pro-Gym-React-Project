@@ -6,6 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {errorToastMessage, productSuccessfullyRemoved, successfullOrder} from '../../utils/toastify';
 
+
 export function Checkout() {
     const {navigate} = useContext(AuthenticationContext);
     const userId = JSON.parse(localStorage.getItem("authenticationTokenAndData")).id;
@@ -46,11 +47,11 @@ export function Checkout() {
             
                     errorToastMessage(errorData.error);
 
-                    navigate("/404");
+                    return navigate("/404");
                 }
 
             } catch {
-                navigate("/404");
+                return navigate("/404");
             }
 
             const data = await response.json();
@@ -180,7 +181,7 @@ export function Checkout() {
             }
 
         } catch {
-            navigate("/404");
+            return navigate("/404");
         }
     }
     
@@ -291,7 +292,7 @@ export function Checkout() {
             }
        
         } catch {
-            navigate("/404");
+            return navigate("/404");
         }
     }
 }

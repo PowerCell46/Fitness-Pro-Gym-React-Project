@@ -3,10 +3,10 @@ import { useState, useContext, useEffect } from "react";
 import { AuthenticationContext } from "../../contexts/AuthenticationContext";
 import {HighlightsDiv} from '../highlights/HighlightsGallery/HighlightsDiv';
 import { MyProfileSection } from "./MyProfileSection";
-import { fakeButtonHandler, realButtonHandler } from "../../utils/fakeBtnRealBtn";
+import { fakeButtonHandler, realButtonMyProfileHandler } from "../../utils/fakeBtnRealBtn";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {errorToastMessage, productSuccessfullyRemoved, successfullOrder} from '../../utils/toastify';
+import {errorToastMessage} from '../../utils/toastify';
 
 
 export function MyProfile() {
@@ -37,7 +37,6 @@ export function MyProfile() {
             const data = await response.json();
             
             setHighlights(data);
- 
         }
 
         async function fetchOrdersData() {
@@ -80,7 +79,7 @@ export function MyProfile() {
         <div className="hexagon-container">
             <img src={`data:image/jpeg;base64,${profilePhoto}`} alt="Profile Photo" onClick={fakeButtonHandler}/>
         </div>
-            <input type="file" className="file-upload" hidden="hidden" name="image" onChange={realButtonHandler}/>
+            <input type="file" className="file-upload" hidden="hidden" name="image" onChange={realButtonMyProfileHandler}/>
 
             <button id="change-profile-photo" onClick={changeProfilePictureHandler}>Change Picture</button>
 
