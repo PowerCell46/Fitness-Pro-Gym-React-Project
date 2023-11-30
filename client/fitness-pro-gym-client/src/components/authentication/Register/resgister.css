@@ -127,4 +127,7 @@
     .register-main {
         height: 81vh;
     }
+    .register-main h1 {
+        margin-top: 6vh;
+    }   
 }

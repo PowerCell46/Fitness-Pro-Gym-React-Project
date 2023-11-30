@@ -268,13 +268,11 @@ function App() {
             document.querySelector("#post-highlight-image-err-p").textContent = 'Image format not valid!';                    
             document.querySelector("#post-highlight-image-err-p").style.display = 'inline';
             document.querySelector("#post-highlight-image").classList.add("err-input-field");
-            document.querySelector("#post-highlight-span").classList.add("err-input-field");
             return;
        
         } else {
             document.querySelector("#post-highlight-image-err-p").style.display = 'none';
             document.querySelector("#post-highlight-image").classList.remove("err-input-field");
-            document.querySelector("#post-highlight-span").classList.remove("err-input-field");
         }
         // No required validation for the Description
 
