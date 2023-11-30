@@ -6,6 +6,7 @@ import { useState } from "react";
 import { errorToastMessage } from "../../../utils/toastify";
 import { editHighlightSubmitHandler } from "./editHighlightSubmitHandler";
 import { GlobalContext } from "../../../contexts/GlobalContext";
+import { handleFieldChange } from "../../../utils/handleFieldChange";
 
 
 export function EditHighlight() {
@@ -41,10 +42,6 @@ export function EditHighlight() {
 
     }, []);
 
-    const handleDescriptionChange = (event) => {
-        setHighlightData({ ...highlight, description: event.target.value });
-      };
-
     return (
         <main className="main-edit-highlight">
             <h1>Edit a Highlight</h1>
@@ -57,7 +54,7 @@ export function EditHighlight() {
                     <span id="edit-highlight-span">{highlight.imageLocation ? highlight.imageLocation.substring(highlight.imageLocation.length - 15) : ""}</span>
                 </div>
             
-                <input type="text" name="description" placeholder="Average Arm day pump" value={highlight.description} onChange={handleDescriptionChange}/>
+                <input type="text" name="description" placeholder="Average Arm day pump" value={highlight.description} onChange={handleFieldChange}/>
             
                 <button>Post</button>
             </form>

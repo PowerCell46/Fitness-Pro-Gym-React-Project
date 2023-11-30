@@ -11,6 +11,7 @@
     /* background-size:cover; */
 }
 
+
 .memberships-main h1 {
     margin-top: 3vh;
     color: whitesmoke;
@@ -37,9 +38,11 @@
     transition: 600ms ease-in-out;
 }
 
+
 .memberships-main section:hover {
     opacity: 0.95;
 }
+
 
 .memberships-main section h3 {
     font-family: 'Salsa';
@@ -48,23 +51,28 @@
     letter-spacing: 0.15rem;
 }
 
+
 .memberships-main section a {
     text-decoration: none;
     color: whitesmoke;
 }
 
+
 .memberships-main .prices {
     display: flex;
 }
+
 
 .memberships-main table {
     border-collapse: separate;
       border-spacing: 1rem;
 }
 
+
 .memberships-main tr {
     transition: 600ms ease-in-out;
 }
+
 
 .memberships-main table th, table td {
     border-radius: 0.3rem;
@@ -81,6 +89,7 @@
     transition: 600ms ease-in-out;
 }
 
+
 .memberships-main table th {
     font-weight: 900;
     background-color: transparent;
@@ -89,14 +98,17 @@
     box-shadow: none;
 }
 
+
 .memberships-main tr:not(:first-child):hover {
     transform: translateY(-0.3rem);
     cursor: pointer;
 }
 
+
 .memberships-main tr:not(:first-child):hover td {
     background-color: var(--cool-orange);
 }
+
 
 .added-membership {
     background-color: #cc1e00;
@@ -108,16 +120,19 @@
         font-size: 3.5rem;
     }
 
+
     .memberships-main table th, table td {
         font-size: 1.75rem;
         padding: 1.25rem 9rem;
 
     }
 
+
     .memberships-main h1 {
         font-size: 6rem;
     }
 }
+
 
 @media screen and (max-width: 1900px) {
     .memberships-main {

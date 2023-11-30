@@ -12,6 +12,7 @@
     background-size: cover;
 }
 
+
 .edit-product-main h1 {
     color: whitesmoke;
     font-size: 6rem;
@@ -22,11 +23,13 @@
     margin-bottom: 2vh;
 }
 
+
 .edit-product-main form {
     display: flex;
     flex-direction: column;
     gap: 2rem;
 }
+
 
 .edit-product-main form input {
     padding: 1.2rem 1.2rem 1.2rem 1.2rem;
@@ -36,17 +39,20 @@
     border: none;
 }
 
+
 .edit-product-main form input::placeholder {
     font-size: 1.2rem;
     font-family: 'Salsa', cursive;
     color: grey;
 }
 
+
 .edit-product-main form div {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
+
 
 .edit-product-main form div label {
     color: whitesmoke;
@@ -57,6 +63,7 @@
     letter-spacing: 0.08rem;
     font-weight: 600;
 }
+
 
 .edit-product-main form div select {
     padding: 1rem 1rem 1rem 1rem;
@@ -87,11 +94,13 @@
     animation: hithere 5s ease-in-out infinite;
 }
 
+
 .edit-product-main button:hover {
     background-color: #124b8b;
     color: #d6d6d6;;
     /* transform: translateY(-0.2rem); */
 }
+
 
 .edit-product-main .file-upload-div button {
     text-align: center;
@@ -101,10 +110,13 @@
     animation: none;
 }
 
+
 .edit-product-main .file-upload-div button:hover {
     background-color: #009578;
     transform: translateY(-0.2rem);
 }
+
+
 .edit-product-main .file-upload-div {
     display: flex;
     align-items: center;
@@ -112,6 +124,7 @@
     gap: 2vw;
     margin-bottom: 2vh;
 }
+
 
 .edit-product-main .file-upload-div span {
     font-size: 1.2rem;
@@ -122,9 +135,11 @@
     background-color: rgba(255, 255, 255, 0.5);
 }
 
+
 .edit-product-main .err-input-field {
     border: 4px solid rgb(130, 3, 3);
 }
+
 
 .edit-product-main .err-message { /* In case of an error  + main height + footer margin-top*/
     font-family: 'Salsa';
@@ -141,26 +156,29 @@
 }
 
 
-
 @media screen and (min-width: 2501px) { 
     .edit-product-main form  {
         gap: 2.4rem;
     }
 }
 
+
 @media screen and (max-width: 1900px) {
     .edit-product-main {
         margin-left: -0.5vw;
     }
 
+
     .edit-product-main h1 {
         margin-top: 15vh;
     }
+
 
     .edit-product-main {
         padding-bottom: 12.5vh;
     }
 
+    
     .edit-product-main .err-input-field {
         border: 3px solid rgb(130, 3, 3);
     }
