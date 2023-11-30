@@ -191,6 +191,9 @@
 }
 
 @media screen and (min-width: 2501px) { 
+    .my-profile-main {
+        width: 100.1vw;
+    }
     .my-profile-main .hexagon-container {
         height: 30vh;
         margin-bottom: 3vh;
