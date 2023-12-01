@@ -1,6 +1,10 @@
 import { errorToastMessage } from "../../../utils/toastify";
 
 export async function likeHighlightHandler(highlightData, userId, highlightId, setNumberOfLikes, numberOfLikes, navigate) {
+    if (!userId) {
+        return errorToastMessage("You are not Logged in!");
+    }
+
     if (highlightData.likes.includes(userId)) {
         return errorToastMessage(`You've already liked this Highlight!`);
     }

@@ -10,7 +10,7 @@ import { fetchCertainProducts } from "./fetchCertainProducts";
 
 
 export function Products() {
-    const userId = JSON.parse(localStorage.getItem("authenticationTokenAndData")).id;
+    const userId = localStorage.getItem("authenticationTokenAndData")  ? JSON.parse(localStorage.getItem("authenticationTokenAndData")).id || false : false;
     const {navigate} = useContext(AuthenticationContext);
     const [productsData, setProductsData] = useState([]);
 
@@ -38,7 +38,7 @@ export function Products() {
                             <div className="product-container">
                                 <div className="image-container">
                                 <img src={`data:image/jpeg;base64,${product.photo}`} alt={`${product.name} Image`}/>
-                                    <button onClick={(e) => addProductToCart(e, product._id, userId, navigate)}>Add To Cart</button>
+                                    {userId ? <button onClick={(e) => addProductToCart(e, product._id, userId, navigate)}>Add To Cart</button> : ""}
                                 </div>
                                 <div className="shown-info">
                                     <h5>{product.name}</h5>

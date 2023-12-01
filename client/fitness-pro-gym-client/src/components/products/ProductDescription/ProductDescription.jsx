@@ -10,7 +10,7 @@ import { addProductToCart } from '../ProductsGallery/addProductToCart';
 
 
 export function ProductDescription() {
-    const userId = JSON.parse(localStorage.getItem("authenticationTokenAndData")).id;
+    const userId = localStorage.getItem("authenticationTokenAndData")  ? JSON.parse(localStorage.getItem("authenticationTokenAndData")).id || false : false;
     const {user, navigate} = useContext(AuthenticationContext);
     const [productData, setProductData] = useState({});
     const {productId} = useParams();
@@ -56,7 +56,7 @@ export function ProductDescription() {
                     {user ? JSON.parse(localStorage.getItem("authenticationTokenAndData")).isAdministrator ? // Only the Administrator has access to EDIT
                         <Link to={`/products/edit/${productId}`}><button>EDIT</button></Link> : "": ""}
                   
-                    <button id='add-to-cart-btn' onClick={(e) => addProductToCart(e, productId, userId, navigate)}>ADD TO CART</button>
+                    {userId ? <button id='add-to-cart-btn' onClick={(e) => addProductToCart(e, productId, userId, navigate)}>ADD TO CART</button> : ""}
                   
                     {user ? JSON.parse(localStorage.getItem("authenticationTokenAndData")).isAdministrator ? // Only the Administrator has access to DELETE 
                         <button onClick={() => setDeleteProductComponent(true)}>DELETE</button> : "" : ""}

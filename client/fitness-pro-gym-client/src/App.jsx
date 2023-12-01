@@ -26,7 +26,7 @@ import { Checkout } from './components/Checkout/Checkout';
 import { MyProfile } from './components/MyProfile/MyProfile';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {errorToastMessage, profileImageSuccessfullyChanged} from "./utils/toastify";
+import {errorToastMessage} from "./utils/toastify";
 import { EditHighlight } from './components/highlights/EditHighlight/EditHighlight';
 import { EditProduct } from './components/products/EditProduct/EditProduct';
 import { loginSubmitHandler } from './components/authentication/Login/loginSubmitHandler';
@@ -41,6 +41,7 @@ import { changeProfilePictureHandler } from './components/MyProfile/changeProfil
 
 function App() {
     const [user, setUser] = useState(localStorage.getItem('authenticationTokenAndData'));
+    const [isAdministrator, setIsAdministrator] = useState(localStorage.getItem("authenticationTokenAndData")  ? JSON.parse(localStorage.getItem("authenticationTokenAndData")).isAdministrator || false : false );
     const [logoutComponentShown, setLogoutComponent] = useState(false);
     const [profilePhoto, setProfilePhoto] = useState("");
     const navigate = useNavigate();
@@ -58,7 +59,10 @@ function App() {
                     setProfilePhoto(data);
                 
                 } else {
-                    redirect("/404");
+                    const errorData = await response.json();
+
+                    errorToastMessage(errorData.error);
+                    return navigate('/404'); 
                 }
                 
             } catch {
@@ -85,27 +89,27 @@ function App() {
             <Routes>
                 <Route path='/' element={<Home/>}/>
 
-                <Route path='/login' element={<Login/>}/>
-                <Route path='/register' element={<Register/>}/>
-                <Route path='/myProfile' element={<MyProfile/>}/>   
+                <Route path='/login'  element={user ? <Home/> : <Login />}/>
+                <Route path='/register' element={user ? <Home/> : <Register/>}/>
+                <Route path='/myProfile' element={user ? <MyProfile/> : <Home/>}/>   
                 
-                <Route path='/postHighlight' element={<PostHighlight/>}/>
-                <Route path='/highlights' element={<Highlights/>}/>
+                <Route path='/postHighlight' element={user ? <PostHighlight/> : <Home/>}/>
+                <Route path='/highlights' element={<Highlights/>}/> 
                 <Route path='/highlights/:highlightId' element={<HighlightDescription/>}/>
-                <Route path='/highlights/edit/:highlightId' element={<EditHighlight/>}/>
+                <Route path='/highlights/edit/:highlightId' element={<EditHighlight/>}/> {/* check if the person is the owner of the highlight */}
 
-                <Route path='/postTrainer' element={<PostTrainer/>}/>
+                <Route path='/postTrainer' element={ isAdministrator ?<PostTrainer/> : <Home/>}/>
                 <Route path='/trainers' element={<Trainers/>}/>
 
-                <Route path='/postProduct' element={<PostProduct/>}/>
+                <Route path='/postProduct' element={isAdministrator ? <PostProduct/> : <Home/>}/>
                 <Route path='/products' element={<Products/>} />
                 <Route path='/products/:productId' element={<ProductDescription/>}/>
-                <Route path='/products/edit/:productId' element={<EditProduct/>}/>
+                <Route path='/products/edit/:productId' element={isAdministrator ? <EditProduct/> : <Home/>}/>
 
-                <Route path='/memberships' element={<Memberships/>}/>
+                <Route path='/memberships' element={<Memberships/>}/> {/* add error message when a guest is trying to click on a membership */}
 
-                <Route path='/checkout' element={<Checkout/>}/>
-                <Route path='/successfulOrder' element={<SuccessfulOrder/>}/>
+                <Route path='/checkout' element={user ? <Checkout/> : <Home/>}/>
+                <Route path='/successfulOrder' element={user ? <SuccessfulOrder/> : <Home/>}/>
                 
                 <Route path='*' element={<Error_404/>}/>
             </Routes>

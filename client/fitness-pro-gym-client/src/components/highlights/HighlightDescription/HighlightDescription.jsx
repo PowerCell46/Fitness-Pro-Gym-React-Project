@@ -12,7 +12,7 @@ import { likeHighlightHandler } from "./likeHighlightHandler";
 
 
 export function HighlightDescription() {
-    const userId = JSON.parse(localStorage.getItem("authenticationTokenAndData")).id;
+    const userId = localStorage.getItem("authenticationTokenAndData")  ? JSON.parse(localStorage.getItem("authenticationTokenAndData")).id || false : false;
     const {navigate} = useContext(AuthenticationContext);
     const [highlightData, setHighlightData] = useState({});
     const [numberOfLikes, setNumberOfLikes] = useState(0);
