@@ -11,6 +11,7 @@ import { GlobalContext } from "../../contexts/GlobalContext";
 
 
 export function MyProfile() {
+    const [isHovered, setIsHovered] = useState(false);
     const {navigate} = useContext(GlobalContext)
     const {profilePhoto, changeProfilePictureHandler, setProfilePhoto} = useContext(AuthenticationContext);
     const [highlights, setHighlights] = useState([]);
@@ -77,7 +78,8 @@ export function MyProfile() {
     
     return (
         <main className="my-profile-main">
-        <div className="hexagon-container">
+        {isHovered ? <h5 id="change-picture-h5" onMouseEnter={() => setIsHovered(true)} onClick={fakeButtonHandler}>Change Picture</h5> : ""}
+        <div className="hexagon-container" onMouseEnter={() => setIsHovered(true)}  onMouseLeave={() => setIsHovered(false)}>
             <img src={`data:image/jpeg;base64,${profilePhoto}`} alt="Profile Photo" onClick={fakeButtonHandler}/>
         </div>
             <input type="file" className="file-upload" hidden="hidden" name="image" onChange={realButtonMyProfileHandler}/>

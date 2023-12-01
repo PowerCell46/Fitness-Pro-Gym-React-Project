@@ -136,4 +136,16 @@
     .product-description-main aside button {
         font-size: 1.5rem;
     }
+    .product-description-main aside p {
+        font-size: 1.3rem;
+        line-height: 1.5;
+    }
+
+    .product-description-main aside h2 {
+        font-size: 4.5rem;
+    }
+
+    .product-description-main aside h3 {
+        font-size: 2.5rem;
+    }
 }
