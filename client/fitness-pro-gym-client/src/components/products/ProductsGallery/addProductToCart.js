@@ -1,7 +1,7 @@
 import { productSuccessfullyAdded, productAlreadyAddedToCart, errorToastMessage } from "../../../utils/toastify";
 
 
-export async function addProductToCart(e, productId, userId, navigate) {
+export async function addProductToCart(e, productId, userId, navigate, setNumberOfCartProducts) {
     e.preventDefault();
     e.stopPropagation();
     
@@ -17,6 +17,7 @@ export async function addProductToCart(e, productId, userId, navigate) {
             e.target.disabled = true;
             
             if (responseCondition === "Successful Operation!") {
+                setNumberOfCartProducts((previousValue) => previousValue + 1);
                 return productSuccessfullyAdded();
 
             } else if (responseCondition === "Product already in Cart!") {

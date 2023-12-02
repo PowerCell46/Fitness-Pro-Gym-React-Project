@@ -7,11 +7,13 @@ import { ToastContainer } from 'react-toastify';
 import { errorToastMessage } from '../../../utils/toastify';
 import { addProductToCart } from "./addProductToCart";
 import { fetchCertainProducts } from "./fetchCertainProducts";
+import { GlobalContext } from "../../../contexts/GlobalContext";
 
 
 export function Products() {
     const userId = localStorage.getItem("authenticationTokenAndData")  ? JSON.parse(localStorage.getItem("authenticationTokenAndData")).id || false : false;
-    const {navigate} = useContext(AuthenticationContext);
+    const {navigate} = useContext(GlobalContext);
+    const {setNumberOfCartProducts} = useContext(AuthenticationContext);
     const [productsData, setProductsData] = useState([]);
 
     useEffect(() => {
@@ -38,7 +40,7 @@ export function Products() {
                             <div className="product-container">
                                 <div className="image-container">
                                 <img src={`data:image/jpeg;base64,${product.photo}`} alt={`${product.name} Image`}/>
-                                    {userId ? <button onClick={(e) => addProductToCart(e, product._id, userId, navigate)}>Add To Cart</button> : ""}
+                                    {userId ? <button onClick={(e) => addProductToCart(e, product._id, userId, navigate, setNumberOfCartProducts)}>Add To Cart</button> : ""}
                                 </div>
                                 <div className="shown-info">
                                     <h5>{product.name}</h5>

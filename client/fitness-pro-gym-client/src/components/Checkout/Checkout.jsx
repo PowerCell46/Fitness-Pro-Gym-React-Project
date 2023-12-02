@@ -7,9 +7,11 @@ import { handleIncrement,handleDecrement } from './handleIncrementDecrement';
 import { removeProductFromCartHandler } from './removeProductFromCartHandler';
 import { postOrderHandler } from './postOrderHandler';
 import { GlobalContext } from '../../contexts/GlobalContext';
+import { AuthenticationContext } from '../../contexts/AuthenticationContext';
 
 
 export function Checkout() {
+    const {setNumberOfCartProducts} = useContext(AuthenticationContext);
     const {navigate, errorToastMessage} = useContext(GlobalContext);
     const userId = JSON.parse(localStorage.getItem("authenticationTokenAndData")).id;
     const [checkoutData, setCheckoutData] = useState([]);
@@ -62,9 +64,9 @@ export function Checkout() {
                         {checkoutData.map((product) => (
                             <tr key={product._doc ? product._doc.name : product.name}>
                                 <td id='quantity-td'>
-    <button onClick={() => handleDecrement(product._doc ? product._doc.name : product.name, product._doc ? product._doc.price : product.price, quantities, setTotalSum, setQuantities)}>-</button>
+    <button onClick={() => handleDecrement(product._doc ? product._doc.name : product.name, product._doc ? product._doc.price : product.price, quantities, setTotalSum, setQuantities, setNumberOfCartProducts)}>-</button>
     {quantities[product._doc ? product._doc.name : product.name] || 1}
-    <button id='plus-quantity' onClick={() => handleIncrement(product._doc ? product._doc.name : product.name, product._doc ? product._doc.price : product.price, quantities, setTotalSum, setQuantities)}>+</button>
+    <button id='plus-quantity' onClick={() => handleIncrement(product._doc ? product._doc.name : product.name, product._doc ? product._doc.price : product.price, quantities, setTotalSum, setQuantities, setNumberOfCartProducts)}>+</button>
                                 </td>
 
                                 <td onClick={() => product._doc ? navigate(`/products/${product._doc._id}`)  : navigate("/memberships")}>
@@ -79,11 +81,14 @@ export function Checkout() {
                                     {product._doc ? product._doc.price : product.price} BGN
                                 </td>
                             
-                                <td onMouseEnter={(e) => e.target.style.backgroundColor = '#9c3b2b'} onMouseLeave={(e) => e.target.style.backgroundColor = 'transparent'} onClick={() => removeProductFromCartHandler(
-                                    product._doc ? product._doc._id :
-                                        {membershipType: product.name.substring(0, product.name.lastIndexOf(" ")), 
-                                        membershipCategory: product.name.substring(product.name.lastIndexOf(" ") + 1).toLowerCase()},
-                                    product, userId, setCheckoutData, setTotalSum, getProductPrice)}>Remove
+                                <td 
+    onMouseEnter={(e) => e.target.style.backgroundColor = '#9c3b2b'} 
+    onMouseLeave={(e) => e.target.style.backgroundColor = 'transparent'} 
+    onClick={() => removeProductFromCartHandler(
+    product._doc ? product._doc._id :
+        {membershipType: product.name.substring(0, product.name.lastIndexOf(" ")), 
+        membershipCategory: product.name.substring(product.name.lastIndexOf(" ") + 1).toLowerCase()},
+    product, userId, setCheckoutData, setTotalSum, getProductPrice, navigate, setNumberOfCartProducts)}>Remove
                                 </td>
                             </tr>
                         ))}

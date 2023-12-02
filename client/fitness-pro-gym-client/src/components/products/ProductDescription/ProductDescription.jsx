@@ -7,11 +7,13 @@ import 'react-toastify/dist/ReactToastify.css';
 import { DeleteProduct } from '../DeleteProduct/DeleteProduct';
 import { ProductContext } from "../../../contexts/ProductContext";
 import { addProductToCart } from '../ProductsGallery/addProductToCart';
+import { GlobalContext } from '../../../contexts/GlobalContext';
 
 
 export function ProductDescription() {
     const userId = localStorage.getItem("authenticationTokenAndData")  ? JSON.parse(localStorage.getItem("authenticationTokenAndData")).id || false : false;
-    const {user, navigate} = useContext(AuthenticationContext);
+    const {user, setNumberOfCartProducts} = useContext(AuthenticationContext);
+    const {navigate} = useContext(GlobalContext);
     const [productData, setProductData] = useState({});
     const {productId} = useParams();
     const [deleteProductComponentShown, setDeleteProductComponent] = useState(false);
@@ -56,7 +58,7 @@ export function ProductDescription() {
                     {user ? JSON.parse(localStorage.getItem("authenticationTokenAndData")).isAdministrator ? // Only the Administrator has access to EDIT
                         <Link to={`/products/edit/${productId}`}><button>EDIT</button></Link> : "": ""}
                   
-                    {userId ? <button id='add-to-cart-btn' onClick={(e) => addProductToCart(e, productId, userId, navigate)}>ADD TO CART</button> : ""}
+                    {userId ? <button id='add-to-cart-btn' onClick={(e) => addProductToCart(e, productId, userId, navigate, setNumberOfCartProducts)}>ADD TO CART</button> : ""}
                   
                     {user ? JSON.parse(localStorage.getItem("authenticationTokenAndData")).isAdministrator ? // Only the Administrator has access to DELETE 
                         <button onClick={() => setDeleteProductComponent(true)}>DELETE</button> : "" : ""}

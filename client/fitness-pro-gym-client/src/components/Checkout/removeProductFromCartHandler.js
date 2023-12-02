@@ -1,11 +1,5 @@
 import { productSuccessfullyRemoved, errorToastMessage } from "../../utils/toastify";
-import { GlobalContext } from "../../contexts/GlobalContext";
-import { useContext } from "react";
-
-
-export async function removeProductFromCartHandler(removedProductId, productForRemoval, userId, setCheckoutData, setTotalSum, getProductPrice) {
-    const {navigate} = useContext(GlobalContext);
-
+export async function removeProductFromCartHandler(removedProductId, productForRemoval, userId, setCheckoutData, setTotalSum, getProductPrice, navigate, setNumberOfCartProducts) {
     try {
         const response = await fetch(`http://localhost:5000/checkout/removeProduct`, {
             method: "POST",
@@ -19,6 +13,8 @@ export async function removeProductFromCartHandler(removedProductId, productForR
             );
             setTotalSum((previousTotalSum) => previousTotalSum - getProductPrice(removedProductId, productForRemoval.name));
             
+            setNumberOfCartProducts((previousValue) => previousValue - 1);
+
             return productSuccessfullyRemoved();
             
         } else {

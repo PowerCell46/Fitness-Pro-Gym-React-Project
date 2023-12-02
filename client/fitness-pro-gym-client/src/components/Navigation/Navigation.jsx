@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState } from "react";
 import { AuthenticationContext } from "../../contexts/AuthenticationContext";
 import './navigation.css';
 
 
 export function Navigation() {
-    const {user, setLogoutComponent, profilePhoto} = useContext(AuthenticationContext);
+    const { user, setLogoutComponent, profilePhoto, numberOfCartProducts } = useContext(AuthenticationContext);
     const [dropdown, setDropdown] = useState(false);
 
     return (
@@ -17,7 +17,6 @@ export function Navigation() {
         {!user ? <li><Link to={'/login'}>Login</Link></li> : "" /* No user */}
         
         {user ? <li><a onClick={() => setLogoutComponent(true)}>Logout</a></li> : "" /* User */}
-       
 
         {user ?
         JSON.parse(localStorage.getItem("authenticationTokenAndData")).isAdministrator ? 
@@ -34,10 +33,12 @@ export function Navigation() {
         </li> 
         : 
         <li> {/* If the user is not the administrator - the image is a link to My Profile */}
-            <div className="profile-dropdown">
+            <div className="profile-dropdown" id="not-aministrator-div">
                 <Link className="img-to-my-profile-link" to={'/myProfile'}>
                     <img src={`data:image/jpeg;base64,${profilePhoto}`} alt="Profile Photo"/>
                 </Link>
+                <li><Link to={'/products'}><i id="shopping-cart" class="fa-solid fa-cart-shopping"></i></Link></li>
+                <li><Link to={'/products'}><p id="shopping-cart-quantity">{numberOfCartProducts}</p></Link></li>
             </div>
         </li>
     :

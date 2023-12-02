@@ -41,6 +41,7 @@ import { changeProfilePictureHandler } from './components/MyProfile/changeProfil
 
 function App() {
     const [user, setUser] = useState(localStorage.getItem('authenticationTokenAndData'));
+    const [numberOfCartProducts, setNumberOfCartProducts] = useState(0);
     const [isAdministrator, setIsAdministrator] = useState(localStorage.getItem("authenticationTokenAndData")  ? JSON.parse(localStorage.getItem("authenticationTokenAndData")).isAdministrator || false : false );
     const [logoutComponentShown, setLogoutComponent] = useState(false);
     const [profilePhoto, setProfilePhoto] = useState("");
@@ -62,6 +63,7 @@ function App() {
                     const errorData = await response.json();
 
                     errorToastMessage(errorData.error);
+
                     return navigate('/404'); 
                 }
                 
@@ -70,12 +72,37 @@ function App() {
             }
         }
 
+        async function getNumberOfCartProducts() {
+            try {
+                const response = await fetch(`http://localhost:5000/users/getNumberOfCartProducts`, 
+                {method: "POST", headers: {"Content-Type": "application/json"}, 
+                body: JSON.stringify({userId: JSON.parse(localStorage.getItem("authenticationTokenAndData")).id})});   
+                
+                if (response.status === 200) {
+                    const data = await response.json();
+                    
+                    setNumberOfCartProducts(data);
+
+                } else {
+                    const errorData = await response.json();
+
+                    errorToastMessage(errorData.error);
+
+                    return navigate('/404'); 
+                }
+                
+            } catch {
+                redirect("/404");
+            }
+        }
+
+        getNumberOfCartProducts();
         getProfilePhoto();
     }, []);
 
     return (
         <GlobalContext.Provider value={{navigate, errorToastMessage}}>
-        <AuthenticationContext.Provider value={{loginSubmitHandler, registerSubmitHandler, logoutSubmitHandler, user, setUser, setLogoutComponent, profilePhoto, setProfilePhoto, changeProfilePictureHandler, setIsAdministrator}}>
+        <AuthenticationContext.Provider value={{loginSubmitHandler, registerSubmitHandler, logoutSubmitHandler, user, setUser, setLogoutComponent, profilePhoto, setProfilePhoto, changeProfilePictureHandler, setIsAdministrator, numberOfCartProducts, setNumberOfCartProducts}}>
         <>
             <Navigation/>
             {logoutComponentShown ? <Logout/> : ""}

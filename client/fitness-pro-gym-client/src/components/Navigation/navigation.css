@@ -105,3 +105,25 @@ header li div img {
 .img-to-my-profile-link:hover:before {
     width: 0;
 }
+
+#not-aministrator-div {
+    display: flex;
+}
+
+#shopping-cart {
+    margin-left: 0.75rem;
+    font-size: 1.5rem;
+    position: relative;
+    top: 0.6rem;
+}
+
+#shopping-cart-quantity {
+    margin-left: 0.3rem;
+    font-size: 1.2rem;
+    position: relative;
+    bottom: 1.2rem;
+}
+
+.not-aministrator-div li a::before {
+    background: none;
+}
