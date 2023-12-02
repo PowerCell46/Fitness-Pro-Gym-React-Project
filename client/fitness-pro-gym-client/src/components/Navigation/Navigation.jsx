@@ -9,41 +9,46 @@ export function Navigation() {
     const [dropdown, setDropdown] = useState(false);
 
     return (
-        <header>
-        {!user ? <li><Link to={'/register'}>Register</Link></li> : "" /* No user */}    
-        <li>{!user ? <Link to={'/memberships'}>Memberships</Link> : <Link to={'/postHighlight'}>Post a Highlight</Link>}</li>
+    <header>
+        {!user ? <li><Link to={'/register'}>Register</Link></li> : "" /* No user */}  
+
         <li><Link to={'/highlights'}>Highlights</Link></li>        
+
         <li><Link to={'/products'}>Products</Link></li>
+
         {!user ? <li><Link to={'/login'}>Login</Link></li> : "" /* No user */}
         
-        {user ? <li><a onClick={() => setLogoutComponent(true)}>Logout</a></li> : "" /* User */}
+        {user ? <li><Link to={'/memberships'}>Memberships</Link></li> : ""}
 
-        {user ?
-        JSON.parse(localStorage.getItem("authenticationTokenAndData")).isAdministrator ? 
-        <li> {/* If the user is the administrator - access to create menus */}
+        {user ? <li><Link to={'/trainers'}>Trainers</Link></li>: ""}
+
+        
+        {user ? <li>
             <div className="profile-dropdown">
             <img src={`data:image/jpeg;base64,${profilePhoto}`} alt="Profile Photo" onClick={hiddenDropdownHandler}/>
                 <div className="hidden-profile-view">
                     <ul>
-                        <li><Link to={'/postProduct'}>Create Product</Link></li>
-                        <li><Link to={'/postTrainer'}>Create Trainer</Link></li>
+                        <li><Link to={'/myProfile'}>My Profile</Link></li>
+                      
+                        {/* If the user is the administrator - access to create menus */}
+                        {JSON.parse(localStorage.getItem("authenticationTokenAndData")).isAdministrator ? <li><Link to={'/postProduct'}>Create Product</Link></li> : ""}
+                        {JSON.parse(localStorage.getItem("authenticationTokenAndData")).isAdministrator ? <li><Link to={'/postTrainer'}>Create Trainer</Link></li> : ""}
+                      
+                        <li>{<Link to={'/postHighlight'}>Post Highlight</Link>}</li>
+                     
+                        <li><a onClick={() => setLogoutComponent(true)}>Logout</a></li>
                     </ul>
                 </div>
             </div>
         </li> 
-        : 
-        <li> {/* If the user is not the administrator - the image is a link to My Profile */}
-            <div className="profile-dropdown" id="not-aministrator-div">
-                <Link className="img-to-my-profile-link" to={'/myProfile'}>
-                    <img src={`data:image/jpeg;base64,${profilePhoto}`} alt="Profile Photo"/>
-                </Link>
-                <li><Link to={'/products'}><i id="shopping-cart" class="fa-solid fa-cart-shopping"></i></Link></li>
-                <li><Link to={'/products'}><p id="shopping-cart-quantity">{numberOfCartProducts}</p></Link></li>
-            </div>
-        </li>
-    :
-    "" }
-    </header>
+        : ""} 
+
+        {user ? <li id="cart-div"> {/* Shopping Cart */}
+            <Link to={'/checkout'}><i id="shopping-cart" class="fa-solid fa-cart-shopping"></i></Link>
+            <Link id="shopping-cart-quantity-link" to={'/checkout'}><p id="shopping-cart-quantity">{numberOfCartProducts}</p></Link>
+        </li> 
+        : ""}
+    </header>   
     );
     
     

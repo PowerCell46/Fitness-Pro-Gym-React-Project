@@ -223,6 +223,7 @@
     top: 0.3vh;
 }
 
+
 @media screen and (min-width: 2501px) { 
     .checkout-main h1 {
         font-size: 4rem;

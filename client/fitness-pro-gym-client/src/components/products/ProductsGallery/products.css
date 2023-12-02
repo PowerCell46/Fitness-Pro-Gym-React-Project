@@ -225,6 +225,11 @@
     .products-main .shown-info h5 { 
         font-size: 1.8rem;
     }
+
+
+    .products-main #price {
+        font-size: 2rem;
+    }
 }
 
 
