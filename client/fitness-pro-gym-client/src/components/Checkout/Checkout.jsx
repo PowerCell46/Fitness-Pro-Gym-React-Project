@@ -62,9 +62,9 @@ export function Checkout() {
                         {checkoutData.map((product) => (
                             <tr key={product._doc ? product._doc.name : product.name}>
                                 <td id='quantity-td'>
-    <button onClick={() => handleIncrement(product._doc ? product._doc.name : product.name, product._doc ? product._doc.price : product.price, quantities, setTotalSum, setQuantities)}>+</button>
-    {quantities[product._doc ? product._doc.name : product.name] || 1}
     <button onClick={() => handleDecrement(product._doc ? product._doc.name : product.name, product._doc ? product._doc.price : product.price, quantities, setTotalSum, setQuantities)}>-</button>
+    {quantities[product._doc ? product._doc.name : product.name] || 1}
+    <button id='plus-quantity' onClick={() => handleIncrement(product._doc ? product._doc.name : product.name, product._doc ? product._doc.price : product.price, quantities, setTotalSum, setQuantities)}>+</button>
                                 </td>
 
                                 <td onClick={() => product._doc ? navigate(`/products/${product._doc._id}`)  : navigate("/memberships")}>
@@ -79,7 +79,7 @@ export function Checkout() {
                                     {product._doc ? product._doc.price : product.price} BGN
                                 </td>
                             
-                                <td onClick={() => removeProductFromCartHandler(
+                                <td onMouseEnter={(e) => e.target.style.backgroundColor = '#9c3b2b'} onMouseLeave={(e) => e.target.style.backgroundColor = 'transparent'} onClick={() => removeProductFromCartHandler(
                                     product._doc ? product._doc._id :
                                         {membershipType: product.name.substring(0, product.name.lastIndexOf(" ")), 
                                         membershipCategory: product.name.substring(product.name.lastIndexOf(" ") + 1).toLowerCase()},

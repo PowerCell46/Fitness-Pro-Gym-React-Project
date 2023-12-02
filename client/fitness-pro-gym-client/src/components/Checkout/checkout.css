@@ -202,14 +202,26 @@
 
 
 #quantity-td button {
+    text-shadow: 5px 0px 7px rgba(0,0,0,0.68);
     cursor: pointer;
     margin: 0.4rem;
     padding: 0.1rem 0.3rem;
-    font-size: 0.8rem;
+    color: #a6a6a6;
+    font-weight: 600;
+    font-size: 1.1rem;
     border: none;
-    background-color: #9c3b2b;
+    background-color: transparent;
+    transition: 600ms ease-in-out;
+}
+#quantity-td button:hover {
+    color: whitesmoke;
 }
 
+
+#plus-quantity {
+    position: relative;
+    top: 0.3vh;
+}
 
 @media screen and (min-width: 2501px) { 
     .checkout-main h1 {
@@ -249,5 +261,17 @@
 
     .checkout-main .details form button {
         margin-top: 2vh;
+    }
+
+
+    #quantity-td button {
+        cursor: pointer;
+        margin: 0.4rem;
+        padding: 0.1rem 0.3rem;
+        color: #a6a6a6;
+        font-weight: 600;
+        font-size: 1.5rem;
+        border: none;
+        background-color: transparent;
     }
 }

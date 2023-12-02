@@ -75,7 +75,7 @@ function App() {
 
     return (
         <GlobalContext.Provider value={{navigate, errorToastMessage}}>
-        <AuthenticationContext.Provider value={{loginSubmitHandler, registerSubmitHandler, logoutSubmitHandler, user, setUser, setLogoutComponent, profilePhoto, setProfilePhoto, changeProfilePictureHandler}}>
+        <AuthenticationContext.Provider value={{loginSubmitHandler, registerSubmitHandler, logoutSubmitHandler, user, setUser, setLogoutComponent, profilePhoto, setProfilePhoto, changeProfilePictureHandler, setIsAdministrator}}>
         <>
             <Navigation/>
             {logoutComponentShown ? <Logout/> : ""}
