@@ -4,11 +4,11 @@ import { highlightSuccessfullyEdited, errorToastMessage } from "../../../utils/t
 
 export async function editHighlightSubmitHandler(e, userId, highlight, highlightId, navigate) {
     e.preventDefault();
-
+    // console.log(highlight.ownerId, userId);
     const spanElement = document.querySelector("#edit-highlight-span");
     
     let formData = new FormData(e.target);
-    formData.append("ownerId", userId);
+    formData.append("userId", userId);
     
     if (spanElement.textContent !== highlight.imageLocation.substring(highlight.imageLocation.length - 15)) { // The image was changed
     

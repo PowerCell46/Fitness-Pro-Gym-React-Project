@@ -27,7 +27,8 @@ export function HighlightDescription() {
             try {
                 var response = await fetch(`http://localhost:5000/highlights/${highlightId}`);
 
-            } catch {
+            } catch(err) {
+                console.log(err);
                 return navigate("/404");
             }
 
@@ -45,6 +46,7 @@ export function HighlightDescription() {
             data.description = data._doc.description;
             data.ownerId = data._doc.ownerId;
             data.likes = data._doc.likes;
+            data._id = data._doc._id;
 
             setNumberOfLikes(data._doc.likes.length);
 

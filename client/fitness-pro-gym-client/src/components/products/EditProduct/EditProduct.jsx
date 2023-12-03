@@ -75,7 +75,7 @@ export function EditProduct() {
         <form onSubmit={(e) => editProductSubmitHandler(e, userId, productId, navigate, productData)}>
            
             <p id="edit-product-name-err-p" className="err-message">Product name must be at least 5 characters long!</p>
-            <input id="edit-product-name" type="text" placeholder="Product Name" name="name" value={productData.name} onChange={handleFieldChange}/>    
+            <input id="edit-product-name" type="text" placeholder="Product Name" name="name" value={productData.name} onChange={(e) => handleFieldChange(e, setProductData, productData)}/>    
            
             <div className="productTypeContainer">
                     <label htmlFor="productType">Product Type:</label>

@@ -7,10 +7,13 @@ import { errorToastMessage } from "../../../utils/toastify";
 import { editHighlightSubmitHandler } from "./editHighlightSubmitHandler";
 import { GlobalContext } from "../../../contexts/GlobalContext";
 import { handleFieldChange } from "../../../utils/handleFieldChange";
+import { getUserId } from "../../../utils/getUserId";
+import { AuthenticationContext } from "../../../contexts/AuthenticationContext";
 
 
 export function EditHighlight() {
-    const {navigate} = useContext(GlobalContext);
+    const {user} = useContext(AuthenticationContext);
+    const {navigate, errorToastMessage} = useContext(GlobalContext);
     const [highlight, setHighlightData] = useState({});
     const {highlightId} = useParams();
     const [userId, setUserId ]= useState("");
@@ -33,39 +36,15 @@ export function EditHighlight() {
             }
 
             let data = await response.json();
-            
+            data._id = data._doc._id;
+            data.description = data._doc.description;
+            data.imageLocation = data._doc.imageLocation;
+            data.ownerId = data._doc.ownerId;
+
             setHighlightData(data);   
         }
 
-        async function  getUserId() {
-            try {
-                const response = await fetch("http://localhost:5000/users/getUserId", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify( {token:  JSON.parse(localStorage.getItem("authenticationTokenAndData")).token})
-                });
-        
-                if (response.status === 200) {
-                    const data  = await response.json();
-
-                    setUserId(data.userId);
-        
-                } else {
-                    const errorData = await serverResponse.json();
-                
-                    errorToastMessage(errorData.error);
-        
-                    return navigate("/404");
-                }
-                
-            } catch {
-                navigate('/404');
-            }
-        }
-
-        getUserId();
+        getUserId(user, setUserId, errorToastMessage, navigate)
         fetchHighlightData();
 
     }, []);
@@ -82,7 +61,7 @@ export function EditHighlight() {
                     <span id="edit-highlight-span">{highlight.imageLocation ? highlight.imageLocation.substring(highlight.imageLocation.length - 15) : ""}</span>
                 </div>
             
-                <input type="text" name="description" placeholder="Average Arm day pump" value={highlight.description} onChange={handleFieldChange}/>
+                <input type="text" name="description" placeholder="Average Arm day pump" value={highlight.description} onChange={(e) => handleFieldChange(e, setHighlightData, highlight)}/>
             
                 <button>Post</button>
             </form>

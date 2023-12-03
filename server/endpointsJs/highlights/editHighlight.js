@@ -5,18 +5,29 @@ const {validateImageExtension} = require("../../utilities/validators");
 
 async function editHighlight(req, res) {
     const image = req.file;
-    const { description, ownerId } = req.body;
+    const { description, userId } = req.body;
     const highlightId = req.params.highlightId;
 
     try {
-        var user = await User.findOne({_id: ownerId});
+        var user = await User.findOne({_id: userId});
 
         if (user === null) {
             return res.status(500).json({ error: 'No such user found!' });
         }
 
     } catch {
-        return res.status(500).json({ error: 'Internal Server Error -> (Searching for the user)' }); 
+        return res.status(500).json({ error: 'Internal Server Error - Searching for the user' }); 
+    }
+
+    try {
+        const highlight = await Highlight.findOne({_id: highlightId});
+
+        if (!(highlight.ownerId === userId || user.isAdministrator)) {
+            return res.status(400).json({error: "You cannot edit this Highlight!"});
+        }
+
+    } catch {
+        return res.status(500).json({ error: 'Internal Server Error - Searching the highlight' }); 
     }
 
 

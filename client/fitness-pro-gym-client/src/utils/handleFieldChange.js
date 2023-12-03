@@ -1,3 +1,3 @@
-export function handleFieldChange(event) {
-    setProductData({...productData, [event.target.name]: event.target.value});
+export function handleFieldChange(event, setData, data) {
+    setData({...data, [event.target.name]: event.target.value});
 }
