@@ -28,7 +28,7 @@ async function likeHighlightHandler(req, res) {
         return res.status(400).json({ error: 'You cannot like your own highlight!' });
 
     } else if (highlight.likes.includes(userId)) {
-        return res.status(400).json({ error: 'User already liked this Highlight!' });
+        return res.status(400).json({ error: 'You\'ve already liked this Highlight!' });
     }
 
     highlight.likes.push(userId);

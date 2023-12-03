@@ -10,9 +10,11 @@ import { errorToastMessage } from "../../../utils/toastify";
 import { DeleteHighlight } from "../DeleteHighlight/DeleteHighlight";
 import { likeHighlightHandler } from "./likeHighlightHandler";
 import { GlobalContext } from "../../../contexts/GlobalContext";
+import { getUserId } from "../../../utils/getUserId";
 
 
 export function HighlightDescription() {
+    const {user, isAdministrator} = useContext(AuthenticationContext);
     const [userId, setUserId ]= useState("");
     const {navigate} = useContext(GlobalContext);
     const [highlightData, setHighlightData] = useState({});
@@ -22,7 +24,6 @@ export function HighlightDescription() {
     
     useEffect(() => {
         async function fetchHighlightData() {
-
             try {
                 var response = await fetch(`http://localhost:5000/highlights/${highlightId}`);
 
@@ -38,53 +39,31 @@ export function HighlightDescription() {
             }
 
             let data = await response.json();
-
-            data.uploadDate = new Date(data.uploadDate).toLocaleDateString();
-            data.hasLiked = data.likes.includes(userId); // Checking whether the User has liked the Post before
-
-            setNumberOfLikes(data.likes.length);
             
+            data.uploadDate = new Date(data._doc.uploadDate).toLocaleDateString();
+            data.hasLiked = data._doc.likes.includes(userId); // Checking whether the User has liked the Post before
+            data.description = data._doc.description;
+            data.ownerId = data._doc.ownerId;
+            data.likes = data._doc.likes;
+
+            setNumberOfLikes(data._doc.likes.length);
+
             setHighlightData(data);   
         }
 
-        async function  getUserId() {
-            try {
-                const response = await fetch("http://localhost:5000/users/getUserId", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify( {token:  JSON.parse(localStorage.getItem("authenticationTokenAndData")).token})
-                });
-        
-                if (response.status === 200) {
-                    const data  = await response.json();
-
-                    setUserId(data.userId);
-        
-                } else {
-                    const errorData = await serverResponse.json();
-                
-                    errorToastMessage(errorData.error);
-        
-                    return navigate("/404");
-                }
-                
-            } catch {
-                navigate('/404');
-            }
-        }
-
-        getUserId();
+        getUserId(user, setUserId, errorToastMessage, navigate);
         fetchHighlightData();
     }, []);
     
     return (
     <main className="highlight-description-main">
+      
         <HighlightContext.Provider value={{setDeleteHighlightComponent, highlightId, userId}}>
             {deleteHighlightComponentShown ? <DeleteHighlight/> : ""} 
         </HighlightContext.Provider>
+
         <ToastContainer />
+
             {highlightData ? <>
             <p>Upload Date: {highlightData.uploadDate}</p>
             <img src={`data:image/jpeg;base64,${highlightData.photo}`} alt="Highlight Image"/>
@@ -99,8 +78,8 @@ export function HighlightDescription() {
                     ></i> : ""}
                 Likes: {numberOfLikes}</p>
 
-            { // Only the owner has the right to edit and delete the highlight
-            highlightData.ownerId === userId ? 
+            { // Only the owner and the administrator have the right to edit and delete the highlight
+            (highlightData.ownerId === userId || isAdministrator) ? 
                 <div className="buttons">
                     <Link to={`/highlights/edit/${highlightData._id}`}><button>Edit</button></Link>
                     <button onClick={() => setDeleteHighlightComponent(true)}>Delete</button>

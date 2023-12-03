@@ -29,7 +29,7 @@ export function Highlights() {
             }
             
             const data = await response.json();
-            
+            console.log(data);            
             setHighlightsData(data);
         }
 

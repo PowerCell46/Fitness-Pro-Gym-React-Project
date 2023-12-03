@@ -1,10 +1,11 @@
 import { errorToastMessage } from "../../../utils/toastify";
 
+
 export async function likeHighlightHandler(highlightData, userId, highlightId, setNumberOfLikes, numberOfLikes, navigate) {
     if (!userId) {
         return errorToastMessage("You are not Logged in!");
     }
-
+    console.log(highlightData.likes);
     if (highlightData.likes.includes(userId)) {
         return errorToastMessage(`You've already liked this Highlight!`);
     }
@@ -12,7 +13,7 @@ export async function likeHighlightHandler(highlightData, userId, highlightId, s
     try {
         var response = await fetch(`http://localhost:5000/highlights/like/${highlightId}`, 
         {method: "POST", headers: {"Content-Type": "application/json"}, 
-        body: JSON.stringify({userId: userId})});
+        body: JSON.stringify({userId})});
 
         if (response.status === 200) {
             setNumberOfLikes((val) => val + 1, () => {
