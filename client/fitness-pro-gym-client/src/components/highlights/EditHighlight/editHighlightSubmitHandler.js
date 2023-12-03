@@ -4,7 +4,7 @@ import { highlightSuccessfullyEdited, errorToastMessage } from "../../../utils/t
 
 export async function editHighlightSubmitHandler(e, userId, highlight, highlightId, navigate) {
     e.preventDefault();
-    // console.log(highlight.ownerId, userId);
+    
     const spanElement = document.querySelector("#edit-highlight-span");
     
     let formData = new FormData(e.target);

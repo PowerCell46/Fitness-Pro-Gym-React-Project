@@ -47,6 +47,9 @@ export function HighlightDescription() {
             data.ownerId = data._doc.ownerId;
             data.likes = data._doc.likes;
             data._id = data._doc._id;
+            
+            console.log(data._doc.likes, userId); // fix this !!!
+            console.log(data._doc.likes[0] ===userId);
 
             setNumberOfLikes(data._doc.likes.length);
 

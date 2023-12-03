@@ -3,7 +3,6 @@ import { fakeButtonHandler, realButtonHandler } from "../../../utils/fakeBtnReal
 import { useParams } from "react-router-dom";
 import { useEffect, useContext } from "react";
 import { useState } from "react";
-import { errorToastMessage } from "../../../utils/toastify";
 import { editHighlightSubmitHandler } from "./editHighlightSubmitHandler";
 import { GlobalContext } from "../../../contexts/GlobalContext";
 import { handleFieldChange } from "../../../utils/handleFieldChange";

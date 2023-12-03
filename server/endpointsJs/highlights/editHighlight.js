@@ -19,8 +19,13 @@ async function editHighlight(req, res) {
         return res.status(500).json({ error: 'Internal Server Error - Searching for the user' }); 
     }
 
+
     try {
         const highlight = await Highlight.findOne({_id: highlightId});
+
+        if (highlight === null) {
+            return res.status(500).json({ error: 'No such highlight found!' });
+        }
 
         if (!(highlight.ownerId === userId || user.isAdministrator)) {
             return res.status(400).json({error: "You cannot edit this Highlight!"});
@@ -41,7 +46,7 @@ async function editHighlight(req, res) {
             );
 
        } catch {
-            return res.status(500).json({ error: 'Internal Server Error -> (Updating the user)' }); 
+            return res.status(500).json({ error: 'Internal Server Error - Updating the user' }); 
        }
 
     } else { // Image was being changed
@@ -58,10 +63,10 @@ async function editHighlight(req, res) {
                 { _id: highlightId },
                 { imageLocation: image.path, description: description },
                 { new: true }
-              );
+            );
             
         } catch {
-            return res.status(500).json({ error: 'Internal Server Error -> (Updating the user)' }); 
+            return res.status(500).json({ error: 'Internal Server Error - Updating the user' }); 
         }
     }
 
