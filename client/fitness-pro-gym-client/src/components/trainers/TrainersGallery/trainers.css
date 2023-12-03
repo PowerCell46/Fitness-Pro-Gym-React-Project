@@ -27,10 +27,13 @@
 
 .trainers-main .trainer-section img {
     width: 15vw;
-    height: auto;
-    max-height: 12vh;
+    height: 12vh; /* Set a fixed height based on the aspect ratio you want */
+    object-fit: cover; /* Maintain aspect ratio and cover the container */
+    object-position: center top; 
     border-radius: 0 0 0.5rem 0.5rem;
 }
+
+
 
 
 .trainers-main .trainer-section h5 {

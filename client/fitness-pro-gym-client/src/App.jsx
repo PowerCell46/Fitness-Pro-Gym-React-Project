@@ -37,6 +37,7 @@ import { postHighlightSubmitHandler } from './components/highlights/PostHighligh
 import { postTrainerSubmitHandler } from './components/trainers/PostTrainer/postTrainerSubmitHandler';
 import { postProductSubmitHandler } from './components/products/PostProduct/postProductSubmitHandler';
 import { changeProfilePictureHandler } from './components/MyProfile/changeProfilePictureHandler';
+import { Spinner } from './components/Spinner/Spinner';
 
 
 function App() {
@@ -46,6 +47,8 @@ function App() {
     const [logoutComponentShown, setLogoutComponent] = useState(false);
     const [profilePhoto, setProfilePhoto] = useState("");
     const navigate = useNavigate();
+    const [spinnerComponentShown, setSpinnerComponentShown] = useState(false);
+
 
     useEffect(() => {
         async function getProfilePhoto() {
@@ -101,42 +104,43 @@ function App() {
     }, []);
 
     return (
-        <GlobalContext.Provider value={{navigate, errorToastMessage}}>
+        <GlobalContext.Provider value={{navigate, errorToastMessage, setSpinnerComponentShown}}>
         <AuthenticationContext.Provider value={{loginSubmitHandler, registerSubmitHandler, logoutSubmitHandler, user, setUser, setLogoutComponent, profilePhoto, setProfilePhoto, changeProfilePictureHandler, setIsAdministrator, numberOfCartProducts, setNumberOfCartProducts}}>
         <>
             <Navigation/>
             {logoutComponentShown ? <Logout/> : ""}
+            {spinnerComponentShown ?  <Spinner/> : ""}
             
             <ToastContainer />
            
             <ProductContext.Provider value={{postProductSubmitHandler}}>
             <TrainerContext.Provider value={{postTrainerSubmitHandler}}>
             <HighlightContext.Provider value={{postHighlightSubmitHandler}}>
-          
+            
             <Routes>
                 <Route path='/' element={<Home/>}/>
 
-                <Route path='/login'  element={user ? <Home/> : <Login />}/>
-                <Route path='/register' element={user ? <Home/> : <Register/>}/>
-                <Route path='/myProfile' element={user ? <MyProfile/> : <Home/>}/>   
+                <Route path='/login'  element={<Login/>}/>
+                <Route path='/register' element={<Register/>}/>
+                <Route path='/myProfile' element={<MyProfile/>}/>   
                 
-                <Route path='/postHighlight' element={user ? <PostHighlight/> : <Home/>}/>
+                <Route path='/postHighlight' element={<PostHighlight/>}/>
                 <Route path='/highlights' element={<Highlights/>}/> 
                 <Route path='/highlights/:highlightId' element={<HighlightDescription/>}/>
                 <Route path='/highlights/edit/:highlightId' element={<EditHighlight/>}/> {/* check if the person is the owner of the highlight */}
 
-                <Route path='/postTrainer' element={ isAdministrator ?<PostTrainer/> : <Home/>}/>
+                <Route path='/postTrainer' element={<PostTrainer/>}/>
                 <Route path='/trainers' element={<Trainers/>}/>
 
-                <Route path='/postProduct' element={isAdministrator ? <PostProduct/> : <Home/>}/>
+                <Route path='/postProduct' element={<PostProduct/>}/>
                 <Route path='/products' element={<Products/>} />
                 <Route path='/products/:productId' element={<ProductDescription/>}/>
-                <Route path='/products/edit/:productId' element={isAdministrator ? <EditProduct/> : <Home/>}/>
+                <Route path='/products/edit/:productId' element={<EditProduct/>}/>
 
                 <Route path='/memberships' element={<Memberships/>}/> {/* add error message when a guest is trying to click on a membership */}
 
-                <Route path='/checkout' element={user ? <Checkout/> : <Home/>}/>
-                <Route path='/successfulOrder' element={user ? <SuccessfulOrder/> : <Home/>}/>
+                <Route path='/checkout' element={<Checkout/>}/>
+                <Route path='/successfulOrder' element={<SuccessfulOrder/>}/>
                 
                 <Route path='*' element={<Error_404/>}/>
             </Routes>
