@@ -4,10 +4,10 @@ const Highlight = require("../../schemas/highlightSchema");
 
 async function getHighlightsHandler(req, res) {
     try {
-        var data = await Highlight.find().sort({ uploadDate: 'desc' }).lean();
+        var data = await Highlight.find().sort({ uploadDate: 'desc' });
 
     } catch {
-        return res.status(500).json({ error: 'Internal Server Error -> (Searching for the Highlights)' });
+        return res.status(500).json({ error: 'Internal Server Error - Searching for the Highlights' });
     }
 
     try {
@@ -19,7 +19,7 @@ async function getHighlightsHandler(req, res) {
         }));
 
     } catch {
-        return res.status(500).json({ error: 'Internal Server Error -> (Converting the Images)' });
+        return res.status(500).json({ error: 'Internal Server Error - Converting the Images' });
     }
 
     return res.json(highlightsWithImages);

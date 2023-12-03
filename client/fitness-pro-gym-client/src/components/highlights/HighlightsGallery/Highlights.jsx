@@ -50,6 +50,7 @@ export function Highlights() {
                 <HighlightsDiv highlightsData={highlightsData.filter((el, index) => (index + 2) % 3 == 0)}/>
                 
             </div>
+            
         </main>
     );
 }

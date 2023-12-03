@@ -1,11 +1,11 @@
 import { validateImageExtension } from "../../../utils/validators";
 
 
-export async function postHighlightSubmitHandler(e, navigate, errorToastMessage) {
+export async function postHighlightSubmitHandler(e, navigate, errorToastMessage, token) {
     e.preventDefault(); 
 
     let formData = new FormData(e.target);
-    formData.append("token", JSON.parse(localStorage.getItem("authenticationTokenAndData")).token);
+    formData.append("token", token);
 
     const validImage = validateImageExtension(formData.get("image"));
     if (!validImage) {
@@ -21,6 +21,7 @@ export async function postHighlightSubmitHandler(e, navigate, errorToastMessage)
 
     // No required validation for the Description
 
+    // Making the request with valid data
     try {
         let response = await fetch("http://localhost:5000/highlights", {
             method: "POST",

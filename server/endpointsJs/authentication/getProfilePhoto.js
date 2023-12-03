@@ -8,6 +8,10 @@ async function getProfilePhoto(req, res) {
 
     const decodedToken = validateToken(token);
 
+    if (decodedToken === null) {
+        return res.status(400).json({ error: 'Invalid Authentication Token!' });
+    }
+
     try {
         var user = await User.findOne({ _id: decodedToken._id });
 

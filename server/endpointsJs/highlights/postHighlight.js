@@ -29,7 +29,7 @@ async function postHighlightHandler(req, res) {
         }
 
     } catch {
-        return res.status(500).json({ error: 'Internal Server Error -> (Searching for the user)' }); 
+        return res.status(500).json({ error: 'Internal Server Error - Searching for the user' }); 
     }
 
     try {

@@ -4,7 +4,7 @@ import { AuthenticationContext } from "../../contexts/AuthenticationContext";
 import {HighlightsDiv} from '../highlights/HighlightsGallery/HighlightsDiv';
 import { MyProfileSection } from "./MyProfileSection";
 import { fakeButtonHandler, realButtonMyProfileHandler } from "../../utils/fakeBtnRealBtn";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {errorToastMessage} from '../../utils/toastify';
 import { GlobalContext } from "../../contexts/GlobalContext";
@@ -13,7 +13,7 @@ import { GlobalContext } from "../../contexts/GlobalContext";
 export function MyProfile() {
     const [isHovered, setIsHovered] = useState(false);
     const {navigate} = useContext(GlobalContext)
-    const {profilePhoto, changeProfilePictureHandler, setProfilePhoto} = useContext(AuthenticationContext);
+    const {profilePhoto, changeProfilePictureHandler, setProfilePhoto, user} = useContext(AuthenticationContext);
     const [highlights, setHighlights] = useState([]);
     const [orders, setOrders] = useState([]);
     
@@ -22,7 +22,7 @@ export function MyProfile() {
             try {
                 var response = await fetch(`http://localhost:5000/highlights/myhighlights`, 
                 {method: "POST", headers: {"Content-Type": "application/json"}, 
-                body: JSON.stringify({token: JSON.parse(localStorage.getItem("authenticationTokenAndData")).token})});        
+                body: JSON.stringify({token: user})});        
         
                 if (!response.ok) {
                     const errorData = await response.json();
@@ -45,7 +45,7 @@ export function MyProfile() {
             try {
                 var response = await fetch(`http://localhost:5000/users/orders`, 
                 {method: "POST", headers: {"Content-Type": "application/json"}, 
-                body: JSON.stringify({token: JSON.parse(localStorage.getItem("authenticationTokenAndData")).token})});        
+                body: JSON.stringify({token: user})});        
         
                 if (!response.ok) {
                     const errorData = await response.json();
@@ -64,7 +64,7 @@ export function MyProfile() {
             setOrders(data);
         }
 
-        function generateQRcode() {
+        function generateQRcode() { // Add functionality - is the gym membership valid or not
             const qr = new QRious({
                 value: `127.0.0.1:5173/myProfile/${JSON.parse(localStorage.getItem("authenticationTokenAndData")).token}`
             });
