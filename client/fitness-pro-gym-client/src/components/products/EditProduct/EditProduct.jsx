@@ -10,7 +10,7 @@ import { handleFieldChange } from "../../../utils/handleFieldChange";
 
 
 export function EditProduct() {
-    const userId = JSON.parse(localStorage.getItem("authenticationTokenAndData")).id;
+    const [userId, setUserId] = useState("");
     const {productId} = useParams();
     const [productData, setProductData] = useState({});
     const {navigate} = useContext(AuthenticationContext);
@@ -37,6 +37,35 @@ export function EditProduct() {
             setProductData(data);
         }
 
+        async function  getUserId() {
+            try {
+                const response = await fetch("http://localhost:5000/users/getUserId", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify( {token:  JSON.parse(localStorage.getItem("authenticationTokenAndData")).token})
+                });
+        
+                if (response.status === 200) {
+                    const data  = await response.json();
+
+                    setUserId(data.userId);
+        
+                } else {
+                    const errorData = await serverResponse.json();
+                
+                    errorToastMessage(errorData.error);
+        
+                    return navigate("/404");
+                }
+                
+            } catch {
+                navigate('/404');
+            }
+        }
+
+        getUserId();
         fetchProductData();
     }, []);
 

@@ -6,7 +6,7 @@ import { GlobalContext } from "../../../contexts/GlobalContext";
 
 
 export function Register() {
-    const {registerSubmitHandler, setProfilePhoto, setUser} = useContext(AuthenticationContext);
+    const {registerSubmitHandler, setProfilePhoto, setUser, setIsAdministrator} = useContext(AuthenticationContext);
     const {navigate, errorToastMessage} = useContext(GlobalContext);
 
     return (
@@ -14,7 +14,7 @@ export function Register() {
         
             <h1>Register</h1>
             
-            <form onSubmit={(e) => registerSubmitHandler(e, navigate, errorToastMessage, setProfilePhoto, setUser)}>
+            <form onSubmit={(e) => registerSubmitHandler(e, navigate, errorToastMessage, setProfilePhoto, setUser, setIsAdministrator)}>
                 <p id="register-email-err-p" className="err-message">Email is not valid!</p>
                 <input id="register-email" type="text" name="email" placeholder="Email" className="err-input-field"/>
 

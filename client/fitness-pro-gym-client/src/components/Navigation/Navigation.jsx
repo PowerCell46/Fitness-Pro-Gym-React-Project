@@ -5,7 +5,7 @@ import './navigation.css';
 
 
 export function Navigation() {
-    const { user, setLogoutComponent, profilePhoto, numberOfCartProducts } = useContext(AuthenticationContext);
+    const { user, setLogoutComponent, profilePhoto, numberOfCartProducts, isAdministrator } = useContext(AuthenticationContext);
     const [dropdown, setDropdown] = useState(false);
 
     return (
@@ -31,8 +31,8 @@ export function Navigation() {
                         <li><Link to={'/myProfile'}>My Profile</Link></li>
                       
                         {/* If the user is the administrator - access to create menus */}
-                        {JSON.parse(localStorage.getItem("authenticationTokenAndData")).isAdministrator ? <li><Link to={'/postProduct'}>Create Product</Link></li> : ""}
-                        {JSON.parse(localStorage.getItem("authenticationTokenAndData")).isAdministrator ? <li><Link to={'/postTrainer'}>Create Trainer</Link></li> : ""}
+                        {isAdministrator ? <li><Link to={'/postProduct'}>Create Product</Link></li> : ""}
+                        {isAdministrator ? <li><Link to={'/postTrainer'}>Create Trainer</Link></li> : ""}
                       
                         <li>{<Link to={'/postHighlight'}>Post Highlight</Link>}</li>
                      
@@ -44,7 +44,7 @@ export function Navigation() {
         : ""} 
 
         {user ? <li id="cart-div"> {/* Shopping Cart */}
-            <Link to={'/checkout'}><i id="shopping-cart" class="fa-solid fa-cart-shopping"></i></Link>
+            <Link to={'/checkout'}><i id="shopping-cart" className="fa-solid fa-cart-shopping"></i></Link>
             <Link id="shopping-cart-quantity-link" to={'/checkout'}><p id="shopping-cart-quantity">{numberOfCartProducts}</p></Link>
         </li> 
         : ""}

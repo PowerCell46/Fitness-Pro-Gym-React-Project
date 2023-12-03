@@ -6,7 +6,7 @@ import { GlobalContext } from "../../../contexts/GlobalContext";
 
 
 export function Login() {
-    const {loginSubmitHandler, setProfilePhoto, setUser} = useContext(AuthenticationContext);
+    const {loginSubmitHandler, setProfilePhoto, setUser, setIsAdministrator} = useContext(AuthenticationContext);
     const {navigate, errorToastMessage} = useContext(GlobalContext);
 
     return (
@@ -15,7 +15,7 @@ export function Login() {
                 <h1 className="login-h1">Login</h1>
             </div>
 
-            <form onSubmit={(e) => loginSubmitHandler(e, setProfilePhoto, setUser, navigate, errorToastMessage)}>
+            <form onSubmit={(e) => loginSubmitHandler(e, setProfilePhoto, setUser, navigate, errorToastMessage, setIsAdministrator)}>
               
                 <p id="login-email-err-p" className="login-p err-message">Email is not valid!</p>
                 <input id="login-email" type="text" name="email" placeholder="Email Address" className="login-input"/>

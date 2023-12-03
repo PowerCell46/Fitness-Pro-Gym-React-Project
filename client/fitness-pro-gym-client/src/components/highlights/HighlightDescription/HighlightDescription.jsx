@@ -9,11 +9,12 @@ import 'react-toastify/dist/ReactToastify.css';
 import { errorToastMessage } from "../../../utils/toastify";
 import { DeleteHighlight } from "../DeleteHighlight/DeleteHighlight";
 import { likeHighlightHandler } from "./likeHighlightHandler";
+import { GlobalContext } from "../../../contexts/GlobalContext";
 
 
 export function HighlightDescription() {
-    const userId = localStorage.getItem("authenticationTokenAndData")  ? JSON.parse(localStorage.getItem("authenticationTokenAndData")).id || false : false;
-    const {navigate} = useContext(AuthenticationContext);
+    const [userId, setUserId ]= useState("");
+    const {navigate} = useContext(GlobalContext);
     const [highlightData, setHighlightData] = useState({});
     const [numberOfLikes, setNumberOfLikes] = useState(0);
     const [deleteHighlightComponentShown, setDeleteHighlightComponent] = useState(false);
@@ -46,6 +47,35 @@ export function HighlightDescription() {
             setHighlightData(data);   
         }
 
+        async function  getUserId() {
+            try {
+                const response = await fetch("http://localhost:5000/users/getUserId", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify( {token:  JSON.parse(localStorage.getItem("authenticationTokenAndData")).token})
+                });
+        
+                if (response.status === 200) {
+                    const data  = await response.json();
+
+                    setUserId(data.userId);
+        
+                } else {
+                    const errorData = await serverResponse.json();
+                
+                    errorToastMessage(errorData.error);
+        
+                    return navigate("/404");
+                }
+                
+            } catch {
+                navigate('/404');
+            }
+        }
+
+        getUserId();
         fetchHighlightData();
     }, []);
     

@@ -1,7 +1,7 @@
 import { validateEmail, validatePassword } from "../../../utils/validators";
 
 
-export async function loginSubmitHandler(e, setProfilePhoto, setUser, navigate, errorToastMessage) {
+export async function loginSubmitHandler(e, setProfilePhoto, setUser, navigate, errorToastMessage, setIsAdministrator) {
 
     e.preventDefault();
  
@@ -50,7 +50,7 @@ export async function loginSubmitHandler(e, setProfilePhoto, setUser, navigate, 
                 
             }
             return;
-            
+
         } else if (serverResponse.status === 400) { // Error User not found
             const errorData = await serverResponse.json();
     
@@ -79,12 +79,15 @@ export async function loginSubmitHandler(e, setProfilePhoto, setUser, navigate, 
             return navigate('/404'); 
         }
     
-        const {image, ...tokenAndData} = await serverResponse.json();
+        const {image, isAdministrator, ...tokenAndData} = await serverResponse.json();
     
         setProfilePhoto(image);
+
+        setIsAdministrator(isAdministrator);
         
         localStorage.setItem('authenticationTokenAndData', JSON.stringify(tokenAndData));
-        setUser(tokenAndData);
+      
+        setUser(JSON.parse(localStorage.getItem("authenticationTokenAndData")).token);
     
         navigate("/");
  

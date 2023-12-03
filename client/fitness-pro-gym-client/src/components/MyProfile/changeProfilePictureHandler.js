@@ -11,7 +11,7 @@ export async function changeProfilePictureHandler(setProfilePhoto, navigate) {
     // validate image
     const formData = new FormData();
     formData.append("image", fileInput.files[0]);
-    formData.append("userId", JSON.parse(localStorage.getItem("authenticationTokenAndData")).id);
+    formData.append("token", JSON.parse(localStorage.getItem("authenticationTokenAndData")).token);
 
     try {
         var response = await fetch("http://localhost:5000/profilePhotos", {

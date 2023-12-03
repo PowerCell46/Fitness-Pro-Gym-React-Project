@@ -13,10 +13,20 @@ function createToken(_id, email, username, isAdministrator) {
     return token;
 }
 
+function validateToken(token) {
+    try {
+        const decoded = jwt.verify(token, 'PowerCell46');
+        return decoded;
+    
+    } catch {
+        return null;
+    }
+}
+
 
 async function verifyPassword(password, incryptedPassword) {
     return await bcrypt.compare(password, incryptedPassword);
 }
 
 
-module.exports = {hashPassword, createToken, verifyPassword};
+module.exports = {hashPassword, createToken, verifyPassword, validateToken};

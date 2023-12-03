@@ -1,6 +1,7 @@
 const Highlight = require("../../schemas/highlightSchema");
 const User = require("../../schemas/userSchema");
 const { validateImageExtension } = require("../../utilities/validators");
+const {validateToken} = require('../../utilities/createTokenHashPassVerifyPass');
 
 
 async function postHighlightHandler(req, res) {
@@ -12,10 +13,16 @@ async function postHighlightHandler(req, res) {
         return res.status(400).json({ error: 'Highlight Image is not of valid type!' });
     }
 
-    const { description, ownerId } = req.body;
+    const { description, token } = req.body;
+
+    const decodedToken = validateToken(token);
+
+    if (decodedToken === null) {
+        return res.status(400).json({ error: 'Invalid Authentication Token!' });
+    }
 
     try {
-        const user = await User.findOne({ _id: ownerId });
+        const user = await User.findOne({ _id: decodedToken._id });
 
         if (user === null) {
             return res.status(500).json({ error: 'No such user found!' });
@@ -26,7 +33,7 @@ async function postHighlightHandler(req, res) {
     }
 
     try {
-        const highlight = new Highlight({ imageLocation: image.path, description, ownerId, likes: [] });
+        const highlight = new Highlight({ imageLocation: image.path, description, ownerId: decodedToken._id, likes: [] });
         highlight.save();
 
     } catch {

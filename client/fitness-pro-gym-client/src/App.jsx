@@ -41,12 +41,13 @@ import { Spinner } from './components/Spinner/Spinner';
 
 
 function App() {
-    const [user, setUser] = useState(localStorage.getItem('authenticationTokenAndData'));
-    const [numberOfCartProducts, setNumberOfCartProducts] = useState(0);
-    const [isAdministrator, setIsAdministrator] = useState(localStorage.getItem("authenticationTokenAndData")  ? JSON.parse(localStorage.getItem("authenticationTokenAndData")).isAdministrator || false : false );
-    const [logoutComponentShown, setLogoutComponent] = useState(false);
-    const [profilePhoto, setProfilePhoto] = useState("");
     const navigate = useNavigate();
+    const [user, setUser] = useState(localStorage.getItem("authenticationTokenAndData") ? JSON.parse(localStorage.getItem("authenticationTokenAndData")).token : false);
+    const [profilePhoto, setProfilePhoto] = useState("");
+    const [numberOfCartProducts, setNumberOfCartProducts] = useState(0);
+    const [isAdministrator, setIsAdministrator] = useState(false);
+   
+    const [logoutComponentShown, setLogoutComponent] = useState(false);
     const [spinnerComponentShown, setSpinnerComponentShown] = useState(false);
 
 
@@ -55,7 +56,7 @@ function App() {
             try {
                 const response = await fetch(`http://localhost:5000/users/getProfilePhoto`, 
                 {method: "POST", headers: {"Content-Type": "application/json"}, 
-                body: JSON.stringify({userId: JSON.parse(localStorage.getItem("authenticationTokenAndData")).id})});   
+                body: JSON.stringify({token: JSON.parse(localStorage.getItem("authenticationTokenAndData")).token})});   
                 
                 if (response.status === 200) {
                     const data = await response.json();
@@ -79,7 +80,7 @@ function App() {
             try {
                 const response = await fetch(`http://localhost:5000/users/getNumberOfCartProducts`, 
                 {method: "POST", headers: {"Content-Type": "application/json"}, 
-                body: JSON.stringify({userId: JSON.parse(localStorage.getItem("authenticationTokenAndData")).id})});   
+                body: JSON.stringify({token: JSON.parse(localStorage.getItem("authenticationTokenAndData")).token})});   
                 
                 if (response.status === 200) {
                     const data = await response.json();
@@ -95,17 +96,37 @@ function App() {
                 }
                 
             } catch {
-                redirect("/404");
+                return redirect("/404");
             }
         }
 
+        async function checkIfUserIsAdministrator() {
+            try {
+                var response = await fetch(`http://localhost:5000/users/isAdministrator`, 
+                    {method: "POST", headers: {"Content-Type": "application/json"}, 
+                    body: JSON.stringify({token: JSON.parse(localStorage.getItem("authenticationTokenAndData")).token})});  
+            
+            } catch {
+                setIsAdministrator(false);
+            }
+            
+            if (response.ok) {
+                const data = await response.json();
+                setIsAdministrator(data.isAdministrator);
+            
+            } else {
+                setIsAdministrator(false);
+            }
+        }
+
+        checkIfUserIsAdministrator();
         getNumberOfCartProducts();
         getProfilePhoto();
     }, []);
 
     return (
         <GlobalContext.Provider value={{navigate, errorToastMessage, setSpinnerComponentShown}}>
-        <AuthenticationContext.Provider value={{loginSubmitHandler, registerSubmitHandler, logoutSubmitHandler, user, setUser, setLogoutComponent, profilePhoto, setProfilePhoto, changeProfilePictureHandler, setIsAdministrator, numberOfCartProducts, setNumberOfCartProducts}}>
+        <AuthenticationContext.Provider value={{loginSubmitHandler, registerSubmitHandler, logoutSubmitHandler, user, setUser, setLogoutComponent, profilePhoto, setProfilePhoto, changeProfilePictureHandler, isAdministrator, setIsAdministrator, numberOfCartProducts, setNumberOfCartProducts}}>
         <>
             <Navigation/>
             {logoutComponentShown ? <Logout/> : ""}
@@ -129,10 +150,10 @@ function App() {
                 <Route path='/highlights/:highlightId' element={<HighlightDescription/>}/>
                 <Route path='/highlights/edit/:highlightId' element={<EditHighlight/>}/> {/* check if the person is the owner of the highlight */}
 
-                <Route path='/postTrainer' element={<PostTrainer/>}/>
+                <Route path='/postTrainer' element={<PostTrainer/>}/> {/* send the userId to check if he is an administrator */}
                 <Route path='/trainers' element={<Trainers/>}/>
 
-                <Route path='/postProduct' element={<PostProduct/>}/>
+                <Route path='/postProduct' element={<PostProduct/>}/>  {/* send the userId to check if he is an administrator */}
                 <Route path='/products' element={<Products/>} />
                 <Route path='/products/:productId' element={<ProductDescription/>}/>
                 <Route path='/products/edit/:productId' element={<EditProduct/>}/>

@@ -7,7 +7,7 @@ const memberships = require("../../constants/memberships");
 async function checkoutHandler(req, res) {
     const {userId} = req.body;
     let finalProducts = [];
-
+    
     try {
         var currentUser = await User.findOne({_id: userId});
         

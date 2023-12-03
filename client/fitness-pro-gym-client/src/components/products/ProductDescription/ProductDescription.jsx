@@ -11,8 +11,8 @@ import { GlobalContext } from '../../../contexts/GlobalContext';
 
 
 export function ProductDescription() {
-    const userId = localStorage.getItem("authenticationTokenAndData")  ? JSON.parse(localStorage.getItem("authenticationTokenAndData")).id || false : false;
-    const {user, setNumberOfCartProducts} = useContext(AuthenticationContext);
+    const [userId, setUserId] = useState("");
+    const {user, setNumberOfCartProducts, isAdministrator} = useContext(AuthenticationContext);
     const {navigate} = useContext(GlobalContext);
     const [productData, setProductData] = useState({});
     const {productId} = useParams();
@@ -39,6 +39,35 @@ export function ProductDescription() {
             
             setProductData(data);
         }
+        async function  getUserId() {
+            try {
+                const response = await fetch("http://localhost:5000/users/getUserId", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify( {token:  JSON.parse(localStorage.getItem("authenticationTokenAndData")).token})
+                });
+        
+                if (response.status === 200) {
+                    const data  = await response.json();
+
+                    setUserId(data.userId);
+        
+                } else {
+                    const errorData = await serverResponse.json();
+                
+                    errorToastMessage(errorData.error);
+        
+                    return navigate("/404");
+                }
+                
+            } catch {
+                navigate('/404');
+            }
+        }
+
+        getUserId();
 
         fetchProductData();
     }, []);
@@ -55,13 +84,13 @@ export function ProductDescription() {
                 <h3>{productData.price}.<sup>00</sup> BGN</h3>
                 <p>{productData.description}</p>
                 <div>
-                    {user ? JSON.parse(localStorage.getItem("authenticationTokenAndData")).isAdministrator ? // Only the Administrator has access to EDIT
-                        <Link to={`/products/edit/${productId}`}><button>EDIT</button></Link> : "": ""}
+                    {isAdministrator ? // Only the Administrator has access to EDIT
+                        <Link to={`/products/edit/${productId}`}><button>EDIT</button></Link> : ""}
                   
                     {userId ? <button id='add-to-cart-btn' onClick={(e) => addProductToCart(e, productId, userId, navigate, setNumberOfCartProducts)}>ADD TO CART</button> : ""}
                   
-                    {user ? JSON.parse(localStorage.getItem("authenticationTokenAndData")).isAdministrator ? // Only the Administrator has access to DELETE 
-                        <button onClick={() => setDeleteProductComponent(true)}>DELETE</button> : "" : ""}
+                    {isAdministrator ? // Only the Administrator has access to DELETE 
+                        <button onClick={() => setDeleteProductComponent(true)}>DELETE</button> : "" }
                 </div>
             </aside>
             <ToastContainer />

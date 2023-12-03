@@ -22,7 +22,7 @@ export function MyProfile() {
             try {
                 var response = await fetch(`http://localhost:5000/highlights/myhighlights`, 
                 {method: "POST", headers: {"Content-Type": "application/json"}, 
-                body: JSON.stringify({userId: JSON.parse(localStorage.getItem("authenticationTokenAndData")).id})});        
+                body: JSON.stringify({token: JSON.parse(localStorage.getItem("authenticationTokenAndData")).token})});        
         
                 if (!response.ok) {
                     const errorData = await response.json();
@@ -45,7 +45,7 @@ export function MyProfile() {
             try {
                 var response = await fetch(`http://localhost:5000/users/orders`, 
                 {method: "POST", headers: {"Content-Type": "application/json"}, 
-                body: JSON.stringify({userId: JSON.parse(localStorage.getItem("authenticationTokenAndData")).id})});        
+                body: JSON.stringify({token: JSON.parse(localStorage.getItem("authenticationTokenAndData")).token})});        
         
                 if (!response.ok) {
                     const errorData = await response.json();
@@ -66,7 +66,7 @@ export function MyProfile() {
 
         function generateQRcode() {
             const qr = new QRious({
-                value: `127.0.0.1:5173/myProfile/${JSON.parse(localStorage.getItem("authenticationTokenAndData")).id}`
+                value: `127.0.0.1:5173/myProfile/${JSON.parse(localStorage.getItem("authenticationTokenAndData")).token}`
             });
             document.querySelector("#qr-code").src = qr.toDataURL();
         }

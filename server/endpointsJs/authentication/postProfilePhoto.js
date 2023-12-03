@@ -5,8 +5,6 @@ const fs = require('fs');
 
 async function postProfilePhotoHandler(req, res) {
     const image = req.file;
-
-    // console.log(image);
     
     const validImage = validateImageExtension(image);
    
@@ -14,10 +12,17 @@ async function postProfilePhotoHandler(req, res) {
         return res.status(500).json({ error: 'Profile Photo is not of valid type!' });
     }
 
-    const {userId} = req.body;
+    const {token} = req.body;
+
+    const decodedToken = validateToken(token);
+
+    if (decodedToken === null) {
+        return res.status(400).json({ error: 'Invalid Authentication Token!' });
+    }
+
 
     try {
-        var user = await User.findOne({_id: userId});
+        var user = await User.findOne({_id: decodedToken._id});
 
         if (user === null) {
             return res.status(400).json({ error: 'No such user found!' });    
@@ -28,7 +33,7 @@ async function postProfilePhotoHandler(req, res) {
     }
 
     try {
-        await User.updateOne({ _id: userId }, { imageLocation: image.path}); 
+        await User.updateOne({ _id: decodedToken._id }, { imageLocation: image.path}); 
     
         const imageData = await fs.promises.readFile(`${image.path}`, {encoding: "base64"});
 

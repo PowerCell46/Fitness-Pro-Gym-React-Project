@@ -27,7 +27,7 @@ async function loginHandler(req, res) {
         }
 
     } catch {
-        return res.status(500).json({ error: 'Internal Server Error -> (Searching for the User)' });
+        return res.status(500).json({ error: 'Error - Searching for the User' });
     }
 
 
@@ -39,7 +39,7 @@ async function loginHandler(req, res) {
     }
 
     if (passwordValidity) {
-        var token = createToken(user._id, user.email, user.user);
+        var token = createToken(user._id, user.email, user.user, user.isAdministrator);
 
     } else {
         return res.status(403).json({ error: 'Password is not valid!' });
@@ -54,7 +54,7 @@ async function loginHandler(req, res) {
 
     console.log(`User: ${user.username} with email: ${user.email} successfully Logged in!`);
 
-    return res.json({ token, username: user.username, email: user.email, id: user._id, isAdministrator: user.isAdministrator, image: imageData });
+    return res.json({ token, username: user.username, email: user.email, isAdministrator: user.isAdministrator, image: imageData });
 }
 
 

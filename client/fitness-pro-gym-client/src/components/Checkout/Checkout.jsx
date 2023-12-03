@@ -13,13 +13,13 @@ import { AuthenticationContext } from '../../contexts/AuthenticationContext';
 export function Checkout() {
     const {setNumberOfCartProducts} = useContext(AuthenticationContext);
     const {navigate, errorToastMessage} = useContext(GlobalContext);
-    const userId = JSON.parse(localStorage.getItem("authenticationTokenAndData")).id;
+    const [userId, setUserId] = useState("");
     const [checkoutData, setCheckoutData] = useState([]);
     const [totalSum, setTotalSum] = useState(0);
     const [quantities, setQuantities] = useState({});
 
     useEffect(() => {
-        async function fetchCheckoutData() {
+        async function fetchCheckoutData(userId) {
             try {
                 var response = await fetch("http://localhost:5000/checkout", {
                     method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({userId})});
@@ -41,8 +41,39 @@ export function Checkout() {
             setTotalSum(getTotalPrice(data));
             setCheckoutData(data);
         }
+      
+        async function  getUserId() {
+            try {
+                const response = await fetch("http://localhost:5000/users/getUserId", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify( {token:  JSON.parse(localStorage.getItem("authenticationTokenAndData")).token})
+                });
+        
+                if (response.status === 200) {
+                    const data  = await response.json();
 
-        fetchCheckoutData();
+                    setUserId(data.userId);
+
+                    await fetchCheckoutData(data.userId);
+        
+                } else {
+                    const errorData = await serverResponse.json();
+                
+                    errorToastMessage(errorData.error);
+        
+                    return navigate("/404");
+                }
+                
+            } catch {
+                navigate('/404');
+            }
+        }
+
+        getUserId();
+        // fetchCheckoutData();
     }, []);
 
     return (

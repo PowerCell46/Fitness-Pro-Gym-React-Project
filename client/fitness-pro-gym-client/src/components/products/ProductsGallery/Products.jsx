@@ -11,13 +11,43 @@ import { GlobalContext } from "../../../contexts/GlobalContext";
 
 
 export function Products() {
-    const userId = localStorage.getItem("authenticationTokenAndData")  ? JSON.parse(localStorage.getItem("authenticationTokenAndData")).id || false : false;
+    const [userId, setUserId] = useState("");
     const {navigate} = useContext(GlobalContext);
     const {setNumberOfCartProducts} = useContext(AuthenticationContext);
     const [productsData, setProductsData] = useState([]);
 
     useEffect(() => {
         fetchCertainProducts("", errorToastMessage, navigate, setProductsData);
+
+        async function  getUserId() {
+            try {
+                const response = await fetch("http://localhost:5000/users/getUserId", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify( {token:  JSON.parse(localStorage.getItem("authenticationTokenAndData")).token})
+                });
+        
+                if (response.status === 200) {
+                    const data  = await response.json();
+
+                    setUserId(data.userId);
+        
+                } else {
+                    const errorData = await serverResponse.json();
+                
+                    errorToastMessage(errorData.error);
+        
+                    return navigate("/404");
+                }
+                
+            } catch {
+                navigate('/404');
+            }
+        }
+
+        getUserId();
     }, []);
 
     return (

@@ -1,7 +1,7 @@
 import { validateEmail, validateUsername, validatePassword,  } from "../../../utils/validators";
 
 
-export async function registerSubmitHandler(e, navigate, errorToastMessage, setProfilePhoto, setUser) {
+export async function registerSubmitHandler(e, navigate, errorToastMessage, setProfilePhoto, setUser, setIsAdministrator) {
     e.preventDefault();
 
     const {email, username, password, repeatPassword} = (Object.fromEntries(new FormData(e.target)));
@@ -85,13 +85,15 @@ export async function registerSubmitHandler(e, navigate, errorToastMessage, setP
         return navigate('/404'); 
     }
 
-    const {image, ...tokenAndData} = await serverResponse.json();
+    const {image, isAdministrator, ...tokenAndData} = await serverResponse.json();
 
     setProfilePhoto(image);
+
+    setIsAdministrator(isAdministrator);
     
     localStorage.setItem('authenticationTokenAndData', JSON.stringify(tokenAndData));
     
-    setUser(tokenAndData);
+    setUser(JSON.parse(localStorage.getItem("authenticationTokenAndData")).token);
 
     navigate("/");
 }

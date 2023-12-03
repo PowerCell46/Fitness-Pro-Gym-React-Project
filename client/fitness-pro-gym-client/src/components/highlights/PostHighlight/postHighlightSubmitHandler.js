@@ -5,7 +5,7 @@ export async function postHighlightSubmitHandler(e, navigate, errorToastMessage)
     e.preventDefault(); 
 
     let formData = new FormData(e.target);
-    formData.append("ownerId", JSON.parse(localStorage.getItem("authenticationTokenAndData")).id);
+    formData.append("token", JSON.parse(localStorage.getItem("authenticationTokenAndData")).token);
 
     const validImage = validateImageExtension(formData.get("image"));
     if (!validImage) {

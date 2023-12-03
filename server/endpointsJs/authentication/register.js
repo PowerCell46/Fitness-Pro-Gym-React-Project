@@ -37,7 +37,7 @@ async function registerHandler(req, res) {
         }
 
     } catch {
-        return res.status(500).json({ error: 'Internal Server Error -> (Searching for the Users)' });
+        return res.status(500).json({ error: 'Error - Searching for the Users' });
     }
 
 
@@ -82,7 +82,7 @@ async function registerHandler(req, res) {
     console.log(`User: ${user.username} with email: ${user.email} successfully Registered!`);
 
 
-    res.json({ token, username: user.username, email: user.email, id: user._id, isAdministrator: user.isAdministrator, image: imageData });
+    res.json({ token, username: user.username, email: user.email, isAdministrator: user.isAdministrator, image: imageData });
 }
 
 

@@ -1,11 +1,15 @@
 const User = require("../../schemas/userSchema");
 const fs = require("fs");
+const {validateToken} = require("../../utilities/createTokenHashPassVerifyPass");
+
 
 async function getProfilePhoto(req, res) {
-    const { userId } = req.body;
+    const {token} = req.body;
+
+    const decodedToken = validateToken(token);
 
     try {
-        var user = await User.findOne({ _id: userId });
+        var user = await User.findOne({ _id: decodedToken._id });
 
         if (user === null) {
             return res.status(400).json({ error: 'No such user found!' });
@@ -16,6 +20,7 @@ async function getProfilePhoto(req, res) {
     }
 
     const imageData = await fs.promises.readFile(`${user.imageLocation}`, { encoding: "base64" });
+   
     res.json(imageData);
 }
 

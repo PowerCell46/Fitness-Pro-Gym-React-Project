@@ -13,7 +13,7 @@ export function EditHighlight() {
     const {navigate} = useContext(GlobalContext);
     const [highlight, setHighlightData] = useState({});
     const {highlightId} = useParams();
-    const userId = JSON.parse(localStorage.getItem("authenticationTokenAndData")).id;
+    const [userId, setUserId ]= useState("");
 
     useEffect(() => {
         async function fetchHighlightData() {
@@ -37,8 +37,36 @@ export function EditHighlight() {
             setHighlightData(data);   
         }
 
-        fetchHighlightData();
+        async function  getUserId() {
+            try {
+                const response = await fetch("http://localhost:5000/users/getUserId", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify( {token:  JSON.parse(localStorage.getItem("authenticationTokenAndData")).token})
+                });
+        
+                if (response.status === 200) {
+                    const data  = await response.json();
 
+                    setUserId(data.userId);
+        
+                } else {
+                    const errorData = await serverResponse.json();
+                
+                    errorToastMessage(errorData.error);
+        
+                    return navigate("/404");
+                }
+                
+            } catch {
+                navigate('/404');
+            }
+        }
+
+        getUserId();
+        fetchHighlightData();
 
     }, []);
 
