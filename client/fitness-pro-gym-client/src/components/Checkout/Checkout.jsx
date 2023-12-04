@@ -101,7 +101,7 @@ export function Checkout() {
 
             <div className="details">
                 <h1>Shipping Details</h1>
-                <form onSubmit={(e) => postOrderHandler(e, checkoutData, quantities, userId, totalSum, navigate)}>
+                <form onSubmit={(e) => postOrderHandler(e, checkoutData, quantities, userId, totalSum, navigate, setNumberOfCartProducts)}>
                     <div>
                         <label htmlFor="country">Country:</label>
                         <input type="text" name="country" id="checkout-country" placeholder="Bulgaria"/>

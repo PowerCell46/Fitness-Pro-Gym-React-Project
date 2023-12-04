@@ -1,7 +1,7 @@
 import { successfullOrder, errorToastMessage } from "../../utils/toastify";
 
 
-export async function postOrderHandler(e, checkoutData, quantities, userId, totalSum, navigate) {
+export async function postOrderHandler(e, checkoutData, quantities, userId, totalSum, navigate, setNumberOfCartProducts) {
     e.preventDefault();
     const {country, city, neighbourhood, street, number, apartment} = (Object.fromEntries(new FormData(e.target)));
 
@@ -80,8 +80,10 @@ export async function postOrderHandler(e, checkoutData, quantities, userId, tota
         })});
 
         if (response.status === 200) {
+            setNumberOfCartProducts(0);
+
             navigate("/myProfile"); 
-       
+            
             return successfullOrder();
             
         } else {
