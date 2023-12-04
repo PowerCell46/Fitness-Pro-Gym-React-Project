@@ -19,13 +19,13 @@ async function finishOrderHandler(req, res) {
         if (!user) {
             return res.status(500).json({ error: 'An error occured while the User was being searched in the Database!'});
         } 
-
+        
     } catch {
         return res.status(500).json({ error: 'An error occured while the User was being searched in the Database!'});
     }
 
     user.orders.push({orderDetails, shippingDetails});
-
+    
     try {
         await User.updateOne({ _id: userId }, { orders: user.orders }); 
 
@@ -52,7 +52,7 @@ async function finishOrderHandler(req, res) {
     //     console.log(err);
     //     return res.status(500).json({ error: 'An error occurred while the Email was being send!' });
     // }
-
+    
     res.json("Successful Operation!");
 }
 

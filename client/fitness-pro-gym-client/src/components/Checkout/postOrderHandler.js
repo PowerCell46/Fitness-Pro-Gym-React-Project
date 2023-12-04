@@ -62,7 +62,6 @@ export async function postOrderHandler(e, checkoutData, quantities, userId, tota
     
     for (let product of checkoutData) {
         const name = product._doc ? product._doc.name : product.name;
-
         const productQuantity = quantities[name] || 1;
 
         const productId = product._doc ? product._doc._id :
