@@ -7,13 +7,16 @@ import { AuthenticationContext } from "../../../contexts/AuthenticationContext";
 import { errorToastMessage} from "../../../utils/toastify";
 import { editProductSubmitHandler } from "./editProductSubmitHandler";
 import { handleFieldChange } from "../../../utils/handleFieldChange";
+import { getUserId } from "../../../utils/getUserId";
+import { GlobalContext } from "../../../contexts/GlobalContext";
 
 
 export function EditProduct() {
     const [userId, setUserId] = useState("");
     const {productId} = useParams();
     const [productData, setProductData] = useState({});
-    const {navigate} = useContext(AuthenticationContext);
+    const {navigate} = useContext(GlobalContext);
+    const {user} = useContext(AuthenticationContext);
 
     useEffect(() => {
         async function fetchProductData() {
@@ -37,35 +40,7 @@ export function EditProduct() {
             setProductData(data);
         }
 
-        async function  getUserId() {
-            try {
-                const response = await fetch("http://localhost:5000/users/getUserId", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify( {token:  JSON.parse(localStorage.getItem("authenticationTokenAndData")).token})
-                });
-        
-                if (response.status === 200) {
-                    const data  = await response.json();
-
-                    setUserId(data.userId);
-        
-                } else {
-                    const errorData = await serverResponse.json();
-                
-                    errorToastMessage(errorData.error);
-        
-                    return navigate("/404");
-                }
-                
-            } catch {
-                navigate('/404');
-            }
-        }
-
-        getUserId();
+        getUserId(user, setUserId, errorToastMessage, navigate)
         fetchProductData();
     }, []);
 
@@ -79,7 +54,7 @@ export function EditProduct() {
            
             <div className="productTypeContainer">
                     <label htmlFor="productType">Product Type:</label>
-                    <select name="productType" onChange={handleFieldChange}>
+                    <select name="productType" onChange={(e) => handleFieldChange(e, setProductData, productData)}>
                         <option value="foodSupplement" selected={productData.type === "foodSupplement"}>Food Supplement</option>
                         <option value="fitnessMachine" selected={productData.type === "fitnessMachine"}>Fitness Machine</option>
                         <option value="merchandise" selected={productData.type === "merchandise"}>Merchandise</option>
@@ -88,10 +63,10 @@ export function EditProduct() {
             </div>
            
             <p id="edit-product-description-err-p" className="err-message">Product Description must be at least 10 characters long!</p>
-            <input id="edit-product-description" type="text" placeholder="Product Description" name="description" value={productData.description} onChange={handleFieldChange}/>
+            <input id="edit-product-description" type="text" placeholder="Product Description" name="description" value={productData.description} onChange={(e) => handleFieldChange(e, setProductData, productData)}/>
             
             <p id="edit-product-price-err-p" className="err-message">Product price must be bigger than 0!</p>
-            <input id="edit-product-price" type="number" placeholder="Product Price" name="price" value={productData.price} onChange={handleFieldChange}/>
+            <input id="edit-product-price" type="number" placeholder="Product Price" name="price" value={productData.price} onChange={(e) => handleFieldChange(e, setProductData, productData)}/>
            
             <input onChange={realButtonHandler} type="file" name="image" className="file-upload" hidden="hidden"/>
             <p id="edit-product-image-err-p" className="err-message">Invalid File Type!</p>

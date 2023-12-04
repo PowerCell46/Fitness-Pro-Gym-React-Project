@@ -2,42 +2,22 @@ import { useState } from 'react';
 import { MembershipsSection } from './MembershipsSection';
 import './memberships.css';
 import { useEffect } from 'react';
+import { useContext } from 'react';
+import { AuthenticationContext } from '../../../contexts/AuthenticationContext';
+import { getUserId } from '../../../utils/getUserId';
+import { errorToastMessage } from '../../../utils/toastify';
+import { GlobalContext } from '../../../contexts/GlobalContext';
 
 
 export function Memberships() {
+    const {navigate} = useContext(GlobalContext);
+    const {user} = useContext(AuthenticationContext);
     const [userId, setUserId] = useState("");
 
     useEffect(() => {
-        async function  getUserId() {
-            try {
-                const response = await fetch("http://localhost:5000/users/getUserId", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify( {token:  JSON.parse(localStorage.getItem("authenticationTokenAndData")).token})
-                });
-        
-                if (response.status === 200) {
-                    const data  = await response.json();
-
-                    setUserId(data.userId);
-        
-                } else {
-                    const errorData = await serverResponse.json();
-                
-                    errorToastMessage(errorData.error);
-        
-                    return navigate("/404");
-                }
-                
-            } catch {
-                navigate('/404');
-            }
-        }
-
-        getUserId();
+        getUserId(user, setUserId, errorToastMessage, navigate);
     }, []);
+    
     return (
         <main className='memberships-main'>
           

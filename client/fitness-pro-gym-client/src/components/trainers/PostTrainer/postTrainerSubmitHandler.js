@@ -1,7 +1,7 @@
 import { validateImageExtension, validateTrainerName, validateEmail, validatePhoneNumber } from "../../../utils/validators";
 
 
-export async function postTrainerSubmitHandler(e, navigate, errorToastMessage) {
+export async function postTrainerSubmitHandler(e, navigate, errorToastMessage, token) {
     e.preventDefault();
     let formData = new FormData(e.target);
     
@@ -59,6 +59,7 @@ export async function postTrainerSubmitHandler(e, navigate, errorToastMessage) {
     if (!validImage || validName !== true || validEmail !== true  || !validPhoneNumber) {
         return;
     }
+    formData.append("token", token);
 
     try {
         let response = await fetch("http://localhost:5000/trainers", {

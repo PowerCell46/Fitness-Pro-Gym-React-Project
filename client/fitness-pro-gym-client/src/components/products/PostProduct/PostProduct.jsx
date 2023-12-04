@@ -3,16 +3,18 @@ import { ProductContext } from "../../../contexts/ProductContext";
 import "./postProduct.css";
 import { fakeButtonHandler, realButtonHandler } from "../../../utils/fakeBtnRealBtn";
 import { GlobalContext } from "../../../contexts/GlobalContext";
+import { AuthenticationContext } from "../../../contexts/AuthenticationContext";
 
 
 export function PostProduct() {
+    const {user} = useContext(AuthenticationContext);
     const {navigate, errorToastMessage} = useContext(GlobalContext);
     const {postProductSubmitHandler} = useContext(ProductContext);
 
     return (
         <main className="post-product-main">
         <h1>Create Product</h1>
-        <form onSubmit={(e) => postProductSubmitHandler(e, navigate, errorToastMessage)}>
+        <form onSubmit={(e) => postProductSubmitHandler(e, navigate, errorToastMessage, user)}>
            
             <p id="post-product-name-err-p" className="err-message">Product name must be at least 5 characters long!</p>
             <input id="post-product-name" type="text" placeholder="Product Name" name="name"/>    

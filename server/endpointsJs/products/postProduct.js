@@ -1,4 +1,5 @@
 const Product = require("../../schemas/productSchema");
+const User = require("../../schemas/userSchema");
 const { validateImageExtension, validateProductName, validateProductType, validateProductDescription, validateProductPrice } = require("../../utilities/validators");
 
 
@@ -10,7 +11,28 @@ async function postProductHandler(req, res) {
         return res.status(400).json({ error: 'Product Image is not of valid type!' });
     }
 
-    const { name, productType, description, price } = req.body;
+    const { name, productType, description, price, token } = req.body;
+
+    const decodedToken = validateToken(token);
+
+    if (decodedToken === null) {
+        return res.status(400).json({ error: 'Invalid Authentication Token!' });
+    }
+
+    try {
+        const user = await User.findOne({_id: decodedToken._id});
+
+        if (user === null) {
+            return res.status(400).json({error: "No such user found!"});
+        }
+
+        if (!user.isAdministrator) {
+            return res.status(400).json({error: "You cannot create a trainer!"});
+        }
+
+    } catch {
+        return res.status(500).json({ error: 'Internal Server Error - Searching the User' });
+    }
 
     const validName = validateProductName(name);
     if (validName !== true) {
