@@ -32,7 +32,7 @@ export async function postHighlightSubmitHandler(e, navigate, errorToastMessage,
             navigate("/highlights");
 
         } else {
-            const errorData = await serverResponse.json();
+            const errorData = await response.json();
         
             errorToastMessage(errorData.error);
 

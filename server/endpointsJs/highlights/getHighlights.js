@@ -4,7 +4,7 @@ const Highlight = require("../../schemas/highlightSchema");
 
 async function getHighlightsHandler(req, res) {
     try {
-        var data = await Highlight.find().sort({ uploadDate: 'desc' });
+        var data = await Highlight.find().sort({ uploadDate: 'desc' }).lean();
 
     } catch {
         return res.status(500).json({ error: 'Internal Server Error - Searching for the Highlights' });

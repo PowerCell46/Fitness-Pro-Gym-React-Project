@@ -1,4 +1,4 @@
-import {Route, Routes, redirect, useNavigate} from 'react-router-dom';
+import {Navigate, Route, Routes, redirect, useNavigate} from 'react-router-dom';
 import './App.css';
 import { Navigation } from './components/Navigation/Navigation';
 import { Home } from './components/Home/Home';
@@ -140,31 +140,35 @@ function App() {
             <HighlightContext.Provider value={{postHighlightSubmitHandler}}>
             
             <Routes>
+                
                 <Route path='/' element={<Home/>}/>
 
-                <Route path='/login'  element={<Login/>}/>
-                <Route path='/register' element={<Register/>}/>
-                <Route path='/myProfile' element={<MyProfile/>}/>   
+                {!user ? <Route path='/login' element={<Login />}/>  : <Route path='/login' element={<Navigate to="/404" />} />}
+                {!user ? <Route path='/register' element={<Register/>}/>  : <Route path='/register' element={<Navigate to="/404" />} />}
                 
-                <Route path='/postHighlight' element={<PostHighlight/>}/>
+                {user ? <Route path='/myProfile' element={<MyProfile/>}/>  : <Route path='/myProfile' element={<Navigate to="/404" />} />}
+                
+                
+                {user ? <Route path='/postHighlight' element={<PostHighlight/>}/> : <Route path='/postHighlight' element={<Navigate to="/404" />} />}
                 <Route path='/highlights' element={<Highlights/>}/> 
                 <Route path='/highlights/:highlightId' element={<HighlightDescription/>}/>
-                <Route path='/highlights/edit/:highlightId' element={<EditHighlight/>}/> {/* check if the person is the owner of the highlight */}
+                {user ? <Route path='/highlights/edit/:highlightId' element={<EditHighlight/>}/> : <Route path='/highlights/edit/:highlightId' element={<Navigate to="/404" />}/>}
 
-                <Route path='/postTrainer' element={<PostTrainer/>}/> {/* send the userId to check if he is an administrator */}
+                {isAdministrator ? <Route path='/postTrainer' element={<PostTrainer/>}/> : <Route path='/postTrainer' element={<Navigate to="/404" />}/>}
                 <Route path='/trainers' element={<Trainers/>}/>
 
-                <Route path='/postProduct' element={<PostProduct/>}/>  {/* send the userId to check if he is an administrator */}
+                {isAdministrator ? <Route path='/postProduct' element={<PostProduct/>}/> : <Route path='/postProduct' element={<Navigate to="/404" />}/>}
                 <Route path='/products' element={<Products/>} />
                 <Route path='/products/:productId' element={<ProductDescription/>}/>
-                <Route path='/products/edit/:productId' element={<EditProduct/>}/>
+                {isAdministrator ? <Route path='/products/edit/:productId' element={<EditProduct/>}/> : <Route path='/products/edit/:productId' element={<Navigate to="/404" />}/>}
 
                 <Route path='/memberships' element={<Memberships/>}/> {/* add error message when a guest is trying to click on a membership */}
 
-                <Route path='/checkout' element={<Checkout/>}/>
-                <Route path='/successfulOrder' element={<SuccessfulOrder/>}/>
+                {user ? <Route path='/checkout' element={<Checkout/>}/> : <Route path='/checkout' element={<Navigate to="/404" />}/>}
+                {user ? <Route path='/successfulOrder' element={<SuccessfulOrder/>}/> : <Route path='/successfulOrder' element={<Navigate to="/404" />}/>}
                 
                 <Route path='*' element={<Error_404/>}/>
+
             </Routes>
            
             </HighlightContext.Provider>

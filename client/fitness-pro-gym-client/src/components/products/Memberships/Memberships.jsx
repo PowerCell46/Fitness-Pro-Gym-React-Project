@@ -15,7 +15,9 @@ export function Memberships() {
     const [userId, setUserId] = useState("");
 
     useEffect(() => {
-        getUserId(user, setUserId, errorToastMessage, navigate);
+        if (user) {
+            getUserId(user, setUserId, errorToastMessage, navigate);
+        }
     }, []);
     
     return (

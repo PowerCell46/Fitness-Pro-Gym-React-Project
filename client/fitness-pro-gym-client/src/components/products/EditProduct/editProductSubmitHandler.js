@@ -83,7 +83,7 @@ export async function editProductSubmitHandler(e, userId, productId, navigate, p
             return navigate(`/products/${productId}`);
 
         } else {
-            const errorData = await serverResponse.json();
+            const errorData = await response.json();
         
             errorToastMessage(errorData.error);
 

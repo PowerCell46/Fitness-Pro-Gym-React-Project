@@ -54,15 +54,15 @@ export async function registerSubmitHandler(e, navigate, errorToastMessage, setP
     
     // Valid data is being given to the server
     try {
-        var serverResponse = await fetch("http://localhost:5000/users/register", 
+        var response = await fetch("http://localhost:5000/users/register", 
         {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({email, username, password})});
    
     } catch {
         return navigate('/404'); // Error while making the request
     }
 
-    if (serverResponse.status === 409) { // Checking for the case where the Email or the Username has already been Used
-        const errorData = await serverResponse.json();
+    if (response.status === 409) { // Checking for the case where the Email or the Username has already been Used
+        const errorData = await response.json();
 
         if (errorData.error === 'Email already in use!') {
             document.querySelector("#register-email-err-p").textContent = 'Email already in use!';                    
@@ -77,15 +77,15 @@ export async function registerSubmitHandler(e, navigate, errorToastMessage, setP
             return;
         }
 
-    } else if (!serverResponse.ok) { // Any other type of Error
-        const errorData = await serverResponse.json();
+    } else if (!response.ok) { // Any other type of Error
+        const errorData = await response.json();
         
         errorToastMessage(errorData.error);
 
         return navigate('/404'); 
     }
 
-    const {image, isAdministrator, ...tokenAndData} = await serverResponse.json();
+    const {image, isAdministrator, ...tokenAndData} = await response.json();
 
     setProfilePhoto(image);
 

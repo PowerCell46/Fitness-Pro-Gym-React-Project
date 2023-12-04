@@ -52,8 +52,11 @@ export function HighlightDescription() {
 
             setHighlightData(data);   
         }
-
-        getUserId(user, setUserId, errorToastMessage, navigate, fetchHighlightData);
+        if (user) {
+            getUserId(user, setUserId, errorToastMessage, navigate, fetchHighlightData);
+        } else {
+            fetchHighlightData();
+        }
     }, []);
     
     return (

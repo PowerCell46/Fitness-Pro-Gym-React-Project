@@ -21,16 +21,16 @@ export function MembershipsSection(props) {
                   <th>Price</th>
                 </tr>
                 <tr>
-                  <td onClick={(e) => addMembershipToCart(e, props.title, "under18", props.userId, navigate, setNumberOfCartProducts)}>Under 18</td>
-                  <td onClick={(e) => addMembershipToCart(e, props.title, "under18", props.userId, navigate, setNumberOfCartProducts)}>{props.under18}.<sup>00</sup> BGN</td>
+                  <td onClick={props.userId !== "" ? (e) => addMembershipToCart(e, props.title, "under18", props.userId, navigate, setNumberOfCartProducts) : null}>Under 18</td>
+                  <td onClick={props.userId !== "" ? (e) => addMembershipToCart(e, props.title, "under18", props.userId, navigate, setNumberOfCartProducts) : null}>{props.under18}.<sup>00</sup> BGN</td>
                 </tr>
                 <tr>
-                  <td onClick={(e) => addMembershipToCart(e, props.title, "men", props.userId, navigate, setNumberOfCartProducts)}>Men</td>
-                  <td onClick={(e) => addMembershipToCart(e, props.title, "men", props.userId, navigate, setNumberOfCartProducts)}>{props.men}.<sup>00</sup> BGN</td>
+                  <td onClick={props.userId !== "" ? (e) => addMembershipToCart(e, props.title, "under18", props.userId, navigate, setNumberOfCartProducts) : null}>Men</td>
+                  <td onClick={props.userId !== "" ? (e) => addMembershipToCart(e, props.title, "under18", props.userId, navigate, setNumberOfCartProducts) : null}>{props.men}.<sup>00</sup> BGN</td>
                 </tr>
                 <tr>
-                  <td onClick={(e) => addMembershipToCart(e, props.title, "women", props.userId, navigate, setNumberOfCartProducts)}>Women</td>
-                  <td onClick={(e) => addMembershipToCart(e, props.title, "women", props.userId, navigate, setNumberOfCartProducts)}>{props.women}.<sup>00</sup> BGN</td>
+                  <td onClick={props.userId !== "" ? (e) => addMembershipToCart(e, props.title, "under18", props.userId, navigate, setNumberOfCartProducts) : null}>Women</td>
+                  <td onClick={props.userId !== "" ? (e) => addMembershipToCart(e, props.title, "under18", props.userId, navigate, setNumberOfCartProducts) : null}>{props.women}.<sup>00</sup> BGN</td>
                 </tr>
               </tbody>
             </table>

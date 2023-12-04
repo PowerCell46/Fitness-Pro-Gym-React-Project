@@ -20,7 +20,9 @@ export function Products() {
     useEffect(() => {
         
         fetchCertainProducts("", errorToastMessage, navigate, setProductsData);
-        getUserId(user, setUserId, errorToastMessage, navigate);
+        if (user) {
+            getUserId(user, setUserId, errorToastMessage, navigate);
+        }
     }, []);
 
     return (

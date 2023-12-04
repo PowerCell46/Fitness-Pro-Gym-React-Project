@@ -38,7 +38,7 @@ export async function editHighlightSubmitHandler(e, userId, highlight, highlight
             return navigate(`/highlights/${highlightId}`);
 
         } else {
-            const errorData = await serverResponse.json();
+            const errorData = await response.json();
         
             errorToastMessage(errorData.error);
 

@@ -72,20 +72,20 @@ export async function postOrderHandler(e, checkoutData, quantities, userId, tota
     }
 
     try {
-        var serverResponse = await fetch("http://localhost:5000/checkout/finishOrder", 
+        var response = await fetch("http://localhost:5000/checkout/finishOrder", 
         {method: "POST", 
         headers: {"Content-Type": "application/json"}, 
         body: JSON.stringify({userId, orderDetails: orderProductsDetails, 
             shippingDetails: {country, city, neighbourhood, street, number, apartment}
         })});
 
-        if (serverResponse.status === 200) {
+        if (response.status === 200) {
             navigate("/myProfile"); 
        
             return successfullOrder();
             
         } else {
-            const errorData = await serverResponse.json();
+            const errorData = await response.json();
         
             errorToastMessage(errorData.error);
 

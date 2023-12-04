@@ -18,7 +18,7 @@ export async function getUserId(token, setUserId, errorToastMessage, navigate, f
             }
 
         } else {
-            const errorData = await serverResponse.json();
+            const errorData = await response.json();
         
             errorToastMessage(errorData.error);
 

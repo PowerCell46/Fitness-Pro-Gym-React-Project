@@ -41,7 +41,9 @@ export function ProductDescription() {
             setProductData(data);
         }
 
-        getUserId(user ,setUserId, errorToastMessage, navigate)
+        if (user) {
+            getUserId(user ,setUserId, errorToastMessage, navigate);
+        }
         fetchProductData();
     }, []);
 
