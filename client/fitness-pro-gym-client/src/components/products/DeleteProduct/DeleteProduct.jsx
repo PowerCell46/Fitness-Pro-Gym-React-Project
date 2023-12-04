@@ -15,7 +15,7 @@ export function DeleteProduct() {
             <h3>Are you sure you want to Delete this Product?</h3>
             <div className="logout-buttons">
                 <button onClick={() => setDeleteProductComponent(false)}>Cancel</button>
-                <button onClick={() => deleteProductSubmitHandler(productId, navigate)}>Proceed</button>
+                <button onClick={() => deleteProductSubmitHandler(productId, navigate, token)}>Proceed</button>
             </div>
         </section>
     );

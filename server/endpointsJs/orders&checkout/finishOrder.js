@@ -1,7 +1,7 @@
-const nodemailer = require('nodemailer');
-
 const User = require("../../schemas/userSchema");
-const { formatOrderedProducts } = require('../../utilities/formatOrderedProducts');
+const nodemailer = require('nodemailer');
+const formatOrderedProducts = require("../../utilities/formatOrderedProducts");
+
 
 async function finishOrderHandler(req, res) {
     const {userId, orderDetails, shippingDetails} = req.body;
@@ -46,7 +46,7 @@ async function finishOrderHandler(req, res) {
             html: `
               <html>
                 <body>
-                  <h2>New Order:</h2>
+                  <h2>New Order #${orderDetails.orderId}:</h2>
                   <h3>User Details:</h3>
                   <p><strong>User:</strong> ${user.username}</p>
                   <p><strong>Email:</strong> ${user.email}</p>
@@ -55,6 +55,7 @@ async function finishOrderHandler(req, res) {
                   <ul>
                     ${formatOrderedProducts(orderDetails)}
                   </ul>
+                  <h4>Total Price: ${orderDetails.totalPrice} BGN.</h4>
           
                   <h3>Shipping Details:</h3>
                   <p>

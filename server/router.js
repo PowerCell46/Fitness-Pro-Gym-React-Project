@@ -58,33 +58,34 @@ const upload = multer({ storage: storage });
 router.get("/");
 
 
+// Authentication
 
 router.post("/users/login", loginHandler);
-
 
 router.post("/users/register", registerHandler);
 
 
-router.post("/users/orders", getOrdersHandler);
 
-
-router.post("/users/getProfilePhoto", getProfilePhoto);
-
-
-router.post("/users/getNumberOfCartProducts", getNumberOfCartProducts);
-
+router.post("/users/getUserId", getUserId);
 
 router.post("/users/isAdministrator", isAdministrator);
 
 
-router.post("/users/getUserId", getUserId);
 
+router.post("/users/orders", getOrdersHandler);
+
+router.post("/users/getNumberOfCartProducts", getNumberOfCartProducts);
+
+router.post("/users/getProfilePhoto", getProfilePhoto);
 
 router.post("/profilePhotos", upload.single("image"), postProfilePhotoHandler);
 
 
 
 
+
+
+// Highlights
 
 router.get("/highlights", getHighlightsHandler);
 
@@ -98,7 +99,6 @@ router.get("/highlights/:highlightId", getHighlightHandler);
 
 router.post('/highlights/edit/:highlightId', upload.single("image"), editHighlight);
 
-
 router.post("/highlights/delete/:highlightId", deleteHighlight);
 
 router.post("/highlights/like/:highlightId", likeHighlightHandler);
@@ -106,6 +106,7 @@ router.post("/highlights/like/:highlightId", likeHighlightHandler);
 
 
 
+// Trainers
 
 router.get("/trainers", getTrainersHandler);
 
@@ -113,6 +114,7 @@ router.post("/trainers", upload.single("image"), postTrainerHandler);
 
 
 
+// Products
 
 router.get("/products", getProductsHandler);
 
@@ -130,7 +132,7 @@ router.post("/products", upload.single("image"), postProductHandler);
 
 router.post("/products/buy/:productId", buyProductHandler);
 
-router.get("/products/delete/:productId", deleteProductHandler);
+router.post("/products/delete/:productId", deleteProductHandler);
 
 router.post("/products/edit/:productId", upload.single("image"), editProductHandler);
 
@@ -138,6 +140,8 @@ router.post("/products/edit/:productId", upload.single("image"), editProductHand
 router.post("/memberships/:type/:category", membershipsHandler);
 
 
+
+// Checkout
 
 router.post("/checkout", checkoutHandler);
 

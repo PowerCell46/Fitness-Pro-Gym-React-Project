@@ -2,6 +2,18 @@ const Product = require("../../schemas/productSchema");
 
 
 async function deleteProductHandler(req, res) {
+    const {token} = req.body;
+
+    const decodedToken = validateToken(token);
+
+    if (decodedToken === null) {
+        return res.status(400).json({ error: 'Invalid Authentication Token!' });
+    }
+
+    if (!decodedToken.isAdministrator) {
+        return res.status(400).json({ error: 'Only Administrators can delete Products!' });
+    }
+    
     const productId =req.params.productId;
 
     try {

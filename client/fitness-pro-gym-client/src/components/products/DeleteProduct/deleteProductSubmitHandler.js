@@ -1,9 +1,11 @@
 import { productSuccessfullyDeleted, errorToastMessage } from "../../../utils/toastify";
 
 
-export async function deleteProductSubmitHandler(productId, navigate) {
+export async function deleteProductSubmitHandler(productId, navigate, token) {
     try {
-        var response = await fetch(`http://localhost:5000/products/delete/${productId}`);
+        var response = await fetch(`http://localhost:5000/products/delete/${productId}`, {
+            method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({token})
+        });
     
     } catch {
         navigate("/404");
