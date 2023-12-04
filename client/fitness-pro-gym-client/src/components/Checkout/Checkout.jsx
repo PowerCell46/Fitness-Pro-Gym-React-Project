@@ -8,10 +8,11 @@ import { removeProductFromCartHandler } from './removeProductFromCartHandler';
 import { postOrderHandler } from './postOrderHandler';
 import { GlobalContext } from '../../contexts/GlobalContext';
 import { AuthenticationContext } from '../../contexts/AuthenticationContext';
+import { getUserId } from '../../utils/getUserId';
 
 
 export function Checkout() {
-    const {setNumberOfCartProducts} = useContext(AuthenticationContext);
+    const {setNumberOfCartProducts, user} = useContext(AuthenticationContext);
     const {navigate, errorToastMessage} = useContext(GlobalContext);
     const [userId, setUserId] = useState("");
     const [checkoutData, setCheckoutData] = useState([]);
@@ -42,38 +43,7 @@ export function Checkout() {
             setCheckoutData(data);
         }
       
-        async function  getUserId() {
-            try {
-                const response = await fetch("http://localhost:5000/users/getUserId", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify( {token:  JSON.parse(localStorage.getItem("authenticationTokenAndData")).token})
-                });
-        
-                if (response.status === 200) {
-                    const data  = await response.json();
-
-                    setUserId(data.userId);
-
-                    await fetchCheckoutData(data.userId);
-        
-                } else {
-                    const errorData = await serverResponse.json();
-                
-                    errorToastMessage(errorData.error);
-        
-                    return navigate("/404");
-                }
-                
-            } catch {
-                navigate('/404');
-            }
-        }
-
-        getUserId();
-        // fetchCheckoutData();
+        getUserId(user, setUserId, errorToastMessage, navigate, fetchCheckoutData);
     }, []);
 
     return (

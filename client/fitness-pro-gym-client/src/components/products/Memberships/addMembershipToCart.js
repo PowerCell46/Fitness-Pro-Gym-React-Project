@@ -1,12 +1,13 @@
 import { productSuccessfullyAdded, productAlreadyAddedToCart, errorToastMessage } from "../../../utils/toastify";
 
-export async function addMembershipToCart(e, membershipType, membershipCategory, userId, navigate) {
+
+export async function addMembershipToCart(e, membershipType, membershipCategory, userId, navigate, setNumberOfCartProducts) {
 
     try {
         var response = await fetch(`http://localhost:5000/memberships/${membershipType}/${membershipCategory}`, {
             method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({userId})
         });
-        
+
         if (response.status === 200) {
             const responseCondition = await response.json();
 
@@ -17,6 +18,9 @@ export async function addMembershipToCart(e, membershipType, membershipCategory,
               for (let i = 0; i < children.length; i++) {
                   children[i].classList.add("added-membership");
               }
+            
+              setNumberOfCartProducts((previousValue) => previousValue + 1);
+
               return productSuccessfullyAdded();
 
             } else {
@@ -31,7 +35,8 @@ export async function addMembershipToCart(e, membershipType, membershipCategory,
               return navigate("/404");
         }
 
-    } catch {
+    } catch(err) {
+        console.log(err);
         navigate("/404");
     }
 }

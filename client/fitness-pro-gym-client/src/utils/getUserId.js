@@ -1,4 +1,4 @@
-export async function getUserId(token, setUserId, errorToastMessage, navigate) {
+export async function getUserId(token, setUserId, errorToastMessage, navigate, func) {
     try {
         const response = await fetch("http://localhost:5000/users/getUserId", {
             method: "POST",
@@ -12,6 +12,10 @@ export async function getUserId(token, setUserId, errorToastMessage, navigate) {
             const data  = await response.json();
                 
             setUserId(data.userId);
+
+            if (func) {
+                await func(data.userId);
+            }
 
         } else {
             const errorData = await serverResponse.json();
