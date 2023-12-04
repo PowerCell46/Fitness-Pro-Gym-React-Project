@@ -93,15 +93,16 @@
 }
 
 
-.highlight-description-main i:hover {
-    color: var(--deep-blue);
-}
-
-
 .highlight-description-main .already-liked {
     color: #ff5700;
     animation: none;
 }
+
+.hover-like {
+    color: #145299;
+    animation: none;
+}
+
 
 
 @media screen and (max-width: 1900px) { 

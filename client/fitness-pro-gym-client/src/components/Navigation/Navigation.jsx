@@ -12,9 +12,9 @@ export function Navigation() {
     <header>
         {!user ? <li><Link to={'/register'}>Register</Link></li> : "" /* No user */}  
 
-        <li><Link to={'/highlights'}>Highlights</Link></li>        
-
         <li><Link to={'/products'}>Products</Link></li>
+
+        <li><Link to={'/highlights'}>Highlights</Link></li>        
 
         {!user ? <li><Link to={'/login'}>Login</Link></li> : "" /* No user */}
         

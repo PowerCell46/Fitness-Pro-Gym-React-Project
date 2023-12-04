@@ -79,7 +79,7 @@ export function HighlightDescription() {
                         highlightData.hasLiked
                         ? "fa-solid fa-thumbs-up already-liked" // If the person has liked, the button will not move and be different colour
                         : "fa-solid fa-thumbs-up fa-bounce"}
-                    ></i> : ""}
+                        onMouseEnter={handleLikeButtonEffects}  onMouseLeave={(e) => e.target.classList.remove("hover-like")}></i> : ""}
                 Likes: {numberOfLikes}</p>
 
             { // Only the owner and the administrator have the right to edit and delete the highlight
@@ -94,4 +94,13 @@ export function HighlightDescription() {
             ""}                
     </main>
     );  
+
+    function handleLikeButtonEffects(e) {
+        console.log(e.target);
+        console.log(!highlightData.hasLiked && userId !== "");
+        if (!highlightData.hasLiked && userId !== "") {
+            console.log("added");
+            e.target.classList.add("hover-like");
+        }
+    }
 }
