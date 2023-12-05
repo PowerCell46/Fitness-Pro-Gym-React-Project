@@ -62,7 +62,7 @@ export function MyProfile() {
             }
 
             const data = await response.json();
-
+            
             setMembershipValid(setMembershipValidity(data));
 
             setOrders(data);

@@ -118,9 +118,13 @@
 }
 
 
+#order-details-btn {
+    margin-left: auto;
+    margin-right: 2.5vw;
+}
+
+
 .my-profile-main section button {
-    position: relative;
-    left: 34vw;
     padding: 0.7rem 0.7rem;
     background-color: #008F7A;
     color: #f5f5f5;

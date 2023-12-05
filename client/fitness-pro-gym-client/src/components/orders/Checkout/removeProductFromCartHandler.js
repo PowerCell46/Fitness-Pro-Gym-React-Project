@@ -1,4 +1,4 @@
-import { productSuccessfullyRemoved, errorToastMessage } from "../../utils/toastify";
+import { productSuccessfullyRemoved, errorToastMessage } from "../../../utils/toastify";
 export async function removeProductFromCartHandler(removedProductId, productForRemoval, userId, setCheckoutData, setTotalSum, getProductPrice, navigate, setNumberOfCartProducts) {
     try {
         const response = await fetch(`http://localhost:5000/checkout/removeProduct`, {

@@ -1,4 +1,4 @@
-import { successfullOrder, errorToastMessage } from "../../utils/toastify";
+import { successfullOrder, errorToastMessage } from "../../../utils/toastify";
 
 
 export async function postOrderHandler(e, checkoutData, quantities, userId, totalSum, navigate, setNumberOfCartProducts) {

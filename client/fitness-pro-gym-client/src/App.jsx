@@ -22,7 +22,7 @@ import { ProductContext } from './contexts/ProductContext';
 import { Products } from './components/products/ProductsGallery/Products';
 import { ProductDescription } from './components/products/ProductDescription/ProductDescription';
 import { Memberships } from './components/products/Memberships/Memberships';
-import { Checkout } from './components/Checkout/Checkout';
+import { Checkout } from './components/orders/Checkout/Checkout';
 import { MyProfile } from './components/MyProfile/MyProfile';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -38,6 +38,7 @@ import { postTrainerSubmitHandler } from './components/trainers/PostTrainer/post
 import { postProductSubmitHandler } from './components/products/PostProduct/postProductSubmitHandler';
 import { changeProfilePictureHandler } from './components/MyProfile/changeProfilePictureHandler';
 import { Spinner } from './components/Spinner/Spinner';
+import { OrderDetails } from './components/orders/OrderDetails/OrderDetails';
 
 
 function App() {
@@ -165,6 +166,7 @@ function App() {
                 <Route path='/memberships' element={<Memberships/>}/> {/* add error message when a guest is trying to click on a membership */}
 
                 {user ? <Route path='/checkout' element={<Checkout/>}/> : <Route path='/checkout' element={<Navigate to="/404" />}/>}
+                {user ? <Route path='/orders/:orderId' element={<OrderDetails/>}/> : <Route path='/orders/:orderId' element={<Navigate to="/404" />}/> }
                 {user ? <Route path='/successfulOrder' element={<SuccessfulOrder/>}/> : <Route path='/successfulOrder' element={<Navigate to="/404" />}/>}
                 
                 <Route path='*' element={<Error_404/>}/>

@@ -14,8 +14,8 @@ export function MyProfileSection(props) {
                 <p>{props.order.orderDetails.orderDate}</p>
                 <p>{props.order.orderDetails.totalPrice}<sup>00</sup> BGN</p>
             </div>
-            <img className="fitness-supplements-img" src="../../../public/images/externalImages/fitness-supplements-laf-featured.jpg" alt="fitness-supplements-img" />
-            {/* <Link to={`/orders/${props.order.orderDetails.orderId}`}><button>Details</button></Link> */}
+            {/* <img className="fitness-supplements-img" src="../../../public/images/externalImages/fitness-supplements-laf-featured.jpg" alt="fitness-supplements-img" /> */}
+            <Link id="order-details-btn" to={`/orders/${props.order.orderDetails.orderId}`}><button>Details</button></Link>
         </section>
     );
 }

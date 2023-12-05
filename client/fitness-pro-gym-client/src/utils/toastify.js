@@ -27,7 +27,7 @@ export const productAlreadyAddedToCart = () => toast.warn('📦 Product Already 
 
 
 export const errorToastMessage = (ErrMessage) => toast.error(`${ErrMessage} 😓`, {
-    position: "top-right",
+    position: "top-center",
     autoClose: 5000,
     hideProgressBar: false,
     closeOnClick: true,
@@ -61,6 +61,7 @@ export const successfullOrder = () => toast.success('💪 Order successfully mad
     theme: "light",
 });
 
+
 export const productSuccessfullyDeleted = () => toast.success('📦 Product successfully Deleted! 🥺', {
     position: "top-center",
     autoClose: 5000,
@@ -72,7 +73,8 @@ export const productSuccessfullyDeleted = () => toast.success('📦 Product succ
     theme: "light",
 });
 
-export const highlightSuccessfullyDeleted = () => toast.success('📷 Highlight successfully Deleted! 🤗', {
+
+export const highlightSuccessfullyDeleted = () => toast.success('📷 Highlight successfully Deleted! 🥺', {
     position: "top-center",
     autoClose: 5000,
     hideProgressBar: false,
@@ -82,6 +84,7 @@ export const highlightSuccessfullyDeleted = () => toast.success('📷 Highlight 
     progress: undefined,
     theme: "light",
 });
+
 
 export const highlightSuccessfullyEdited = () => toast.success('📷 Highlight successfully Edited! 😎', {
     position: "top-center",
@@ -94,7 +97,8 @@ export const highlightSuccessfullyEdited = () => toast.success('📷 Highlight s
     theme: "light",
 });
 
-export const productSuccessfullyEdited = () => toast.success('Product successfully Edited! 💪', {
+
+export const productSuccessfullyEdited = () => toast.success('📦 Product successfully Edited! 💪', {
     position: "top-center",
     autoClose: 5000,
     hideProgressBar: false,
@@ -105,7 +109,8 @@ export const productSuccessfullyEdited = () => toast.success('Product successful
     theme: "light",
 });
 
-export const profileImageSuccessfullyChanged = () => toast.success('Profile Picture successfully changed! 🙌', {
+
+export const profileImageSuccessfullyChanged = () => toast.success('📸 Profile Picture successfully changed! 🙌', {
     position: "top-center",
     autoClose: 5000,
     hideProgressBar: false,

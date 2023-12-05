@@ -6,9 +6,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import { handleIncrement,handleDecrement } from './handleIncrementDecrement';
 import { removeProductFromCartHandler } from './removeProductFromCartHandler';
 import { postOrderHandler } from './postOrderHandler';
-import { GlobalContext } from '../../contexts/GlobalContext';
-import { AuthenticationContext } from '../../contexts/AuthenticationContext';
-import { getUserId } from '../../utils/getUserId';
+import { GlobalContext } from '../../../contexts/GlobalContext';
+import { AuthenticationContext } from '../../../contexts/AuthenticationContext';
+import { getUserId } from '../../../utils/getUserId';
 
 
 export function Checkout() {
@@ -38,7 +38,7 @@ export function Checkout() {
             }
 
             const data = await response.json();
-
+            
             setTotalSum(getTotalPrice(data));
             setCheckoutData(data);
         }
