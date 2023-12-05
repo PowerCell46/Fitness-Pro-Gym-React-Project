@@ -32,8 +32,9 @@ export function OrderDetails() {
             } catch {
                 return navigate("/404");
             }
-            const data = await response.json();
+            const {data} = await response.json();
             console.log(data);
+            setOrderData(data);
         }
 
         getUserId(user, setUserId, errorToastMessage, navigate, fetchOrderData);
@@ -47,19 +48,19 @@ export function OrderDetails() {
                     <h1>Order Details</h1>
                     <tr>
                         <td>Order Date</td>
-                        <td>19.01.2023</td>
+                        <td>{orderData.orderDetails ? orderData.orderDetails.orderDate : ""}</td>
                     </tr>
                     <tr>
                         <td>Order №</td>
-                        <td>7052713</td>
+                        <td>{orderData.orderDetails ? orderData.orderDetails.orderId : ""}</td>
                     </tr>
                     <tr>
                         <td>Number of Produts</td>
-                        <td>10</td>
+                        <td>{orderData.orderDetails ? orderData.orderDetails.products.length : ""}</td>
                     </tr>
                     <tr>
                         <td>Total Sum</td>
-                        <td>69.<sup>00</sup> BGN</td>
+                        <td>{orderData.orderDetails ? orderData.orderDetails.totalPrice : ""}<sup>00</sup> BGN</td>
                     </tr>
                 </table>
 
@@ -67,27 +68,27 @@ export function OrderDetails() {
                     <h1>Address Details</h1>
                     <tr>
                         <td>Country</td>
-                        <td>Bulgaria</td>
+                        <td>{orderData.shippingDetails ? orderData.shippingDetails.country : ""}</td>
                     </tr>
                     <tr>
                         <td>City</td>
-                        <td>Sofia</td>
+                        <td>{orderData.shippingDetails ? orderData.shippingDetails.city : ""}</td>
                     </tr>
                     <tr>
                         <td>Neighbourhood</td>
-                        <td>Gotse Delchev</td>
+                        <td>{orderData.shippingDetails ? orderData.shippingDetails.neighbourhood : ""}</td>
                     </tr>
                     <tr>
                         <td>Street</td>
-                        <td>Bademova Gora</td>
+                        <td>{orderData.shippingDetails ? orderData.shippingDetails.street : ""}</td>
                     </tr>
                     <tr>
                         <td>Number</td>
-                        <td>69</td>
+                        <td>{orderData.shippingDetails ? orderData.shippingDetails.number : ""}</td>
                     </tr>
                     <tr>
                         <td>Apartment</td>
-                        <td>18</td>
+                        <td>{orderData.shippingDetails ? orderData.shippingDetails.apartment : ""}</td>
                     </tr>
                 </table>
 
@@ -96,33 +97,16 @@ export function OrderDetails() {
                     <tr id="transparent-background">
                         <th>Product Image</th>
                         <th>Product Name</th>
-                        <th>Price</th>
                         <th>Quantity</th>
                     </tr>
+                    {orderData.orderDetails ? orderData.orderDetails.products.map((product) => (
                     <tr>
                         <td><img src="https://musclepharm.com/cdn/shop/files/MP_4lbCombat_Vanilla_Front.png?v=1683210424&width=700" alt=""/></td>
-                        <td>Whey Protein</td>
-                        <td>75.23$</td>
-                        <td>1</td>
+                        <td>{product.name}</td>
+                        <td>{product.productQuantity}</td>
                     </tr>
-                    <tr>
-                        <td><img src="https://musclepharm.com/cdn/shop/files/MP_4lbCombat_Vanilla_Front.png?v=1683210424&width=700" alt=""/></td>
-                        <td>Whey Protein</td>
-                        <td>75.23$</td>
-                        <td>1</td>
-                    </tr>
-                    <tr>
-                        <td><img src="https://musclepharm.com/cdn/shop/files/MP_4lbCombat_Vanilla_Front.png?v=1683210424&width=700" alt=""/></td>
-                        <td>Whey Protein</td>
-                        <td>75.23$</td>
-                        <td>1</td>
-                    </tr>
-                    <tr>
-                        <td><img src="https://musclepharm.com/cdn/shop/files/MP_4lbCombat_Vanilla_Front.png?v=1683210424&width=700" alt=""/></td>
-                        <td>Whey Protein</td>
-                        <td>75.23$</td>
-                        <td>1</td>
-                    </tr>
+                    )) : ""}
+    
                 </table>
                 <h3>Total Sum: 254.32$</h3>
             </div>
