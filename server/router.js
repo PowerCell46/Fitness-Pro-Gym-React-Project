@@ -31,6 +31,7 @@ const editProductHandler = require("./endpointsJs/products/editProduct");
 const getNumberOfCartProducts = require("./endpointsJs/authentication/getNumberOfCartProducts");
 const isAdministrator = require("./endpointsJs/authentication/checkIfAdministrator");
 const getUserId = require("./endpointsJs/authentication/getUserId");
+const getOrderHandler = require("./endpointsJs/orders&checkout/order");
 
 
 const storage = multer.diskStorage({
@@ -73,6 +74,8 @@ router.post("/users/isAdministrator", isAdministrator);
 
 
 router.post("/users/orders", getOrdersHandler);
+
+router.post("/users/orders/:orderId", getOrderHandler);
 
 router.post("/users/getNumberOfCartProducts", getNumberOfCartProducts);
 

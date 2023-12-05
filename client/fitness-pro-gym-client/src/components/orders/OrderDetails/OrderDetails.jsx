@@ -1,7 +1,43 @@
+import { useState } from "react";
 import "./orderDetails.css";
+import { useEffect } from "react";
+import { getUserId } from "../../../utils/getUserId";
+import { useContext } from "react";
+import { AuthenticationContext } from "../../../contexts/AuthenticationContext";
+import { GlobalContext } from "../../../contexts/GlobalContext";
+import { useParams } from "react-router-dom";
 
 
 export function OrderDetails() {
+    const {user} = useContext(AuthenticationContext);
+    const {errorToastMessage, navigate} = useContext(GlobalContext);
+    const [orderData, setOrderData] = useState({});
+    const [userId, setUserId] = useState("");
+    const {orderId} = useParams();
+    
+    useEffect(() => {
+        async function fetchOrderData(userId) {
+            try {
+                var response = await fetch(`http://localhost:5000/users/orders/${orderId}`, {
+                    method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({userId})});
+                
+                if (!response.ok) {
+                    const errorData = await response.json();
+            
+                    errorToastMessage(errorData.error);
+
+                    return navigate("/404");
+                }
+
+            } catch {
+                return navigate("/404");
+            }
+            const data = await response.json();
+            console.log(data);
+        }
+
+        getUserId(user, setUserId, errorToastMessage, navigate, fetchOrderData);
+    })
     return (
         <main className="main-order-details">
         
