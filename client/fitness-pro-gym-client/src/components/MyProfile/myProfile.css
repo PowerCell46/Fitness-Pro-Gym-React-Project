@@ -84,6 +84,7 @@
 
 .my-profile-main .trainer-qr-code-section h2 {
     font-size: 3.5rem;
+    line-height: 1.3;
 }
 
 
@@ -210,6 +211,7 @@
     display: none;
 }
 
+
 #change-picture-h5 {
     font-family: 'Salsa';
     font-size: 2.4rem;
@@ -222,6 +224,22 @@
     cursor: pointer;
 }
 
+
+.membershipValidity {
+    opacity: 0;
+    animation: float 6s ease-in-out infinite;
+    transition: 600ms ease-in-out;
+}
+
+
+.valid {
+    color: #086d14;
+}
+
+
+.invalid {
+    color: #fd0001;
+}
 
 
 @media screen and (min-width: 2501px) { 
@@ -255,6 +273,7 @@
     .my-profile-main .trainer-qr-code-section h2 {
         margin-top: 1vh;
         font-size: 4rem;
+
     }
 
 

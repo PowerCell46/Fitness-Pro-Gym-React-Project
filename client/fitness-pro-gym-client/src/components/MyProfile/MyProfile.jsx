@@ -8,6 +8,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {errorToastMessage} from '../../utils/toastify';
 import { GlobalContext } from "../../contexts/GlobalContext";
+import { setMembershipValidity } from "../../utils/setMembershipValidity";
 
 
 export function MyProfile() {
@@ -16,6 +17,7 @@ export function MyProfile() {
     const {profilePhoto, changeProfilePictureHandler, setProfilePhoto, user} = useContext(AuthenticationContext);
     const [highlights, setHighlights] = useState([]);
     const [orders, setOrders] = useState([]);
+    const [membershipValid, setMembershipValid] = useState(false);
     
     useEffect(() => {
         async function fetchHighlightsData() {
@@ -60,20 +62,14 @@ export function MyProfile() {
             }
 
             const data = await response.json();
-            
-            setOrders(data);
-        }
 
-        function generateQRcode() { // Add functionality - is the gym membership valid or not
-            const qr = new QRious({
-                value: `127.0.0.1:5173/myProfile/${JSON.parse(localStorage.getItem("authenticationTokenAndData")).token}`
-            });
-            document.querySelector("#qr-code").src = qr.toDataURL();
+            setMembershipValid(setMembershipValidity(data));
+
+            setOrders(data);
         }
 
         fetchHighlightsData();
         fetchOrdersData();
-        generateQRcode();
     }, []);
     
     return (
@@ -89,8 +85,10 @@ export function MyProfile() {
         <h1 className="main-heading">My profile</h1>
         
         <div className="trainer-qr-code-section">
-            <img id="qr-code" alt="User QR Code"/>
-            <h2>Pro Gym <br/> Fitness Card</h2>
+            <img id="qr-code" alt="User QR Code" 
+                onMouseEnter={() => document.querySelector(".membershipValidity").style.opacity = 1}
+                onMouseLeave={() => document.querySelector(".membershipValidity").style.opacity = 0}/>
+            <h2>Pro Gym <br/> Fitness Card {membershipValid ? <span className="membershipValidity valid">Valid</span>: <span className="membershipValidity invalid">Invalid</span>}</h2>
         </div>
         <h2>Orders History</h2>
 

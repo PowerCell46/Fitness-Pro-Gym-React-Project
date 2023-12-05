@@ -29,13 +29,12 @@ export function Navigation() {
                 <div className="hidden-profile-view">
                     <ul>
                         <li><Link to={'/myProfile'}>My Profile</Link></li>
+                        <li>{<Link to={'/postHighlight'}>Post Highlight</Link>}</li>
                       
                         {/* If the user is the administrator - access to create menus */}
                         {isAdministrator ? <li><Link to={'/postProduct'}>Create Product</Link></li> : ""}
                         {isAdministrator ? <li><Link to={'/postTrainer'}>Create Trainer</Link></li> : ""}
-                      
-                        <li>{<Link to={'/postHighlight'}>Post Highlight</Link>}</li>
-                     
+                                         
                         <li><a onClick={() => setLogoutComponent(true)}>Logout</a></li>
                     </ul>
                 </div>

@@ -23,7 +23,7 @@ export function Footer() {
             <h5>Useful Links II</h5>
             <li><span><Link to={'/trainers'}>Trainers</Link></span></li>
             <li><span><Link to={'/products'}>Products</Link></span></li>
-            <li><a href="https://www.google.com/maps/place/Fitness+Pro+Gym/@42.66501,23.297348,15z/data=!4m6!3m5!1s0x40aa84ee6f0e1c3f:0x7cf4bf6cf4fba837!8m2!3d42.66501!4d23.297348!16s%2Fg%2F11c73dtxdl?entry=ttu" target='_blank'><i class="fa-solid fa-map-location-dot"></i><span>Google Maps</span></a></li>
+            <li><a href="https://www.google.com/maps/place/Fitness+Pro+Gym/@42.66501,23.297348,15z/data=!4m6!3m5!1s0x40aa84ee6f0e1c3f:0x7cf4bf6cf4fba837!8m2!3d42.66501!4d23.297348!16s%2Fg%2F11c73dtxdl?entry=ttu" target='_blank'><i className="fa-solid fa-map-location-dot"></i><span>Google Maps</span></a></li>
         </ul>
     </footer>
     );
