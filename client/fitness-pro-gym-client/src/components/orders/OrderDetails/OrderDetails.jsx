@@ -38,7 +38,7 @@ export function OrderDetails() {
         }
 
         getUserId(user, setUserId, errorToastMessage, navigate, fetchOrderData);
-    })
+    }, []);
     return (
         <main className="main-order-details">
         
@@ -97,13 +97,15 @@ export function OrderDetails() {
                     <tr id="transparent-background">
                         <th>Product Image</th>
                         <th>Product Name</th>
+                        <th>Price</th>
                         <th>Quantity</th>
                     </tr>
                     {orderData.orderDetails ? orderData.orderDetails.products.map((product) => (
                             // <Link id="product-link" to={typeof product.productId === 'string' ? `/products/${product.productId}` : '/memberships'}>
                         <tr>
-                            <td><img src="https://musclepharm.com/cdn/shop/files/MP_4lbCombat_Vanilla_Front.png?v=1683210424&width=700" alt=""/></td>
-                            <td>{product.name}</td>
+                            <td><img src={`data:image/jpeg;base64,${product.photo}`} alt={`${product.name.replace("Under18", 'Under 18')} Image`}/></td>
+                            <td>{product.name.replace("Under18", 'Under 18')}</td>
+                            <td >{product.price}<sup>00</sup> BGN</td>
                             <td>{product.productQuantity}</td>
                         </tr>
                     // </Link>

@@ -136,7 +136,9 @@
 }
 
 .main-order-details #product-details-h1 {
+    font-size: 2.76rem;
     margin-bottom: 2vh;
+    left: 70%;
 }
 
 #transparent-background{
