@@ -55,37 +55,37 @@ export function OrderDetails() {
                     </tr>
                 </table>
 
-                <table>
+                <table id="order-details-table-3">
                     <h1 id="product-details-h1">Products Details</h1>
-                    <tr>
-                        <th>Quantity</th>
+                    <tr id="transparent-background">
                         <th>Product Image</th>
                         <th>Product Name</th>
                         <th>Price</th>
+                        <th>Quantity</th>
                     </tr>
                     <tr>
-                        <td>1</td>
-                        <td><img src="./images/profile_picture.jpg" alt=""/></td>
-                        <td>Whey Protein</td>
-                        <td>75.23$</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
                         <td><img src="https://musclepharm.com/cdn/shop/files/MP_4lbCombat_Vanilla_Front.png?v=1683210424&width=700" alt=""/></td>
                         <td>Whey Protein</td>
                         <td>75.23$</td>
+                        <td>1</td>
                     </tr>
                     <tr>
-                        <td>1</td>
-                        <td><img src="./images/profile_picture.jpg" alt=""/></td>
-                        <td>Whey Protein</td>
-                        <td>75.23$</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
                         <td><img src="https://musclepharm.com/cdn/shop/files/MP_4lbCombat_Vanilla_Front.png?v=1683210424&width=700" alt=""/></td>
                         <td>Whey Protein</td>
                         <td>75.23$</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td><img src="https://musclepharm.com/cdn/shop/files/MP_4lbCombat_Vanilla_Front.png?v=1683210424&width=700" alt=""/></td>
+                        <td>Whey Protein</td>
+                        <td>75.23$</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td><img src="https://musclepharm.com/cdn/shop/files/MP_4lbCombat_Vanilla_Front.png?v=1683210424&width=700" alt=""/></td>
+                        <td>Whey Protein</td>
+                        <td>75.23$</td>
+                        <td>1</td>
                     </tr>
                 </table>
                 <h3>Total Sum: 254.32$</h3>

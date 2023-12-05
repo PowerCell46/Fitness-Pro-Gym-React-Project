@@ -47,9 +47,7 @@
 }
 
 
-.main-order-details .shopping-cart tr:not(:first-child), 
-.main-order-details .order-details-table tr,
-.main-order-details .order-details-table-2 tr {
+.main-order-details .shopping-cart tr {
     background-color: var(--dark-blue);
 }
 
@@ -57,9 +55,7 @@
     transition: 600ms ease-in-out;
 }
 
-.main-order-details .shopping-cart tr:not(:first-child):hover,
-.main-order-details .order-details-table tr:hover,
-.main-order-details .order-details-table-2 tr:hover {
+.main-order-details .shopping-cart tr:hover {
     cursor: pointer;
     background-color: hsl(20, 95%, 65%);
     transform: translateY(-0.4rem);
@@ -141,4 +137,8 @@
 
 .main-order-details #product-details-h1 {
     margin-bottom: 2vh;
+}
+
+#transparent-background{
+    background-color:transparent;
 }
