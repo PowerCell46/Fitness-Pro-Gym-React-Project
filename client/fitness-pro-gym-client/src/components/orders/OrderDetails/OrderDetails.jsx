@@ -58,26 +58,31 @@ export function OrderDetails() {
                 <table>
                     <h1 id="product-details-h1">Products Details</h1>
                     <tr>
+                        <th>Quantity</th>
                         <th>Product Image</th>
                         <th>Product Name</th>
                         <th>Price</th>
                     </tr>
                     <tr>
+                        <td>1</td>
                         <td><img src="./images/profile_picture.jpg" alt=""/></td>
                         <td>Whey Protein</td>
                         <td>75.23$</td>
                     </tr>
                     <tr>
+                        <td>1</td>
                         <td><img src="https://musclepharm.com/cdn/shop/files/MP_4lbCombat_Vanilla_Front.png?v=1683210424&width=700" alt=""/></td>
                         <td>Whey Protein</td>
                         <td>75.23$</td>
                     </tr>
                     <tr>
+                        <td>1</td>
                         <td><img src="./images/profile_picture.jpg" alt=""/></td>
                         <td>Whey Protein</td>
                         <td>75.23$</td>
                     </tr>
                     <tr>
+                        <td>1</td>
                         <td><img src="https://musclepharm.com/cdn/shop/files/MP_4lbCombat_Vanilla_Front.png?v=1683210424&width=700" alt=""/></td>
                         <td>Whey Protein</td>
                         <td>75.23$</td>
