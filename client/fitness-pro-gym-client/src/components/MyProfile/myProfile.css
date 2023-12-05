@@ -40,7 +40,6 @@
 
 
 .my-profile-main .hexagon-container:hover {
-    transform: scale(1.1);
     transform: translateY(-0.2rem);
 }
 
@@ -85,6 +84,7 @@
 .my-profile-main .trainer-qr-code-section h2 {
     font-size: 3.5rem;
     line-height: 1.3;
+    margin-left: 2vw;
 }
 
 
@@ -239,6 +239,22 @@
 
 .invalid {
     color: #fd0001;
+}
+
+
+.fitness-supplements-img {
+    margin-left: auto;
+    margin-right: 2vw;
+    width: 11vw;
+    border-radius: 0.4rem;
+    transition: 600ms ease-in-out;
+}
+
+
+.fitness-supplements-img:hover {
+    -webkit-filter: blur(5px);
+    filter: blur(2px);
+    transform: scale(1.1);
 }
 
 
