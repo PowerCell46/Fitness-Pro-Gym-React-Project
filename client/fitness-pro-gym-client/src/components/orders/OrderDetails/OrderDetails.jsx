@@ -5,7 +5,7 @@ import { getUserId } from "../../../utils/getUserId";
 import { useContext } from "react";
 import { AuthenticationContext } from "../../../contexts/AuthenticationContext";
 import { GlobalContext } from "../../../contexts/GlobalContext";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 
 export function OrderDetails() {
@@ -100,11 +100,13 @@ export function OrderDetails() {
                         <th>Quantity</th>
                     </tr>
                     {orderData.orderDetails ? orderData.orderDetails.products.map((product) => (
-                    <tr>
-                        <td><img src="https://musclepharm.com/cdn/shop/files/MP_4lbCombat_Vanilla_Front.png?v=1683210424&width=700" alt=""/></td>
-                        <td>{product.name}</td>
-                        <td>{product.productQuantity}</td>
-                    </tr>
+                    <Link to={typeof product.productId === 'string' ? `/products/${product.productId}` : '/memberships'}>
+                        <tr>
+                            <td><img src="https://musclepharm.com/cdn/shop/files/MP_4lbCombat_Vanilla_Front.png?v=1683210424&width=700" alt=""/></td>
+                            <td>{product.name}</td>
+                            <td>{product.productQuantity}</td>
+                        </tr>
+                    </Link>
                     )) : ""}
     
                 </table>
