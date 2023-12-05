@@ -33,7 +33,7 @@
     font-family: 'Permanent Marker', cursive;
     letter-spacing: 0.4rem;
     text-shadow: 5px 0px 7px rgba(0,0,0,0.68);
-    margin-bottom: 0;
+    margin-bottom: 2vh;
     position: relative;
     left: 45%;
 }
@@ -143,9 +143,21 @@
 
 #transparent-background{
     background-color:transparent;
+    cursor:auto
+}
+
+#transparent-background:hover {
+    transform: translateY(0);
 }
 
 #product-link {
     text-decoration: none;
     color: inherit;
+}
+
+
+@media screen and (min-width: 2501px) { 
+    .main-order-details .shopping-cart, .main-order-details .details {
+        width: 70vw;
+    }
 }

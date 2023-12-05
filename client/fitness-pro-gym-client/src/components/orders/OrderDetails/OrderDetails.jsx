@@ -101,14 +101,12 @@ export function OrderDetails() {
                         <th>Quantity</th>
                     </tr>
                     {orderData.orderDetails ? orderData.orderDetails.products.map((product) => (
-                            // <Link id="product-link" to={typeof product.productId === 'string' ? `/products/${product.productId}` : '/memberships'}>
-                        <tr>
+                        <tr onClick={() => typeof product.productId === 'string' ? navigate(`/products/${product.productId}`) : navigate("/memberships")}>
                             <td><img src={`data:image/jpeg;base64,${product.photo}`} alt={`${product.name.replace("Under18", 'Under 18')} Image`}/></td>
                             <td>{product.name.replace("Under18", 'Under 18')}</td>
-                            <td >{product.price}<sup>00</sup> BGN</td>
+                            <td>{product.price}<sup>00</sup> BGN</td>
                             <td>{product.productQuantity}</td>
                         </tr>
-                    // </Link>
                     )) : ""}
     
                 </table>
