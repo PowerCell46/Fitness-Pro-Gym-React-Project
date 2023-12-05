@@ -142,3 +142,8 @@
 #transparent-background{
     background-color:transparent;
 }
+
+#product-link {
+    text-decoration: none;
+    color: inherit;
+}

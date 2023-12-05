@@ -100,17 +100,17 @@ export function OrderDetails() {
                         <th>Quantity</th>
                     </tr>
                     {orderData.orderDetails ? orderData.orderDetails.products.map((product) => (
-                    <Link to={typeof product.productId === 'string' ? `/products/${product.productId}` : '/memberships'}>
+                            // <Link id="product-link" to={typeof product.productId === 'string' ? `/products/${product.productId}` : '/memberships'}>
                         <tr>
                             <td><img src="https://musclepharm.com/cdn/shop/files/MP_4lbCombat_Vanilla_Front.png?v=1683210424&width=700" alt=""/></td>
                             <td>{product.name}</td>
                             <td>{product.productQuantity}</td>
                         </tr>
-                    </Link>
+                    // </Link>
                     )) : ""}
     
                 </table>
-                <h3>Total Sum: 254.32$</h3>
+                <h3>Total Sum: {orderData.orderDetails ? orderData.orderDetails.totalPrice : ""}<sup>00</sup> BGN</h3>
             </div>
 
         </main>
