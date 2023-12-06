@@ -139,11 +139,13 @@ export function Checkout() {
     </main>
     );
     
+    
     function getProductPrice(productId, name) {
         const product = checkoutData.find((data) => (data._doc ? data._doc._id === productId : data.name === name));
        
         return product ? (product._doc ? product._doc.price : product.price) : 0;
     }
+
 
     function getTotalPrice(products) {
         let totalPrice = 0;

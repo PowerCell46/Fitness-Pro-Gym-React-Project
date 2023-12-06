@@ -9,9 +9,12 @@
     overflow: hidden;
     border-radius: 0.25rem;
     text-shadow: 5px 0px 7px rgba(0,0,0,0.4);
-    box-shadow: 0px 0px 25px 4px rgba(0, 0, 0, 0.75);
     transition: 600ms ease-in-out;
-    animation: float 3s ease-in-out infinite;
+    animation-name: bounceInRight;
+    animation-duration: 4s;
+    animation-timing-function: ease-in-out;
+    animation-direction: alternate;
+    animation-iteration-count: 1;
 
 
   
@@ -41,7 +44,7 @@
         overflow: hidden;
   
         #current-option-text1 {
-        margin-top: -2.5rem;
+          margin-top: -2.5rem;
           font-size: 2.5rem;
           letter-spacing: 0.2rem;
           font-weight: 600;
@@ -266,9 +269,30 @@
     font-size: 4rem;
     font-family: 'Permanent Marker';
     letter-spacing: 0.2rem;
-    text-shadow: 5px 0px 7px rgba(0,0,0,0.4);
+    text-shadow: 5px 0px 7px rgba(0,0,0,0.68);
+    animation-name: bounceInLeft;
+    animation-duration: 4s;
+    animation-timing-function: ease-in-out;
+    animation-direction: alternate;
+    animation-iteration-count: 1;
   }
 
   #carousel-wrapper:hover {
     transform: scale(1.05);
   }
+
+
+#review-main {
+  background-image: linear-gradient(to right top, #4375ae, #007ead, #0086a1, #008a8e, #008d75);}
+
+
+@media screen and (min-width: 2501px) { 
+  #carousel-wrapper {
+    width: 35vw;
+    height: 40vh;
+  }
+
+  #current-option-text2 {
+    padding-top: 3rem;
+  }
+}

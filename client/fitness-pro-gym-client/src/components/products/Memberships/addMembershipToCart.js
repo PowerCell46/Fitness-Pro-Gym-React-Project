@@ -2,7 +2,6 @@ import { productSuccessfullyAdded, productAlreadyAddedToCart, errorToastMessage 
 
 
 export async function addMembershipToCart(e, membershipType, membershipCategory, userId, navigate, setNumberOfCartProducts) {
-
     try {
         var response = await fetch(`http://localhost:5000/memberships/${membershipType}/${membershipCategory}`, {
             method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({userId})
@@ -36,7 +35,6 @@ export async function addMembershipToCart(e, membershipType, membershipCategory,
         }
 
     } catch(err) {
-        console.log(err);
         navigate("/404");
     }
 }

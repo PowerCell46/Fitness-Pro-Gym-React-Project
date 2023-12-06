@@ -96,6 +96,7 @@
     transition: 600ms ease-in-out;
 }
 
+
 .products-main .product-container img {
     margin-top: 1.5vh;
     width: 100%;
@@ -220,6 +221,7 @@
     background-color: #e64e00;
     transform: translateY(-0.2rem);
 }
+
 
 @media screen and  (min-width: 2501px) {
     .products-main .shown-info h5 { 

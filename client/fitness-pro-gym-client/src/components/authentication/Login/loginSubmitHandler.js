@@ -2,7 +2,6 @@ import { validateEmail, validatePassword } from "../../../utils/validators";
 
 
 export async function loginSubmitHandler(e, setProfilePhoto, setUser, navigate, errorToastMessage, setIsAdministrator) {
-
     e.preventDefault();
  
     const {email, password} = (Object.fromEntries(new FormData(e.target)));

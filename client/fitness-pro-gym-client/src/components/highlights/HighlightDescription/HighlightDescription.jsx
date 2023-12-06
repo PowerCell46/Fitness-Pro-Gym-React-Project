@@ -95,6 +95,7 @@ export function HighlightDescription() {
     </main>
     );  
 
+    
     function handleLikeButtonEffects(e) {
         console.log(e.target);
         console.log(!highlightData.hasLiked && userId !== "");

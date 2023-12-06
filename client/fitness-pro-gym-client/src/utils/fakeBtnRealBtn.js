@@ -17,6 +17,7 @@ export function realButtonHandler() {
     }
 }
 
+
 export function realButtonMyProfileHandler() {
     document.querySelector("#change-profile-photo").style.display = 'inline-block';
 }

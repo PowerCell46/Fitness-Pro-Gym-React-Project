@@ -1,5 +1,3 @@
-
-
 export async function fetchCertainProducts(endpoint, errorToastMessage, navigate, setProductsData) {
     try {
         var response = await fetch(`http://localhost:5000/products${endpoint}`);

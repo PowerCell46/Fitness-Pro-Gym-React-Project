@@ -19,7 +19,4 @@ export function DeleteProduct() {
             </div>
         </section>
     );
-
-
-
 }

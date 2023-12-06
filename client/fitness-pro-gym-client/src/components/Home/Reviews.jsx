@@ -42,7 +42,7 @@ export function Reviews() {
   }, []);
 
   return (
-    <main className="home-main">
+    <main className="home-main" id='review-main'>
       <div id="carousel-wrapper" className={i > 0 ? "anim-next" : "anim-previous"} style={{ background: color_options[i] }}>
         <div id="menu">
           <div id="current-option">
