@@ -277,10 +277,6 @@
     animation-iteration-count: 1;
   }
 
-  #carousel-wrapper:hover {
-    transform: scale(1.05);
-  }
-
 
 #review-main {
   background-image: linear-gradient(to right top, #4375ae, #007ead, #0086a1, #008a8e, #008d75);}
@@ -295,4 +291,17 @@
   #current-option-text2 {
     padding-top: 3rem;
   }
+}
+
+#current-review-a {
+  text-decoration: none;
+}
+
+#current-review-a:hover #review-image{
+    -webkit-filter: blur(5px);
+    filter: blur(3px);  
+}
+
+#current-review-a:hover #carousel-wrapper {
+  transform: scale(1.05);
 }

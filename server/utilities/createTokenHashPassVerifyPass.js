@@ -13,6 +13,7 @@ function createToken(_id, email, username, isAdministrator) {
     return token;
 }
 
+
 function validateToken(token) {
     try {
         const decoded = jwt.verify(token, 'PowerCell46');

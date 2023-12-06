@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import "./reviews.css";
-
+import { Link } from 'react-router-dom';
 
 export function Reviews() {
   const [i, setI] = useState(0);
@@ -20,8 +20,8 @@ export function Reviews() {
   ];
 
   const color_options = [
-    "linear-gradient(to right bottom, #845ec2, #eb4d9f, #ff695a, #feac00, #a8eb12)",
     "linear-gradient(to right top, #845ec2, #ae4ba4, #c53d80, #cb3d5a, #c34a36)",
+    "linear-gradient(to right bottom, #845ec2, #eb4d9f, #ff695a, #feac00, #a8eb12)",
     "linear-gradient(to right top, #c34a36, #ce7245, #d7955d, #e0b67e, #ead6a5)",
     "linear-gradient(to right top, #56b78e, #76a55a, #958e2f, #b17020, #c34a36)"
   ];
@@ -33,6 +33,13 @@ export function Reviews() {
     "https://scontent.fsof9-1.fna.fbcdn.net/v/t39.30808-6/236847752_4550026548353510_4055035221446588920_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=9c7eae&_nc_ohc=WQUhyAJpu4UAX_mWJzq&_nc_ht=scontent.fsof9-1.fna&oh=00_AfDdEKPN6E_6SkLsP__3LW4FQq4gb_YAQyswOtgfwVfPnA&oe=657670B3"
   ];
 
+  const linkOptions = [
+    'https://maps.app.goo.gl/18YxhS3B3mQV3cai9',
+    'https://maps.app.goo.gl/FLr2RA4JczaNdWtaA',
+    'https://maps.app.goo.gl/HH6cxjim5mRbSrqA8',
+    'https://maps.app.goo.gl/jFEuYXyr5jm33MD36'
+  ]
+
   useEffect(() => {
     const intervalId = setInterval(() => {
       setI((prevI) => (prevI + 1) % text1_options.length);
@@ -43,6 +50,9 @@ export function Reviews() {
 
   return (
     <main className="home-main" id='review-main'>
+      <a id='current-review-a' target='_blank' href={linkOptions[i]}>
+        
+     
       <div id="carousel-wrapper" className={i > 0 ? "anim-next" : "anim-previous"} style={{ background: color_options[i] }}>
         <div id="menu">
           <div id="current-option">
@@ -56,6 +66,7 @@ export function Reviews() {
         </div>
         <div id="review-image" style={{ backgroundImage: `url(${image_options[i]})` }} />
       </div>
+      </a>
       <h1 id="reviews-h1">Reviews from <br /> our customers</h1>
     </main>
   );
