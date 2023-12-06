@@ -57,7 +57,7 @@ async function finishOrderHandler(req, res) {
                 }
 
                 const imageData = fs.promises.readFile(imageLocation);
-                return {...product, photo: await imageData, price};
+                return {...product, photo: await imageData, price, imageLocation};
             }));
 
             orderDetails.products = productsWithImages;
@@ -66,43 +66,30 @@ async function finishOrderHandler(req, res) {
           return res.status(500).json({ error: 'Error - Converting the Images' });
       }
 
-        const mailContent = mainContentHandler(orderDetails, shippingDetails);
+        const mailContentToAdmin = mainContentHandler(orderDetails, shippingDetails, '');
 
-        const mailOptions = {
+        const mailOptionsToAdmin = {
             from: 'PowerCell4664@gmail.com',
             to: 'radovr4@gmail.com',
             subject: `New Successful Order from ${user.username}!`,
-            text: '',
-            html: mailContent
-            // html: `
-            //   <html>
-            //     <body>
-            //       <h2>New Order #${orderDetails.orderId}:</h2>
-            //       <h3>User Details:</h3>
-            //       <p><strong>User:</strong> ${user.username}</p>
-            //       <p><strong>Email:</strong> ${user.email}</p>
+            text: `New order was successfully made by ${user.username} with email: ${user.email}`,
+            html: mailContentToAdmin
+        };
           
-            //       <h3>Ordered Products:</h3>
-            //       <ul>
-            //         ${formatOrderedProducts(orderDetails)}
-            //       </ul>
-            //       <h4>Total Price: ${orderDetails.totalPrice} BGN.</h4>
-          
-            //       <h3>Shipping Details:</h3>
-            //       <p>
-            //         <strong>Country:</strong> ${shippingDetails.country}<br>
-            //         <strong>City:</strong> ${shippingDetails.city}<br>
-            //         <strong>Neighbourhood:</strong> ${shippingDetails.neighbourhood}<br>
-            //         <strong>Street:</strong> ${shippingDetails.street}<br>
-            //         <strong>Number:</strong> ${shippingDetails.number}<br>
-            //         <strong>Apartment:</strong> ${shippingDetails.apartment}
-            //       </p>
-            //     </body>
-            //   </html>
-            // `,
-          };
-          
-        await transporter.sendMail(mailOptions);
+        await transporter.sendMail(mailOptionsToAdmin);
+
+        
+        const mailContentToUser = mainContentHandler(orderDetails, shippingDetails, user);
+
+        const mailOptionsToUser = {
+            from: 'PowerCell4664@gmail.com',
+            to: user.email,
+            subject: `New Successful Order from ${user.username}!`,
+            text: `Hello, ${user.username},\nYour order №${orderDetails.orderId} was registered successfully!\n Here you can see all the details. If you see any inconvenience, please contact us at  0700 20 696.\nFitness Pro Gym wishes you a happy day! ☺`,
+            html: mailContentToUser
+        };
+
+        await transporter.sendMail(mailOptionsToUser);
 
     } catch (err){
         return res.status(500).json({ error: 'An error occurred while the Email was being send!' });

@@ -55,7 +55,7 @@ export function OrderDetails() {
                         <td>{orderData.orderDetails ? orderData.orderDetails.orderId : ""}</td>
                     </tr>
                     <tr>
-                        <td>Number of Produts</td>
+                        <td>Number of Products</td>
                         <td>{orderData.orderDetails ? orderData.orderDetails.products.length : ""}</td>
                     </tr>
                     <tr>
