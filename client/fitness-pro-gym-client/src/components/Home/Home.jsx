@@ -5,6 +5,7 @@ import thirdRoom from '../../../public/images/proGymRooms/thirdRoom.jpg';
 import fourthRoom from '../../../public/images/proGymRooms/fourthRoom.jpg';
 import fifthRoom from '../../../public/images/proGymRooms/fifthRoom.jpg';
 import { Main } from "./Main";
+import { Reviews } from "./Reviews";
 
 
 export function Home() {
@@ -37,6 +38,8 @@ export function Home() {
         <Main roomTitle="Fourth room with:" roomDesc="Space for stretching, Boxing bag, Yoga mats and an Yoga ball." background="home-main second-main" img={fourthRoom} reverse={true}/>   
         
         <Main roomTitle="Cardio room with:" roomDesc="Two Fitness treadmills, Gym stepper and an Exercise bike." background="home-main third-main" img={fifthRoom}/>   
+        
+        <Reviews/>
     </>
     );
 }

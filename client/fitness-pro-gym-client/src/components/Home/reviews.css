@@ -1,0 +1,274 @@
+#carousel-wrapper {
+    font-family: 'Salsa';
+    height: 480px;
+    width: 40vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 0.25rem;
+    text-shadow: 5px 0px 7px rgba(0,0,0,0.4);
+    box-shadow: 0px 0px 25px 4px rgba(0, 0, 0, 0.75);
+    transition: 600ms ease-in-out;
+    animation: float 3s ease-in-out infinite;
+
+
+  
+    #menu {
+      height: 480px;
+      width: 770px;
+      overflow: hidden;
+      font-weight: 700;
+      line-height: 1;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      vertical-align: middle;
+      transition: all 0.6s ease-in-out;
+  
+      #current-option {
+        color: whitesmoke;
+        position: relative;
+        width: 100%;
+        height: 100%;
+        transform: translate(-25%, 0%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+  
+        #current-option-text1 {
+        margin-top: -2.5rem;
+          font-size: 2.5rem;
+          letter-spacing: 0.2rem;
+          font-weight: 600;
+          text-align: center;
+          line-height: 3rem;
+          width: 220px;
+          height: 200px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: flex-start;
+  
+          &::before {
+            content: attr(data-next-text);
+            position: absolute;
+            transform: translate(0%, 380px);
+            width: 100%;
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+          }
+  
+          &::after {
+            content: attr(data-previous-text);
+            position: absolute;
+            transform: translate(0%, -380px);
+            width: 100%;
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+          }
+        }
+  
+        #current-option-text2 {
+          font-size: 1rem;
+          width: 300px;
+          text-align: center;
+          height: 40px;
+          font-weight: 300;
+          line-height: 1.25;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: flex-end;
+  
+          &::before {
+            content: attr(data-next-text);
+            position: absolute;
+            transform: translate(0%, 380px);
+            width: 100%;
+            height: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-end;
+          }
+  
+          &::after {
+            content: attr(data-previous-text);
+            position: absolute;
+            transform: translate(0%, -380px);
+            width: 100%;
+            height: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-end;
+          }
+        }
+      }
+    }
+  
+    #review-image {
+      height: 240px;
+      width: 240px;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      z-index: 101;
+      position: absolute;
+      transform: translate(140px, 0);
+      border-radius: 20px;
+      box-shadow: 0px 0px 25px 4px rgba(0, 0, 0, 0.75);
+      transition: 300ms ease-in-out;
+    }
+
+    #review-image:hover {
+        -webkit-filter: blur(5px);
+        filter: blur(3px);    
+    }
+  
+    &.anim-next {
+      pointer-events: none;
+  
+      #current-option-text1 {
+        animation: next-text 0.65s 0.085s;
+      }
+  
+      #current-option-text2 {
+        animation: next-text 0.65s 0.085s;
+      }
+  
+      #previous-option {
+        animation: next-top-arrow 0.65s 0.085s;
+      }
+  
+      #next-option {
+        animation: next-bottom-arrow 0.65s 0.085s;
+      }
+      
+      #review-image {
+        animation: next-image 0.65s 0.085s;
+      }
+    }
+  
+    &.anim-previous {
+      pointer-events: none;
+  
+      #current-option-text1 {
+        animation: previous-text 0.65s 0.085s;
+      }
+  
+      #current-option-text2 {
+        animation: previous-text 0.65s 0.085s;
+      }
+  
+      #previous-option {
+        animation: previous-top-arrow 0.65s 0.085s;
+      }
+  
+      #next-option {
+        animation: previous-bottom-arrow 0.65s 0.085s;
+      }
+      
+      #review-image {
+        animation: previous-image 0.65s 0.085s;
+      }
+    }
+  }
+  
+  @keyframes previous-text {
+    50%,
+    55% {
+      transform: translate(0%, 390px);
+    }
+    to {
+      transform: translate(0%, 380px);
+    }
+  }
+  
+  @keyframes previous-top-arrow {
+    50% {
+      transform: translate(310px, 53px);
+    }
+  }
+  
+  @keyframes previous-bottom-arrow {
+    50% {
+      transform: translate(310px, -47px) rotate(180deg);
+    }
+  }
+  
+  @keyframes previous-image {
+    0% {
+      transform: translate(140px, 0) scale(1);
+      opacity: 1;
+    }
+    70% {
+      transform: translate(140px, 0) scale(1.1);
+      opacity: 0;
+    }
+    100% {
+      transform: translate(140px, 0) scale(1);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes next-text {
+    50%,
+    55% {
+      transform: translate(0%, -390px);
+    }
+    to {
+      transform: translate(0%, -380px);
+    }
+  }
+  
+  @keyframes next-top-arrow {
+    50% {
+      transform: translate(310px, 47px);
+    }
+  }
+  
+  @keyframes next-bottom-arrow {
+    50% {
+      transform: translate(310px, -53px) rotate(180deg);
+    }
+  }
+  
+  @keyframes next-image {
+    0% {
+      transform: translate(140px, 0) scale(1);
+      opacity: 1;
+    }
+    70% {
+      transform: translate(140px, 0) scale(1.1);
+      opacity: 0;
+    }
+    100% {
+      transform: translate(140px, 0) scale(1);
+      opacity: 1;
+    }
+  }
+  
+
+  #reviews-h1 {
+    color: whitesmoke;
+    font-size: 4rem;
+    font-family: 'Permanent Marker';
+    letter-spacing: 0.2rem;
+    text-shadow: 5px 0px 7px rgba(0,0,0,0.4);
+  }
+
+  #carousel-wrapper:hover {
+    transform: scale(1.05);
+  }
