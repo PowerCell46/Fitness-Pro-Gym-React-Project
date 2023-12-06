@@ -110,6 +110,7 @@ export function OrderDetails() {
                     )) : ""}
     
                 </table>
+                
                 <h3>Total Sum: {orderData.orderDetails ? orderData.orderDetails.totalPrice : ""}<sup>00</sup> BGN</h3>
             </div>
 
