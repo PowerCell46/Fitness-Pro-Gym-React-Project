@@ -1,9 +1,9 @@
-const bcrypt = require("bcrypt");
+const bcryptjs = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 
 async function hashPassword(password) {
-    const hashedPassword = await bcrypt.hash(password, 13);
+    const hashedPassword = await bcryptjs.hash(password, 13);
     return hashedPassword;
 } 
 
@@ -26,7 +26,7 @@ function validateToken(token) {
 
 
 async function verifyPassword(password, incryptedPassword) {
-    return await bcrypt.compare(password, incryptedPassword);
+    return await bcryptjs.compare(password, incryptedPassword);
 }
 
 
