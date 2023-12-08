@@ -26,7 +26,7 @@ async function getOrderHandler(req, res) {
                 const productsWithImages = await Promise.all(data.orderDetails.products.reverse().map(async (product) => {
                     let imageLocation = '';
                     let price = 0;
-
+                    
                     if (typeof product.productId === 'string') {
                         const imageData = await Product.findOne({_id: product.productId});
                         imageLocation = imageData.imageLocation;

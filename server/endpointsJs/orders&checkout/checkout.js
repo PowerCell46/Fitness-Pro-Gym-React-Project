@@ -37,6 +37,7 @@ async function checkoutHandler(req, res) {
     }
 
     try {
+        console.log(finalProducts);
         const checkoutProductsWithImages = await Promise.all(finalProducts.reverse().map(async (product) => {
             const imageData = fs.promises.readFile(`${product.imageLocation}`, {encoding: 'base64'});
             return {...product, photo: await imageData};

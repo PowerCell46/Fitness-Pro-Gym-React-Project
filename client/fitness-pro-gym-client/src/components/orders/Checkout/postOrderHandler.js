@@ -82,7 +82,7 @@ export async function postOrderHandler(e, checkoutData, quantities, userId, tota
         if (response.status === 200) {
             setNumberOfCartProducts(0);
 
-            navigate("/myProfile"); 
+            navigate("/successfulOrder"); 
             
             return successfullOrder();
             
