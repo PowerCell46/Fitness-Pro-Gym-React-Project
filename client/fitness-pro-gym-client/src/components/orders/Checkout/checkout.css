@@ -208,7 +208,7 @@
     padding: 0.1rem 0.3rem;
     color: #a6a6a6;
     font-weight: 600;
-    font-size: 1.1rem;
+    font-size: 0.9em;
     border: none;
     background-color: transparent;
     transition: 600ms ease-in-out;
@@ -271,7 +271,7 @@
         padding: 0.1rem 0.3rem;
         color: #a6a6a6;
         font-weight: 600;
-        font-size: 1.5rem;
+        font-size: 1.19rem;
         border: none;
         background-color: transparent;
     }

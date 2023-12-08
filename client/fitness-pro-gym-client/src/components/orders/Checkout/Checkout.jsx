@@ -54,6 +54,7 @@ export function Checkout() {
                 <table>
                     <thead>
                         <tr>
+                            <th>Quantity</th>
                             <th>Product Image</th>
                             <th>Product Name</th>
                             <th>Price</th>
