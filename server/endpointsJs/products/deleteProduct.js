@@ -1,5 +1,5 @@
 const Product = require("../../schemas/productSchema");
-
+const {validateToken} = require("../../utilities/createTokenHashPassVerifyPass")
 
 async function deleteProductHandler(req, res) {
     const {token} = req.body;

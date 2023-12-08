@@ -1,6 +1,7 @@
 const Product = require("../../schemas/productSchema");
 const User = require("../../schemas/userSchema");
 const { validateImageExtension, validateProductName, validateProductType, validateProductDescription, validateProductPrice } = require("../../utilities/validators");
+const {validateToken} = require("../../utilities/createTokenHashPassVerifyPass");
 
 
 async function postProductHandler(req, res) {
