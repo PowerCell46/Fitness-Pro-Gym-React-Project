@@ -1,6 +1,7 @@
 const User = require("../../schemas/userSchema");
 const { validateImageExtension } = require("../../utilities/validators");
 const fs = require('fs');
+const {validateToken} = require("../../utilities/createTokenHashPassVerifyPass")
 
 
 async function postProfilePhotoHandler(req, res) {

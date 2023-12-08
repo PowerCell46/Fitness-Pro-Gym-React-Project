@@ -7,7 +7,11 @@ export function Trainers() {
 
     useEffect(() => {
         async function fetchTrainersData() {
-            const response = await fetch("http://localhost:5000/trainers");
+           try {    
+                var response = await fetch("http://localhost:5000/trainers");
+           } catch {
+                return navigate("/404");
+           }
           
             if (!response.ok) {
                 const errorData = await response.json();

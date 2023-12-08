@@ -2,12 +2,12 @@ import "./deleteHighlight.css";
 import { useContext } from "react";
 import { HighlightContext } from "../../../contexts/HighlightContext";
 import { errorToastMessage } from "../../../utils/toastify";
-import { AuthenticationContext } from "../../../contexts/AuthenticationContext";
+import { GlobalContext} from "../../../contexts/GlobalContext";
 import { deleteHighlightSubmitHandler } from "./deleteHighlightSubmitHandler";
 
 
 export function DeleteHighlight() {
-    const {navigate} = useContext(AuthenticationContext);
+    const {navigate} = useContext(GlobalContext);
     const {setDeleteHighlightComponent, highlightId, userId} = useContext(HighlightContext);
 
     return (
