@@ -11,7 +11,7 @@ export async function editProductSubmitHandler(e, userId, productId, navigate, p
     
     if (spanElement.textContent !== productData.imageLocation.substring(productData.imageLocation.length - 15)) { // The image was changed
     
-        const validImage = validateImageExtension(formData.get("image"));
+        var validImage = validateImageExtension(formData.get("image"));
         if (!validImage) {
             document.querySelector("#edit-product-image-err-p").textContent = 'Image format not valid!';                    
             document.querySelector("#edit-product-image-err-p").style.display = 'inline';
@@ -22,6 +22,8 @@ export async function editProductSubmitHandler(e, userId, productId, navigate, p
             document.querySelector("#edit-product-image-err-p").style.display = 'none';
             document.querySelector("#edit-product-image").classList.remove("err-input-field");
         }
+    } else {
+        var validImage = true;
     }
 
     const nameValidation = validateProductName(formData.get("name"));

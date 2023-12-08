@@ -47,7 +47,7 @@ async function editProductHandler(req, res) {
     if (image === undefined) { // only the description was changed
         
         try {
-            await Product.findOneAndUpdate(
+            const updatedProduct = await Product.findOneAndUpdate(
                  { _id: productId },
                  {
                     name,
