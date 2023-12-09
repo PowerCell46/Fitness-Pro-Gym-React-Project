@@ -25,3 +25,4 @@ The primary audience includes members of the SoftUni community, potential future
 Throughout development, challenges were met and overcome, reflecting the developer's ability to navigate complexities in both frontend and backend domains. The result is a cohesive and functional platform that successfully integrates various features to meet the needs of its users.
 
 *Fitness Pro Gym* stands as a testament to the developer's dedication to mastering the full spectrum of web development, offering a comprehensive solution for the local fitness community while impressing potential stakeholders and employers.
+
