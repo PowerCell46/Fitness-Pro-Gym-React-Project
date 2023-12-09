@@ -11,7 +11,7 @@ export async function removeProductFromCartHandler(removedProductId, productForR
             setCheckoutData((previousData) =>
                 previousData.filter((data) => (data !== productForRemoval))
             );
-            setTotalSum((previousTotalSum) => previousTotalSum - getProductPrice(removedProductId, productForRemoval.name));
+            setTotalSum((previousTotalSum) => previousTotalSum - (getProductPrice(removedProductId, productForRemoval.name)) * quantityOfTheProduct);
             
             setNumberOfCartProducts((previousValue) => previousValue - quantityOfTheProduct);
 

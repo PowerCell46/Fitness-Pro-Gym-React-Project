@@ -305,3 +305,11 @@
 #current-review-a:hover #carousel-wrapper {
   transform: scale(1.05);
 }
+
+
+@media screen and (max-width: 1900px) { 
+
+  #carousel-wrapper {
+    height: 410px;
+  }
+}

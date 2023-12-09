@@ -315,6 +315,9 @@
 
 
 @media screen and (max-width: 1900px) {
+    .my-profile-main {
+        margin-left: -0.5vw;
+    }
     .my-profile-main h2 {
         font-size: 3.5rem;
     }
@@ -322,6 +325,15 @@
 
     .my-profile-main .trainer-qr-code-section h2 {
         font-size: 4.5rem;
+    }
+
+
+    #change-picture-h5 {
+        font-size: 2.1rem;
+    }
+
+    #pro-gym-card {
+        font-size: 2.8rem;
     }
 
 }

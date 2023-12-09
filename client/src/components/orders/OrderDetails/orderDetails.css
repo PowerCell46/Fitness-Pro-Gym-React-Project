@@ -170,3 +170,11 @@
         width: 70vw;
     }
 }
+
+
+@media screen and (max-width: 1900px) {
+
+    .main-order-details {
+        margin-left: -0.5vw;
+    }
+}

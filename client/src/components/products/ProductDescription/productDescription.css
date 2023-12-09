@@ -1,7 +1,6 @@
 .product-description-main {
     width: 100vw;
     height: 90vh;
-    /* FIX THE HEIGHT */
     margin: 12.5vh auto 0;
     margin-left: -0.4vw;
     display: flex;
@@ -152,4 +151,11 @@
     .product-description-main aside h3 {
         font-size: 2.5rem;
     }
+}
+
+@media screen and (max-width: 1900px) { 
+    .product-description-main {
+        margin-left: -0.5vw;
+    }
+    
 }

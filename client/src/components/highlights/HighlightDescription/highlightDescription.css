@@ -108,6 +108,7 @@
 @media screen and (max-width: 1900px) { 
     .highlight-description-main h5 {
         font-size: 1.75rem;
+        margin-top: 2vh;
     }   
 
     

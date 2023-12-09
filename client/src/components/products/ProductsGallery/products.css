@@ -79,6 +79,7 @@
     transition: 600ms ease-in-out;
     margin-bottom: 5vh;
     border-radius: 0.8rem;
+    overflow: hidden;
 }
 
 

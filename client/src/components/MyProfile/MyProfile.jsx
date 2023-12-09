@@ -88,7 +88,7 @@ export function MyProfile() {
             <img id="qr-code" alt="User QR Code" 
                 onMouseEnter={() => document.querySelector(".membershipValidity").style.opacity = 1}
                 onMouseLeave={() => document.querySelector(".membershipValidity").style.opacity = 0}/>
-            <h2>Pro Gym <br/> Fitness Card {membershipValid ? <span className="membershipValidity valid">Valid</span>: <span className="membershipValidity invalid">Invalid</span>}</h2>
+            <h2 id="pro-gym-card">Pro Gym <br/> Fitness Card {membershipValid ? <span className="membershipValidity valid">Valid</span>: <span className="membershipValidity invalid">Invalid</span>}</h2>
         </div>
         <h2>Orders History</h2>
 

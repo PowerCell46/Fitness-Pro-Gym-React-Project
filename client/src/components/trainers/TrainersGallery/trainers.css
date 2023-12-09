@@ -64,3 +64,11 @@
     background-color: #e0dcd3;
     opacity: 1;
 }
+
+
+@media screen and (max-width: 1900px) { 
+    .trainer-section {
+        margin-right: 1vw;
+    }
+
+}

@@ -213,6 +213,8 @@
     background-color: transparent;
     transition: 600ms ease-in-out;
 }
+
+
 #quantity-td button:hover {
     color: whitesmoke;
 }
@@ -274,5 +276,17 @@
         font-size: 1.19rem;
         border: none;
         background-color: transparent;
+    }
+}
+
+
+@media screen and (max-width: 1900px) { 
+
+    .checkout-main {
+        margin-left: -0.5vw;
+    }
+
+    .checkout-main .details form button {
+        margin-top: 2vh;
     }
 }
