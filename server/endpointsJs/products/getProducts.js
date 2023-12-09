@@ -9,7 +9,7 @@ async function getProductsHandler(req, res) {
     } catch {
         return res.status(500).json({ error: 'An Error occured while the Products were being written searched on the Database!' });
     }
-
+    
     try {
         var productsWithImages = await Promise.all(data.map(async (product) => {
             const imageData = fs.promises.readFile(`${product.imageLocation}`, { encoding: 'base64' });
