@@ -29,9 +29,15 @@ Throughout development, challenges were met and overcome, reflecting the develop
 # Pro Gym Documentation
 ### Application Flow
     When the user opens the app he is redirected to the home page.
+# Pro Gym Documentation
+### Application Flow
+    When the user opens the app he is redirected to the home page.
 <p align="center">
-    <img height="300em" src="https://github.com/PowerCell46/Fitness-Pro-Gym-React-Project/blob/master/screenshots/HomePage.PNG" alt="homePage.jpg" style="margin-bottom: 20px;"/>
-    <img height="300em" src="https://github.com/PowerCell46/Fitness-Pro-Gym-React-Project/blob/master/screenshots/HomePage2.PNG" alt="homePage2.jpg" style="margin-bottom: 20px;"/>
-    <img height="300em" src="https://github.com/PowerCell46/Fitness-Pro-Gym-React-Project/blob/master/screenshots/HomePage-Reviews.PNG" alt="homePage3.jpg" style="margin-bottom: 10px;"/>
+    <img height="300em" src="https://github.com/PowerCell46/Fitness-Pro-Gym-React-Project/blob/master/screenshots/HomePage.PNG" alt="homePage.jpg"/>
+    <br> 
+    <img height="300em" src="https://github.com/PowerCell46/Fitness-Pro-Gym-React-Project/blob/master/screenshots/HomePage2.PNG" alt="homePage2.jpg"/>
+    <br>
+    <img height="300em" src="https://github.com/PowerCell46/Fitness-Pro-Gym-React-Project/blob/master/screenshots/HomePage-Reviews.PNG" alt="homePage3.jpg"/>
 </p>
+
 
