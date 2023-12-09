@@ -26,3 +26,11 @@ Throughout development, challenges were met and overcome, reflecting the develop
 
 *Fitness Pro Gym* stands as a testament to the developer's dedication to mastering the full spectrum of web development, offering a comprehensive solution for the local fitness community while impressing potential stakeholders and employers.
 
+# Pro Gym Documentation
+### Application Flow
+    When the user opens the app he is redirected to the home page.
+<p>
+    <img height="300em" src="https://github.com/PowerCell46/Fitness-Pro-Gym-React-Project/blob/master/screenshots/HomePage.PNG" alt="homePage.jpg"/>
+    <img height="300em" src="https://github.com/PowerCell46/Fitness-Pro-Gym-React-Project/blob/master/screenshots/HomePage2.PNG" alt="homePage2.jpg"/>
+    <img height="300em" src="https://github.com/PowerCell46/Fitness-Pro-Gym-React-Project/blob/master/screenshots/HomePage-Reviews.PNG" alt="homePage3.jpg"/>
+</p>
