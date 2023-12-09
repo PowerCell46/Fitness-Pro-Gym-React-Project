@@ -111,10 +111,14 @@ function App() {
                 setIsAdministrator(false);
             }
             
-            if (response.ok) {
-                const data = await response.json();
-                
-                setIsAdministrator(data.isAdministrator);
+            if (response) {
+                if (response.ok) {
+                    const data = await response.json();
+                    
+                    setIsAdministrator(data.isAdministrator);
+                } else {
+                    setIsAdministrator(false);
+                }                
             
             } else {
                 setIsAdministrator(false);
