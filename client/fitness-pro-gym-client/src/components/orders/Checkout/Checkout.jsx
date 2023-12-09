@@ -89,7 +89,7 @@ export function Checkout() {
     product._doc ? product._doc._id :
         {membershipType: product.name.substring(0, product.name.lastIndexOf(" ")), 
         membershipCategory: product.name.substring(product.name.lastIndexOf(" ") + 1).toLowerCase()},
-    product, userId, setCheckoutData, setTotalSum, getProductPrice, navigate, setNumberOfCartProducts)}>Remove
+    product, userId, setCheckoutData, setTotalSum, getProductPrice, navigate, setNumberOfCartProducts, quantities[product._doc ? product._doc.name : product.name])}>Remove
                                 </td>
                             </tr>
                         ))}

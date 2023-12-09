@@ -56,7 +56,7 @@ export async function postOrderHandler(e, checkoutData, quantities, userId, tota
     let orderProductsDetails = {
         products: [], 
         totalPrice: totalSum, 
-        orderDate: `${new Date().getDate()}.${new Date().getMonth()}.${new Date().getFullYear()}`, 
+        orderDate: `${new Date().getDate()}.${new Date().getMonth() + 1}.${new Date().getFullYear()}`, 
         orderId: Math.floor(Math.random() * (999999 - 100000 + 1)) + 100000
     };
     

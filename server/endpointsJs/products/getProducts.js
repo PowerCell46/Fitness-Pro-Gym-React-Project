@@ -4,7 +4,7 @@ const Product = require("../../schemas/productSchema");
 
 async function getProductsHandler(req, res) {
     try {
-        var data = await Product.find().sort({ uploadDate: 'desc' }).lean();
+        var data = await Product.find().sort({ uploadDate: 'asc' }).lean();
 
     } catch {
         return res.status(500).json({ error: 'An Error occured while the Products were being written searched on the Database!' });

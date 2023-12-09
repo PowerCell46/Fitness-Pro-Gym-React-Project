@@ -1,5 +1,5 @@
 import { productSuccessfullyRemoved, errorToastMessage } from "../../../utils/toastify";
-export async function removeProductFromCartHandler(removedProductId, productForRemoval, userId, setCheckoutData, setTotalSum, getProductPrice, navigate, setNumberOfCartProducts) {
+export async function removeProductFromCartHandler(removedProductId, productForRemoval, userId, setCheckoutData, setTotalSum, getProductPrice, navigate, setNumberOfCartProducts, quantityOfTheProduct) {
     try {
         const response = await fetch(`http://localhost:5000/checkout/removeProduct`, {
             method: "POST",
@@ -13,7 +13,7 @@ export async function removeProductFromCartHandler(removedProductId, productForR
             );
             setTotalSum((previousTotalSum) => previousTotalSum - getProductPrice(removedProductId, productForRemoval.name));
             
-            setNumberOfCartProducts((previousValue) => previousValue - 1);
+            setNumberOfCartProducts((previousValue) => previousValue - quantityOfTheProduct);
 
             return productSuccessfullyRemoved();
             
