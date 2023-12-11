@@ -49,6 +49,13 @@ Throughout development, challenges were met and overcome, reflecting the develop
     Reviews from Customers Section in the Home view.
     <br>
 
+#### Footer
+<p align="center">
+    <img height="300em" src="https://github.com/PowerCell46/Fitness-Pro-Gym-React-Project/blob/master/screenshots/Footer.PNG" alt="footer"/>
+    <br>
+</p>
+
+
 #### Login View
 <p align="center">
     <img height="300em" src="https://github.com/PowerCell46/Fitness-Pro-Gym-React-Project/blob/master/screenshots/LoginPage.PNG" alt="loginPage"/>
@@ -56,7 +63,8 @@ Throughout development, challenges were met and overcome, reflecting the develop
 </p>
     Login header with two input fields - email and password, login button and link to the Register Page.
     <br>
-
+    <br>
+    
 <p align="center">
     <img height="300em" src="https://github.com/PowerCell46/Fitness-Pro-Gym-React-Project/blob/master/screenshots/LoginErrMessage.PNG" alt="loginErrorMessage"/>
     <br>
@@ -222,5 +230,45 @@ Throughout development, challenges were met and overcome, reflecting the develop
     <br>
 </p>
     Successful order Email, sent to the User and to the Administrator with the Order details, Address details and Products details.
+    <br>
+
+#### My Profile View
+<p align="center">
+    <img height="300em" src="https://github.com/PowerCell46/Fitness-Pro-Gym-React-Project/blob/master/screenshots/MyProfilePage.PNG" alt="myProfileView"/>
+    <br>
+</p>
+    My Profile view with the Profile picture of the user, that on click can be changed with another, generated QR code that on scan and on hover shows whether the Gym membership is valid or not.
+    <br>
+
+### My Profile Orders
+<p align="center">
+    <img height="300em" src="https://github.com/PowerCell46/Fitness-Pro-Gym-React-Project/blob/master/screenshots/MyProfileOrders.PNG" alt="myProfileView-Orders"/>
+    <br>
+</p>
+    A history of the User's orders.
+    <br>
+
+#### My Profile my highlights
+<p align="center">
+    <img height="300em" src="https://github.com/PowerCell46/Fitness-Pro-Gym-React-Project/blob/master/screenshots/MyProfileMyHighlights.PNG" alt="myProfileView-Highlights"/>
+    <br>
+</p>
+    The highlights of the current User.
+    <br>
+
+#### Order Details View
+<p align="center">
+    <img height="300em" src="https://github.com/PowerCell46/Fitness-Pro-Gym-React-Project/blob/master/screenshots/OrderDetailsPage.PNG" alt="orderDetails"/>
+    <br>
+</p>
+    Order Details view showing the spefiics of the selected order.
+    <br>
+
+#### Error View
+<p align="center">
+    <img height="300em" src="https://github.com/PowerCell46/Fitness-Pro-Gym-React-Project/blob/master/screenshots/ErrorPage.PNG" alt="errorView"/>
+    <br>
+</p>
+    Error view, in case of some error in invalid URL path the user is forwarded to this Page.
     <br>
 
