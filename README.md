@@ -199,3 +199,28 @@ Throughout development, challenges were met and overcome, reflecting the develop
 </p>
     Trainers Gallery View, accessible by every user - logged in or not.
     <br>
+
+#### Checkout View
+<p align="center">
+    <img height="300em" src="https://github.com/PowerCell46/Fitness-Pro-Gym-React-Project/blob/master/screenshots/CheckoutPage.PNG" alt="checkoutView"/>
+    <br>
+</p>
+    Checkout view, showing all of the selected Products, allowing the user to decide the quantity and after filling out the shipping details to finish the order.
+    <br>
+
+#### Successful Order View
+<p align="center">
+    <img height="300em" src="https://github.com/PowerCell46/Fitness-Pro-Gym-React-Project/blob/master/screenshots/SuccessfulOrderPage.PNG" alt="successfulOrderView"/>
+    <br>
+</p>
+    Successful order view, showing the User that his order has been finished and confirmed.
+    <br>
+
+#### Successful Order Email
+<p align="center">
+    <img height="300em" src="https://github.com/PowerCell46/Fitness-Pro-Gym-React-Project/blob/master/screenshots/successfulOrderMail.PNG" alt="successfulOrderEmail"/>
+    <br>
+</p>
+    Successful order Email, sent to the User and to the Administrator with the Order details, Address details and Products details.
+    <br>
+
