@@ -14,7 +14,7 @@
 
 ## Technology Stack
 
-The project is built using the **MERN stack**—MongoDB for the database, Express for the backend, React for the frontend, and Node.js for server-side scripting. This modern and robust technology stack ensures a scalable and efficient web application.
+The project is built using the **MERN stack**—MongoDB for the Database, Express for the Backend, React for the Frontend, and Node.js for Server-side scripting. This modern and robust technology stack ensures a scalable and efficient web application.
 
 ## Target Audience
 
@@ -29,15 +29,17 @@ Throughout development, challenges were met and overcome, reflecting the develop
 # Pro Gym Documentation
 ### Application Flow
     When the user opens the app he is redirected to the home page.
-# Pro Gym Documentation
-### Application Flow
-    When the user opens the app he is redirected to the home page.
 <p align="center">
     <img height="300em" src="https://github.com/PowerCell46/Fitness-Pro-Gym-React-Project/blob/master/screenshots/HomePage.PNG" alt="homePage.jpg"/>
-    <br> 
+    <br>
+</p>
+    Guest Header with the Greeting Section in the Home view.
+<p align="center">
     <img height="300em" src="https://github.com/PowerCell46/Fitness-Pro-Gym-React-Project/blob/master/screenshots/HomePage2.PNG" alt="homePage2.jpg"/>
     <br>
+</p>
+    Gym Premises Header with the first room in the Home view.
+<p align="center">
     <img height="300em" src="https://github.com/PowerCell46/Fitness-Pro-Gym-React-Project/blob/master/screenshots/HomePage-Reviews.PNG" alt="homePage3.jpg"/>
 </p>
-
-
+    Reviews from Customers Section in the Home view.
