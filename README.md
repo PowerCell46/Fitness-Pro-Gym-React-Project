@@ -80,6 +80,14 @@ Throughout development, challenges were met and overcome, reflecting the develop
     Updated header after successful Login/Register with default Profile Picture and non-Administrator Dropdown Menu.
     <br>
 
+#### Logout Popup
+<p align="center">
+    <img height="300em" src="https://github.com/PowerCell46/Fitness-Pro-Gym-React-Project/blob/master/screenshots/LogoutPopup.PNG" alt="logoutPopup"/>
+    <br>
+</p>
+    Logout Popup, asking to confirm if you really want to Logout.
+    <br>
+
 #### Post Highlight View
 <p align="center">
     <img height="300em" src="https://github.com/PowerCell46/Fitness-Pro-Gym-React-Project/blob/master/screenshots/PostHighlightPage.PNG" alt="postHighlightPage"/>
@@ -168,10 +176,26 @@ Throughout development, challenges were met and overcome, reflecting the develop
     A popup asking the Administrator if he really wants to proceed with the Deletion Process.
     <br>
 
+#### Memberships View
+<p align="center">
+    <img height="300em" src="https://github.com/PowerCell46/Fitness-Pro-Gym-React-Project/blob/master/screenshots/MembershipsPage.PNG" alt="membershipsView"/>
+    <br>
+</p>
+    Memberships view, accessible by anyone. Logged in users can add a certain membership to their cart.
+    <br>
+
 #### Post Trainer View
 <p align="center">
     <img height="300em" src="https://github.com/PowerCell46/Fitness-Pro-Gym-React-Project/blob/master/screenshots/CreateTrainerPage.PNG" alt="postTrainerView"/>
     <br>
 </p>
     Create Trainer view, accessible only by the Administrator.
+    <br>
+
+#### Trainers View
+<p align="center">
+    <img height="300em" src="https://github.com/PowerCell46/Fitness-Pro-Gym-React-Project/blob/master/screenshots/TrainersPage.PNG" alt="trainersView"/>
+    <br>
+</p>
+    Trainers Gallery View, accessible by every user - logged in or not.
     <br>
