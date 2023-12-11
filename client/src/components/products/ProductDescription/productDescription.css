@@ -13,14 +13,14 @@
     background-attachment: fixed;
 }
 
-
 .product-description-main img {
-    transition: 600ms ease-in-out;
     width: 35%;
-    height: auto;
+    height: 75vh;
+    object-fit: cover;
     border-radius: 2rem;
+    overflow: hidden;
+    transition: 600ms ease-in-out;
 }
-
 
 .product-description-main img:hover {
     transform: scale(1.1);
