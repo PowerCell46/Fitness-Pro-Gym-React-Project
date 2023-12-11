@@ -48,7 +48,7 @@ Throughout development, challenges were met and overcome, reflecting the develop
 </p>
     Reviews from Customers Section in the Home view.
     <br>
-    
+
 #### Login View
 <p align="center">
     <img height="300em" src="https://github.com/PowerCell46/Fitness-Pro-Gym-React-Project/blob/master/screenshots/LoginPage.PNG" alt="loginPage"/>
@@ -62,3 +62,54 @@ Throughout development, challenges were met and overcome, reflecting the develop
 </p>
     One of the possible error messages - incorrect password.
     <br>
+
+#### Register View
+<p align="center">
+    <img height="300em" src="https://github.com/PowerCell46/Fitness-Pro-Gym-React-Project/blob/master/screenshots/RegisterPage.PNG" alt="registerPage"/>
+    <br>
+</p>
+    Register header with four input fields - email, username, password and repeat password, register button and link to the Login Page.
+    <br>
+
+#### Post Highlight View
+<p align="center">
+    <img height="300em" src="https://github.com/PowerCell46/Fitness-Pro-Gym-React-Project/blob/master/screenshots/PostHighlightPage.PNG" alt="postHighlightPage"/>
+    <br>
+</p>
+    A page, accessible to all Logged in Users, allowing them to make a post similar to other Social Networks.
+    <br>
+
+#### Highlights View
+<p align="center">
+    <img height="300em" src="https://github.com/PowerCell46/Fitness-Pro-Gym-React-Project/blob/master/screenshots/HighlightsPage.PNG" alt="highlightsPage"/>
+    <br>
+</p>
+    Highlights Gallery, similar to other Social medias Feeds, accessible by all users - logged in or not.
+    <br>
+
+#### Highlight Description View
+<p align="center">
+    <img height="300em" src="https://github.com/PowerCell46/Fitness-Pro-Gym-React-Project/blob/master/screenshots/HighlightDescriptionPage.PNG" alt="highlightDescPage"/>
+    <br>
+</p>
+    Highlight Details page, accessible by everyone. The creator and the administrator have access to the edit and delete options, and the others logged in users can Like the selected Highlight.
+    <br>
+
+#### Edit Highlight View
+<p align="center">
+    <img height="300em" src="https://github.com/PowerCell46/Fitness-Pro-Gym-React-Project/blob/master/screenshots/editHighlight.PNG" alt="highlightDescPage"/>
+    <br>
+</p>
+    Highlight Edit view loaded with the current state of the data, waiting to be updated.
+    <br>
+
+#### Delete Highlight Popup
+<p align="center">
+    <img height="300em" src="https://github.com/PowerCell46/Fitness-Pro-Gym-React-Project/blob/master/screenshots/DeleteHighlight.PNG" alt="highlightDescPage"/>
+    <br>
+</p>
+    A popup asking the Creator or the Administrator if they really want to proceed with the Deletion Process.
+    <br>
+
+
+
