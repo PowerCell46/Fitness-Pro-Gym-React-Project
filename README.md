@@ -29,17 +29,36 @@ Throughout development, challenges were met and overcome, reflecting the develop
 # Pro Gym Documentation
 ### Application Flow
     When the user opens the app he is redirected to the home page.
+#### Home View
 <p align="center">
     <img height="300em" src="https://github.com/PowerCell46/Fitness-Pro-Gym-React-Project/blob/master/screenshots/HomePage.PNG" alt="homePage.jpg"/>
     <br>
 </p>
     Guest Header with the Greeting Section in the Home view.
 <p align="center">
+    <br>
     <img height="300em" src="https://github.com/PowerCell46/Fitness-Pro-Gym-React-Project/blob/master/screenshots/HomePage2.PNG" alt="homePage2.jpg"/>
     <br>
 </p>
     Gym Premises Header with the first room in the Home view.
 <p align="center">
+    <br>
     <img height="300em" src="https://github.com/PowerCell46/Fitness-Pro-Gym-React-Project/blob/master/screenshots/HomePage-Reviews.PNG" alt="homePage3.jpg"/>
+    <br>
 </p>
     Reviews from Customers Section in the Home view.
+    <br>
+    
+#### Login View
+<p align="center">
+    <img height="300em" src="https://github.com/PowerCell46/Fitness-Pro-Gym-React-Project/blob/master/screenshots/LoginPage.PNG" alt="loginPage"/>
+    <br>
+</p>
+    Login header with two input fields - email and password, login button and link to the Register Page.
+    <br>
+<p align="center">
+    <img height="300em" src="https://github.com/PowerCell46/Fitness-Pro-Gym-React-Project/blob/master/screenshots/LoginErrMessage.PNG" alt="loginErrorMessage"/>
+    <br>
+</p>
+    One of the possible error messages - incorrect password.
+    <br>
