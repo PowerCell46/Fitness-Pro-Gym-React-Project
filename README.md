@@ -168,3 +168,10 @@ Throughout development, challenges were met and overcome, reflecting the develop
     A popup asking the Administrator if he really wants to proceed with the Deletion Process.
     <br>
 
+#### Post Trainer View
+<p align="center">
+    <img height="300em" src="https://github.com/PowerCell46/Fitness-Pro-Gym-React-Project/blob/master/screenshots/CreateTrainerPage.PNG" alt="postTrainerView"/>
+    <br>
+</p>
+    Create Trainer view, accessible only by the Administrator.
+    <br>
