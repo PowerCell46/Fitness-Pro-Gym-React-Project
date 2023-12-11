@@ -77,7 +77,7 @@ Throughout development, challenges were met and overcome, reflecting the develop
     <img height="300em" src="https://github.com/PowerCell46/Fitness-Pro-Gym-React-Project/blob/master/screenshots/DefaultPictureAndNonAdminDropdown.PNG" alt="logged in user"/>
     <br>
 </p>
-    Updated header after successful Login/Register with default Profile Picture.
+    Updated header after successful Login/Register with default Profile Picture and non-Administrator Dropdown Menu.
     <br>
 
 #### Post Highlight View
@@ -120,5 +120,51 @@ Throughout development, challenges were met and overcome, reflecting the develop
     A popup asking the Creator or the Administrator if they really want to proceed with the Deletion Process.
     <br>
 
+#### Post Product View
+<p align="center">
+    <img height="300em" src="https://github.com/PowerCell46/Fitness-Pro-Gym-React-Project/blob/master/screenshots/CreateProductPage.PNG" alt="postProductView"/>
+    <br>
+</p>
+    Create Product view, accessible only by the Administrator.
+    <br>
 
+#### Products View
+<p align="center">
+    <img height="300em" src="https://github.com/PowerCell46/Fitness-Pro-Gym-React-Project/blob/master/screenshots/ProductsPage.PNG" alt="productsView"/>
+    <br>
+</p>
+    Products view, accessible by anyone, all products selected by default. Logged in users can add products to their carts.
+    <br>
+
+#### Products View Filtered
+<p align="center">
+    <img height="300em" src="https://github.com/PowerCell46/Fitness-Pro-Gym-React-Project/blob/master/screenshots/ProductsFilterPage.PNG" alt="productsViewFiltered"/>
+    <br>
+</p>
+    Products view, filtered only the Fitness Machines products by the Filter container.
+    <br>
+
+#### Product Description View
+<p align="center">
+    <img height="300em" src="https://github.com/PowerCell46/Fitness-Pro-Gym-React-Project/blob/master/screenshots/ProductDescription.PNG" alt="productDetailsView"/>
+    <br>
+</p>
+    Product Details View, showing all of the Product's info, allowing logged in users to add the product to the cart and the administrator to edit and delete it.
+    <br>
+
+#### Edit Product View 
+<p align="center">
+    <img height="300em" src="https://github.com/PowerCell46/Fitness-Pro-Gym-React-Project/blob/master/screenshots/EditProductPage.PNG" alt="editProductView"/>
+    <br>
+</p>
+    Product Edit view loaded with the current state of the data, waiting to be updated.
+    <br>
+
+#### Delete Product Popup
+<p align="center">
+    <img height="300em" src="https://github.com/PowerCell46/Fitness-Pro-Gym-React-Project/blob/master/screenshots/DeleteProductPage.PNG" alt="deleteProductView"/>
+    <br>
+</p>
+    A popup asking the Administrator if he really wants to proceed with the Deletion Process.
+    <br>
 
