@@ -56,6 +56,7 @@ Throughout development, challenges were met and overcome, reflecting the develop
 </p>
     Login header with two input fields - email and password, login button and link to the Register Page.
     <br>
+
 <p align="center">
     <img height="300em" src="https://github.com/PowerCell46/Fitness-Pro-Gym-React-Project/blob/master/screenshots/LoginErrMessage.PNG" alt="loginErrorMessage"/>
     <br>
@@ -69,6 +70,14 @@ Throughout development, challenges were met and overcome, reflecting the develop
     <br>
 </p>
     Register header with four input fields - email, username, password and repeat password, register button and link to the Login Page.
+    <br>
+
+#### Logged in User 
+<p align="center">
+    <img height="300em" src="https://github.com/PowerCell46/Fitness-Pro-Gym-React-Project/blob/master/screenshots/DefaultPictureAndNonAdminDropdown.PNG" alt="logged in user"/>
+    <br>
+</p>
+    Updated header after successful Login/Register with default Profile Picture.
     <br>
 
 #### Post Highlight View
