@@ -58,7 +58,7 @@ export function validatePhoneNumber(phoneNumber) {
 
 
 export function validateEmail(email) {
-    if (email.length < 5) {
+    if (email.length < 6) {
         return `Email must be at least 5 characers!`;
     
     } else if (!email.includes("@")) {
