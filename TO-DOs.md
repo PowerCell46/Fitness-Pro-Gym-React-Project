@@ -1,0 +1,5 @@
+- remove node modules from the server
+- rewrite the client using typescript/js
+- rewrite the server
+- use best practices
+- change the user and the orders or something like that...
